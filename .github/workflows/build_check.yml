@@ -1,4 +1,4 @@
-name: CI
+name: CI - test before send to production
 
 on:
   pull_request:
