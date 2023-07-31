@@ -4,7 +4,7 @@ import { Box, Typography, IconButton, Button, Snackbar, Slide } from '@mui/mater
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import InstagramIcon from '@mui/icons-material/Instagram';
+import GithubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import PhoneIcon from '@mui/icons-material/Phone';
 import MailIcon from '@mui/icons-material/Mail';
@@ -12,11 +12,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './FloatingActionButton.css';
 
+
 const actions = [
-  { name: 'Email: yourmail@example.com', icon: <MailIcon />, href: 'mailto:yourmail@example.com', isCopy: true },
-  { name: 'Phone: +123456789', icon: <PhoneIcon />, href: 'tel:+123456789', isCopy: true },
-  { name: 'LinkedIn', icon: <LinkedInIcon />, href: 'https://linkedin.com' },
-  { name: 'Instagram', icon: <InstagramIcon />, href: 'https://instagram.com' },
+  { name: 'thomas.ott@epitech.eu', icon: <MailIcon />, href: 'mailto:thomas.ott@epitech.eu', isCopy: true },
+  { name: '+33 7 68 91 81 94', icon: <PhoneIcon />, href: 'tel:+33 7 68 91 81 94', isCopy: true },
+  { name: 'LinkedIn', icon: <LinkedInIcon />, href: 'https://www.linkedin.com/in/thomas--ott/' },
+  { name: 'Github', icon: <GithubIcon />, href: 'https://github.com/RedBoardDev' },
   { name: 'Facebook', icon: <FacebookIcon />, href: 'https://facebook.com' },
 ];
 
@@ -74,7 +75,7 @@ const FloatingActionButton = () => {
           marginTop: '15px',
           marginRight: '20px',
           minWidth: '20ch',
-          backgroundColor: 'rgba(245, 245, 245, 0.8)', // off-white with slight opacity
+          backgroundColor: 'rgba(245, 245, 245, 0.8)',
           borderRadius: '15px',
           transition: '0.3s',
           boxShadow: '0px 3px 5px 2px rgba(0, 0, 0, 0.2)',
