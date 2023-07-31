@@ -5,20 +5,19 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GithubIcon from '@mui/icons-material/GitHub';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import { FaDiscord } from 'react-icons/fa';
 import PhoneIcon from '@mui/icons-material/Phone';
 import MailIcon from '@mui/icons-material/Mail';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './FloatingActionButton.css';
 
-
 const actions = [
   { name: 'thomas.ott@epitech.eu', icon: <MailIcon />, href: 'mailto:thomas.ott@epitech.eu', isCopy: true },
   { name: '+33 7 68 91 81 94', icon: <PhoneIcon />, href: 'tel:+33 7 68 91 81 94', isCopy: true },
   { name: 'LinkedIn', icon: <LinkedInIcon />, href: 'https://www.linkedin.com/in/thomas--ott/' },
   { name: 'Github', icon: <GithubIcon />, href: 'https://github.com/RedBoardDev' },
-  { name: 'Facebook', icon: <FacebookIcon />, href: 'https://facebook.com' },
+  { name: 'Discord', icon: <FaDiscord size="1.5em" />, href: 'https://discord.com/users/419926802366988292' },
 ];
 
 const FloatingActionButton = () => {
