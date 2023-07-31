@@ -1,11 +1,14 @@
 import React, { } from 'react';
-import ProfileImage from '../components/ProfileImage';
 import Button from '@mui/material/Button';
 import "./Home.css";
+import ProfileImage from '../components/ProfileImage';
+import FloatingActionButton from '../components/FloatingActionButton';
+
 
 function Home() {
     return (
         <div className="home">
+            <FloatingActionButton />
             <div className="profile-title-container">
                 <ProfileImage />
                 <h1 className="title">Thomas OTT</h1>
