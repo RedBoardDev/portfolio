@@ -1,40 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import "./Home.css";
 import ProfileImage from '../components/ProfileImage';
 import FloatingActionButton from '../components/FloatingActionButton';
-
-const TypingEffect = () => {
-    const [text, setText] = useState("");
-    const [showCursor, setShowCursor] = useState(true);
-
-    useEffect(() => {
-        const name = "Thomas OTT";
-        let currentIndex = 0;
-        let typingSpeed;
-
-        const typeCharacter = () => {
-            if (currentIndex < name.length) {
-                setText(name.substring(0, currentIndex + 1));
-                currentIndex++;
-                typingSpeed = 150;
-            } else {
-                setShowCursor(false);
-            }
-
-            setTimeout(typeCharacter, typingSpeed);
-        };
-
-        typeCharacter();
-    }, []);
-
-    return (
-        <span>
-            {text}
-            {showCursor && <span className="cursor">_</span>}
-        </span>
-    );
-};
+import TypingEffect from '../components/TypingEffect';
 
 function Home() {
     return (
