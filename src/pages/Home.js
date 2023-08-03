@@ -58,7 +58,7 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="content-section">
+            <div className="wordcloud-section">
                 <Container maxWidth="lg">
                     <Grid container justifyContent="center" spacing={0}>
                         <Grid item xs={12} md={10} lg={9} xl={12} sx={{ marginTop: "20px" }}>
@@ -67,6 +67,17 @@ function Home() {
                     </Grid>
                 </Container>
             </div>
+
+            <div className="mywork-section">
+                <Container maxWidth="lg">
+                    <Grid container justifyContent="center" spacing={0}>
+                        <Grid item xs={12} md={10} lg={9} xl={12} sx={{ marginTop: "20px" }}>
+                            {/* <NewComponent /> */}
+                        </Grid>
+                    </Grid>
+                </Container>
+            </div>
+
         </>
     );
 }

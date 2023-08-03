@@ -87,8 +87,14 @@
     color: transparent;
 }
 
-.content-section {
+.wordcloud-section {
     min-height: 100vh;
     background-color: #cfc9c9;
+    align-items: center;
+}
+
+.mywork-section {
+    min-height: 100vh;
+    background-color: rgba(78, 1, 1, 0.6);
     align-items: center;
 }
