@@ -5,6 +5,8 @@ import ProfileImage from '../components/ProfileImage';
 import FloatingActionButton from '../components/FloatingActionButton';
 import TypingEffect from '../components/TypingEffect';
 import WordCloud from '../components/WordCloud';
+import InfoBox from '../components/InfoBox';
+
 import { Container, Grid } from '@mui/material';
 
 function Home() {
@@ -58,26 +60,35 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="wordcloud-section">
-                <Container maxWidth="lg">
-                    <Grid container justifyContent="center" spacing={0}>
-                        <Grid item xs={12} md={10} lg={9} xl={12} sx={{ marginTop: "20px" }}>
-                            <WordCloud data={data} />
+            <div className="sections-wrapper">
+                <div className="wordcloud-section">
+                    <Container maxWidth="lg">
+                        <Grid container justifyContent="center" spacing={0}>
+                            <Grid item xs={12} md={10} lg={9} xl={12} sx={{ marginTop: "20px" }}>
+                                <WordCloud data={data} />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </Container>
-            </div>
+                    </Container>
+                </div>
 
-            <div className="mywork-section">
-                <Container maxWidth="lg">
-                    <Grid container justifyContent="center" spacing={0}>
-                        <Grid item xs={12} md={10} lg={9} xl={12} sx={{ marginTop: "20px" }}>
-                            {/* <NewComponent /> */}
+                <InfoBox title="Réalisations récentes"
+                    description={[
+                        "Découvrez quatre de mes projets les plus marquants.",
+                        "Ils illustrent ma passion pour le développement et ma capacité à créer des solutions innovantes."
+                    ]}
+                />
+
+
+                <div className="mywork-section">
+                    <Container maxWidth="lg">
+                        <Grid container justifyContent="center" spacing={0}>
+                            <Grid item xs={12} md={10} lg={9} xl={12} sx={{ marginTop: "20px" }}>
+                                {/* ... */}
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </Container>
+                    </Container>
+                </div>
             </div>
-
         </>
     );
 }
