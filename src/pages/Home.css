@@ -56,7 +56,6 @@
     }
 }
 
-/* buttons */
 .button-container {
     display: flex;
     justify-content: center;
@@ -78,14 +77,18 @@
     background-color: #555;
     color: #fff;
     box-shadow: 0px 0px 5px #555;
-}/* ... other styles ... */
+}
 
 .cursor {
-    color: #ffff; /* Set the color of the visible cursor */
-  }
+    color: #ffff;
+}
 
-  .invisible-cursor {
-    color: transparent; /* Set the color of the invisible cursor to transparent */
-  }
+.invisible-cursor {
+    color: transparent;
+}
 
-  /* ... other styles ... */
+.content-section {
+    min-height: 100vh;
+    background-color: #cfc9c9;
+    align-items: center;
+}
