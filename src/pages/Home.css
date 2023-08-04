@@ -88,9 +88,17 @@
 }
 
 .wordcloud-section {
-    min-height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../assets/test.png");
+    padding-top: 60px;
+    padding-bottom: 130px;
     background-color: #cfc9c9;
     align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .wordcloud-section {
+        padding-bottom: 160px;
+    }
 }
 
 .mywork-section {

@@ -94,7 +94,6 @@ const WordCloud = ({ data }) => {
             flexDirection: 'column',
             alignItems: 'center',
             width: '94%',
-            maxWidth: '1000px',
             margin: '0 auto'
         }}>
             <Paper elevation={15} sx={{
@@ -134,8 +133,6 @@ const WordCloud = ({ data }) => {
             </Box>
         </Box>
     );
-
-
 };
 
 export default WordCloud;
