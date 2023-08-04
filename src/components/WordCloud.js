@@ -103,7 +103,8 @@ const WordCloud = ({ data }) => {
                 gap: 2,
                 borderRadius: '25px',
                 alignItems: 'stretch',
-                width: '100%'
+                width: '100%',
+                bgcolor: '#f5f2f2'
             }}>
                 <Box sx={{
                     flexGrow: 1,
@@ -115,7 +116,6 @@ const WordCloud = ({ data }) => {
             <Box sx={{
                 width: '100%',
                 minHeight: 'auto',
-                color: '#fff',
                 p: 2,
                 borderRadius: '15px',
                 display: 'flex',
