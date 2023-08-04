@@ -1,13 +1,13 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import "./Home.css";
+import { Container, Grid } from '@mui/material';
 import ProfileImage from '../components/ProfileImage';
 import FloatingActionButton from '../components/FloatingActionButton';
 import TypingEffect from '../components/TypingEffect';
 import WordCloud from '../components/WordCloud';
 import InfoBox from '../components/InfoBox';
-
-import { Container, Grid } from '@mui/material';
+import ProjectCardSection from '../components/ProjectCardSection';
 
 function Home() {
     const data = [
@@ -83,7 +83,7 @@ function Home() {
                     <Container maxWidth="lg">
                         <Grid container justifyContent="center" spacing={0}>
                             <Grid item xs={12} md={10} lg={9} xl={12}>
-                                {/* ... */}
+                                <ProjectCardSection number={6} />
                             </Grid>
                         </Grid>
                     </Container>
