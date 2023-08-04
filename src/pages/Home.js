@@ -64,7 +64,7 @@ function Home() {
                 <div className="wordcloud-section">
                     <Container maxWidth="lg">
                         <Grid container justifyContent="center" spacing={0}>
-                            <Grid item xs={12} md={10} lg={9} xl={12} sx={{ marginTop: "20px" }}>
+                            <Grid item xs={12} md={10} lg={9} xl={12}>
                                 <WordCloud data={data} />
                             </Grid>
                         </Grid>
@@ -82,7 +82,7 @@ function Home() {
                 <div className="mywork-section">
                     <Container maxWidth="lg">
                         <Grid container justifyContent="center" spacing={0}>
-                            <Grid item xs={12} md={10} lg={9} xl={12} sx={{ marginTop: "20px" }}>
+                            <Grid item xs={12} md={10} lg={9} xl={12}>
                                 {/* ... */}
                             </Grid>
                         </Grid>
