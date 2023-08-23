@@ -52,7 +52,7 @@ const WordCloud = ({ data }) => {
                     .append("g")
                     .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")");
 
-                const text = svg.selectAll("text")
+                svg.selectAll("text")
                     .data(words)
                     .enter()
                     .append("text")
