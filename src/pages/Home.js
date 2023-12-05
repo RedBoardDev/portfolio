@@ -49,7 +49,7 @@ function Home() {
                         <Button variant="outlined" color="primary" href="https://www.linkedin.com/in/thomas--ott/" target="_blank" rel="noopener noreferrer">
                             Linkedin
                         </Button>
-                        <Button variant="outlined" color="primary" href="/works">
+                        <Button variant="outlined" color="primary" href="https://github.com/RedBoardDev" target="_blank">
                             My Works
                         </Button>
                     </div>
@@ -68,11 +68,10 @@ function Home() {
 
                 <InfoBox title="Réalisations récentes"
                     description={[
-                        "Découvrez quatre de mes projets les plus marquants.",
+                        "Découvrez six de mes projets les plus marquants.",
                         "Ils illustrent ma passion pour le développement et ma capacité à créer des solutions innovantes."
                     ]}
                 />
-
 
                 <div className="mywork-section">
                     <Container maxWidth="lg">
