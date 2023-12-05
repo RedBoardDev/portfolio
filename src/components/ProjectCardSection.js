@@ -50,7 +50,10 @@ function ProjectCardSection({ number }) {
                     />
                 ))}
             </div>
-            <Button className="btn-see-more">Voir plus de projets</Button>
+            <div style={{ marginTop: '20px' }}></div>
+            <Button variant="outlined" className="btn-see-more" href="https://github.com/RedBoardDev?tab=repositories" target="_blank">
+                Voir plus de projets
+            </Button>
 
         </div>
     );
