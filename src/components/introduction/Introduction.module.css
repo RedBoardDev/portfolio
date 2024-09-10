@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.text {
+  font-size: 26px;
+  color: #fff;
+}

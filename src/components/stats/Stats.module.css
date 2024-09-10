@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.statContainer {
+  text-align: center;
+  color: rgb(240, 240, 240);
+}
+
+.black {
+  color: rgb(22, 22, 22) !important;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 5rem;
+}
+
+.description {
+  font-size: 1.5rem;
+}

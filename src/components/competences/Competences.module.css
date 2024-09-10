@@ -1,0 +1,39 @@
+.competencesBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.iconCarousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  animation: scroll 10s linear infinite;
+  animation-play-state: running
+}
+
+.competenceIcon {
+  width: auto;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.iconCarousel {
+  animation: scroll 30s linear infinite;
+}
+
+.competencesBox:hover .iconCarousel {
+  animation-play-state: paused;
+}

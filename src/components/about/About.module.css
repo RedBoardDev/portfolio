@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #161a1d;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 32px;
+  margin: 0;
+}
+
+.content {
+  color: #c4c4c4;
+  font-size: 18px;
+  line-height: 1.8;
+  overflow-y: auto;
+}

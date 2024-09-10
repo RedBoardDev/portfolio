@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #161a1d;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-weight: normal;
+  font-size: 22px;
+  color: #aaa;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 28px;
+  color: #fff;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.content img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 12px;
+}
