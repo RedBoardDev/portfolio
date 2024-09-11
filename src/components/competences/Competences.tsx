@@ -13,22 +13,24 @@ const getFileName = (path: string) => {
 const Competences: React.FC = () => {
   const iconPaths = useMemo(() => Object.values(icons).map((mod: any) => mod.default), []);
 
+  const allIcons = useMemo(() => [
+    ...iconPaths.map((icon) => ({ icon, uniqueKey: icon })),
+    ...iconPaths.map((icon) => ({ icon, uniqueKey: `${icon}-copy` })),
+  ], [iconPaths]);
+
   return (
     <div className={styles.competencesBox}>
       <div className={styles.iconCarousel}>
-        {iconPaths.map((icon, index) => {
-          const fileName = getFileName(icon);
-          return (
-            <Tooltip key={icon} title={fileName} placement="left">
-              <img
-                src={icon}
-                alt={`Icon ${index}`}
-                className={styles.competenceIcon}
-                loading="lazy"
-              />
-            </Tooltip>
-          );
-        })}
+        {allIcons.map(({ icon, uniqueKey }) => (
+          <Tooltip key={uniqueKey} title={getFileName(icon)} placement="left">
+            <img
+              src={icon}
+              alt={uniqueKey}
+              className={styles.competenceIcon}
+              loading="lazy"
+            />
+          </Tooltip>
+        ))}
       </div>
     </div>
   );
