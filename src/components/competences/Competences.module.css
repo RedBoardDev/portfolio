@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  animation: scroll 30s linear infinite;
+  animation: scrollY 40s linear infinite;
   gap: 12px;
 }
 
@@ -20,7 +20,7 @@
   margin-bottom: 1px;
 }
 
-@keyframes scroll {
+@keyframes scrollY {
   0% {
     transform: translateY(0);
   }
@@ -30,6 +30,28 @@
   }
 }
 
+@keyframes scrollX {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .competencesBox:hover .iconCarousel {
   animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .iconCarousel {
+    flex-direction: row;
+    animation: scrollX 6s linear infinite;
+    gap: 24px;
+  }
+
+  .competenceIcon {
+    height: 80px;
+  }
 }
