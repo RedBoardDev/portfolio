@@ -77,3 +77,15 @@
   font-weight: bold;
   text-align: center;
 }
+
+@media (max-width: 1300px) {
+  .content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .square:nth-child(4) {
+    display: none;
+  }
+}

@@ -20,12 +20,12 @@ const SocialNetworks: React.FC = () => (
     </Tooltip>
     <Tooltip title="GitHub">
       <a href="https://github.com/RedBoardDev/" target="_blank" rel="noreferrer">
-        <img src={githubIcon} alt="Github" className={style.icon} />
+        <img src={githubIcon} alt="GitHub" className={style.icon} />
       </a>
     </Tooltip>
     <Tooltip title="Discord">
       <a href="https://discord.com/invite/m2TJx9gV" target="_blank" rel="noreferrer">
-        <img src={discordIcon} alt="Discord" className={style.icon} />
+        <img src={discordIcon} alt="Discord" className={`${style.icon} ${style.discordIcon}`} />
       </a>
     </Tooltip>
   </div>
