@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import "./Home.css";
 import { Container, Grid } from '@mui/material';
 import ProfileImage from '../components/ProfileImage';
-import FloatingActionButton from '../components/FloatingActionButton';
 import TypingEffect from '../components/TypingEffect';
 import WordCloud from '../components/WordCloud';
 import InfoBox from '../components/InfoBox';
@@ -38,7 +37,6 @@ function Home() {
     return (
         <>
             <div className="home">
-                <FloatingActionButton />
                 <div className="profile-title-container">
                     <ProfileImage />
                     <h1 className="title">
@@ -55,7 +53,7 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="sections-wrapper">
+            {/* <div className="sections-wrapper">
                 <div className="wordcloud-section">
                     <Container maxWidth="lg">
                         <Grid container justifyContent="center" spacing={0}>
@@ -82,7 +80,7 @@ function Home() {
                         </Grid>
                     </Container>
                 </div>
-            </div>
+            </div> */}
         </>
     );
 }
