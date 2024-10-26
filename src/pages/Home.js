@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import "./Home.css";
 import ProfileImage from '../components/ProfileImage';
 import TypingEffect from '../components/TypingEffect';
+import "./Home.css";
 
 function Home() {
     return (
