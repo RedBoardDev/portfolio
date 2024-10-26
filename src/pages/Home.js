@@ -13,7 +13,7 @@ function Home() {
                     <h1 className="title">
                         <TypingEffect />
                     </h1>
-                    <h2 className="construction">Site web en construction</h2>
+                    <h2 className="construction">Développeur full stack</h2>
                     <div className="button-container">
                         <Button variant="outlined" color="primary" href="https://www.linkedin.com/in/thomas--ott/" target="_blank" rel="noopener noreferrer">
                             Linkedin
