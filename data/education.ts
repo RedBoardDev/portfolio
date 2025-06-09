@@ -19,23 +19,23 @@ export const formatDisplayDate = (dateStr: string): string => {
 export const educations: Education[] = [
   {
     key: "epitech",
-    logo: "/placeholder.svg?height=64&width=64",
+    logo: "/assets/logos/companies/epitech.jpeg",
     startDate: "2021-10",
     endDate: "2026",
     url: "https://www.epitech.eu/",
   },
   {
     key: "laurea",
-    logo: "/placeholder.svg?height=64&width=64",
+    logo: "/assets/logos/education/laurea.jpeg",
     startDate: "2024-08",
     endDate: "2025-06",
     url: "https://www.laurea.fi/en/",
   },
   {
     key: "lycee",
-    logo: "/placeholder.svg?height=64&width=64",
+    logo: "/assets/logos/education/lycee-louis-armand.jpeg",
     startDate: "2018-09",
     endDate: "2021-07",
-    url: "https://www.lycee-louis-armand.com/",
+    url: "https://www.louis-armand-mulhouse.fr/",
   },
 ]

@@ -55,7 +55,7 @@ export const calculateTotalDuration = (positions: Position[]): string => {
 export const experiences: Experience[] = [
   {
     key: "akord",
-    logo: "/placeholder.svg?height=64&width=64",
+    logo: "/assets/logos/companies/akord.jpeg",
     positions: [
       {
         key: "fullStackDeveloper",
@@ -72,7 +72,7 @@ export const experiences: Experience[] = [
   },
   {
     key: "epitech",
-    logo: "/placeholder.svg?height=64&width=64",
+    logo: "/assets/logos/companies/epitech.jpeg",
     positions: [
       {
         key: "aer",
