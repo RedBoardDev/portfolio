@@ -1,0 +1,45 @@
+{
+  "title": "Formation",
+  "skillsAcquired": "Compétences acquises",
+  "visitSite": "Visiter le site",
+  "months": {
+    "jan": "janv.",
+    "feb": "févr.",
+    "mar": "mars",
+    "apr": "avr.",
+    "may": "mai",
+    "jun": "juin",
+    "jul": "juil.",
+    "aug": "août",
+    "sep": "sept.",
+    "oct": "oct.",
+    "nov": "nov.",
+    "dec": "déc."
+  },
+  "educations": {
+    "epitech": {
+      "institution": "EPITECH - European Institute of Technology",
+      "degree": "Master",
+      "field": "Technologies de l'information",
+      "location": "Mulhouse, France",
+      "description": "Formation d'expert en technologies de l'information avec une pédagogie par projets.",
+      "skills": ["Développement web", "Algorithmique", "DevOps", "Architecture logicielle"]
+    },
+    "laurea": {
+      "institution": "Laurea University of Applied Sciences",
+      "degree": "Bachelor's degree",
+      "field": "Business Information Technology",
+      "location": "Helsinki, Finlande",
+      "description": "Année d'échange en Finlande, permettant d'acquérir une expérience internationale.",
+      "skills": ["Management de projet", "Business Intelligence", "UX/UI Design"]
+    },
+    "lycee": {
+      "institution": "Lycée Louis Armand - Mulhouse",
+      "degree": "Baccalauréat",
+      "field": "Ingénierie informatique",
+      "location": "Mulhouse, France",
+      "description": "Formation initiale en ingénierie informatique avec une approche pratique des technologies de l'information.",
+      "skills": ["Programmation", "Réseaux", "Systèmes d'information"]
+    }
+  }
+}

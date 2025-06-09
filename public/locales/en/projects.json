@@ -1,0 +1,56 @@
+{
+  "section": {
+    "title": "Projects"
+  },
+  "ui": {
+    "swipeInstruction": "Swipe left or right to navigate",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "pageOf": "Page {current} of {total}",
+    "code": "Code",
+    "demo": "Demo",
+    "viewAll": "View all projects",
+    "projectCount": {
+      "single": "{count} project",
+      "multiple": "{count} projects"
+    }
+  },
+  "projects": {
+    "apiPlatformAdmin": {
+      "title": "API Platform Admin",
+      "description": "Significant contribution to the open source API Platform Admin project, an automatically generated administration tool for RESTful APIs based on API Platform. My improvements optimized the user interface and developer experience, making API resource management easier through a modern React interface."
+    },
+    "symfonyDocker": {
+      "title": "Symfony Docker",
+      "description": "Optimized Docker infrastructure for Symfony projects including PHP-FPM, Nginx, and PostgreSQL. This carefully crafted configuration enables smooth Symfony development and simplified deployment with optimal production performance."
+    },
+    "blockchainProject": {
+      "title": "Blockchain Project",
+      "description": "Innovative decentralized application (dApp) based on the Ethereum blockchain using smart contracts to secure transactions and data. This solution leverages the power of Solidity and React to create a smooth user experience while preserving the benefits of blockchain technology."
+    },
+    "fullStackApp": {
+      "title": "Full-Stack Application",
+      "description": "Complete web platform with secure authentication system, efficient data management and responsive user interface. Includes an intuitive admin dashboard and advanced data visualization features, all built on a robust React/Node.js architecture."
+    },
+    "portfolio": {
+      "title": "Personal Portfolio",
+      "description": "My personal portfolio (this site) developed with Next.js, React and TailwindCSS, optimized for performance and SEO. Designed following best practices for accessibility and UX, it showcases my professional journey, technical skills and projects in a clear and interactive way."
+    },
+    "reactNativeApp": {
+      "title": "React Native Mobile App",
+      "description": "Cross-platform mobile application developed with React Native for iOS and Android offering a native user experience. This solution integrates custom REST APIs and fully leverages native device features for an optimal user experience."
+    },
+    "smartContractEth": {
+      "title": "Smart Contract ETH",
+      "description": "Advanced smart contract development on the Ethereum blockchain for managing non-fungible tokens (NFT). This project implements robust security mechanisms and innovative features enabling transparent and secure blockchain transactions."
+    },
+    "kubernetesServices": {
+      "title": "Microservices with Kubernetes",
+      "description": "Scalable microservices architecture deployed on Kubernetes with automated CI/CD pipeline. This solution uses a service mesh for efficient inter-service communication and enables transparent horizontal scaling to handle variable loads."
+    },
+    "cliTool": {
+      "title": "Automation CLI",
+      "description": "Powerful command-line tool for automating recurring development tasks. This highly configurable and extensible solution via a plugin system saves considerable time when developing complex projects."
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "title": "Compétences",
+  "categories": {
+    "programming": {
+      "name": "Langages de programmation",
+      "skills": {
+        "javascript": {
+          "name": "JavaScript",
+          "description": "Langage principal pour le développement web frontend et backend avec Node.js"
+        },
+        "typescript": {
+          "name": "TypeScript",
+          "description": "Utilisé pour ajouter un typage statique et améliorer la maintenabilité du code"
+        },
+        "php": {
+          "name": "PHP",
+          "description": "Utilisé pour le développement backend, notamment avec Symfony"
+        },
+        "cpp": {
+          "name": "C/C++",
+          "description": "Utilisé pour des projets système et applications performantes"
+        },
+        "bash": {
+          "name": "Bash",
+          "description": "Scripting pour l'automatisation et la configuration système"
+        }
+      }
+    },
+    "frameworks": {
+      "name": "Frameworks & Librairies",
+      "skills": {
+        "react": {
+          "name": "React",
+          "description": "Librairie principale pour le développement d'interfaces utilisateur"
+        },
+        "nextjs": {
+          "name": "Next.js",
+          "description": "Framework React pour applications web avec rendu côté serveur"
+        },
+        "nodejs": {
+          "name": "Node.js",
+          "description": "Environnement d'exécution JavaScript côté serveur"
+        },
+        "express": {
+          "name": "Express",
+          "description": "Framework minimaliste pour créer des API REST avec Node.js"
+        },
+        "symfony": {
+          "name": "Symfony",
+          "description": "Framework PHP pour le développement d'applications web robustes"
+        }
+      }
+    },
+    "databases": {
+      "name": "Bases de données & Outils",
+      "skills": {
+        "mysql": {
+          "name": "MySQL",
+          "description": "Système de gestion de base de données relationnelle"
+        },
+        "postgresql": {
+          "name": "PostgreSQL",
+          "description": "SGBDR avancé avec fonctionnalités étendues"
+        },
+        "mongodb": {
+          "name": "MongoDB",
+          "description": "Base de données NoSQL orientée documents"
+        },
+        "prisma": {
+          "name": "Prisma",
+          "description": "ORM moderne pour Node.js et TypeScript"
+        },
+        "git": {
+          "name": "Git",
+          "description": "Système de contrôle de version pour la gestion du code source"
+        }
+      }
+    },
+    "devops": {
+      "name": "DevOps & Infrastructure",
+      "skills": {
+        "docker": {
+          "name": "Docker",
+          "description": "Conteneurisation d'applications pour le déploiement"
+        },
+        "aws": {
+          "name": "AWS",
+          "description": "Services cloud pour l'hébergement et le déploiement d'applications"
+        },
+        "cicd": {
+          "name": "CI/CD",
+          "description": "Intégration et déploiement continus avec GitHub Actions"
+        },
+        "nginx": {
+          "name": "Nginx",
+          "description": "Serveur web et proxy inverse pour les applications"
+        }
+      }
+    },
+    "soft": {
+      "name": "Méthodologies & Soft Skills",
+      "skills": {
+        "agile": {
+          "name": "Agile/Scrum",
+          "description": "Méthodologie de gestion de projet itérative et collaborative"
+        },
+        "projectManagement": {
+          "name": "Gestion de projet",
+          "description": "Planification, exécution et suivi de projets informatiques"
+        },
+        "teamwork": {
+          "name": "Travail d'équipe",
+          "description": "Collaboration efficace au sein d'équipes multidisciplinaires"
+        },
+        "communication": {
+          "name": "Communication",
+          "description": "Communication claire avec les parties prenantes techniques et non techniques"
+        },
+        "teaching": {
+          "name": "Pédagogie",
+          "description": "Transmission de connaissances et accompagnement d'étudiants"
+        }
+      }
+    }
+  }
+}

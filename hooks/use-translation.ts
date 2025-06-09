@@ -24,85 +24,111 @@ export function useTranslation(namespace: string = "common") {
     try {
       const response = await fetch(`/locales/${lang}/${ns}.json`)
       if (!response.ok) {
-        throw new Error(`Failed to load translations: ${response.status}`)
+        throw new Error(`Failed to load translations for ${lang}/${ns}`)
       }
-
       const data = await response.json()
 
       // Mettre en cache
       translationCache.set(cacheKey, data)
-
       return data
     } catch (error) {
-      console.warn(`Failed to load translations for ${lang}/${ns}:`, error)
-
-      // Fallback vers l'anglais si pas français, ou objet vide en dernier recours
-      if (lang === "fr") {
-        try {
-          const fallbackResponse = await fetch(`/locales/en/${ns}.json`)
-          if (fallbackResponse.ok) {
-            const fallbackData = await fallbackResponse.json()
-            translationCache.set(cacheKey, fallbackData)
-            return fallbackData
-          }
-        } catch (fallbackError) {
-          console.warn("Fallback translation also failed:", fallbackError)
-        }
-      }
-
+      console.error(`Error loading translations:`, error)
       return {}
     }
   }, [])
 
-  // Effet pour charger les traductions quand la langue ou le namespace change
+  // Charger les traductions quand la langue ou le namespace change
   useEffect(() => {
     if (!isLoaded) return
-
-    let isMounted = true
 
     const loadData = async () => {
       setLoading(true)
       const data = await loadTranslations(language, namespace)
-
-      if (isMounted) {
-        setTranslations(data)
-        setLoading(false)
-      }
+      setTranslations(data)
+      setLoading(false)
     }
 
     loadData()
-
-    return () => {
-      isMounted = false
-    }
   }, [language, namespace, isLoaded, loadTranslations])
 
-  // Fonction pour obtenir une traduction par clé
-  const t = useCallback((key: string, fallback?: string): string => {
-    if (loading || !translations) {
-      return fallback || key
-    }
+  // Fonction pour obtenir une traduction par clé avec support des clés imbriquées et des tableaux
+  const t = useCallback((key: string, fallback?: any): any => {
+    if (loading || !translations) return fallback || key
 
-    // Gérer les clés imbriquées (e.g., "navigation.about")
-    const keys = key.split(".")
-    let result: any = translations
+    const keys = key.split('.')
+    let value: any = translations
 
     for (const k of keys) {
-      if (result && typeof result === "object" && k in result) {
-        result = result[k]
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k]
       } else {
-        console.warn(`Translation key not found: ${key} in namespace ${namespace}`)
         return fallback || key
       }
     }
 
-    return typeof result === "string" ? result : fallback || key
-  }, [translations, loading, namespace])
+    // Retourner la valeur telle quelle (string, array, ou object)
+    return value !== undefined ? value : fallback || key
+  }, [translations, loading])
+
+  // Fonction pour formater les dates selon la langue
+  const formatDate = useCallback((dateStr: string): string => {
+    if (loading || !translations) return dateStr
+
+    // Si la date est juste une année (ex: "2026"), on la retourne telle quelle
+    if (dateStr.length === 4) return dateStr
+
+    const date = new Date(dateStr)
+    const monthNames = translations.months || {}
+
+    // Récupérer le nom du mois traduit
+    const monthKeys = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
+                      'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+    const monthKey = monthKeys[date.getMonth()]
+    const monthName = monthNames[monthKey] || monthKey
+
+    return `${monthName} ${date.getFullYear()}`
+  }, [translations, loading])
+
+  // Fonction pour formater les durées selon la langue
+  const formatDuration = useCallback((startDate: string, endDate?: string): string => {
+    if (loading || !translations) return ""
+
+    const start = new Date(startDate)
+    const end = endDate ? new Date(endDate) : new Date()
+
+    const monthsDiff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth())
+
+    const years = Math.floor(monthsDiff / 12)
+    const months = monthsDiff % 12
+
+    if (years === 0 && months === 0) {
+      return t("ui.duration.lessThanOneMonth", "< 1 mois")
+    }
+
+    if (years === 0) {
+      return months === 1
+        ? t("ui.duration.oneMonth", "1 mois")
+        : t("ui.duration.months", "{count} mois").replace("{count}", months.toString())
+    }
+
+    if (months === 0) {
+      return years === 1
+        ? t("ui.duration.oneYear", "1 an")
+        : t("ui.duration.years", "{count} ans").replace("{count}", years.toString())
+    }
+
+    const yearPlural = years > 1 ? "s" : ""
+    return t("ui.duration.yearsAndMonths", "{years} an{yearPlural} {months} mois")
+      .replace("{years}", years.toString())
+      .replace("{yearPlural}", yearPlural)
+      .replace("{months}", months.toString())
+  }, [t, loading, translations])
 
   return {
     t,
-    language,
-    loading,
-    isLoaded
+    formatDate,
+    formatDuration,
+    loading: loading || !isLoaded,
+    language
   }
 }

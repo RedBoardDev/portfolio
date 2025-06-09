@@ -1,157 +1,132 @@
 export interface Skill {
-  name: string
+  key: string // Clé pour la traduction
   logo: string
-  description: string
 }
 
 export interface SkillCategory {
-  name: string
+  key: string // Clé pour la traduction
   skills: Skill[]
 }
 
 export const skillsData: SkillCategory[] = [
   {
-    name: "Langages de programmation",
+    key: "programming",
     skills: [
       {
-        name: "JavaScript",
+        key: "javascript",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-        description: "Langage principal pour le développement web frontend et backend avec Node.js",
       },
       {
-        name: "TypeScript",
+        key: "typescript",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-        description: "Utilisé pour ajouter un typage statique et améliorer la maintenabilité du code",
       },
       {
-        name: "PHP",
+        key: "php",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg",
-        description: "Utilisé pour le développement backend, notamment avec Symfony",
       },
       {
-        name: "C/C++",
+        key: "cpp",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-        description: "Utilisé pour des projets système et applications performantes",
       },
       {
-        name: "Bash",
+        key: "bash",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
-        description: "Scripting pour l'automatisation et la configuration système",
       },
     ],
   },
   {
-    name: "Frameworks & Librairies",
+    key: "frameworks",
     skills: [
       {
-        name: "React",
+        key: "react",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-        description: "Librairie principale pour le développement d'interfaces utilisateur",
       },
       {
-        name: "Next.js",
+        key: "nextjs",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-        description: "Framework React pour applications web avec rendu côté serveur",
       },
       {
-        name: "Node.js",
+        key: "nodejs",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-        description: "Environnement d'exécution JavaScript côté serveur",
       },
       {
-        name: "Express",
+        key: "express",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-        description: "Framework minimaliste pour créer des API REST avec Node.js",
       },
       {
-        name: "Symfony",
+        key: "symfony",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg",
-        description: "Framework PHP pour le développement d'applications web robustes",
       },
     ],
   },
   {
-    name: "Bases de données & Outils",
+    key: "databases",
     skills: [
       {
-        name: "MySQL",
+        key: "mysql",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-        description: "Système de gestion de base de données relationnelle",
       },
       {
-        name: "PostgreSQL",
+        key: "postgresql",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-        description: "SGBDR avancé avec fonctionnalités étendues",
       },
       {
-        name: "MongoDB",
+        key: "mongodb",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-        description: "Base de données NoSQL orientée documents",
       },
       {
-        name: "Prisma",
+        key: "prisma",
         logo: "https://www.prisma.io/images/favicon-32x32.png",
-        description: "ORM moderne pour Node.js et TypeScript",
       },
       {
-        name: "Git",
+        key: "git",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-        description: "Système de contrôle de version pour la gestion du code source",
       },
     ],
   },
   {
-    name: "DevOps & Infrastructure",
+    key: "devops",
     skills: [
       {
-        name: "Docker",
+        key: "docker",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-        description: "Conteneurisation d'applications pour le déploiement",
       },
       {
-        name: "AWS",
+        key: "aws",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
-        description: "Services cloud pour l'hébergement et le déploiement d'applications",
       },
       {
-        name: "CI/CD",
+        key: "cicd",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-        description: "Intégration et déploiement continus avec GitHub Actions",
       },
       {
-        name: "Nginx",
+        key: "nginx",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
-        description: "Serveur web et proxy inverse pour les applications",
       },
     ],
   },
   {
-    name: "Méthodologies & Soft Skills",
+    key: "soft",
     skills: [
       {
-        name: "Agile/Scrum",
+        key: "agile",
         logo: "/placeholder.svg?height=40&width=40",
-        description: "Méthodologie de gestion de projet itérative et collaborative",
       },
       {
-        name: "Gestion de projet",
+        key: "projectManagement",
         logo: "/placeholder.svg?height=40&width=40",
-        description: "Planification, exécution et suivi de projets informatiques",
       },
       {
-        name: "Travail d'équipe",
+        key: "teamwork",
         logo: "/placeholder.svg?height=40&width=40",
-        description: "Collaboration efficace au sein d'équipes multidisciplinaires",
       },
       {
-        name: "Communication",
+        key: "communication",
         logo: "/placeholder.svg?height=40&width=40",
-        description: "Communication claire avec les parties prenantes techniques et non techniques",
       },
       {
-        name: "Pédagogie",
+        key: "teaching",
         logo: "/placeholder.svg?height=40&width=40",
-        description: "Transmission de connaissances et accompagnement d'étudiants",
       },
     ],
   },

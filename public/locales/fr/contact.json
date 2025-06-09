@@ -1,0 +1,44 @@
+{
+  "freelance": {
+    "title": "Développeur Freelance",
+    "subtitle": "Disponible pour vos projets web et mobiles"
+  },
+  "services": {
+    "title": "Mes services",
+    "available": "Actuellement disponible",
+    "availableMobile": "Disponible",
+    "webDev": {
+      "title": "Développement Web",
+      "description": "Sites vitrines, applications web complexes, e-commerce et intégration de designs."
+    },
+    "maintenance": {
+      "title": "Maintenance & Support",
+      "description": "Maintenance évolutive, corrective et support technique pour vos applications existantes."
+    },
+    "security": {
+      "title": "Sécurité & Performance",
+      "description": "Audit de sécurité, optimisation des performances et mise en conformité RGPD."
+    },
+    "consulting": {
+      "title": "Conseil & Formation",
+      "description": "Accompagnement technique, choix de technologies et formation de vos équipes."
+    }
+  },
+  "buttons": {
+    "contactMalt": "Me contacter sur Malt",
+    "sendEmail": "M'envoyer un email"
+  },
+  "contact": {
+    "title": "Mes coordonnées",
+    "email": "Email",
+    "copyEmail": "Copier l'adresse email",
+    "copied": "Copié!"
+  },
+  "languages": {
+    "title": "Langues",
+    "french": "Français",
+    "frenchLevel": "Natif",
+    "english": "Anglais",
+    "englishLevel": "Professionnel"
+  }
+}

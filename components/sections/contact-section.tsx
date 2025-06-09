@@ -5,8 +5,10 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Mail, Github, Linkedin, Code, Briefcase, Check, Copy } from "lucide-react"
 import { ContentBox } from "@/components/ui/content-box"
+import { useTranslation } from "@/hooks/use-translation"
 
 export default function ContactSection() {
+  const { t, loading } = useTranslation("contact")
   const [emailCopied, setEmailCopied] = useState(false)
 
   const copyToClipboard = (text: string) => {
@@ -30,8 +32,12 @@ export default function ContactSection() {
               <Briefcase className="h-8 w-8 text-blue-500" />
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">Développeur Freelance</h2>
-              <p className="text-gray-600 text-lg">Disponible pour vos projets web et mobiles</p>
+              <h2 className="text-3xl font-bold text-gray-900">
+                {loading ? "..." : t("freelance.title")}
+              </h2>
+              <p className="text-gray-600 text-lg">
+                {loading ? "..." : t("freelance.subtitle")}
+              </p>
             </div>
           </div>
         </div>
@@ -44,13 +50,17 @@ export default function ContactSection() {
                 <div className="space-y-6">
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <h4 className="text-lg font-semibold text-gray-800">Mes services</h4>
+                      <h4 className="text-lg font-semibold text-gray-800">
+                        {loading ? "..." : t("services.title")}
+                      </h4>
                       <div className="hidden sm:flex items-center bg-green-50 px-2.5 py-1 rounded-full border border-green-100">
                         <div className="relative flex items-center justify-center mr-1.5">
                           <div className="w-2 h-2 rounded-full bg-green-500 z-10"></div>
                           <div className="absolute w-3 h-3 rounded-full bg-green-400 opacity-40 animate-ping"></div>
                         </div>
-                        <span className="text-green-700 text-xs font-medium">Actuellement disponible</span>
+                        <span className="text-green-700 text-xs font-medium">
+                          {loading ? "..." : t("services.available")}
+                        </span>
                       </div>
                       {/* Version mobile plus élégante */}
                       <div className="sm:hidden flex items-center">
@@ -58,7 +68,9 @@ export default function ContactSection() {
                           <div className="w-2 h-2 rounded-full bg-green-500 z-10"></div>
                           <div className="absolute w-3 h-3 rounded-full bg-green-400 opacity-40 animate-ping"></div>
                         </div>
-                        <span className="text-green-600 text-xs font-medium">Disponible</span>
+                        <span className="text-green-600 text-xs font-medium">
+                          {loading ? "..." : t("services.availableMobile")}
+                        </span>
                       </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
@@ -67,10 +79,12 @@ export default function ContactSection() {
                           <div className="w-8 h-8 rounded-md bg-blue-100 flex items-center justify-center mr-3">
                             <Code className="h-4 w-4 text-blue-600" />
                           </div>
-                          <h5 className="font-medium">Développement Web</h5>
+                          <h5 className="font-medium">
+                            {loading ? "..." : t("services.webDev.title")}
+                          </h5>
                         </div>
                         <p className="text-sm text-gray-600">
-                          Sites vitrines, applications web complexes, e-commerce et intégration de designs.
+                          {loading ? "..." : t("services.webDev.description")}
                         </p>
                       </div>
 
@@ -92,10 +106,12 @@ export default function ContactSection() {
                               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                             </svg>
                           </div>
-                          <h5 className="font-medium">Maintenance & Support</h5>
+                          <h5 className="font-medium">
+                            {loading ? "..." : t("services.maintenance.title")}
+                          </h5>
                         </div>
                         <p className="text-sm text-gray-600">
-                          Maintenance évolutive, corrective et support technique pour vos applications existantes.
+                          {loading ? "..." : t("services.maintenance.description")}
                         </p>
                       </div>
 
@@ -118,10 +134,12 @@ export default function ContactSection() {
                               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                             </svg>
                           </div>
-                          <h5 className="font-medium">Sécurité & Performance</h5>
+                          <h5 className="font-medium">
+                            {loading ? "..." : t("services.security.title")}
+                          </h5>
                         </div>
                         <p className="text-sm text-gray-600">
-                          Audit de sécurité, optimisation des performances et mise en conformité RGPD.
+                          {loading ? "..." : t("services.security.description")}
                         </p>
                       </div>
 
@@ -145,10 +163,12 @@ export default function ContactSection() {
                               <path d="m7 21 5-5 5 5" />
                             </svg>
                           </div>
-                          <h5 className="font-medium">Conseil & Formation</h5>
+                          <h5 className="font-medium">
+                            {loading ? "..." : t("services.consulting.title")}
+                          </h5>
                         </div>
                         <p className="text-sm text-gray-600">
-                          Accompagnement technique, choix de technologies et formation de vos équipes.
+                          {loading ? "..." : t("services.consulting.description")}
                         </p>
                       </div>
                     </div>
@@ -177,7 +197,7 @@ export default function ContactSection() {
                           <path d="M25.776 59.136C14.486 59.136 0 61.803 0 79.579C0 92.625 7.802 97.528 16.416 99.217L56.497 59.136H25.776Z" />
                           <path d="M141.799 59.942L101.718 100.023H132.439C143.729 100.023 158.215 97.356 158.215 79.58C158.215 66.534 150.413 61.63 141.799 59.942Z" />
                         </svg>
-                        Me contacter sur Malt
+                        {loading ? "..." : t("buttons.contactMalt")}
                       </Button>
                     </a>
 
@@ -187,7 +207,7 @@ export default function ContactSection() {
                         className="w-full gap-2 border-primary text-primary hover:bg-primary hover:text-white"
                       >
                         <Mail size={18} />
-                        M'envoyer un email
+                        {loading ? "..." : t("buttons.sendEmail")}
                       </Button>
                     </a>
                   </div>
@@ -200,7 +220,9 @@ export default function ContactSection() {
           <div className="md:col-span-2 flex flex-col space-y-6 h-full">
             {/* Contact Methods */}
             <ContentBox className="flex-grow" shadow="md">
-              <h3 className="text-xl font-bold mb-6 text-gray-900">Mes coordonnées</h3>
+              <h3 className="text-xl font-bold mb-6 text-gray-900">
+                {loading ? "..." : t("contact.title")}
+              </h3>
 
               <div className="space-y-6">
                 <motion.div
@@ -212,21 +234,25 @@ export default function ContactSection() {
                   <button
                     onClick={() => copyToClipboard("ott.thomas68@gmail.com")}
                     className="flex items-center group w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md"
-                    aria-label="Copier l'adresse email"
+                    aria-label={loading ? "..." : t("contact.copyEmail")}
                     aria-live="polite"
                   >
                     <div className="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center mr-4 shadow-sm group-hover:scale-105 transition-transform">
                       <Mail className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
                     <div className="flex-grow">
-                      <p className="text-sm font-medium text-gray-500">Email</p>
+                      <p className="text-sm font-medium text-gray-500">
+                        {loading ? "..." : t("contact.email")}
+                      </p>
                       <p className="text-gray-900 group-hover:text-primary transition-colors">ott.thomas68@gmail.com</p>
                     </div>
                     <div className="ml-2 text-gray-400 group-hover:text-primary transition-colors">
                       {emailCopied ? (
                         <div className="flex items-center text-green-500">
                           <Check size={16} className="mr-1" aria-hidden="true" />
-                          <span className="text-xs">Copié!</span>
+                          <span className="text-xs">
+                            {loading ? "..." : t("contact.copied")}
+                          </span>
                         </div>
                       ) : (
                         <Copy size={16} aria-hidden="true" />
@@ -285,13 +311,19 @@ export default function ContactSection() {
 
             {/* Langues Card */}
             <ContentBox className="flex-grow" shadow="md">
-              <h3 className="text-xl font-bold mb-6 text-gray-900">Langues</h3>
+              <h3 className="text-xl font-bold mb-6 text-gray-900">
+                {loading ? "..." : t("languages.title")}
+              </h3>
 
               <div className="space-y-10">
                 <div>
                   <div className="flex justify-between mb-3">
-                    <span className="font-medium text-gray-900">Français</span>
-                    <span className="text-gray-500">Natif</span>
+                    <span className="font-medium text-gray-900">
+                      {loading ? "..." : t("languages.french")}
+                    </span>
+                    <span className="text-gray-500">
+                      {loading ? "..." : t("languages.frenchLevel")}
+                    </span>
                   </div>
                   <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
                     <div className="h-full w-full bg-primary rounded-full"></div>
@@ -300,8 +332,12 @@ export default function ContactSection() {
 
                 <div>
                   <div className="flex justify-between mb-3">
-                    <span className="font-medium text-gray-900">Anglais</span>
-                    <span className="text-gray-500">Professionnel</span>
+                    <span className="font-medium text-gray-900">
+                      {loading ? "..." : t("languages.english")}
+                    </span>
+                    <span className="text-gray-500">
+                      {loading ? "..." : t("languages.englishLevel")}
+                    </span>
                   </div>
                   <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
                     <div className="h-full w-[85%] bg-primary rounded-full"></div>

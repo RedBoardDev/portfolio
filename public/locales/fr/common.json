@@ -9,11 +9,19 @@
   },
   "hero": {
     "title": "Développeur Full-Stack",
-    "description": "Je conçois et développe des applications web modernes et performantes, en utilisant les technologies React, TypeScript et Node.js.",
+    "name": "Thomas OTT",
+    "description": "Je conçois et développe des applications web modernes et performantes, en utilisant les technologies",
+    "technologies": {
+      "react": "React",
+      "typescript": "TypeScript",
+      "nodejs": "Node.js",
+      "and": "et"
+    },
     "location": "Mulhouse, Grand Est, France",
     "downloadCV": "Télécharger CV",
     "contact": "Me contacter",
-    "findMe": "Me retrouver sur"
+    "findMe": "Me retrouver sur",
+    "scrollToTop": "Retour en haut de page"
   },
   "footer": {
     "rights": "Tous droits réservés."

@@ -1,0 +1,45 @@
+{
+  "title": "Education",
+  "skillsAcquired": "Skills acquired",
+  "visitSite": "Visit website",
+  "months": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "May",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dec"
+  },
+  "educations": {
+    "epitech": {
+      "institution": "EPITECH - European Institute of Technology",
+      "degree": "Master's degree",
+      "field": "Information Technology",
+      "location": "Mulhouse, France",
+      "description": "Expert training in information technology with project-based pedagogy.",
+      "skills": ["Web Development", "Algorithms", "DevOps", "Software Architecture"]
+    },
+    "laurea": {
+      "institution": "Laurea University of Applied Sciences",
+      "degree": "Bachelor's degree",
+      "field": "Business Information Technology",
+      "location": "Helsinki, Finland",
+      "description": "Exchange year in Finland, providing international experience.",
+      "skills": ["Project Management", "Business Intelligence", "UX/UI Design"]
+    },
+    "lycee": {
+      "institution": "Lycée Louis Armand - Mulhouse",
+      "degree": "High School Diploma",
+      "field": "Computer Engineering",
+      "location": "Mulhouse, France",
+      "description": "Initial training in computer engineering with a practical approach to information technologies.",
+      "skills": ["Programming", "Networks", "Information Systems"]
+    }
+  }
+}

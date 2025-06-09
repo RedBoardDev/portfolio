@@ -1,0 +1,126 @@
+{
+  "title": "Skills",
+  "categories": {
+    "programming": {
+      "name": "Programming Languages",
+      "skills": {
+        "javascript": {
+          "name": "JavaScript",
+          "description": "Main language for frontend and backend web development with Node.js"
+        },
+        "typescript": {
+          "name": "TypeScript",
+          "description": "Used to add static typing and improve code maintainability"
+        },
+        "php": {
+          "name": "PHP",
+          "description": "Used for backend development, particularly with Symfony"
+        },
+        "cpp": {
+          "name": "C/C++",
+          "description": "Used for system projects and high-performance applications"
+        },
+        "bash": {
+          "name": "Bash",
+          "description": "Scripting for automation and system configuration"
+        }
+      }
+    },
+    "frameworks": {
+      "name": "Frameworks & Libraries",
+      "skills": {
+        "react": {
+          "name": "React",
+          "description": "Main library for user interface development"
+        },
+        "nextjs": {
+          "name": "Next.js",
+          "description": "React framework for web applications with server-side rendering"
+        },
+        "nodejs": {
+          "name": "Node.js",
+          "description": "JavaScript runtime environment for server-side"
+        },
+        "express": {
+          "name": "Express",
+          "description": "Minimalist framework for creating REST APIs with Node.js"
+        },
+        "symfony": {
+          "name": "Symfony",
+          "description": "PHP framework for developing robust web applications"
+        }
+      }
+    },
+    "databases": {
+      "name": "Databases & Tools",
+      "skills": {
+        "mysql": {
+          "name": "MySQL",
+          "description": "Relational database management system"
+        },
+        "postgresql": {
+          "name": "PostgreSQL",
+          "description": "Advanced RDBMS with extended features"
+        },
+        "mongodb": {
+          "name": "MongoDB",
+          "description": "Document-oriented NoSQL database"
+        },
+        "prisma": {
+          "name": "Prisma",
+          "description": "Modern ORM for Node.js and TypeScript"
+        },
+        "git": {
+          "name": "Git",
+          "description": "Version control system for source code management"
+        }
+      }
+    },
+    "devops": {
+      "name": "DevOps & Infrastructure",
+      "skills": {
+        "docker": {
+          "name": "Docker",
+          "description": "Application containerization for deployment"
+        },
+        "aws": {
+          "name": "AWS",
+          "description": "Cloud services for hosting and deploying applications"
+        },
+        "cicd": {
+          "name": "CI/CD",
+          "description": "Continuous integration and deployment with GitHub Actions"
+        },
+        "nginx": {
+          "name": "Nginx",
+          "description": "Web server and reverse proxy for applications"
+        }
+      }
+    },
+    "soft": {
+      "name": "Methodologies & Soft Skills",
+      "skills": {
+        "agile": {
+          "name": "Agile/Scrum",
+          "description": "Iterative and collaborative project management methodology"
+        },
+        "projectManagement": {
+          "name": "Project Management",
+          "description": "Planning, execution and monitoring of IT projects"
+        },
+        "teamwork": {
+          "name": "Teamwork",
+          "description": "Effective collaboration within multidisciplinary teams"
+        },
+        "communication": {
+          "name": "Communication",
+          "description": "Clear communication with technical and non-technical stakeholders"
+        },
+        "teaching": {
+          "name": "Teaching",
+          "description": "Knowledge transfer and student mentoring"
+        }
+      }
+    }
+  }
+}

@@ -8,8 +8,10 @@ import { Github, ExternalLink, ChevronRight, ChevronLeft, ArrowRight } from "luc
 import { LanguageBadge } from "@/components/ui/language-badge"
 import { ContentBox } from "@/components/ui/content-box"
 import { OptimizedImage } from "@/components/ui/optimized-image"
+import { useTranslation } from "@/hooks/use-translation"
 
 export default function ProjectsSection() {
+  const { t } = useTranslation("projects")
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
   const [currentPage, setCurrentPage] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
@@ -94,7 +96,7 @@ export default function ProjectsSection() {
       >
         <div className="mb-6">
           <h2 className="text-3xl font-bold text-gray-900 inline-block relative">
-            Projets
+            {t("section.title")}
             <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
           </h2>
         </div>
@@ -105,7 +107,7 @@ export default function ProjectsSection() {
             <AnimatePresence initial={false} mode="wait" custom={direction}>
               {currentProjects.map((project, index) => (
                 <motion.div
-                  key={`mobile-${project.title}-${currentPage}`}
+                  key={`mobile-${project.key}-${currentPage}`}
                   style={{
                     x,
                     opacity: cardOpacity,
@@ -124,7 +126,7 @@ export default function ProjectsSection() {
                     <div className="relative h-64 overflow-hidden">
                       <OptimizedImage
                         src={project.image || "/placeholder.svg?height=240&width=400"}
-                        alt={`Capture d'écran du projet ${project.title}`}
+                        alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
                         fill
                         className="object-cover"
                         draggable="false"
@@ -154,13 +156,13 @@ export default function ProjectsSection() {
 
                       {/* Title */}
                       <div className="absolute bottom-0 left-0 right-0 p-5">
-                        <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                        <h3 className="text-xl font-bold text-white">{t(`projects.${project.key}.title`)}</h3>
                       </div>
                     </div>
 
                     {/* Content */}
                     <div className="p-5">
-                      <p className="text-gray-700 leading-relaxed">{project.description}</p>
+                      <p className="text-gray-700 leading-relaxed">{t(`projects.${project.key}.description`)}</p>
 
                       {/* Links */}
                       <div className="flex justify-between items-center mt-6 pt-5 border-t border-gray-100">
@@ -172,7 +174,7 @@ export default function ProjectsSection() {
                           onClick={(e) => isDragging && e.preventDefault()}
                         >
                           <Github size={18} className="mr-2" />
-                          Code
+                          {t("ui.code")}
                         </a>
                         {project.liveLink && (
                           <a
@@ -182,7 +184,7 @@ export default function ProjectsSection() {
                             className="flex items-center text-gray-700 hover:text-primary transition-colors"
                             onClick={(e) => isDragging && e.preventDefault()}
                           >
-                            Démo
+                            {t("ui.demo")}
                             <ExternalLink size={18} className="ml-2" />
                           </a>
                         )}
@@ -195,7 +197,7 @@ export default function ProjectsSection() {
 
             {/* Instructions de swipe */}
             <div className="text-center text-xs text-gray-500 mt-2 italic">
-              Glissez vers la gauche ou la droite pour naviguer
+              {t("ui.swipeInstruction")}
             </div>
 
             {/* Pagination Controls avec flèches toujours visibles */}
@@ -206,7 +208,7 @@ export default function ProjectsSection() {
                 className={`w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center border border-gray-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                   currentPage === 0 ? "text-gray-300 cursor-not-allowed" : "text-gray-700 hover:text-primary"
                 }`}
-                aria-label="Projet précédent"
+                aria-label={t("ui.previousPage")}
               >
                 <ChevronLeft size={16} aria-hidden="true" />
               </button>
@@ -222,7 +224,7 @@ export default function ProjectsSection() {
                     className={`h-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                       i === currentPage ? "w-8 bg-primary" : "w-2 bg-gray-300"
                     }`}
-                    aria-label={`Aller à la page ${i + 1}`}
+                    aria-label={t("ui.pageOf", { current: i + 1, total: totalPages })}
                     aria-current={i === currentPage ? "page" : undefined}
                   />
                 ))}
@@ -236,7 +238,7 @@ export default function ProjectsSection() {
                     ? "text-gray-300 cursor-not-allowed"
                     : "text-gray-700 hover:text-primary"
                 }`}
-                aria-label="Projet suivant"
+                aria-label={t("ui.nextPage")}
               >
                 <ChevronRight size={16} />
               </button>
@@ -247,7 +249,7 @@ export default function ProjectsSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
             {currentProjects.map((project, index) => (
               <motion.div
-                key={`${project.title}-${index}`}
+                key={`${project.key}-${index}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -260,7 +262,7 @@ export default function ProjectsSection() {
                   <div className="relative h-48 overflow-hidden">
                     <OptimizedImage
                       src={project.image || "/placeholder.svg?height=200&width=400"}
-                      alt={`Capture d'écran du projet ${project.title}`}
+                      alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
                       fill
                       className={`
                         object-cover transition-transform duration-500 ease-in-out
@@ -302,7 +304,7 @@ export default function ProjectsSection() {
 
                     {/* Title at bottom */}
                     <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+                      <h3 className="text-lg font-semibold text-white">{t(`projects.${project.key}.title`)}</h3>
                     </div>
                   </div>
 
@@ -310,9 +312,12 @@ export default function ProjectsSection() {
                   <div className="p-4 flex-grow flex flex-col">
                     <div className="flex-grow">
                       <p className="text-gray-700 text-sm">
-                        {project.description.length > 140
-                          ? `${project.description.substring(0, 140)}...`
-                          : project.description}
+                        {(() => {
+                          const description = t(`projects.${project.key}.description`);
+                          return description.length > 140
+                            ? `${description.substring(0, 140)}...`
+                            : description;
+                        })()}
                       </p>
                     </div>
 
@@ -325,7 +330,7 @@ export default function ProjectsSection() {
                         className="text-xs flex items-center text-gray-700 hover:text-primary transition-colors"
                       >
                         <Github size={14} className="mr-1" />
-                        Code
+                        {t("ui.code")}
                       </a>
                       {project.liveLink && (
                         <a
@@ -334,7 +339,7 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           className="text-xs flex items-center text-gray-700 hover:text-primary transition-colors"
                         >
-                          Démo
+                          {t("ui.demo")}
                           <ExternalLink size={14} className="ml-1" />
                         </a>
                       )}
@@ -375,7 +380,7 @@ export default function ProjectsSection() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors absolute right-0"
             >
-              <span>Voir plus de projets sur GitHub</span>
+              <span>{t("ui.viewAll")}</span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>
@@ -390,7 +395,7 @@ export default function ProjectsSection() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
             >
-              <span>Voir plus de projets sur GitHub</span>
+              <span>{t("ui.viewAll")}</span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>

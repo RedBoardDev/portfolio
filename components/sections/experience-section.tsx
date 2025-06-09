@@ -6,28 +6,31 @@ import { experiences, calculateDuration, calculateTotalDuration, type Position }
 import { Calendar, MapPin } from "lucide-react"
 import { SkillBadge } from "@/components/ui/skill-badge"
 import { ContentBox } from "@/components/ui/content-box"
-
-// Helper to format display period string
-const getDisplayPeriod = (position: Position): string => {
-  const start = new Date(position.startDate)
-  const startMonth = new Intl.DateTimeFormat("fr-FR", { month: "short" }).format(start)
-  const startYear = start.getFullYear()
-
-  let displayPeriod = `${startMonth} ${startYear}`
-
-  if (position.endDate) {
-    const end = new Date(position.endDate)
-    const endMonth = new Intl.DateTimeFormat("fr-FR", { month: "short" }).format(end)
-    const endYear = end.getFullYear()
-    displayPeriod += ` - ${endMonth} ${endYear}`
-  } else {
-    displayPeriod += " - aujourd'hui"
-  }
-
-  return displayPeriod
-}
+import { useTranslation } from "@/hooks/use-translation"
 
 export default function ExperienceSection() {
+  const { t, formatDate, formatDuration, language } = useTranslation("experience")
+
+  // Helper to format display period string
+  const getDisplayPeriod = (position: Position): string => {
+    const start = new Date(position.startDate)
+    const locale = language === "fr" ? "fr-FR" : "en-US"
+    const startMonth = new Intl.DateTimeFormat(locale, { month: "short" }).format(start)
+    const startYear = start.getFullYear()
+
+    let displayPeriod = `${startMonth} ${startYear}`
+
+    if (position.endDate) {
+      const end = new Date(position.endDate)
+      const endMonth = new Intl.DateTimeFormat(locale, { month: "short" }).format(end)
+      const endYear = end.getFullYear()
+      displayPeriod += ` - ${endMonth} ${endYear}`
+    } else {
+      displayPeriod += ` - ${t("ui.present", "aujourd'hui")}`
+    }
+
+    return displayPeriod
+  }
   return (
     <section id="experience-section">
       <motion.div
@@ -37,7 +40,7 @@ export default function ExperienceSection() {
         transition={{ duration: 0.6 }}
       >
         <h2 className="text-3xl font-bold text-gray-900 mb-8 inline-block relative">
-          Expérience
+          {t("section.title")}
           <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
         </h2>
 
@@ -63,7 +66,7 @@ export default function ExperienceSection() {
                     <div className="flex-shrink-0 sm:hidden w-12 h-12 rounded-lg overflow-hidden bg-white border border-gray-200 shadow-sm">
                       <Image
                         src={experience.logo || "/placeholder.svg?height=48&width=48"}
-                        alt={experience.company}
+                        alt={t(`companies.${experience.key}.name`)}
                         width={48}
                         height={48}
                         className="object-cover"
@@ -74,7 +77,7 @@ export default function ExperienceSection() {
                     <div className="hidden sm:block w-16 h-16 rounded-lg overflow-hidden bg-white border border-gray-200 flex-shrink-0">
                       <Image
                         src={experience.logo || "/placeholder.svg?height=64&width=64"}
-                        alt={experience.company}
+                        alt={t(`companies.${experience.key}.name`)}
                         width={64}
                         height={64}
                         className="object-cover"
@@ -82,8 +85,24 @@ export default function ExperienceSection() {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">{experience.company}</h3>
-                      <p className="text-sm text-gray-600">{calculateTotalDuration(experience.positions)}</p>
+                      <h3 className="text-xl font-bold text-gray-900">{t(`companies.${experience.key}.name`)}</h3>
+                                            <p className="text-sm text-gray-600">{(() => {
+                        const sortedPositions = [...experience.positions].sort(
+                          (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+                        )
+                        const earliestStart = sortedPositions[0].startDate
+                        let latestEnd: string | undefined
+                        for (const pos of sortedPositions) {
+                          if (!pos.endDate) {
+                            latestEnd = undefined
+                            break
+                          }
+                          if (!latestEnd || new Date(pos.endDate) > new Date(latestEnd)) {
+                            latestEnd = pos.endDate
+                          }
+                        }
+                        return formatDuration(earliestStart, latestEnd)
+                      })()}</p>
                     </div>
                   </div>
 
@@ -97,36 +116,39 @@ export default function ExperienceSection() {
                           <div className="absolute left-0 top-0 w-[1px] h-full bg-gray-200"></div>
 
                           <div>
-                            <h4 className="text-lg font-semibold text-gray-900">{position.title}</h4>
-                            <p className="text-gray-600 text-sm">{position.type}</p>
+                            <h4 className="text-lg font-semibold text-gray-900">{t(`positions.${position.key}.title`)}</h4>
+                            <p className="text-gray-600 text-sm">{t(`positions.${position.key}.type`)}</p>
 
                             <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-sm text-gray-500 mt-2">
                               <div className="flex items-center">
                                 <Calendar className="h-4 w-4 mr-2 text-primary/70" />
                                 <span>
                                   {getDisplayPeriod(position)} ·{" "}
-                                  {calculateDuration(position.startDate, position.endDate)}
+                                  {formatDuration(position.startDate, position.endDate)}
                                 </span>
                               </div>
-                              <div className="flex items-center">
+                                                              <div className="flex items-center">
                                 <MapPin className="h-4 w-4 mr-2 text-primary/70" />
-                                <span>{position.location}</span>
+                                <span>{t(`positions.${position.key}.location`)}</span>
                               </div>
                             </div>
 
                             {/* Description */}
-                            {position.description && position.description.length > 0 && (
-                              <ul className="mt-3 space-y-1 text-gray-700 text-sm">
-                                {position.description.map((item, idx) => (
-                                  <li
-                                    key={idx}
-                                    className="relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-gray-400"
-                                  >
-                                    {item}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
+                            {(() => {
+                              const description = t(`positions.${position.key}.description`, [])
+                              return Array.isArray(description) && description.length > 0 && (
+                                <ul className="mt-3 space-y-1 text-gray-700 text-sm">
+                                  {description.map((item: string, idx: number) => (
+                                    <li
+                                      key={idx}
+                                      className="relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-gray-400"
+                                    >
+                                      {item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )
+                            })()}
                           </div>
                         </div>
                       ))}
@@ -138,7 +160,7 @@ export default function ExperienceSection() {
                         <div className="mb-3">
                           <h4 className="text-sm font-medium text-gray-700 flex items-center">
                             <span className="w-1 h-4 bg-primary/60 rounded-full mr-2"></span>
-                            Compétences acquises
+                            {t("ui.skillsAcquired")}
                           </h4>
                         </div>
                         <div className="flex flex-wrap gap-2">

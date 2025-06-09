@@ -1,0 +1,23 @@
+{
+  "title": "About",
+  "paragraphs": {
+    "intro": "Passionate Fullstack Developer, currently studying in Epitech's Grande École program, I specialize in designing and developing innovative web and software solutions.",
+    "expertise": "My expertise covers a variety of technologies, including ReactJS, TypeScript, NodeJS for frontend, and Node.js, Bash, C/C++ for backend. I also master tools like Git, MySQL, Docker and Prisma.",
+    "blockchain": "Passionate about blockchain, I am particularly interested in smart contracts and decentralized applications, with a desire to explore innovative solutions in this field.",
+    "background": "My academic journey, enriched by a year in Finland, has allowed me to develop strong adaptability and cultural openness. At the same time, my experience as a regional pedagogical assistant (AER) at Epitech has provided me with solid skills in IT project management and supervision."
+  },
+  "github": {
+    "title": "GitHub Contributions",
+    "loadingError": "Unable to load GitHub data",
+    "chartLabel": "GitHub contributions chart for the last year",
+    "contributions": "contributions",
+    "contribution": "contribution",
+    "onDate": "on",
+    "inLastYear": "contributions in the last year",
+    "less": "Less",
+    "more": "More",
+    "repositories": "Repositories",
+    "totalContributions": "Contributions",
+    "mostUsedLanguages": "Most used languages"
+  }
+}

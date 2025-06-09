@@ -1,0 +1,57 @@
+{
+  "section": {
+    "title": "Experience"
+  },
+  "ui": {
+    "skillsAcquired": "Skills acquired",
+    "present": "present",
+    "duration": {
+      "lessThanOneMonth": "< 1 month",
+      "oneMonth": "1 month",
+      "months": "{count} months",
+      "oneYear": "1 year",
+      "years": "{count} years",
+      "yearsAndMonths": "{years} year{yearPlural} {months} months"
+    }
+  },
+  "companies": {
+    "akord": {
+      "name": "AkorD"
+    },
+    "epitech": {
+      "name": "Epitech - The IT Excellence School"
+    }
+  },
+  "positions": {
+    "fullStackDeveloper": {
+      "title": "Full Stack Developer",
+      "type": "Freelance",
+      "location": "Remote",
+      "description": [
+        "Development and maintenance of modern web applications",
+        "Design and implementation of new features",
+        "Performance optimization and user experience enhancement"
+      ]
+    },
+    "developer": {
+      "title": "Developer",
+      "type": "Internship",
+      "location": "Mulhouse, Grand Est, France · On-site",
+      "description": [
+        "Development of features for web applications",
+        "Bug fixes and performance improvements",
+        "Collaboration with the development team"
+      ]
+    },
+    "aer": {
+      "title": "Epitech Regional Assistant (AER)",
+      "type": "Internship",
+      "location": "Mulhouse, Grand Est, France · On-site",
+      "description": [
+        "Supervision of IT projects and educational assistance for students",
+        "Participation in organizing events and promoting the school",
+        "Technical and methodological support for students"
+      ]
+    }
+  }
+}

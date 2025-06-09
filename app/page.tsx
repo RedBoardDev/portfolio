@@ -14,6 +14,7 @@ import ProjectsSection from "@/components/sections/projects-section"
 import ContactSection from "@/components/sections/contact-section"
 import { NavigationBar } from "@/components/navigation-bar"
 import { OptimizedImage } from "@/components/ui/optimized-image"
+import { useTranslation } from "@/hooks/use-translation"
 import dynamic from "next/dynamic"
 
 // Chargement dynamique des sections non critiques
@@ -28,6 +29,7 @@ const DynamicProjectsSection = dynamic(() => import("@/components/sections/proje
 })
 
 export default function Home() {
+  const { t, loading } = useTranslation("common")
   const aboutRef = useRef<HTMLDivElement>(null)
   const experienceRef = useRef<HTMLDivElement>(null)
   const educationRef = useRef<HTMLDivElement>(null)
@@ -190,7 +192,7 @@ export default function Home() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="text-primary font-medium mb-2"
                   >
-                    Développeur Full-Stack
+                    {loading ? "..." : t("hero.title")}
                   </motion.h2>
 
                   <motion.h1
@@ -212,10 +214,14 @@ export default function Home() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="mt-5 sm:mt-6 text-base sm:text-lg text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0"
                   >
-                    Je conçois et développe des applications web modernes et performantes, en utilisant les technologies{" "}
-                    <span className="text-primary font-medium">React</span>,{" "}
-                    <span className="text-primary font-medium">TypeScript</span> et{" "}
-                    <span className="text-primary font-medium">Node.js</span>.
+                    {loading ? "..." : (
+                      <>
+                        {t("hero.description")}{" "}
+                        <span className="text-primary font-medium">{t("hero.technologies.react")}</span>,{" "}
+                        <span className="text-primary font-medium">{t("hero.technologies.typescript")}</span> {t("hero.technologies.and")}{" "}
+                        <span className="text-primary font-medium">{t("hero.technologies.nodejs")}</span>.
+                      </>
+                    )}
                   </motion.p>
 
                   <motion.div
@@ -231,7 +237,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="hover:text-primary transition-colors"
                     >
-                      Mulhouse, Grand Est, France
+                      {loading ? "..." : t("hero.location")}
                     </a>
                   </motion.div>
 
@@ -247,7 +253,7 @@ export default function Home() {
                       className="gap-2 shadow-md hover:shadow-lg transition-all text-sm sm:text-base"
                     >
                       <Download size={16} />
-                      <span>Télécharger CV</span>
+                      <span>{loading ? "..." : t("hero.downloadCV")}</span>
                     </Button>
                     <Button
                       variant="outline"
@@ -256,7 +262,7 @@ export default function Home() {
                       className="gap-2 border-primary text-primary hover:bg-primary hover:text-white text-sm sm:text-base"
                     >
                       <Mail size={16} />
-                      <span>Me contacter</span>
+                      <span>{loading ? "..." : t("hero.contact")}</span>
                     </Button>
                   </motion.div>
 
@@ -267,7 +273,9 @@ export default function Home() {
                     transition={{ duration: 0.5, delay: 0.7 }}
                     className="mt-6 sm:mt-8"
                   >
-                    <p className="text-sm text-gray-500 mb-3 text-center lg:text-left">Me retrouver sur</p>
+                    <p className="text-sm text-gray-500 mb-3 text-center lg:text-left">
+                      {loading ? "..." : t("hero.findMe")}
+                    </p>
                     <div className="flex space-x-4 justify-center lg:justify-start">
                       <a
                         href="https://www.malt.fr/profile/thomasott"
@@ -362,7 +370,7 @@ export default function Home() {
             transition={{ duration: 0.2 }}
             onClick={scrollToTop}
             className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            aria-label="Retour en haut de page"
+            aria-label={loading ? "..." : t("hero.scrollToTop")}
           >
             <ArrowUp className="h-5 w-5" aria-hidden="true" />
           </motion.button>
@@ -373,7 +381,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 sm:px-8 md:px-10 lg:px-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p className="text-sm">© {new Date().getFullYear()} Thomas OTT. Tous droits réservés.</p>
+              <p className="text-sm">© {new Date().getFullYear()} Thomas OTT. {loading ? "..." : t("footer.rights")}</p>
             </div>
             <div className="flex space-x-4">
               <a

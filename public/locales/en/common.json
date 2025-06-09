@@ -9,11 +9,19 @@
   },
   "hero": {
     "title": "Full-Stack Developer",
-    "description": "I design and develop modern and high-performance web applications, using React, TypeScript and Node.js technologies.",
+    "name": "Thomas OTT",
+    "description": "I design and develop modern and high-performance web applications, using",
+    "technologies": {
+      "react": "React",
+      "typescript": "TypeScript",
+      "nodejs": "Node.js",
+      "and": "and"
+    },
     "location": "Mulhouse, Grand Est, France",
     "downloadCV": "Download CV",
     "contact": "Contact me",
-    "findMe": "Find me on"
+    "findMe": "Find me on",
+    "scrollToTop": "Back to top"
   },
   "footer": {
     "rights": "All rights reserved."

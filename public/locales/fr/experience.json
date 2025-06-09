@@ -1,0 +1,57 @@
+{
+  "section": {
+    "title": "Expérience"
+  },
+  "ui": {
+    "skillsAcquired": "Compétences acquises",
+    "present": "aujourd'hui",
+    "duration": {
+      "lessThanOneMonth": "< 1 mois",
+      "oneMonth": "1 mois",
+      "months": "{count} mois",
+      "oneYear": "1 an",
+      "years": "{count} ans",
+      "yearsAndMonths": "{years} an{yearPlural} {months} mois"
+    }
+  },
+  "companies": {
+    "akord": {
+      "name": "AkorD"
+    },
+    "epitech": {
+      "name": "Epitech - L'école de l'excellence informatique"
+    }
+  },
+  "positions": {
+    "fullStackDeveloper": {
+      "title": "Développeur Full Stack",
+      "type": "Freelance",
+      "location": "À distance",
+      "description": [
+        "Développement et maintenance d'applications web modernes",
+        "Conception et implémentation de nouvelles fonctionnalités",
+        "Optimisation des performances et de l'expérience utilisateur"
+      ]
+    },
+    "developer": {
+      "title": "Développeur",
+      "type": "Stage",
+      "location": "Mulhouse, Grand Est, France · Sur site",
+      "description": [
+        "Développement de fonctionnalités pour des applications web",
+        "Correction de bugs et amélioration des performances",
+        "Collaboration avec l'équipe de développement"
+      ]
+    },
+    "aer": {
+      "title": "Assistant Epitech Région (AER)",
+      "type": "Stage",
+      "location": "Mulhouse, Grand Est, France · Sur site",
+      "description": [
+        "Encadrement de projets informatiques et assistance pédagogique auprès des étudiants",
+        "Participation à l'organisation d'événements et à la promotion de l'école",
+        "Soutien technique et méthodologique aux étudiants"
+      ]
+    }
+  }
+}

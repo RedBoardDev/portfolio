@@ -1,0 +1,44 @@
+{
+  "freelance": {
+    "title": "Freelance Developer",
+    "subtitle": "Available for your web and mobile projects"
+  },
+  "services": {
+    "title": "My services",
+    "available": "Currently available",
+    "availableMobile": "Available",
+    "webDev": {
+      "title": "Web Development",
+      "description": "Showcase websites, complex web applications, e-commerce and design integration."
+    },
+    "maintenance": {
+      "title": "Maintenance & Support",
+      "description": "Evolutionary, corrective maintenance and technical support for your existing applications."
+    },
+    "security": {
+      "title": "Security & Performance",
+      "description": "Security audits, performance optimization and GDPR compliance."
+    },
+    "consulting": {
+      "title": "Consulting & Training",
+      "description": "Technical support, technology choice and training for your teams."
+    }
+  },
+  "buttons": {
+    "contactMalt": "Contact me on Malt",
+    "sendEmail": "Send me an email"
+  },
+  "contact": {
+    "title": "My contact details",
+    "email": "Email",
+    "copyEmail": "Copy email address",
+    "copied": "Copied!"
+  },
+  "languages": {
+    "title": "Languages",
+    "french": "French",
+    "frenchLevel": "Native",
+    "english": "English",
+    "englishLevel": "Professional"
+  }
+}

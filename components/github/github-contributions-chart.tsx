@@ -12,6 +12,8 @@ import {
   getLongestStreak,
 } from "@/lib/api/github"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useTranslation } from "@/hooks/use-translation"
+import { useLanguage } from "@/lib/language-context"
 
 interface GitHubContributionsProps {
   username?: string
@@ -26,6 +28,8 @@ const getContributionColor = (count: number): string => {
 }
 
 export function GitHubContributions({ username = "redBoardDev" }: GitHubContributionsProps) {
+  const { t, loading: translationLoading } = useTranslation("about")
+  const { language } = useLanguage()
   const containerRef = useRef<HTMLDivElement>(null)
   const graphRef = useRef<HTMLDivElement>(null)
   const [contributions, setContributions] = useState<GitHubContribution[] | null>(null)
@@ -62,7 +66,7 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
 
         setError(null)
       } catch (err) {
-        setError("Impossible de charger les données GitHub")
+        setError(translationLoading ? "Error loading GitHub data" : t("github.loadingError"))
         console.error(err)
       } finally {
         setIsLoading(false)
@@ -70,10 +74,10 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
     }
 
     loadGitHubData()
-  }, [username])
+  }, [username, t, translationLoading])
 
   useEffect(() => {
-    if (!containerRef.current || !contributions || isLoading) return
+    if (!containerRef.current || !contributions || isLoading || translationLoading) return
 
     const container = containerRef.current
     container.innerHTML = "" // Clear previous content
@@ -82,7 +86,7 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
     const graph = document.createElement("div")
     graph.className = "grid grid-cols-[repeat(53,1fr)] gap-1 overflow-x-auto"
     graph.setAttribute("role", "img")
-    graph.setAttribute("aria-label", "Graphique des contributions GitHub sur la dernière année")
+    graph.setAttribute("aria-label", t("github.chartLabel"))
     graphRef.current = graph
 
     // Create weeks
@@ -99,19 +103,20 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
           dayEl.className = "w-2.5 h-2.5 rounded-sm"
           dayEl.style.backgroundColor = getContributionColor(dayData.count)
 
-          // Format date for tooltip
+          // Format date for tooltip with proper locale
           const date = new Date(dayData.date)
-          const formattedDate = date.toLocaleDateString("fr-FR", {
+          const locale = language === "fr" ? "fr-FR" : "en-US"
+          const formattedDate = date.toLocaleDateString(locale, {
             year: "numeric",
             month: "short",
             day: "numeric",
           })
 
-          dayEl.title = `${dayData.count} contribution${dayData.count !== 1 ? "s" : ""} le ${formattedDate}`
-          dayEl.setAttribute(
-            "aria-label",
-            `${dayData.count} contribution${dayData.count !== 1 ? "s" : ""} le ${formattedDate}`,
-          )
+          const contributionText = dayData.count === 1 ? t("github.contribution") : t("github.contributions")
+          const tooltipText = `${dayData.count} ${contributionText} ${t("github.onDate")} ${formattedDate}`
+
+          dayEl.title = tooltipText
+          dayEl.setAttribute("aria-label", tooltipText)
           weekContainer.appendChild(dayEl)
         }
       }
@@ -123,15 +128,15 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
     const legend = document.createElement("div")
     legend.className = "flex items-center justify-end gap-2 mt-4 text-xs text-gray-600"
     legend.innerHTML = `
-    <span>Moins</span>
+    <span>${t("github.less")}</span>
     ${[0, 1, 2, 3, 4]
       .map(
         (count) => `
-      <div class="w-2.5 h-2.5 rounded-sm" style="background-color: ${getContributionColor(count)}" aria-label="${count} contributions" title="${count} contributions"></div>
+      <div class="w-2.5 h-2.5 rounded-sm" style="background-color: ${getContributionColor(count)}" aria-label="${count} ${t("github.contributions")}" title="${count} ${t("github.contributions")}"></div>
     `,
       )
       .join("")}
-    <span>Plus</span>
+    <span>${t("github.more")}</span>
   `
     container.appendChild(legend)
 
@@ -141,7 +146,7 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
         container.scrollLeft = graph.scrollWidth - container.clientWidth
       }
     }, 100)
-  }, [contributions, isLoading])
+  }, [contributions, isLoading, translationLoading, t, language])
 
   useEffect(() => {
     if (!containerRef.current || !graphRef.current) return
@@ -164,7 +169,7 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
     }
   }, [contributions])
 
-  if (isLoading) {
+  if (isLoading || translationLoading) {
     return (
       <div className="space-y-2">
         <Skeleton className="h-20 w-full" />
@@ -187,14 +192,14 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
       {/* Yearly contributions text */}
       {contributions && (
         <div className="text-xs text-gray-500 mt-2 text-right">
-          {yearlyContributions} contributions dans la dernière année
+          {yearlyContributions} {t("github.inLastYear")}
         </div>
       )}
 
       <div className="mt-6 space-y-2">
         <div>
           <div className="flex justify-between mb-1 text-sm">
-            <span className="text-gray-600">Repositories</span>
+            <span className="text-gray-600">{t("github.repositories")}</span>
             <span className="font-semibold">{stats?.totalRepos || "32"}+</span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full">
@@ -204,7 +209,7 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
 
         <div>
           <div className="flex justify-between mb-1 text-sm">
-            <span className="text-gray-600">Contributions</span>
+            <span className="text-gray-600">{t("github.totalContributions")}</span>
             <span className="font-semibold">{totalContributions || "1200"}+</span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full">
@@ -213,7 +218,9 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
         </div>
 
         <div>
-          <p className="text-gray-600 mb-1 text-sm">Langages les plus utilisés ({languages?.length || 0})</p>
+          <p className="text-gray-600 mb-1 text-sm">
+            {t("github.mostUsedLanguages")} ({languages?.length || 0})
+          </p>
           <div className="h-2 bg-gray-100 rounded-full overflow-hidden flex">
             {languages ? (
               languages.slice(0, 5).map((lang, index) => (
