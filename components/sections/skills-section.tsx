@@ -1,0 +1,47 @@
+"use client"
+
+import { motion } from "framer-motion"
+import { skillsData } from "@/data/skills"
+import { SkillBadge } from "@/components/ui/skill-badge"
+import { ContentBox } from "@/components/ui/content-box"
+
+export default function SkillsSection() {
+  return (
+    <section id="skills-section">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-3xl font-bold text-gray-900 mb-6 inline-block relative">
+          Compétences
+          <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
+        </h2>
+
+        {/* Skills grid */}
+        <ContentBox shadow="md">
+          <div className="grid gap-y-6">
+            {skillsData.map((category, categoryIndex) => (
+              <div key={categoryIndex}>
+                <h3 className="text-lg font-semibold mb-4 text-gray-800">{category.name}</h3>
+
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <SkillBadge
+                      key={skillIndex}
+                      name={skill.name}
+                      icon={skill.logo || "/placeholder.svg?height=20&width=20"}
+                      description={skill.description}
+                      showTooltip={true}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </ContentBox>
+      </motion.div>
+    </section>
+  )
+}
