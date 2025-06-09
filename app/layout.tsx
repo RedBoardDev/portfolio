@@ -3,7 +3,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-import { LanguageProvider } from "@/contexts/language-context"
+import { LanguageProvider } from "@/lib/language-context"
 import { seoConfig } from "@/lib/seo-config"
 import Script from "next/script"
 // Add import for WebVitalsReporter
@@ -48,9 +48,11 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light">
-          <LanguageProvider>{children}</LanguageProvider>
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider attribute="class" defaultTheme="light">
+            {children}
+          </ThemeProvider>
+        </LanguageProvider>
 
         {/* Structured Data for SEO */}
         <Script

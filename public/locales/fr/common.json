@@ -1,0 +1,21 @@
+{
+  "navigation": {
+    "about": "À propos",
+    "experience": "Expérience",
+    "education": "Formation",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "freelance": "Freelance"
+  },
+  "hero": {
+    "title": "Développeur Full-Stack",
+    "description": "Je conçois et développe des applications web modernes et performantes, en utilisant les technologies React, TypeScript et Node.js.",
+    "location": "Mulhouse, Grand Est, France",
+    "downloadCV": "Télécharger CV",
+    "contact": "Me contacter",
+    "findMe": "Me retrouver sur"
+  },
+  "footer": {
+    "rights": "Tous droits réservés."
+  }
+}

@@ -1,12 +1,12 @@
 "use client"
 
-import { useLanguage, type Language } from "@/contexts/language-context"
+import { useLanguage, type Language } from "@/lib/language-context"
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Check } from "lucide-react"
 
 export function LanguageSwitcher() {
-  const { language, setLanguage } = useLanguage()
+  const { language, setLanguage, isLoaded } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -38,6 +38,13 @@ export function LanguageSwitcher() {
 
   // Trouver la langue actuelle
   const currentLanguage = languages.find((lang) => lang.code === language)
+
+  // Ne pas afficher pendant le chargement pour éviter l'hydration mismatch
+  if (!isLoaded) {
+    return (
+      <div className="w-16 h-8 bg-gray-100 rounded-md animate-pulse"></div>
+    )
+  }
 
   return (
     <div className="relative" ref={dropdownRef}>

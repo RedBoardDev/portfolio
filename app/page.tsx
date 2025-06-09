@@ -16,9 +16,6 @@ import { NavigationBar } from "@/components/navigation-bar"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 import dynamic from "next/dynamic"
 
-// Utilisez cette modification au début du fichier, après les imports
-import { useTranslation } from "@/hooks/use-translation"
-
 // Chargement dynamique des sections non critiques
 const DynamicSkillsSection = dynamic(() => import("@/components/sections/skills-section"), {
   loading: () => <div className="min-h-[200px] animate-pulse bg-gray-50 rounded-xl"></div>,
@@ -31,8 +28,6 @@ const DynamicProjectsSection = dynamic(() => import("@/components/sections/proje
 })
 
 export default function Home() {
-  const { t } = useTranslation()
-
   const aboutRef = useRef<HTMLDivElement>(null)
   const experienceRef = useRef<HTMLDivElement>(null)
   const educationRef = useRef<HTMLDivElement>(null)
@@ -195,7 +190,7 @@ export default function Home() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="text-primary font-medium mb-2"
                   >
-                    {t("hero.title")}
+                    Développeur Full-Stack
                   </motion.h2>
 
                   <motion.h1
@@ -252,7 +247,7 @@ export default function Home() {
                       className="gap-2 shadow-md hover:shadow-lg transition-all text-sm sm:text-base"
                     >
                       <Download size={16} />
-                      <span>{t("hero.downloadCV")}</span>
+                      <span>Télécharger CV</span>
                     </Button>
                     <Button
                       variant="outline"
@@ -290,7 +285,7 @@ export default function Home() {
                           aria-hidden="true"
                         >
                           <path d="M91.7167 110.023L86.1777 115.562L102.362 131.746C110.345 139.729 122.474 148.086 135.044 135.517C144.268 126.293 142.224 117.308 137.327 110.023H91.7167Z" />
-                          <path d="M66.4967 49.136L72.ান্স57 43.597L55.8517 27.413C47.8687 19.43 35.7397 11.073 23.1697 23.642C13.9457 32.866 15.9897 41.851 20.8867 49.136H66.4967Z" />
+                          <path d="M66.4967 49.136L72.0357 43.597L55.8517 27.413C47.8687 19.43 35.7397 11.073 23.1697 23.642C13.9457 32.866 15.9897 41.851 20.8867 49.136H66.4967Z" />
                           <path d="M135.045 23.642C122.475 11.071 110.346 19.429 102.362 27.413L26.9406 102.834C18.9576 110.817 10.6006 122.946 23.1696 135.516C35.7406 148.087 47.8686 139.729 55.8526 131.745L131.274 56.324C139.257 48.341 147.614 36.212 135.045 23.642Z" />
                           <path d="M98.7447 16.888C97.0557 8.27398 92.1517 0.471985 79.1077 0.471985C66.0617 0.471985 61.1577 8.27398 59.4697 16.888L79.1077 36.526L98.7447 16.888Z" />
                           <path d="M59.4697 142.27C61.1587 150.884 66.0627 158.686 79.1067 158.686C92.1527 158.686 97.0567 150.884 98.7447 142.27L79.1067 122.632L59.4697 142.27Z" />

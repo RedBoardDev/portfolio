@@ -9,12 +9,14 @@ export type Language = "fr" | "en"
 interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
+  isLoaded: boolean
 }
 
 // Valeurs par défaut du contexte
 const defaultContext: LanguageContextType = {
   language: "en",
   setLanguage: () => {},
+  isLoaded: false,
 }
 
 // Création du contexte
@@ -30,38 +32,47 @@ interface LanguageProviderProps {
 
 // Provider du contexte de langue
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  // État pour stocker la langue actuelle
   const [language, setLanguageState] = useState<Language>("en")
-  // État pour suivre si le composant est monté (pour éviter les problèmes de hydration)
-  const [mounted, setMounted] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   // Fonction pour changer de langue
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)
     // Sauvegarder la préférence de langue dans localStorage
     if (typeof window !== "undefined") {
-      localStorage.setItem("preferredLanguage", lang)
+      localStorage.setItem("preferred-language", lang)
     }
   }
 
   // Effect pour initialiser la langue en fonction de localStorage ou navigator.language
   useEffect(() => {
-    setMounted(true)
-    const storedLanguage = localStorage.getItem("preferredLanguage") as Language | null
+    if (typeof window !== "undefined") {
+      // Vérifier localStorage d'abord
+      const storedLanguage = localStorage.getItem("preferred-language") as Language | null
 
-    if (storedLanguage && (storedLanguage === "fr" || storedLanguage === "en")) {
-      setLanguageState(storedLanguage)
-    } else {
-      // Utiliser la langue du navigateur comme fallback
-      const browserLang = navigator.language.substring(0, 2).toLowerCase()
-      setLanguageState(browserLang === "fr" ? "fr" : "en")
+      if (storedLanguage && (storedLanguage === "fr" || storedLanguage === "en")) {
+        setLanguageState(storedLanguage)
+      } else {
+        // Utiliser la langue du navigateur comme fallback
+        const browserLang = navigator.language.toLowerCase()
+        // Si c'est français (fr, fr-FR, fr-CA, etc.), utiliser français, sinon anglais
+        const detectedLang: Language = browserLang.startsWith("fr") ? "fr" : "en"
+        setLanguageState(detectedLang)
+        localStorage.setItem("preferred-language", detectedLang)
+      }
+
+      setIsLoaded(true)
     }
   }, [])
 
-  // Pendant le rendu côté serveur ou au premier rendu, utiliser la langue par défaut
-  if (!mounted) {
-    return <>{children}</>
+  // Pendant le chargement, ne pas rendre les enfants pour éviter l'hydration mismatch
+  if (!isLoaded) {
+    return null
   }
 
-  return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, isLoaded }}>
+      {children}
+    </LanguageContext.Provider>
+  )
 }

@@ -20,7 +20,7 @@ interface NavigationBarProps {
 }
 
 export function NavigationBar({ onNavigate }: NavigationBarProps) {
-  const { t } = useTranslation()
+  const { t, loading } = useTranslation("common")
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -101,12 +101,12 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
   }, [])
 
   const navItems = [
-    { name: t("header.about"), action: onNavigate.about, icon: <User size={16} />, id: "about" },
-    { name: t("header.experience"), action: onNavigate.experience, icon: <Briefcase size={16} />, id: "experience" },
-    { name: t("header.education"), action: onNavigate.education, icon: <GraduationCap size={16} />, id: "education" },
-    { name: t("header.skills"), action: onNavigate.skills, icon: <CodeIcon size={16} />, id: "skills" },
-    { name: t("header.projects"), action: onNavigate.projects, icon: <FolderKanban size={16} />, id: "projects" },
-    { name: t("header.freelance"), action: onNavigate.contact, icon: <Briefcase size={16} />, id: "contact" },
+    { name: t("navigation.about"), action: onNavigate.about, icon: <User size={16} />, id: "about" },
+    { name: t("navigation.experience"), action: onNavigate.experience, icon: <Briefcase size={16} />, id: "experience" },
+    { name: t("navigation.education"), action: onNavigate.education, icon: <GraduationCap size={16} />, id: "education" },
+    { name: t("navigation.skills"), action: onNavigate.skills, icon: <CodeIcon size={16} />, id: "skills" },
+    { name: t("navigation.projects"), action: onNavigate.projects, icon: <FolderKanban size={16} />, id: "projects" },
+    { name: t("navigation.freelance"), action: onNavigate.contact, icon: <Briefcase size={16} />, id: "contact" },
   ]
 
   const socialLinks = [
@@ -194,36 +194,34 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                 `}
                 aria-current={activeSection === item.id ? "page" : undefined}
               >
-                {item.name}
+                {loading ? "..." : item.name}
               </a>
             ))}
 
-            {/* Ajout du sélecteur de langue */}
+            {/* Language Switcher */}
             <LanguageSwitcher />
           </nav>
 
-          {/* Mobile Navigation Button - Always visible */}
+          {/* Mobile Navigation Button */}
           <div className="md:hidden flex items-center gap-2">
-            {/* Sélecteur de langue sur mobile */}
+            {/* Language Switcher Mobile */}
             <LanguageSwitcher />
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-menu"
               className={`
-                p-1.5 rounded-full transition-colors z-50 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+                p-2 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
                 ${
-                  mobileMenuOpen
-                    ? "bg-white text-primary shadow-md"
-                    : scrolled
-                      ? "bg-white/80 text-gray-700 shadow-sm hover:text-primary"
-                      : "text-gray-700 hover:bg-white/30"
+                  scrolled
+                    ? "text-gray-600 hover:text-primary hover:bg-gray-50/80"
+                    : "text-gray-700 hover:text-primary hover:bg-white/30"
                 }
               `}
+              aria-label="Menu de navigation"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
             >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -283,7 +281,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                     <span className={`${activeSection === item.id ? "text-primary" : "text-gray-400"}`}>
                       {item.icon}
                     </span>
-                    {item.name}
+                    {loading ? "..." : item.name}
                   </motion.a>
                 ))}
               </div>
