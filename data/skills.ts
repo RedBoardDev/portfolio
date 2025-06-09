@@ -93,7 +93,7 @@ export const skillsData: SkillCategory[] = [
       },
       {
         key: "aws",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
       },
       {
         key: "cicd",
