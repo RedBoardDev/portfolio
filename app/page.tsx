@@ -135,7 +135,7 @@ export default function Home() {
 
           <div className="max-w-6xl mx-auto w-full">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-0 items-center">
-              {/* Profile Image - Polished presentation */}
+                            {/* Profile Image - Clean Professional Design */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -143,29 +143,44 @@ export default function Home() {
                 className="order-1 lg:order-2 flex justify-center lg:justify-end"
               >
                 <div className="relative">
-                  {/* Subtle decorative layer */}
-                  <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-primary/20 to-blue-500/20 blur-sm"></div>
+                  {/* Main gradient ring */}
+                  <div className="absolute -inset-2 bg-gradient-to-br from-primary/30 via-blue-500/20 to-primary/30 rounded-full blur-md"></div>
 
-                  {/* Clean, professional container */}
-                  <div className="relative overflow-hidden w-40 h-40 xs:w-48 xs:h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full bg-white border-4 border-white shadow-lg">
+                  {/* Secondary ring for depth */}
+                  <div className="absolute -inset-1 bg-gradient-to-tr from-white via-gray-50 to-white rounded-full shadow-xl"></div>
+
+                  {/* Main image container */}
+                  <div className="relative overflow-hidden w-44 h-44 xs:w-52 xs:h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-gray-50 to-white border-2 border-white shadow-2xl">
+                    {/* Subtle inner glow */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/5 via-transparent to-blue-500/5"></div>
+
                     <OptimizedImage
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-48M6u2WCuLb8wBP4kHRBjI5mGEM24f.png"
-                      alt="Thomas OTT"
+                      src="https://image.noelshack.com/fichiers/2025/24/3/1749663120-t1.jpg"
+                      alt="Thomas OTT - Développeur Full-Stack"
                       fill
                       className="object-cover"
                       priority
                     />
+
+                    {/* Subtle overlay for professional polish */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent rounded-full"></div>
                   </div>
 
-                  {/* Minimal professional indicator */}
+                  {/* Professional status indicator */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                    className="absolute -right-2 -bottom-2 bg-white p-2 rounded-full shadow-md"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.8, duration: 0.6, type: "spring", stiffness: 200 }}
+                    className="absolute -bottom-2 -right-2"
                   >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/80 to-blue-500/80 flex items-center justify-center">
-                      <Code className="h-5 w-5 text-white" />
+                    <div className="relative">
+                      {/* Main badge */}
+                      <div className="relative bg-gradient-to-br from-primary to-blue-600 p-3 rounded-full shadow-lg">
+                        <Code className="h-6 w-6 text-white" />
+                      </div>
+
+                      {/* Availability indicator */}
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-md"></div>
                     </div>
                   </motion.div>
                 </div>
