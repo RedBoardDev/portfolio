@@ -7,17 +7,20 @@
     "background": "Mon parcours académique, enrichi par une année en Finlande, m'a permis de développer une forte adaptabilité et une ouverture culturelle. En parallèle, mon expérience en tant qu'assistant pédagogique régional (AER) à Epitech m'a doté de solides compétences en encadrement de projets informatiques et en gestion de projet."
   },
   "github": {
-    "title": "GitHub Contributions",
+    "title": "Contributions GitHub",
     "loadingError": "Impossible de charger les données GitHub",
-    "chartLabel": "Graphique des contributions GitHub sur la dernière année",
+    "chartLabel": "Graphique des contributions GitHub pour l'année dernière",
     "contributions": "contributions",
     "contribution": "contribution",
     "onDate": "le",
-    "inLastYear": "contributions dans la dernière année",
+    "inLastYear": "contributions cette année",
     "less": "Moins",
     "more": "Plus",
-    "repositories": "Repositories",
+    "repositories": "Dépôts",
     "totalContributions": "Contributions",
+    "currentStreak": "Série Actuelle",
+    "longestStreak": "Plus Longue Série",
+    "days": "jours",
     "mostUsedLanguages": "Langages les plus utilisés"
   }
 }

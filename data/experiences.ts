@@ -8,6 +8,7 @@ export interface Position {
 export interface Experience {
   key: string // Clé pour la traduction
   logo: string
+  url?: string // URL du site web de l'entreprise
   positions: Position[]
 }
 
@@ -56,6 +57,7 @@ export const experiences: Experience[] = [
   {
     key: "akord",
     logo: "/assets/logos/companies/akord.jpeg",
+    url: "https://akord.fr",
     positions: [
       {
         key: "fullStackDeveloper",
@@ -73,6 +75,7 @@ export const experiences: Experience[] = [
   {
     key: "epitech",
     logo: "/assets/logos/companies/epitech.jpeg",
+    url: "https://www.epitech.eu/",
     positions: [
       {
         key: "aer",

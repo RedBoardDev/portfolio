@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Mail, Github, Linkedin, Code, Briefcase, Check, Copy } from "lucide-react"
+import { Mail, Github, Linkedin, Code, Briefcase, Check, Copy, ExternalLink } from "lucide-react"
 import { ContentBox } from "@/components/ui/content-box"
 import { useTranslation } from "@/hooks/use-translation"
 
@@ -271,16 +271,20 @@ export default function ContactSection() {
                     href="https://www.linkedin.com/in/thomas--ott"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center group"
+                    className="flex items-center group w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md"
+                    aria-label="Open LinkedIn profile in a new tab"
                   >
                     <div className="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center mr-4 shadow-sm group-hover:scale-105 transition-transform">
-                      <Linkedin className="h-5 w-5 text-white" />
+                      <Linkedin className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
-                    <div>
+                    <div className="flex-grow">
                       <p className="text-sm font-medium text-gray-500">LinkedIn</p>
                       <p className="text-gray-900 group-hover:text-primary transition-colors">
                         linkedin.com/in/thomas--ott
                       </p>
+                    </div>
+                    <div className="ml-2 text-gray-400 group-hover:text-primary transition-colors">
+                      <ExternalLink size={16} aria-hidden="true" />
                     </div>
                   </a>
                 </motion.div>
@@ -295,14 +299,18 @@ export default function ContactSection() {
                     href="https://github.com/redBoardDev"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center group"
+                    className="flex items-center group w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md"
+                    aria-label="Open GitHub profile in a new tab"
                   >
                     <div className="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center mr-4 shadow-sm group-hover:scale-105 transition-transform">
-                      <Github className="h-5 w-5 text-white" />
+                      <Github className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
-                    <div>
+                    <div className="flex-grow">
                       <p className="text-sm font-medium text-gray-500">GitHub</p>
                       <p className="text-gray-900 group-hover:text-primary transition-colors">github.com/redBoardDev</p>
+                    </div>
+                    <div className="ml-2 text-gray-400 group-hover:text-primary transition-colors">
+                      <ExternalLink size={16} aria-hidden="true" />
                     </div>
                   </a>
                 </motion.div>

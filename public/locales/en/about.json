@@ -18,6 +18,9 @@
     "more": "More",
     "repositories": "Repositories",
     "totalContributions": "Contributions",
+    "currentStreak": "Current Streak",
+    "longestStreak": "Longest Streak",
+    "days": "days",
     "mostUsedLanguages": "Most used languages"
   }
 }

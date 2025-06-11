@@ -5,6 +5,7 @@
   "ui": {
     "skillsAcquired": "Compétences acquises",
     "present": "aujourd'hui",
+    "visitSite": "Visiter le site",
     "duration": {
       "lessThanOneMonth": "< 1 mois",
       "oneMonth": "1 mois",

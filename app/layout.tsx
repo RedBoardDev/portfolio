@@ -49,9 +49,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <LanguageProvider>
-          <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="light">
             {children}
-          </ThemeProvider>
+        </ThemeProvider>
         </LanguageProvider>
 
         {/* Structured Data for SEO */}

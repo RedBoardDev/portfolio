@@ -20,6 +20,23 @@ export interface GitHubLanguage {
   color: string
 }
 
+export interface StreakStats {
+  totalContributions: number
+  currentStreak: {
+    start: string
+    end: string
+    length: number
+  }
+  longestStreak: {
+    start: string
+    end: string
+    length: number
+  }
+  firstContribution: string
+  mode: string
+  excludedDays: string[]
+}
+
 /**
  * Fetches GitHub contribution data for a user
  *
@@ -427,4 +444,18 @@ function getLanguageDefaultColor(language: string): string {
   }
 
   return colors[language] || "#858585" // Default gray if color not found
+}
+
+export async function fetchStreakStats(username: string): Promise<StreakStats> {
+  try {
+    const response = await fetch(`/api/github/streak-stats?user=${username}`)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch streak stats: ${response.status}`)
+    }
+    const data = await response.json()
+    return data as StreakStats
+  } catch (error) {
+    console.error("Error fetching streak stats:", error)
+    throw error
+  }
 }

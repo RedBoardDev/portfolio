@@ -1,16 +1,16 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react"
-import {
-  fetchGitHubContributions,
-  fetchGitHubStats,
-  fetchGitHubLanguages,
-  fetchTotalContributions,
-  type GitHubContribution,
-  type GitHubStats,
-  type GitHubLanguage,
-  getLongestStreak,
-} from "@/lib/api/github"
+// import {
+//   fetchGitHubContributions,
+//   fetchGitHubStats,
+//   fetchGitHubLanguages,
+//   fetchStreakStats,
+//   type GitHubContribution,
+//   type GitHubStats,
+//   type GitHubLanguage,
+//   type StreakStats,
+// } from "@/lib/api/github"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useTranslation } from "@/hooks/use-translation"
 import { useLanguage } from "@/lib/language-context"
@@ -30,144 +30,62 @@ const getContributionColor = (count: number): string => {
 export function GitHubContributions({ username = "redBoardDev" }: GitHubContributionsProps) {
   const { t, loading: translationLoading } = useTranslation("about")
   const { language } = useLanguage()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const graphRef = useRef<HTMLDivElement>(null)
-  const [contributions, setContributions] = useState<GitHubContribution[] | null>(null)
-  const [stats, setStats] = useState<GitHubStats | null>(null)
-  const [languages, setLanguages] = useState<GitHubLanguage[] | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  // const containerRef = useRef<HTMLDivElement>(null)
+  // const graphRef = useRef<HTMLDivElement>(null)
+  // const [contributions, setContributions] = useState<GitHubContribution[] | null>(null)
+  // const [stats, setStats] = useState<GitHubStats | null>(null)
+  // const [languages, setLanguages] = useState<GitHubLanguage[] | null>(null)
+  // const [streakStats, setStreakStats] = useState<StreakStats | null>(null)
+  const [isLoading, setIsLoading] = useState(false) // Désactivé pour l'instant
   const [error, setError] = useState<string | null>(null)
-  const [yearlyContributions, setYearlyContributions] = useState(0)
-  const [totalContributions, setTotalContributions] = useState(0)
-  const [longestStreak, setLongestStreak] = useState(0)
+  // const [yearlyContributions, setYearlyContributions] = useState(0)
 
-  useEffect(() => {
-    async function loadGitHubData() {
-      try {
-        setIsLoading(true)
+  // Valeurs statiques temporaires
+  const yearlyContributions = 1247
+  const totalContributions = 6969
+  const currentStreak = 258
+  const longestStreak = 258
+  const totalRepos = 32
 
-        // Charger les contributions de l'année
-        const contributionsData = await fetchGitHubContributions(username)
-        setContributions(contributionsData)
-        setYearlyContributions(contributionsData.reduce((total, day) => total + day.count, 0))
-        setLongestStreak(getLongestStreak(contributionsData))
+  // useEffect(() => {
+  //   async function loadGitHubData() {
+  //     try {
+  //       setIsLoading(true)
 
-        // Charger le nombre total de contributions
-        const totalContribsData = await fetchTotalContributions(username)
-        setTotalContributions(totalContribsData)
+  //       // Charger les contributions de l'année (pour le graphique)
+  //       const contributionsData = await fetchGitHubContributions(username)
+  //       setContributions(contributionsData)
+  //       setYearlyContributions(contributionsData.reduce((total, day) => total + day.count, 0))
 
-        // Charger les statistiques générales
-        const statsData = await fetchGitHubStats(username)
-        setStats(statsData)
+  //       // Charger les vraies statistiques depuis streak-stats API
+  //       const streakData = await fetchStreakStats(username)
+  //       setStreakStats(streakData)
 
-        // Charger les langages
-        const languagesData = await fetchGitHubLanguages(username)
-        setLanguages(languagesData)
+  //       // Charger les statistiques générales
+  //       const statsData = await fetchGitHubStats(username)
+  //       setStats(statsData)
 
-        setError(null)
-      } catch (err) {
-        setError(translationLoading ? "Error loading GitHub data" : t("github.loadingError"))
-        console.error(err)
-      } finally {
-        setIsLoading(false)
-      }
-    }
+  //       // Charger les langages
+  //       const languagesData = await fetchGitHubLanguages(username)
+  //       setLanguages(languagesData)
 
-    loadGitHubData()
-  }, [username, t, translationLoading])
+  //       setError(null)
+  //     } catch (err) {
+  //       setError(translationLoading ? "Error loading GitHub data" : t("github.loadingError"))
+  //       console.error(err)
+  //     } finally {
+  //       setIsLoading(false)
+  //     }
+  //   }
 
-  useEffect(() => {
-    if (!containerRef.current || !contributions || isLoading || translationLoading) return
+  //   loadGitHubData()
+  // }, [username, t, translationLoading])
 
-    const container = containerRef.current
-    container.innerHTML = "" // Clear previous content
-
-    // Create graph container
-    const graph = document.createElement("div")
-    graph.className = "grid grid-cols-[repeat(53,1fr)] gap-1 overflow-x-auto"
-    graph.setAttribute("role", "img")
-    graph.setAttribute("aria-label", t("github.chartLabel"))
-    graphRef.current = graph
-
-    // Create weeks
-    contributions.forEach((day, index) => {
-      if (index % 7 === 0) {
-        const weekContainer = document.createElement("div")
-        weekContainer.className = "grid grid-rows-7 gap-1"
-        graph.appendChild(weekContainer)
-
-        // Create days for this week
-        for (let i = 0; i < 7 && index + i < contributions.length; i++) {
-          const dayData = contributions[index + i]
-          const dayEl = document.createElement("div")
-          dayEl.className = "w-2.5 h-2.5 rounded-sm"
-          dayEl.style.backgroundColor = getContributionColor(dayData.count)
-
-          // Format date for tooltip with proper locale
-          const date = new Date(dayData.date)
-          const locale = language === "fr" ? "fr-FR" : "en-US"
-          const formattedDate = date.toLocaleDateString(locale, {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          })
-
-          const contributionText = dayData.count === 1 ? t("github.contribution") : t("github.contributions")
-          const tooltipText = `${dayData.count} ${contributionText} ${t("github.onDate")} ${formattedDate}`
-
-          dayEl.title = tooltipText
-          dayEl.setAttribute("aria-label", tooltipText)
-          weekContainer.appendChild(dayEl)
-        }
-      }
-    })
-
-    container.appendChild(graph)
-
-    // Create legend
-    const legend = document.createElement("div")
-    legend.className = "flex items-center justify-end gap-2 mt-4 text-xs text-gray-600"
-    legend.innerHTML = `
-    <span>${t("github.less")}</span>
-    ${[0, 1, 2, 3, 4]
-      .map(
-        (count) => `
-      <div class="w-2.5 h-2.5 rounded-sm" style="background-color: ${getContributionColor(count)}" aria-label="${count} ${t("github.contributions")}" title="${count} ${t("github.contributions")}"></div>
-    `,
-      )
-      .join("")}
-    <span>${t("github.more")}</span>
-  `
-    container.appendChild(legend)
-
-    // Scroll to the end (most recent contributions)
-    setTimeout(() => {
-      if (container && graph) {
-        container.scrollLeft = graph.scrollWidth - container.clientWidth
-      }
-    }, 100)
-  }, [contributions, isLoading, translationLoading, t, language])
-
-  useEffect(() => {
-    if (!containerRef.current || !graphRef.current) return
-
-    const handleResize = () => {
-      if (containerRef.current && graphRef.current) {
-        containerRef.current.scrollLeft = graphRef.current.scrollWidth - containerRef.current.clientWidth
-      }
-    }
-
-    // Initial scroll
-    handleResize()
-
-    // Add resize listener
-    window.addEventListener("resize", handleResize)
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [contributions])
+  // Graphique temporairement désactivé
+  // useEffect(() => {
+  //   if (!containerRef.current || !contributions || isLoading || translationLoading) return
+  //   // ... code du graphique commenté
+  // }, [contributions, isLoading, translationLoading, t, language])
 
   if (isLoading || translationLoading) {
     return (
@@ -187,20 +105,24 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
 
   return (
     <div>
-      <div ref={containerRef} className="w-full overflow-x-auto py-1 scrollbar-hide" />
+      {/* Graphique temporairement désactivé */}
+      {/* <div ref={containerRef} className="w-full overflow-x-auto py-1 scrollbar-hide" /> */}
 
-      {/* Yearly contributions text */}
-      {contributions && (
+      {/* Placeholder pour le graphique */}
+      <div className="h-20 bg-gray-50 rounded-lg flex items-center justify-center mb-4">
+        <span className="text-gray-400 text-sm">Contributions chart (soon)</span>
+      </div>
+
+      {/* Texte des contributions annuelles */}
         <div className="text-xs text-gray-500 mt-2 text-right">
-          {yearlyContributions} {t("github.inLastYear")}
+        {yearlyContributions} {t("github.inLastYear")}
         </div>
-      )}
 
       <div className="mt-6 space-y-2">
         <div>
           <div className="flex justify-between mb-1 text-sm">
             <span className="text-gray-600">{t("github.repositories")}</span>
-            <span className="font-semibold">{stats?.totalRepos || "32"}+</span>
+            <span className="font-semibold">{totalRepos}+</span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full">
             <div className="h-full w-4/5 bg-primary rounded-full"></div>
@@ -210,7 +132,7 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
         <div>
           <div className="flex justify-between mb-1 text-sm">
             <span className="text-gray-600">{t("github.totalContributions")}</span>
-            <span className="font-semibold">{totalContributions || "1200"}+</span>
+            <span className="font-semibold">{totalContributions?.toLocaleString()}+</span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full">
             <div className="h-full w-11/12 bg-primary rounded-full"></div>
@@ -218,44 +140,32 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
         </div>
 
         <div>
+          <div className="flex justify-between mb-1 text-sm">
+            <span className="text-gray-600">{t("github.longestStreak")}</span>
+            <span className="font-semibold">{longestStreak} {t("github.days")}</span>
+          </div>
+          <div className="h-2 bg-gray-100 rounded-full">
+            <div className="h-full w-4/5 bg-orange-500 rounded-full"></div>
+          </div>
+        </div>
+
+        <div>
           <p className="text-gray-600 mb-1 text-sm">
-            {t("github.mostUsedLanguages")} ({languages?.length || 0})
+            {t("github.mostUsedLanguages")} (5)
           </p>
           <div className="h-2 bg-gray-100 rounded-full overflow-hidden flex">
-            {languages ? (
-              languages.slice(0, 5).map((lang, index) => (
-                <div
-                  key={index}
-                  className="h-full"
-                  style={{
-                    width: `${lang.percentage}%`,
-                    backgroundColor: lang.color || getLanguageColor(index),
-                  }}
-                  title={`${lang.name}: ${lang.percentage.toFixed(1)}%`}
-                ></div>
-              ))
-            ) : (
-              <>
                 <div className="h-full w-[35%] bg-blue-500"></div>
                 <div className="h-full w-[25%] bg-yellow-400"></div>
                 <div className="h-full w-[20%] bg-teal-500"></div>
                 <div className="h-full w-[12%] bg-orange-500"></div>
                 <div className="h-full w-[8%] bg-purple-500"></div>
-              </>
-            )}
           </div>
           <div className="flex flex-wrap gap-x-4 gap-y-2 mt-2 text-xs text-gray-600">
-            {languages ? (
-              languages.slice(0, 5).map((lang, index) => <span key={index}>{lang.name}</span>)
-            ) : (
-              <>
+            <span>TypeScript</span>
+            <span>JavaScript</span>
                 <span>PHP</span>
-                <span>JavaScript</span>
-                <span>TypeScript</span>
-                <span>HTML</span>
+            <span>Python</span>
                 <span>CSS</span>
-              </>
-            )}
           </div>
         </div>
       </div>
