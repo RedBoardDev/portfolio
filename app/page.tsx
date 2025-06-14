@@ -201,15 +201,6 @@ export default function Home() {
                     className="h-1 bg-primary absolute -top-3 left-1/2 lg:left-0 transform -translate-x-1/2 lg:translate-x-0"
                   ></motion.div>
 
-                  <motion.h2
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-primary font-medium mb-2"
-                  >
-                    {loading ? "..." : t("hero.title")}
-                  </motion.h2>
-
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -222,6 +213,15 @@ export default function Home() {
                       <span className="absolute -bottom-1 left-0 w-full h-[6px] bg-primary/20"></span>
                     </span>
                   </motion.h1>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="text-primary font-medium mb-2 mt-4"
+                  >
+                    {loading ? "..." : t("hero.title")}
+                  </motion.p>
 
                   <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -263,7 +263,8 @@ export default function Home() {
                     className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start"
                   >
                     <a
-                      href="https://www.linkedin.com/ambry/?x-li-ambry-ep=AQIpeR23nv6HrAAAAZduiSPWHSDHuw-De5H9qJ3OxRmG7-ZMbOs4WtynbMlMPSvzAbH0PhXWJNJ3UnTHmRPWzVDH5EH81bUwoSSlsifeuAbh4sU7qIXEnM7n3ofyY5vdwSQxYLhVuofwCgh9bWLESJryYOJ4-XtncfEefZfbQN5jyBheoCIIoGhsPg5OmSSczvJWLCKp-G30OKCdP8B1khDnzc8OMS7vN5u_8-LfkgYTV9GrLcB7PaoKFRddQnp4VZs3XrMDY1LvMccaCXZTcNR2R4Y1DdXpq8ZsjcIo4WweqYuh3VJyIX-D1GiEeXCsY0PiMzdyFCmrniwP-QBfAlVxSds55w2wp2gLLYMehruJ0TDoOeDbIGbc-MpitLNKmknwSMRkiPpbjmNEYJnzbSkrVZOsDlwYOo9sQ0aSFiWFjkKRieIkDBu141sq-C4GF4L79GHGZjfmEYH5XZ4pz38-8IdSBM935VZ7zNTR6ENvOTf9sk4L5KCcsLu8hGJ1dxTr4HFco8V1by5mLHqwbX2i_ymsC8p24serI2ccLzGxNhW0-mxa5j3rmDTbkeJzfe_cnw&x-ambry-um-filename=Profile.pdf"
+                      href="/assets/resume-fr-thomas-ott.pdf"
+                      download="resume-fr-thomas-ott.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -271,8 +272,9 @@ export default function Home() {
                         variant="default"
                         size="lg"
                         className="gap-2 shadow-md hover:shadow-lg transition-all text-sm sm:text-base"
+                        aria-label={loading ? "Télécharger le CV" : `${t("hero.downloadCV")} - Thomas OTT`}
                       >
-                        <Download size={16} />
+                        <Download size={16} aria-hidden="true" />
                         <span>{loading ? "..." : t("hero.downloadCV")}</span>
                       </Button>
                     </a>

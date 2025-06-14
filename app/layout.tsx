@@ -4,10 +4,8 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/lib/language-context"
-import { seoConfig } from "@/lib/seo-config"
+import { getMetadata, getPersonSchema, getOrganizationSchema } from "@/lib/seo-config"
 import Script from "next/script"
-// Add import for WebVitalsReporter
-import { WebVitalsReporter } from "@/components/seo/web-vitals-reporter"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,24 +13,7 @@ const inter = Inter({
   variable: "--font-inter", // For Tailwind variable
 })
 
-// Mettre à jour le titre par défaut dans les metadata
-export const metadata: Metadata = {
-  ...seoConfig.defaultMetadata,
-  title: "Thomas OTT | Développeur fullstack",
-  openGraph: seoConfig.openGraph,
-  twitter: seoConfig.twitter,
-  verification: {
-    google: "google-site-verification-code", // Add your real verification code when you have it
-  },
-  alternates: {
-    canonical: "https://thomasott.fr",
-    languages: {
-      "fr-FR": "https://thomasott.fr",
-      "en-US": "https://thomasott.fr/en",
-    },
-  },
-    generator: 'Next.js'
-}
+export const metadata: Metadata = getMetadata()
 
 export default function RootLayout({
   children,
@@ -43,9 +24,14 @@ export default function RootLayout({
     <html lang="fr" className={inter.variable}>
       <head>
         <meta name="theme-color" content="#3b82f6" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+        <link rel="icon" href="/assets/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/assets/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="alternate" hrefLang="fr" href="https://thomasott.fr" />
+        <link rel="alternate" hrefLang="en" href="https://thomasott.fr" />
+        <link rel="alternate" hrefLang="x-default" href="https://thomasott.fr" />
       </head>
       <body className={inter.className}>
         <LanguageProvider>
@@ -58,16 +44,34 @@ export default function RootLayout({
         <Script
           id="schema-organization"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(seoConfig.organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getOrganizationSchema()) }}
         />
         <Script
           id="schema-person"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(seoConfig.personSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getPersonSchema()) }}
         />
-
-        {/* Web Vitals Reporter */}
-        <WebVitalsReporter />
+        <Script
+          id="schema-website"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Thomas OTT - portfolio",
+            "url": "https://thomasott.fr",
+            "description": "Développeur full-stack freelance spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences.",
+            "author": {
+              "@type": "Person",
+              "name": "Thomas OTT"
+            },
+            "inLanguage": ["fr-FR", "en-US"],
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://thomasott.fr#{search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }) }}
+        />
       </body>
     </html>
   )
