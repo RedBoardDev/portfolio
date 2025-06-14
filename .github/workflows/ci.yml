@@ -2,12 +2,12 @@ name: CI - Build and Test
 
 on:
   push:
-    branches: [main, release, test-ci]
+    branches: [main, release, test-ci1]
   pull_request:
     branches: [main, release]
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
 
 jobs:
   ci:
@@ -38,7 +38,10 @@ jobs:
         run: npm ci --prefer-offline --no-audit
 
       - name: Lint
-        run: npm run lint
+        run: npm run lint:check
+
+      - name: Format
+        run: npm run format:check
 
       - name: Build
         run: npm run build
