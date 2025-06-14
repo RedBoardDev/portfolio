@@ -14,12 +14,7 @@ import { motion } from "framer-motion"
 import { Calendar, MapPin } from "lucide-react"
 
 export default function ExperienceSection() {
-  const {
-    t,
-    formatDuration,
-    language,
-    loading,
-  } = useTranslation("experience")
+  const { t, formatDuration, language, loading } = useTranslation("experience")
 
   // Helper to format display period string
   const getDisplayPeriod = (position: Position): string => {

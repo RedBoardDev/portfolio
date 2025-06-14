@@ -6,12 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint:fix": "biome lint --write .",
-    "lint:check": "biome check .",
-    "format:fix": "biome format --write .",
-    "format:check": "biome format .",
     "deploy": "npm run build && serverless deploy --stage production",
-    "deploy:dev": "npm run build && serverless deploy --stage dev"
+    "deploy:dev": "npm run build && serverless deploy --stage dev",
+
+    "typescript:check": "tsc --noEmit",
+    "check:all": "biome check . --diagnostic-level=error",
+    "check:fix": "biome check . --diagnostic-level=error --fix",
+    "check:fix-unsafe": "npx biome check . --diagnostic-level=error --fix --unsafe"
   },
   "dependencies": {
     "@radix-ui/react-slot": "1.1.1",
