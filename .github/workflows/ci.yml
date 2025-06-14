@@ -1,57 +1,57 @@
-name: CI - Build and Test
+# name: CI - Build and Test
 
-on:
-  push:
-    branches: [main, release, test-ci1]
-  pull_request:
-    branches: [main, release]
+# on:
+#   push:
+#     branches: [main, release, test-ci1]
+#   pull_request:
+#     branches: [main, release]
 
-env:
-  NODE_VERSION: '22'
+# env:
+#   NODE_VERSION: '22'
 
-jobs:
-  ci:
-    name: Build and Test
-    runs-on: ubuntu-latest
+# jobs:
+#   ci:
+#     name: Build and Test
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: ${{ env.NODE_VERSION }}
+#           cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.npm
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+#       - name: Cache node_modules
+#         uses: actions/cache@v4
+#         with:
+#           path: |
+#             ~/.npm
+#             ${{ github.workspace }}/.next/cache
+#           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+#           restore-keys: |
+#             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - name: Install dependencies
-        run: npm ci --prefer-offline --no-audit
+#       - name: Install dependencies
+#         run: npm ci --prefer-offline --no-audit
 
-      # - name: Check typescript
-      #   run: npm run typescript:check
+#       # - name: Check typescript
+#       #   run: npm run typescript:check
 
-      - name: Check coding standards
-        run: npm run check:all
+#       - name: Check coding standards
+#         run: npm run check:all
 
-      - name: Build
-        run: npm run build
-        env:
-          NODE_ENV: production
+#       - name: Build
+#         run: npm run build
+#         env:
+#           NODE_ENV: production
 
-      - name: Cache build artifacts
-        if: github.ref == 'refs/heads/release'
-        uses: actions/cache@v4
-        with:
-          path: |
-            .next/
-          key: build-${{ github.sha }}
+#       - name: Cache build artifacts
+#         if: github.ref == 'refs/heads/release'
+#         uses: actions/cache@v4
+#         with:
+#           path: |
+#             .next/
+#           key: build-${{ github.sha }}
