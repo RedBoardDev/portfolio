@@ -289,6 +289,7 @@ export default function ProjectsSection() {
                             alt=""
                             fill
                             className="object-cover blur-md scale-110 opacity-40"
+                            aria-hidden="true"
                           />
                         </div>
 
@@ -445,6 +446,7 @@ export default function ProjectsSection() {
                         alt=""
                         fill
                         className="object-cover blur-md scale-110 opacity-55"
+                        aria-hidden="true"
                       />
                     </div>
 
