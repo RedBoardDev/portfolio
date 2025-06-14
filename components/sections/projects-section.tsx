@@ -123,29 +123,42 @@ export default function ProjectsSection() {
                 >
                   <ContentBox noPadding className="h-full" shadow="md">
                     {/* Image du projet */}
-                    <div className="relative h-64 overflow-hidden">
-                      <OptimizedImage
-                        src={project.image || "/placeholder.svg?height=240&width=400"}
-                        alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
-                        fill
-                        className="object-cover"
-                        draggable="false"
-                        aspectRatio={1.67} // 16:9 aspect ratio
-                      />
+                    <div className="relative h-80 overflow-hidden flex items-center justify-center">
+                      {/* Image floutée en arrière-plan */}
+                      <div className="absolute inset-0 z-0">
+                        <OptimizedImage
+                          src={project.image || "/placeholder.svg?height=400&width=600"}
+                          alt=""
+                          fill
+                          className="object-cover blur-md scale-110 opacity-55"
+                        />
+                      </div>
+
+                      {/* Image nette au premier plan */}
+                      <div className="absolute inset-0 z-10">
+                        <OptimizedImage
+                          src={project.image || "/placeholder.svg?height=400&width=600"}
+                          alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
+                          fill
+                          className="object-contain"
+                          draggable="false"
+                          aspectRatio={1.67} // 16:9 aspect ratio
+                        />
+                      </div>
 
                       {/* Overlay de base (dégradé) */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 z-15" />
 
                       {/* Overlay noir léger supplémentaire au touch/hover */}
                       <div
                         className={`
-                          absolute inset-0 bg-black transition-opacity duration-300
+                          absolute inset-0 bg-black transition-opacity duration-300 z-25
                           ${isDragging ? "opacity-20" : "opacity-0"}
                         `}
                       />
 
                       {/* Languages badges */}
-                      <div className="absolute top-4 right-4 flex gap-2">
+                      <div className="absolute top-4 right-4 flex gap-2 z-30">
                         {project.languages.slice(0, 8).map((lang, langIndex) => (
                           <LanguageBadge key={langIndex} language={lang} size="md" />
                         ))}
@@ -155,7 +168,7 @@ export default function ProjectsSection() {
                       </div>
 
                       {/* Title */}
-                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <div className="absolute bottom-0 left-0 right-0 p-5 z-30">
                         <h3 className="text-xl font-bold text-white">{t(`projects.${project.key}.title`)}</h3>
                       </div>
                     </div>
@@ -176,6 +189,7 @@ export default function ProjectsSection() {
                           <Github size={18} className="mr-2" />
                           {t("ui.code")}
                         </a>
+
                         {project.liveLink && (
                           <a
                             href={project.liveLink}
@@ -258,31 +272,44 @@ export default function ProjectsSection() {
                 onMouseLeave={() => setHoveredProject(null)}
               >
                 <ContentBox noPadding className="h-full flex flex-col" shadow="md">
-                  {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <OptimizedImage
-                      src={project.image || "/placeholder.svg?height=200&width=400"}
-                      alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
-                      fill
-                      className={`
-                        object-cover transition-transform duration-500 ease-in-out
-                        ${hoveredProject === index ? "scale-105" : "scale-100"}
-                      `}
-                      aspectRatio={1.67} // 16:9 aspect ratio
-                    />
+                                    {/* Image */}
+                  <div className="relative h-64 overflow-hidden flex items-center justify-center">
+                    {/* Image floutée en arrière-plan */}
+                    <div className="absolute inset-0 z-0">
+                      <OptimizedImage
+                        src={project.image || "/placeholder.svg?height=400&width=600"}
+                        alt=""
+                        fill
+                        className="object-cover blur-md scale-110 opacity-55"
+                      />
+                    </div>
+
+                    {/* Image nette au premier plan */}
+                    <div className="absolute inset-0 z-10">
+                      <OptimizedImage
+                        src={project.image || "/placeholder.svg?height=400&width=600"}
+                        alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
+                        fill
+                        className={`
+                          object-contain transition-transform duration-500 ease-in-out
+                          ${hoveredProject === index ? "scale-105" : "scale-100"}
+                        `}
+                        aspectRatio={1.67} // 16:9 aspect ratio
+                      />
+                    </div>
 
                     {/* Overlay de base (dégradé) */}
                     <div
                       className={`
                         absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent
-                        opacity-60 transition-opacity duration-300
+                        opacity-60 transition-opacity duration-300 z-15
                       `}
                     />
 
                     {/* Overlay noir léger au hover */}
                     <div
                       className={`
-                        absolute inset-0 bg-black transition-opacity duration-300
+                        absolute inset-0 bg-black transition-opacity duration-300 z-25
                         ${hoveredProject === index ? "opacity-20" : "opacity-0"}
                       `}
                     />
@@ -290,7 +317,7 @@ export default function ProjectsSection() {
                     {/* Languages badges */}
                     <div
                       className={`
-                        absolute top-3 right-3 flex gap-2 transition-opacity duration-300
+                        absolute top-3 right-3 flex gap-2 transition-opacity duration-300 z-30
                         ${hoveredProject === index ? "opacity-100" : "opacity-0"}
                       `}
                     >
@@ -303,7 +330,7 @@ export default function ProjectsSection() {
                     </div>
 
                     {/* Title at bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 z-30">
                       <h3 className="text-lg font-semibold text-white">{t(`projects.${project.key}.title`)}</h3>
                     </div>
                   </div>
@@ -311,13 +338,8 @@ export default function ProjectsSection() {
                   {/* Content */}
                   <div className="p-4 flex-grow flex flex-col">
                     <div className="flex-grow">
-                      <p className="text-gray-700 text-sm">
-                        {(() => {
-                          const description = t(`projects.${project.key}.description`);
-                          return description.length > 140
-                            ? `${description.substring(0, 140)}...`
-                            : description;
-                        })()}
+                      <p className="text-gray-700 text-sm line-clamp-4">
+                        {t(`projects.${project.key}.description`)}
                       </p>
                     </div>
 
@@ -332,6 +354,7 @@ export default function ProjectsSection() {
                         <Github size={14} className="mr-1" />
                         {t("ui.code")}
                       </a>
+
                       {project.liveLink && (
                         <a
                           href={project.liveLink}
