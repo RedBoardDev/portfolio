@@ -23,6 +23,14 @@
     "findMe": "Me retrouver sur",
     "scrollToTop": "Retour en haut de page"
   },
+  "notFound": {
+    "title": "Page non trouvée | Thomas OTT",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "heading": "404",
+    "subheading": "Page non trouvée",
+    "message": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
   "footer": {
     "rights": "Tous droits réservés."
   }
