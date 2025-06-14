@@ -3,7 +3,7 @@ name: CD - Deploy to AWS
 on:
   workflow_run:
     workflows: ["CI - Build and Test"]
-    branches: [main, release]
+    branches: [main, release, test-ci]
     types: [completed]
 
 env:
