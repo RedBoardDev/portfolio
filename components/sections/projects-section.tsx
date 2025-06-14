@@ -17,11 +17,13 @@ export default function ProjectsSection() {
   const [isMobile, setIsMobile] = useState(false)
   const [direction, setDirection] = useState(0) // -1 pour gauche, 1 pour droite, 0 pour initial
   const [isDragging, setIsDragging] = useState(false)
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const swipeContainerRef = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
-  const cardOpacity = useTransform(x, [-200, 0, 200], [0.5, 1, 0.5])
-  const cardScale = useTransform(x, [-200, 0, 200], [0.8, 1, 0.8])
-  const cardRotate = useTransform(x, [-200, 0, 200], [10, 0, -10])
+  const cardRef = useRef<HTMLDivElement>(null)
+  const startTouchRef = useRef({ x: 0, y: 0 })
+  const [swipeOffset, setSwipeOffset] = useState(0)
+  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null)
 
   // Détecter si l'appareil est mobile
   useEffect(() => {
@@ -39,6 +41,13 @@ export default function ProjectsSection() {
 
   // Calculer le nombre total de pages
   const totalPages = Math.ceil(projectsData.length / projectsPerPage)
+
+  // Effet pour synchroniser currentPage avec currentProjectIndex sur mobile
+  useEffect(() => {
+    if (isMobile) {
+      setCurrentPage(currentProjectIndex)
+    }
+  }, [currentProjectIndex, isMobile])
 
   // Fonctions de navigation
   const nextPage = useCallback(() => {
@@ -63,24 +72,114 @@ export default function ProjectsSection() {
     }
   }, [currentPage, isMobile])
 
-  // Gestionnaire de fin de drag
-  const handleDragEnd = (event: any, info: any) => {
-    setIsDragging(false)
+  // Gestionnaire des événements touch pour le swipe
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const touch = e.touches[0]
+    startTouchRef.current = { x: touch.clientX, y: touch.clientY }
+    setIsDragging(true)
+  }, [])
 
-    // Déterminer si le swipe est suffisant pour changer de page
-    const threshold = 100 // Seuil de distance pour considérer un swipe valide
-    const velocity = 0.5 // Seuil de vélocité pour considérer un swipe rapide
+        const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!isDragging) return
 
-    if (info.offset.x > threshold || info.velocity.x > velocity) {
-      // Swipe vers la droite
-      prevPage()
-    } else if (info.offset.x < -threshold || info.velocity.x < -velocity) {
-      // Swipe vers la gauche
-      nextPage()
+    const touch = e.touches[0]
+    const deltaX = touch.clientX - startTouchRef.current.x
+    const deltaY = touch.clientY - startTouchRef.current.y
+
+    // Empêcher le scroll vertical si le mouvement horizontal est prédominant
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
+      e.preventDefault()
+      e.stopPropagation()
+      // Limiter l'offset pour éviter les mouvements trop extrêmes
+      const maxOffset = 120
+      const clampedOffset = Math.max(-maxOffset, Math.min(maxOffset, deltaX))
+      setSwipeOffset(clampedOffset)
+      setSwipeDirection(deltaX > 0 ? 'right' : 'left')
+    }
+  }, [isDragging])
+
+        const handleTouchEnd = useCallback(() => {
+    if (!isDragging) return
+
+    const threshold = 60 // Seuil plus sensible
+    const absOffset = Math.abs(swipeOffset)
+
+    if (absOffset > threshold) {
+      if (swipeOffset > 0) {
+        // Swipe vers la droite - projet précédent (avec rebouclage)
+        if (!isTransitioning) {
+          setIsTransitioning(true)
+          setDirection(-1)
+          setCurrentProjectIndex(prev => prev === 0 ? projectsData.length - 1 : prev - 1)
+          setTimeout(() => setIsTransitioning(false), 350)
+        }
+      } else if (swipeOffset < 0) {
+        // Swipe vers la gauche - projet suivant (avec rebouclage)
+        if (!isTransitioning) {
+          setIsTransitioning(true)
+          setDirection(1)
+          setCurrentProjectIndex(prev => prev === projectsData.length - 1 ? 0 : prev + 1)
+          setTimeout(() => setIsTransitioning(false), 350)
+        }
+      }
     }
 
-    // Réinitialiser la position
-    x.set(0)
+    // Animation de retour progressive
+    const resetAnimation = () => {
+      const duration = 200
+      const startTime = Date.now()
+      const startOffset = swipeOffset
+
+      const animate = () => {
+        const elapsed = Date.now() - startTime
+        const progress = Math.min(elapsed / duration, 1)
+        const easeOut = 1 - Math.pow(1 - progress, 3)
+
+        setSwipeOffset(startOffset * (1 - easeOut))
+
+        if (progress < 1) {
+          requestAnimationFrame(animate)
+        } else {
+          setIsDragging(false)
+          setSwipeOffset(0)
+          setSwipeDirection(null)
+        }
+      }
+
+      requestAnimationFrame(animate)
+    }
+
+    resetAnimation()
+  }, [isDragging, swipeOffset, currentProjectIndex, isTransitioning])
+
+  const goToNextProject = () => {
+    if (!isTransitioning) {
+      setIsTransitioning(true)
+      setDirection(1)
+      // Navigation circulaire : retour au début si on est à la fin
+      setCurrentProjectIndex(prev => prev === projectsData.length - 1 ? 0 : prev + 1)
+      setTimeout(() => setIsTransitioning(false), 350)
+    }
+  }
+
+  const goToPreviousProject = () => {
+    if (!isTransitioning) {
+      setIsTransitioning(true)
+      setDirection(-1)
+      // Navigation circulaire : aller à la fin si on est au début
+      setCurrentProjectIndex(prev => prev === 0 ? projectsData.length - 1 : prev - 1)
+      setTimeout(() => setIsTransitioning(false), 350)
+    }
+  }
+
+  // Fonction pour aller directement à un projet spécifique
+  const goToProject = (index: number) => {
+    if (index !== currentProjectIndex && !isTransitioning) {
+      setIsTransitioning(true)
+      setDirection(index > currentProjectIndex ? 1 : -1)
+      setCurrentProjectIndex(index)
+      setTimeout(() => setIsTransitioning(false), 350)
+    }
   }
 
   // Obtenir les projets pour la page actuelle
@@ -102,160 +201,225 @@ export default function ProjectsSection() {
         </div>
 
         {isMobile ? (
-          // Vue mobile avec swipe horizontal amélioré
-          <div className="relative overflow-hidden pb-16">
-            <AnimatePresence initial={false} mode="wait" custom={direction}>
-              {currentProjects.map((project, index) => (
-                <motion.div
-                  key={`mobile-${project.key}-${currentPage}`}
-                  style={{
-                    x,
-                    opacity: cardOpacity,
-                    scale: cardScale,
-                    rotateZ: cardRotate,
-                  }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.7}
-                  onDragStart={() => setIsDragging(true)}
-                  onDragEnd={handleDragEnd}
-                  className={`mb-4 overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
-                >
-                  <ContentBox noPadding className="h-full" shadow="md">
-                    {/* Image du projet */}
-                    <div className="relative h-80 overflow-hidden flex items-center justify-center">
-                      {/* Image floutée en arrière-plan */}
-                      <div className="absolute inset-0 z-0">
-                        <OptimizedImage
-                          src={project.image || "/placeholder.svg?height=400&width=600"}
-                          alt=""
-                          fill
-                          className="object-cover blur-md scale-110 opacity-55"
-                        />
+          // Vue mobile avec système de stack de cartes (style Tinder)
+          <div
+            className="relative h-[600px] overflow-hidden"
+            onTouchStart={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+          >
+            {/* Container des cartes empilées */}
+            <div className="relative w-full h-full">
+              {projectsData.map((project, index) => {
+                const isActive = index === currentProjectIndex
+                const isNext = index === currentProjectIndex + 1
+                const isPrev = index === currentProjectIndex - 1
+                const isVisible = isActive || isNext || isPrev
+
+                if (!isVisible) return null
+
+                // Calculs pour l'effet de pile
+                let zIndex = 10
+                let scale = 0.85
+                let translateY = 20
+                let opacity = 0.3
+
+                if (isActive) {
+                  zIndex = 30
+                  scale = 1
+                  translateY = 0
+                  opacity = 1
+                } else if (isNext) {
+                  zIndex = 20
+                  scale = 0.95
+                  translateY = 10
+                  opacity = 0.7
+                } else if (isPrev) {
+                  zIndex = 10
+                  scale = 0.9
+                  translateY = 15
+                  opacity = 0.5
+                }
+
+                // Appliquer l'offset de swipe à la carte active
+                let translateX = 0
+                let rotation = 0
+                let cardOpacity = opacity
+
+                if (isActive && isDragging) {
+                  translateX = swipeOffset
+                  rotation = swipeOffset * 0.08 // Rotation subtile
+                  // Réduire légèrement l'opacité quand on swipe
+                  cardOpacity = Math.max(0.8, 1 - Math.abs(swipeOffset) / 300)
+                }
+
+                return (
+                  <motion.div
+                    key={project.key}
+                    className="absolute inset-0 cursor-grab active:cursor-grabbing"
+                    style={{
+                      zIndex,
+                      scale,
+                      y: translateY,
+                      x: translateX,
+                      rotate: rotation,
+                      opacity: cardOpacity,
+                    }}
+                    animate={{
+                      scale,
+                      y: translateY,
+                      opacity,
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 35,
+                      mass: 0.8,
+                    }}
+                    onTouchStart={isActive ? handleTouchStart : undefined}
+                    onTouchMove={isActive ? handleTouchMove : undefined}
+                    onTouchEnd={isActive ? handleTouchEnd : undefined}
+                  >
+                    <ContentBox noPadding className="h-full" shadow="lg">
+                      {/* Image du projet */}
+                      <div className="relative h-80 overflow-hidden flex items-center justify-center">
+                        {/* Image floutée en arrière-plan */}
+                        <div className="absolute inset-0 z-0">
+                          <OptimizedImage
+                            src={project.image || "/placeholder.svg?height=400&width=600"}
+                            alt=""
+                            fill
+                            className="object-cover blur-md scale-110 opacity-40"
+                          />
+                        </div>
+
+                        {/* Image nette au premier plan */}
+                        <div className="absolute inset-0 z-10">
+                          <OptimizedImage
+                            src={project.image || "/placeholder.svg?height=400&width=600"}
+                            alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
+                            fill
+                            className="object-contain"
+                            draggable="false"
+                            aspectRatio={1.67}
+                          />
+                        </div>
+
+                        {/* Overlay de base (dégradé) */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 z-15" />
+
+
+
+                        {/* Languages badges */}
+                        <div className="absolute top-4 right-4 flex gap-2 z-30">
+                          {project.languages.slice(0, 6).map((lang, langIndex) => (
+                            <LanguageBadge key={langIndex} language={lang} size="sm" />
+                          ))}
+                          {project.languages.length > 6 && (
+                            <div className="text-white text-xs font-medium bg-black/30 px-2 py-1 rounded">
+                              +{project.languages.length - 6}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Title */}
+                        <div className="absolute bottom-0 left-0 right-0 p-5 z-30">
+                          <h3 className="text-xl font-bold text-white mb-2">
+                            {t(`projects.${project.key}.title`)}
+                          </h3>
+                        </div>
                       </div>
 
-                      {/* Image nette au premier plan */}
-                      <div className="absolute inset-0 z-10">
-                        <OptimizedImage
-                          src={project.image || "/placeholder.svg?height=400&width=600"}
-                          alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
-                          fill
-                          className="object-contain"
-                          draggable="false"
-                          aspectRatio={1.67} // 16:9 aspect ratio
-                        />
-                      </div>
+                      {/* Content */}
+                      <div className="p-5 flex-1 flex flex-col">
+                        {/* Description avec scroll si nécessaire */}
+                        <div className="flex-1 max-h-32 overflow-y-auto">
+                          <p className="text-gray-700 text-sm leading-relaxed">
+                            {t(`projects.${project.key}.description`)}
+                          </p>
+                        </div>
 
-                      {/* Overlay de base (dégradé) */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 z-15" />
-
-                      {/* Overlay noir léger supplémentaire au touch/hover */}
-                      <div
-                        className={`
-                          absolute inset-0 bg-black transition-opacity duration-300 z-25
-                          ${isDragging ? "opacity-20" : "opacity-0"}
-                        `}
-                      />
-
-                      {/* Languages badges */}
-                      <div className="absolute top-4 right-4 flex gap-2 z-30">
-                        {project.languages.slice(0, 8).map((lang, langIndex) => (
-                          <LanguageBadge key={langIndex} language={lang} size="md" />
-                        ))}
-                        {project.languages.length > 8 && (
-                          <div className="text-white text-xs font-medium">+{project.languages.length - 8}</div>
-                        )}
-                      </div>
-
-                      {/* Title */}
-                      <div className="absolute bottom-0 left-0 right-0 p-5 z-30">
-                        <h3 className="text-xl font-bold text-white">{t(`projects.${project.key}.title`)}</h3>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-5">
-                      <p className="text-gray-700 leading-relaxed">{t(`projects.${project.key}.description`)}</p>
-
-                      {/* Links */}
-                      <div className="flex justify-between items-center mt-6 pt-5 border-t border-gray-100">
-                        <a
-                          href={project.githubLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center text-gray-700 hover:text-primary transition-colors"
-                          onClick={(e) => isDragging && e.preventDefault()}
-                        >
-                          <Github size={18} className="mr-2" />
-                          {t("ui.code")}
-                        </a>
-
-                        {project.liveLink && (
+                        {/* Links */}
+                        <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
                           <a
-                            href={project.liveLink}
+                            href={project.githubLink}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center text-gray-700 hover:text-primary transition-colors"
                             onClick={(e) => isDragging && e.preventDefault()}
                           >
-                            {t("ui.demo")}
-                            <ExternalLink size={18} className="ml-2" />
+                            <Github size={16} className="mr-2" />
+                            <span className="text-sm">{t("ui.code")}</span>
                           </a>
-                        )}
-                      </div>
-                    </div>
-                  </ContentBox>
-                </motion.div>
-              ))}
-            </AnimatePresence>
 
-            {/* Instructions de swipe */}
-            <div className="text-center text-xs text-gray-500 mt-2 italic">
-              {t("ui.swipeInstruction")}
+                          {project.liveLink && (
+                            <a
+                              href={project.liveLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center text-gray-700 hover:text-primary transition-colors"
+                              onClick={(e) => isDragging && e.preventDefault()}
+                            >
+                              <span className="text-sm">{t("ui.demo")}</span>
+                              <ExternalLink size={16} className="ml-2" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </ContentBox>
+                  </motion.div>
+                )
+              })}
             </div>
 
-            {/* Pagination Controls avec flèches toujours visibles */}
-            <div className="flex justify-center items-center gap-4 mt-4 absolute bottom-0 left-0 right-0 px-6">
+                        {/* Indicateur de progression avec boutons intégrés */}
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-4 z-40">
+              {/* Bouton précédent */}
               <button
-                onClick={prevPage}
-                disabled={currentPage === 0}
-                className={`w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center border border-gray-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
-                  currentPage === 0 ? "text-gray-300 cursor-not-allowed" : "text-gray-700 hover:text-primary"
+                onClick={goToPreviousProject}
+                disabled={isTransitioning}
+                className={`w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center transition-all ${
+                  isTransitioning
+                    ? 'text-gray-300 cursor-not-allowed opacity-50'
+                    : 'text-gray-700 hover:text-primary hover:bg-white active:scale-95'
                 }`}
-                aria-label={t("ui.previousPage")}
               >
-                <ChevronLeft size={16} aria-hidden="true" />
+                <ChevronLeft size={18} />
               </button>
 
-              <div className="flex justify-center items-center gap-2">
-                {Array.from({ length: totalPages }).map((_, i) => (
+              {/* Stepper */}
+              <div className="flex gap-2">
+                {projectsData.map((_, index) => (
                   <button
-                    key={i}
-                    onClick={() => {
-                      setDirection(i > currentPage ? 1 : -1)
-                      setCurrentPage(i)
-                    }}
-                    className={`h-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
-                      i === currentPage ? "w-8 bg-primary" : "w-2 bg-gray-300"
+                    key={index}
+                    onClick={() => goToProject(index)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      index === currentProjectIndex
+                        ? 'w-8 bg-primary'
+                        : 'w-1.5 bg-gray-300 hover:bg-gray-400'
                     }`}
-                    aria-label={t("ui.pageOf", { current: i + 1, total: totalPages })}
-                    aria-current={i === currentPage ? "page" : undefined}
                   />
                 ))}
               </div>
 
+              {/* Bouton suivant */}
               <button
-                onClick={nextPage}
-                disabled={currentPage === totalPages - 1}
-                className={`w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center border border-gray-100 transition-colors ${
-                  currentPage === totalPages - 1
-                    ? "text-gray-300 cursor-not-allowed"
-                    : "text-gray-700 hover:text-primary"
+                onClick={goToNextProject}
+                disabled={isTransitioning}
+                className={`w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center transition-all ${
+                  isTransitioning
+                    ? 'text-gray-300 cursor-not-allowed opacity-50'
+                    : 'text-gray-700 hover:text-primary hover:bg-white active:scale-95'
                 }`}
-                aria-label={t("ui.nextPage")}
               >
-                <ChevronRight size={16} />
+                <ChevronRight size={18} />
               </button>
+            </div>
+
+            {/* Instructions de swipe */}
+            <div className="absolute top-4 left-0 right-0 text-center z-40">
+              <div className="inline-block bg-black/20 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full">
+                Glissez pour naviguer • {currentProjectIndex + 1}/{projectsData.length}
+              </div>
             </div>
           </div>
         ) : (
