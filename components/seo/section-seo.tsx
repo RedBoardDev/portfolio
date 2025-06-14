@@ -13,24 +13,26 @@ interface SectionSEOProps {
 const sectionData = {
   about: {
     title: `À propos | ${SITE_CONFIG.name}`,
-    description: "Découvrez mon parcours de développeur full-stack spécialisé en React, Next.js et TypeScript.",
-    canonical: `${SITE_CONFIG.url}#about`
+    description:
+      "Découvrez mon parcours de développeur full-stack spécialisé en React, Next.js et TypeScript.",
+    canonical: `${SITE_CONFIG.url}#about`,
   },
   experience: {
     title: `Expérience | ${SITE_CONFIG.name}`,
-    description: "Mon expérience professionnelle en développement web et mes compétences techniques.",
-    canonical: `${SITE_CONFIG.url}#experience`
+    description:
+      "Mon expérience professionnelle en développement web et mes compétences techniques.",
+    canonical: `${SITE_CONFIG.url}#experience`,
   },
   projects: {
     title: `Projets | ${SITE_CONFIG.name}`,
     description: "Découvrez mes projets de développement web et applications que j'ai réalisés.",
-    canonical: `${SITE_CONFIG.url}#projects`
+    canonical: `${SITE_CONFIG.url}#projects`,
   },
   contact: {
     title: `Contact | ${SITE_CONFIG.name}`,
     description: "Contactez-moi pour vos projets de développement web et applications.",
-    canonical: `${SITE_CONFIG.url}#contact`
-  }
+    canonical: `${SITE_CONFIG.url}#contact`,
+  },
 }
 
 export function SectionSEO({ activeSection }: SectionSEOProps) {

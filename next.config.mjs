@@ -1,22 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
+  output: "export",
   trailingSlash: true,
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "hebbkx1anhila5yf.public.blob.vercel-storage.com",
+        port: "",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'cdn.jsdelivr.net',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "cdn.jsdelivr.net",
+        port: "",
+        pathname: "/**",
       },
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -24,7 +24,7 @@ const nextConfig = {
     unoptimized: true,
   },
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === "production",
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -35,58 +35,58 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
           {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
           },
           {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
           },
           {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
+            key: "X-Content-Type-Options",
+            value: "nosniff",
           },
           {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
           },
           {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=31536000; includeSubDomains',
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
           },
           {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
           },
         ],
       },
       {
-        source: '/fonts/(.*)',
+        source: "/fonts/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
-        source: '/images/(.*)',
+        source: "/images/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
-    ];
+    ]
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

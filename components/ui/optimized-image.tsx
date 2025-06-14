@@ -32,7 +32,8 @@ export function OptimizedImage({
     "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YzZjRmNiIgLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU3ZWIiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4="
 
   // Calculer la hauteur en fonction du ratio d'aspect si nécessaire
-  const calculatedHeight = aspectRatio && width && !height ? Math.round(Number(width) / aspectRatio) : height
+  const calculatedHeight =
+    aspectRatio && width && !height ? Math.round(Number(width) / aspectRatio) : height
 
   // Convertir l'URL en WebP si c'est une URL d'image standard et non déjà en WebP
   const optimizedSrc =
@@ -63,7 +64,11 @@ export function OptimizedImage({
         fill={fill}
         width={!fill ? width : undefined}
         height={!fill ? calculatedHeight : undefined}
-        className={cn("transition-opacity duration-500", isLoaded ? "opacity-100" : "opacity-0", className)}
+        className={cn(
+          "transition-opacity duration-500",
+          isLoaded ? "opacity-100" : "opacity-0",
+          className
+        )}
         placeholder="blur"
         blurDataURL={placeholderBlur}
         onLoad={() => setIsLoaded(true)}

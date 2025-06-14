@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "next/link"
 import { useTranslation } from "@/hooks/use-translation"
+import Link from "next/link"
 import { useEffect } from "react"
 
 export default function NotFound() {
@@ -15,10 +15,10 @@ export default function NotFound() {
       // Mettre à jour la meta description
       const metaDescription = document.querySelector('meta[name="description"]')
       if (metaDescription) {
-        metaDescription.setAttribute('content', t("notFound.description"))
+        metaDescription.setAttribute("content", t("notFound.description"))
       } else {
-        const newMeta = document.createElement('meta')
-        newMeta.name = 'description'
+        const newMeta = document.createElement("meta")
+        newMeta.name = "description"
         newMeta.content = t("notFound.description")
         document.head.appendChild(newMeta)
       }
@@ -35,7 +35,9 @@ export default function NotFound() {
           {loading ? "Page non trouvée" : t("notFound.subheading")}
         </h2>
         <p className="text-gray-600 mb-8">
-          {loading ? "La page que vous recherchez n'existe pas ou a été déplacée." : t("notFound.message")}
+          {loading
+            ? "La page que vous recherchez n'existe pas ou a été déplacée."
+            : t("notFound.message")}
         </p>
         <Link
           href="/"

@@ -1,0 +1,86 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "ignore": [
+      ".next/**",
+      "node_modules/**",
+      "out/**",
+      "build/**",
+      "dist/**",
+      ".git/**",
+      "coverage/**"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 100,
+    "attributePosition": "auto"
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "warn",
+        "noStaticOnlyClass": "warn"
+      },
+      "correctness": {
+        "noUnusedVariables": "warn",
+        "useExhaustiveDependencies": "warn"
+      },
+      "style": {
+        "noNonNullAssertion": "warn",
+        "useConst": "warn",
+        "useTemplate": "warn"
+      },
+      "suspicious": {
+        "noDebugger": "warn",
+        "noConsoleLog": "off",
+        "noImplicitAnyLet": "warn",
+        "noArrayIndexKey": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "performance": {
+        "noDelete": "warn"
+      },
+      "a11y": {
+        "useButtonType": "warn",
+        "useFocusableInteractive": "off",
+        "useSemanticElements": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "es5",
+      "semicolons": "asNeeded",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "bracketSameLine": false,
+      "quoteStyle": "double",
+      "attributePosition": "auto"
+    }
+  },
+  "json": {
+    "parser": {
+      "allowComments": true
+    }
+  }
+}

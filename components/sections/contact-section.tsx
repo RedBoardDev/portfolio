@@ -38,9 +38,7 @@ export default function ContactSection() {
               <h2 className="text-3xl font-bold text-gray-900">
                 {loading ? "..." : t("freelance.title")}
               </h2>
-              <p className="text-gray-600 text-lg">
-                {loading ? "..." : t("freelance.subtitle")}
-              </p>
+              <p className="text-gray-600 text-lg">{loading ? "..." : t("freelance.subtitle")}</p>
             </div>
           </div>
         </div>
@@ -247,15 +245,15 @@ export default function ContactSection() {
                       <p className="text-sm font-medium text-gray-500">
                         {loading ? "..." : t("contact.email")}
                       </p>
-                      <p className="text-gray-900 group-hover:text-primary transition-colors">ott.thomas68@gmail.com</p>
+                      <p className="text-gray-900 group-hover:text-primary transition-colors">
+                        ott.thomas68@gmail.com
+                      </p>
                     </div>
                     <div className="ml-2 text-gray-400 group-hover:text-primary transition-colors">
                       {emailCopied ? (
                         <div className="flex items-center text-green-500">
                           <Check size={16} className="mr-1" aria-hidden="true" />
-                          <span className="text-xs">
-                            {loading ? "..." : t("contact.copied")}
-                          </span>
+                          <span className="text-xs">{loading ? "..." : t("contact.copied")}</span>
                         </div>
                       ) : (
                         <Copy size={16} aria-hidden="true" />
@@ -310,7 +308,9 @@ export default function ContactSection() {
                     </div>
                     <div className="flex-grow">
                       <p className="text-sm font-medium text-gray-500">GitHub</p>
-                      <p className="text-gray-900 group-hover:text-primary transition-colors">github.com/redBoardDev</p>
+                      <p className="text-gray-900 group-hover:text-primary transition-colors">
+                        github.com/redBoardDev
+                      </p>
                     </div>
                     <div className="ml-2 text-gray-400 group-hover:text-primary transition-colors">
                       <ExternalLink size={16} aria-hidden="true" />

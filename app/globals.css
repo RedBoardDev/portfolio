@@ -91,7 +91,8 @@
 
 /* Animations personnalisées pour la photo de profil */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -100,7 +101,8 @@
 }
 
 @keyframes float-delayed {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {

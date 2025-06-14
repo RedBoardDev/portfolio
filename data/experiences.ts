@@ -17,7 +17,8 @@ export const calculateDuration = (startDate: string, endDate?: string): string =
   const start = new Date(startDate)
   const end = endDate ? new Date(endDate) : new Date()
 
-  const monthsDiff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth())
+  const monthsDiff =
+    (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth())
 
   const years = Math.floor(monthsDiff / 12)
   const months = monthsDiff % 12
@@ -32,7 +33,7 @@ export const calculateDuration = (startDate: string, endDate?: string): string =
 export const calculateTotalDuration = (positions: Position[]): string => {
   // Sort positions by start date
   const sortedPositions = [...positions].sort(
-    (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
+    (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
   )
 
   // Get earliest start date and latest end date

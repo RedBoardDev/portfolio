@@ -1,9 +1,9 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { GitHubContributions } from "@/components/github/github-contributions-chart"
 import { ContentBox } from "@/components/ui/content-box"
 import { useTranslation } from "@/hooks/use-translation"
+import { motion } from "framer-motion"
 
 export default function AboutSection() {
   const { t, loading } = useTranslation("about")
@@ -28,21 +28,13 @@ export default function AboutSection() {
           <div className="lg:col-span-2">
             <ContentBox shadow="md">
               <div className="space-y-4 text-gray-700">
-                <p className="leading-relaxed">
-                  {loading ? "..." : t("paragraphs.intro")}
-                </p>
+                <p className="leading-relaxed">{loading ? "..." : t("paragraphs.intro")}</p>
 
-                <p className="leading-relaxed">
-                  {loading ? "..." : t("paragraphs.expertise")}
-                </p>
+                <p className="leading-relaxed">{loading ? "..." : t("paragraphs.expertise")}</p>
 
-                <p className="leading-relaxed">
-                  {loading ? "..." : t("paragraphs.blockchain")}
-                </p>
+                <p className="leading-relaxed">{loading ? "..." : t("paragraphs.blockchain")}</p>
 
-                <p className="leading-relaxed">
-                  {loading ? "..." : t("paragraphs.background")}
-                </p>
+                <p className="leading-relaxed">{loading ? "..." : t("paragraphs.background")}</p>
               </div>
             </ContentBox>
           </div>

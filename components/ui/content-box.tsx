@@ -62,13 +62,15 @@ export function ContentBox({
         variantStyles[variant],
         borderAccentStyles[borderAccent],
         shadowStyles[shadow],
-        className,
+        className
       )}
     >
       {/* Header avec titre optionnel */}
       {(title || headerContent) && (
         <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-          {title && <h3 className={cn("text-lg font-semibold text-gray-900", titleClassName)}>{title}</h3>}
+          {title && (
+            <h3 className={cn("text-lg font-semibold text-gray-900", titleClassName)}>{title}</h3>
+          )}
           {headerContent}
         </div>
       )}

@@ -38,9 +38,15 @@ export default function SkillsSection() {
                   {category.skills.map((skill, skillIndex) => (
                     <SkillBadge
                       key={skillIndex}
-                      name={loading ? "..." : t(`categories.${category.key}.skills.${skill.key}.name`)}
+                      name={
+                        loading ? "..." : t(`categories.${category.key}.skills.${skill.key}.name`)
+                      }
                       icon={skill.logo || "/placeholder.svg?height=20&width=20"}
-                      description={loading ? "..." : t(`categories.${category.key}.skills.${skill.key}.description`)}
+                      description={
+                        loading
+                          ? "..."
+                          : t(`categories.${category.key}.skills.${skill.key}.description`)
+                      }
                       showTooltip={true}
                     />
                   ))}

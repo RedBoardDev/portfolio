@@ -114,9 +114,9 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
       </div>
 
       {/* Texte des contributions annuelles */}
-        <div className="text-xs text-gray-500 mt-2 text-right">
+      <div className="text-xs text-gray-500 mt-2 text-right">
         {yearlyContributions} {t("github.inLastYear")}
-        </div>
+      </div>
 
       <div className="mt-6 space-y-2">
         <div>
@@ -142,7 +142,9 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
         <div>
           <div className="flex justify-between mb-1 text-sm">
             <span className="text-gray-600">{t("github.longestStreak")}</span>
-            <span className="font-semibold">{longestStreak} {t("github.days")}</span>
+            <span className="font-semibold">
+              {longestStreak} {t("github.days")}
+            </span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full">
             <div className="h-full w-4/5 bg-orange-500 rounded-full"></div>
@@ -150,22 +152,20 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
         </div>
 
         <div>
-          <p className="text-gray-600 mb-1 text-sm">
-            {t("github.mostUsedLanguages")} (5)
-          </p>
+          <p className="text-gray-600 mb-1 text-sm">{t("github.mostUsedLanguages")} (5)</p>
           <div className="h-2 bg-gray-100 rounded-full overflow-hidden flex">
-                <div className="h-full w-[35%] bg-blue-500"></div>
-                <div className="h-full w-[25%] bg-yellow-400"></div>
-                <div className="h-full w-[20%] bg-teal-500"></div>
-                <div className="h-full w-[12%] bg-orange-500"></div>
-                <div className="h-full w-[8%] bg-purple-500"></div>
+            <div className="h-full w-[35%] bg-blue-500"></div>
+            <div className="h-full w-[25%] bg-yellow-400"></div>
+            <div className="h-full w-[20%] bg-teal-500"></div>
+            <div className="h-full w-[12%] bg-orange-500"></div>
+            <div className="h-full w-[8%] bg-purple-500"></div>
           </div>
           <div className="flex flex-wrap gap-x-4 gap-y-2 mt-2 text-xs text-gray-600">
             <span>TypeScript</span>
             <span>JavaScript</span>
-                <span>PHP</span>
+            <span>PHP</span>
             <span>Python</span>
-                <span>CSS</span>
+            <span>CSS</span>
           </div>
         </div>
       </div>

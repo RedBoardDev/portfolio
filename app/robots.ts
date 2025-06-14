@@ -17,7 +17,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "Bingbot",
         allow: "/",
         crawlDelay: 1,
-      }
+      },
     ],
     sitemap: "https://thomasott.fr/sitemap.xml",
     host: "https://thomasott.fr",

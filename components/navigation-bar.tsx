@@ -2,7 +2,18 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, User, Briefcase, GraduationCap, CodeIcon, FolderKanban, Mail, Github, Linkedin } from "lucide-react"
+import {
+  Menu,
+  X,
+  User,
+  Briefcase,
+  GraduationCap,
+  CodeIcon,
+  FolderKanban,
+  Mail,
+  Github,
+  Linkedin,
+} from "lucide-react"
 import { LanguageSwitcher } from "./language-switcher"
 import { useTranslation } from "@/hooks/use-translation"
 import { SectionSEO } from "./seo/section-seo"
@@ -67,7 +78,9 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
     sectionRefs.current.projects = document.getElementById("projects-section")
     sectionRefs.current.contact = document.getElementById("contact-section")
 
-    const sectionElements = Object.values(sectionRefs.current).filter((el) => el !== null) as HTMLElement[]
+    const sectionElements = Object.values(sectionRefs.current).filter(
+      (el) => el !== null
+    ) as HTMLElement[]
 
     // Create observer
     const observerOptions = {
@@ -101,18 +114,54 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
   }, [])
 
   const navItems = [
-    { name: t("navigation.about"), action: onNavigate.about, icon: <User size={16} />, id: "about" },
-    { name: t("navigation.experience"), action: onNavigate.experience, icon: <Briefcase size={16} />, id: "experience" },
-    { name: t("navigation.education"), action: onNavigate.education, icon: <GraduationCap size={16} />, id: "education" },
-    { name: t("navigation.skills"), action: onNavigate.skills, icon: <CodeIcon size={16} />, id: "skills" },
-    { name: t("navigation.projects"), action: onNavigate.projects, icon: <FolderKanban size={16} />, id: "projects" },
-    { name: t("navigation.freelance"), action: onNavigate.contact, icon: <Briefcase size={16} />, id: "contact" },
+    {
+      name: t("navigation.about"),
+      action: onNavigate.about,
+      icon: <User size={16} />,
+      id: "about",
+    },
+    {
+      name: t("navigation.experience"),
+      action: onNavigate.experience,
+      icon: <Briefcase size={16} />,
+      id: "experience",
+    },
+    {
+      name: t("navigation.education"),
+      action: onNavigate.education,
+      icon: <GraduationCap size={16} />,
+      id: "education",
+    },
+    {
+      name: t("navigation.skills"),
+      action: onNavigate.skills,
+      icon: <CodeIcon size={16} />,
+      id: "skills",
+    },
+    {
+      name: t("navigation.projects"),
+      action: onNavigate.projects,
+      icon: <FolderKanban size={16} />,
+      id: "projects",
+    },
+    {
+      name: t("navigation.freelance"),
+      action: onNavigate.contact,
+      icon: <Briefcase size={16} />,
+      id: "contact",
+    },
   ]
 
   const socialLinks = [
     {
       icon: (
-        <svg width="16" height="16" viewBox="0 0 159 159" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 159 159"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path d="M91.7167 110.023L86.1777 115.562L102.362 131.746C110.345 139.729 122.474 148.086 135.044 135.517C144.268 126.293 142.224 117.308 137.327 110.023H91.7167Z" />
           <path d="M66.4967 49.136L72.0357 43.597L55.8517 27.413C47.8687 19.43 35.7397 11.073 23.1697 23.642C13.9457 32.866 15.9897 41.851 20.8867 49.136H66.4967Z" />
           <path d="M135.045 23.642C122.475 11.071 110.346 19.429 102.362 27.413L26.9406 102.834C18.9576 110.817 10.6006 122.946 23.1696 135.516C35.7406 148.087 47.8686 139.729 55.8526 131.745L131.274 56.324C139.257 48.341 147.614 36.212 135.045 23.642Z" />
@@ -155,13 +204,17 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
         : "bg-transparent" // Not scrolled: transparent for all devices
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBgClass}`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBgClass}`}
+    >
       {/* Include SectionSEO component */}
       <SectionSEO activeSection={activeSection} />
       <div className="max-w-6xl mx-auto px-6 sm:px-8 md:px-10 lg:px-12">
         <div className="flex justify-between items-center h-16">
           {/* Logo - Hidden on mobile when scrolled */}
-          <div className={`flex ${isMobile && scrolled ? "opacity-0" : "opacity-100"} transition-opacity`}>
+          <div
+            className={`flex ${isMobile && scrolled ? "opacity-0" : "opacity-100"} transition-opacity`}
+          >
             <a
               href="#"
               className={`font-bold text-xl flex items-center transition-colors ${
@@ -278,7 +331,9 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                     }}
                     aria-current={activeSection === item.id ? "page" : undefined}
                   >
-                    <span className={`${activeSection === item.id ? "text-primary" : "text-gray-400"}`}>
+                    <span
+                      className={`${activeSection === item.id ? "text-primary" : "text-gray-400"}`}
+                    >
                       {item.icon}
                     </span>
                     {loading ? "..." : item.name}

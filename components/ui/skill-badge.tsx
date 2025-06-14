@@ -23,7 +23,12 @@ export function SkillBadge({ name, icon, description, showTooltip = false }: Ski
       <div className="flex items-center bg-white hover:bg-gray-50 rounded-md border border-gray-100 px-3 py-1.5 transition-colors gap-2">
         {icon && (
           <div className="w-5 h-5 flex-shrink-0">
-            <img src={icon || "/placeholder.svg"} alt="" className="w-full h-full object-contain" aria-hidden="true" />
+            <img
+              src={icon || "/placeholder.svg"}
+              alt=""
+              className="w-full h-full object-contain"
+              aria-hidden="true"
+            />
           </div>
         )}
         <span className="text-sm font-medium text-gray-700">{name}</span>

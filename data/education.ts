@@ -12,7 +12,20 @@ export const formatDisplayDate = (dateStr: string): string => {
   if (dateStr.length === 4) return dateStr
 
   const date = new Date(dateStr)
-  const months = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
+  const months = [
+    "janv.",
+    "févr.",
+    "mars",
+    "avr.",
+    "mai",
+    "juin",
+    "juil.",
+    "août",
+    "sept.",
+    "oct.",
+    "nov.",
+    "déc.",
+  ]
   return `${months[date.getMonth()]} ${date.getFullYear()}`
 }
 

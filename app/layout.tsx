@@ -1,10 +1,10 @@
 import type React from "react"
 import "./globals.css"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/lib/language-context"
-import { getMetadata, getPersonSchema, getOrganizationSchema } from "@/lib/seo-config"
+import { getMetadata, getOrganizationSchema, getPersonSchema } from "@/lib/seo-config"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
 import Script from "next/script"
 
 const inter = Inter({
@@ -35,9 +35,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <LanguageProvider>
-        <ThemeProvider attribute="class" defaultTheme="light">
+          <ThemeProvider attribute="class" defaultTheme="light">
             {children}
-        </ThemeProvider>
+          </ThemeProvider>
         </LanguageProvider>
 
         {/* Structured Data for SEO */}
@@ -54,23 +54,26 @@ export default function RootLayout({
         <Script
           id="schema-website"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "Thomas OTT - portfolio",
-            "url": "https://thomasott.fr",
-            "description": "Développeur full-stack freelance spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences.",
-            "author": {
-              "@type": "Person",
-              "name": "Thomas OTT"
-            },
-            "inLanguage": ["fr-FR", "en-US"],
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://thomasott.fr#{search_term_string}",
-              "query-input": "required name=search_term_string"
-            }
-          }) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Thomas OTT - portfolio",
+              url: "https://thomasott.fr",
+              description:
+                "Développeur full-stack freelance spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences.",
+              author: {
+                "@type": "Person",
+                name: "Thomas OTT",
+              },
+              inLanguage: ["fr-FR", "en-US"],
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://thomasott.fr#{search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
         />
       </body>
     </html>

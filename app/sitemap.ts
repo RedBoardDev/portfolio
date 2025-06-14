@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://thomasott.fr"
@@ -10,51 +10,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: baseUrl,
       lastModified: currentDate,
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       priority: 1.0, // Homepage gets highest priority
     },
     // Ancres de sections pour une meilleure indexation (optionnel mais utile pour SEO)
     {
       url: `${baseUrl}#about`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.9, // Section À propos
     },
     {
       url: `${baseUrl}#experience`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.8, // Section Expérience
     },
     {
       url: `${baseUrl}#education`,
       lastModified: currentDate,
-      changeFrequency: 'yearly',
+      changeFrequency: "yearly",
       priority: 0.7, // Section Formation
     },
     {
       url: `${baseUrl}#skills`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.8, // Section Compétences
     },
     {
       url: `${baseUrl}#projects`,
       lastModified: currentDate,
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       priority: 0.9, // Section Projets (importante pour le portfolio)
     },
     {
       url: `${baseUrl}#contact`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.8, // Section Contact
     },
     // Page CV pour SEO
     {
       url: `${baseUrl}/cv`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.9, // CV important pour le référencement
     },
   ]

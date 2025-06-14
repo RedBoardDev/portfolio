@@ -1,4 +1,15 @@
-import { Code, Database, Server, Layout, FileCode, Workflow, Braces, Blocks, FileJson, Terminal } from "lucide-react"
+import {
+  Code,
+  Database,
+  Server,
+  Layout,
+  FileCode,
+  Workflow,
+  Braces,
+  Blocks,
+  FileJson,
+  Terminal,
+} from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 // Interface pour représenter un langage de programmation

@@ -6,7 +6,11 @@ interface SkillSummaryProps {
   maxDisplay?: number
 }
 
-export default function SkillSummary({ skills, className = "", maxDisplay = 2 }: SkillSummaryProps) {
+export default function SkillSummary({
+  skills,
+  className = "",
+  maxDisplay = 2,
+}: SkillSummaryProps) {
   if (!skills || skills.length === 0) return null
 
   const displayedSkills = skills.slice(0, maxDisplay)
@@ -17,7 +21,8 @@ export default function SkillSummary({ skills, className = "", maxDisplay = 2 }:
       <Diamond className="w-4 h-4 text-gray-500 flex-shrink-0" />
       <span className="text-sm">
         {displayedSkills.join(", ")}
-        {remainingCount > 0 && ` et ${remainingCount} compétence${remainingCount > 1 ? "s" : ""} de plus`}
+        {remainingCount > 0 &&
+          ` et ${remainingCount} compétence${remainingCount > 1 ? "s" : ""} de plus`}
       </span>
     </div>
   )

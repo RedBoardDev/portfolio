@@ -41,14 +41,13 @@ export function LanguageSwitcher() {
 
   // Ne pas afficher pendant le chargement pour éviter l'hydration mismatch
   if (!isLoaded) {
-    return (
-      <div className="w-16 h-8 bg-gray-100 rounded-md animate-pulse"></div>
-    )
+    return <div className="w-16 h-8 bg-gray-100 rounded-md animate-pulse"></div>
   }
 
   return (
     <div className="relative" ref={dropdownRef}>
       <button
+        type="button"
         className="flex items-center justify-center px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-primary hover:bg-gray-50/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="listbox"
@@ -56,7 +55,9 @@ export function LanguageSwitcher() {
         aria-label="Changer de langue"
       >
         <span className="text-base mr-1.5">{currentLanguage?.flag}</span>
-        <span className="text-sm font-medium hidden md:inline">{currentLanguage?.code.toUpperCase()}</span>
+        <span className="text-sm font-medium hidden md:inline">
+          {currentLanguage?.code.toUpperCase()}
+        </span>
       </button>
 
       <AnimatePresence>
@@ -72,6 +73,7 @@ export function LanguageSwitcher() {
             <div className="py-1" role="listbox">
               {languages.map((lang) => (
                 <button
+                  type="button"
                   key={lang.code}
                   className={`
                     flex items-center w-full px-3 py-2 text-sm text-left

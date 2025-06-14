@@ -38,7 +38,8 @@ export const projectsData: Project[] = [
     image: "/assets/projects/epitechintranetstats.png",
     languages: ["JavaScript", "CSS", "HTML"],
     githubLink: "https://github.com/RedBoardDev/EpitechIntranetStatistics",
-    liveLink: "https://chromewebstore.google.com/detail/epitech-intranet-statisti/fhelhbblcnpdfkiefkanbjjpkpejgodj",
+    liveLink:
+      "https://chromewebstore.google.com/detail/epitech-intranet-statisti/fhelhbblcnpdfkiefkanbjjpkpejgodj",
   },
   {
     key: "rtype",

@@ -1,7 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { experiences, calculateDuration, calculateTotalDuration, type Position } from "@/data/experiences"
+import {
+  experiences,
+  calculateDuration,
+  calculateTotalDuration,
+  type Position,
+} from "@/data/experiences"
 import { Calendar, MapPin } from "lucide-react"
 import { ImageWithExternalLink } from "@/components/ui/image-with-external-link"
 import { SkillBadge } from "@/components/ui/skill-badge"
@@ -11,26 +16,26 @@ import { useTranslation } from "@/hooks/use-translation"
 export default function ExperienceSection() {
   const { t, formatDate, formatDuration, language, loading } = useTranslation("experience")
 
-// Helper to format display period string
-const getDisplayPeriod = (position: Position): string => {
-  const start = new Date(position.startDate)
+  // Helper to format display period string
+  const getDisplayPeriod = (position: Position): string => {
+    const start = new Date(position.startDate)
     const locale = language === "fr" ? "fr-FR" : "en-US"
     const startMonth = new Intl.DateTimeFormat(locale, { month: "short" }).format(start)
-  const startYear = start.getFullYear()
+    const startYear = start.getFullYear()
 
-  let displayPeriod = `${startMonth} ${startYear}`
+    let displayPeriod = `${startMonth} ${startYear}`
 
-  if (position.endDate) {
-    const end = new Date(position.endDate)
+    if (position.endDate) {
+      const end = new Date(position.endDate)
       const endMonth = new Intl.DateTimeFormat(locale, { month: "short" }).format(end)
-    const endYear = end.getFullYear()
-    displayPeriod += ` - ${endMonth} ${endYear}`
-  } else {
+      const endYear = end.getFullYear()
+      displayPeriod += ` - ${endMonth} ${endYear}`
+    } else {
       displayPeriod += ` - ${t("ui.present", "aujourd'hui")}`
-  }
+    }
 
-  return displayPeriod
-}
+    return displayPeriod
+  }
   return (
     <section id="experience-section" className="relative">
       {/* Section background enhancement */}
@@ -51,7 +56,7 @@ const getDisplayPeriod = (position: Position): string => {
           {experiences.map((experience, index) => {
             // Fusionner toutes les compétences des positions
             const allSkills = Array.from(
-              new Set(experience.positions.flatMap((position) => position.skills || [])),
+              new Set(experience.positions.flatMap((position) => position.skills || []))
             ).sort()
 
             return (
@@ -94,24 +99,29 @@ const getDisplayPeriod = (position: Position): string => {
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">{t(`companies.${experience.key}.name`)}</h3>
-                                            <p className="text-sm text-gray-600">{(() => {
-                        const sortedPositions = [...experience.positions].sort(
-                          (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
-                        )
-                        const earliestStart = sortedPositions[0].startDate
-                        let latestEnd: string | undefined
-                        for (const pos of sortedPositions) {
-                          if (!pos.endDate) {
-                            latestEnd = undefined
-                            break
+                      <h3 className="text-xl font-bold text-gray-900">
+                        {t(`companies.${experience.key}.name`)}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        {(() => {
+                          const sortedPositions = [...experience.positions].sort(
+                            (a, b) =>
+                              new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+                          )
+                          const earliestStart = sortedPositions[0].startDate
+                          let latestEnd: string | undefined
+                          for (const pos of sortedPositions) {
+                            if (!pos.endDate) {
+                              latestEnd = undefined
+                              break
+                            }
+                            if (!latestEnd || new Date(pos.endDate) > new Date(latestEnd)) {
+                              latestEnd = pos.endDate
+                            }
                           }
-                          if (!latestEnd || new Date(pos.endDate) > new Date(latestEnd)) {
-                            latestEnd = pos.endDate
-                          }
-                        }
-                        return formatDuration(earliestStart, latestEnd)
-                      })()}</p>
+                          return formatDuration(earliestStart, latestEnd)
+                        })()}
+                      </p>
                     </div>
                   </div>
 
@@ -125,8 +135,12 @@ const getDisplayPeriod = (position: Position): string => {
                           <div className="absolute left-0 top-0 w-[1px] h-full bg-gray-200"></div>
 
                           <div>
-                            <h4 className="text-lg font-semibold text-gray-900">{t(`positions.${position.key}.title`)}</h4>
-                            <p className="text-gray-600 text-sm">{t(`positions.${position.key}.type`)}</p>
+                            <h4 className="text-lg font-semibold text-gray-900">
+                              {t(`positions.${position.key}.title`)}
+                            </h4>
+                            <p className="text-gray-600 text-sm">
+                              {t(`positions.${position.key}.type`)}
+                            </p>
 
                             <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-sm text-gray-500 mt-2">
                               <div className="flex items-center">
@@ -145,17 +159,20 @@ const getDisplayPeriod = (position: Position): string => {
                             {/* Description */}
                             {(() => {
                               const description = t(`positions.${position.key}.description`, [])
-                              return Array.isArray(description) && description.length > 0 && (
-                              <ul className="mt-3 space-y-1 text-gray-700 text-sm">
-                                  {description.map((item: string, idx: number) => (
-                                  <li
-                                    key={idx}
-                                    className="relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-gray-400"
-                                  >
-                                    {item}
-                                  </li>
-                                ))}
-                              </ul>
+                              return (
+                                Array.isArray(description) &&
+                                description.length > 0 && (
+                                  <ul className="mt-3 space-y-1 text-gray-700 text-sm">
+                                    {description.map((item: string, idx: number) => (
+                                      <li
+                                        key={idx}
+                                        className="relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-gray-400"
+                                      >
+                                        {item}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )
                               )
                             })()}
                           </div>

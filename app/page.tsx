@@ -135,7 +135,7 @@ export default function Home() {
 
           <div className="max-w-6xl mx-auto w-full">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-0 items-center">
-                            {/* Profile Image - Clean Professional Design */}
+              {/* Profile Image - Clean Professional Design */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -229,12 +229,23 @@ export default function Home() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="mt-5 sm:mt-6 text-base sm:text-lg text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0"
                   >
-                    {loading ? "..." : (
+                    {loading ? (
+                      "..."
+                    ) : (
                       <>
                         {t("hero.description")}{" "}
-                        <span className="text-primary font-medium">{t("hero.technologies.react")}</span>,{" "}
-                        <span className="text-primary font-medium">{t("hero.technologies.typescript")}</span> {t("hero.technologies.and")}{" "}
-                        <span className="text-primary font-medium">{t("hero.technologies.nodejs")}</span>.
+                        <span className="text-primary font-medium">
+                          {t("hero.technologies.react")}
+                        </span>
+                        ,{" "}
+                        <span className="text-primary font-medium">
+                          {t("hero.technologies.typescript")}
+                        </span>{" "}
+                        {t("hero.technologies.and")}{" "}
+                        <span className="text-primary font-medium">
+                          {t("hero.technologies.nodejs")}
+                        </span>
+                        .
                       </>
                     )}
                   </motion.p>
@@ -272,7 +283,9 @@ export default function Home() {
                         variant="default"
                         size="lg"
                         className="gap-2 shadow-md hover:shadow-lg transition-all text-sm sm:text-base"
-                        aria-label={loading ? "Télécharger le CV" : `${t("hero.downloadCV")} - Thomas OTT`}
+                        aria-label={
+                          loading ? "Télécharger le CV" : `${t("hero.downloadCV")} - Thomas OTT`
+                        }
                       >
                         <Download size={16} aria-hidden="true" />
                         <span>{loading ? "..." : t("hero.downloadCV")}</span>
@@ -404,7 +417,9 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 sm:px-8 md:px-10 lg:px-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p className="text-sm">© {new Date().getFullYear()} Thomas OTT. {loading ? "..." : t("footer.rights")}</p>
+              <p className="text-sm">
+                © {new Date().getFullYear()} Thomas OTT. {loading ? "..." : t("footer.rights")}
+              </p>
             </div>
             <div className="flex space-x-4">
               <a
@@ -429,7 +444,12 @@ export default function Home() {
                   <path d="M141.799 59.942L101.718 100.023H132.439C143.729 100.023 158.215 97.356 158.215 79.58C158.215 66.534 150.413 61.63 141.799 59.942Z" />
                 </svg>
               </a>
-              <a href="https://github.com/redBoardDev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <a
+                href="https://github.com/redBoardDev"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
                 <Github className="h-5 w-5 text-gray-400 hover:text-[#24292e] transition-colors" />
               </a>
               <a

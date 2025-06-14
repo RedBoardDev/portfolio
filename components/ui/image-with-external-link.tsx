@@ -28,7 +28,9 @@ export function ImageWithExternalLink({
 }: ImageWithExternalLinkProps) {
   return (
     <div className={`relative ${containerClassName}`}>
-      <div className={`rounded-lg overflow-hidden bg-white border border-gray-100 flex-shrink-0 ${className}`}>
+      <div
+        className={`rounded-lg overflow-hidden bg-white border border-gray-100 flex-shrink-0 ${className}`}
+      >
         <Image
           src={src || "/placeholder.svg"}
           alt={alt}

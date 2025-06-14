@@ -23,7 +23,7 @@ export default function ProjectsSection() {
   const cardRef = useRef<HTMLDivElement>(null)
   const startTouchRef = useRef({ x: 0, y: 0 })
   const [swipeOffset, setSwipeOffset] = useState(0)
-  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null)
+  const [swipeDirection, setSwipeDirection] = useState<"left" | "right" | null>(null)
 
   // Détecter si l'appareil est mobile
   useEffect(() => {
@@ -79,26 +79,29 @@ export default function ProjectsSection() {
     setIsDragging(true)
   }, [])
 
-        const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!isDragging) return
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (!isDragging) return
 
-    const touch = e.touches[0]
-    const deltaX = touch.clientX - startTouchRef.current.x
-    const deltaY = touch.clientY - startTouchRef.current.y
+      const touch = e.touches[0]
+      const deltaX = touch.clientX - startTouchRef.current.x
+      const deltaY = touch.clientY - startTouchRef.current.y
 
-    // Empêcher le scroll vertical si le mouvement horizontal est prédominant
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
-      e.preventDefault()
-      e.stopPropagation()
-      // Limiter l'offset pour éviter les mouvements trop extrêmes
-      const maxOffset = 120
-      const clampedOffset = Math.max(-maxOffset, Math.min(maxOffset, deltaX))
-      setSwipeOffset(clampedOffset)
-      setSwipeDirection(deltaX > 0 ? 'right' : 'left')
-    }
-  }, [isDragging])
+      // Empêcher le scroll vertical si le mouvement horizontal est prédominant
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
+        e.preventDefault()
+        e.stopPropagation()
+        // Limiter l'offset pour éviter les mouvements trop extrêmes
+        const maxOffset = 120
+        const clampedOffset = Math.max(-maxOffset, Math.min(maxOffset, deltaX))
+        setSwipeOffset(clampedOffset)
+        setSwipeDirection(deltaX > 0 ? "right" : "left")
+      }
+    },
+    [isDragging]
+  )
 
-        const handleTouchEnd = useCallback(() => {
+  const handleTouchEnd = useCallback(() => {
     if (!isDragging) return
 
     const threshold = 60 // Seuil plus sensible
@@ -110,7 +113,7 @@ export default function ProjectsSection() {
         if (!isTransitioning) {
           setIsTransitioning(true)
           setDirection(-1)
-          setCurrentProjectIndex(prev => prev === 0 ? projectsData.length - 1 : prev - 1)
+          setCurrentProjectIndex((prev) => (prev === 0 ? projectsData.length - 1 : prev - 1))
           setTimeout(() => setIsTransitioning(false), 350)
         }
       } else if (swipeOffset < 0) {
@@ -118,7 +121,7 @@ export default function ProjectsSection() {
         if (!isTransitioning) {
           setIsTransitioning(true)
           setDirection(1)
-          setCurrentProjectIndex(prev => prev === projectsData.length - 1 ? 0 : prev + 1)
+          setCurrentProjectIndex((prev) => (prev === projectsData.length - 1 ? 0 : prev + 1))
           setTimeout(() => setIsTransitioning(false), 350)
         }
       }
@@ -157,7 +160,7 @@ export default function ProjectsSection() {
       setIsTransitioning(true)
       setDirection(1)
       // Navigation circulaire : retour au début si on est à la fin
-      setCurrentProjectIndex(prev => prev === projectsData.length - 1 ? 0 : prev + 1)
+      setCurrentProjectIndex((prev) => (prev === projectsData.length - 1 ? 0 : prev + 1))
       setTimeout(() => setIsTransitioning(false), 350)
     }
   }
@@ -167,7 +170,7 @@ export default function ProjectsSection() {
       setIsTransitioning(true)
       setDirection(-1)
       // Navigation circulaire : aller à la fin si on est au début
-      setCurrentProjectIndex(prev => prev === 0 ? projectsData.length - 1 : prev - 1)
+      setCurrentProjectIndex((prev) => (prev === 0 ? projectsData.length - 1 : prev - 1))
       setTimeout(() => setIsTransitioning(false), 350)
     }
   }
@@ -183,7 +186,10 @@ export default function ProjectsSection() {
   }
 
   // Obtenir les projets pour la page actuelle
-  const currentProjects = projectsData.slice(currentPage * projectsPerPage, (currentPage + 1) * projectsPerPage)
+  const currentProjects = projectsData.slice(
+    currentPage * projectsPerPage,
+    (currentPage + 1) * projectsPerPage
+  )
 
   return (
     <section id="projects-section" ref={swipeContainerRef}>
@@ -308,8 +314,6 @@ export default function ProjectsSection() {
                         {/* Overlay de base (dégradé) */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 z-15" />
 
-
-
                         {/* Languages badges */}
                         <div className="absolute top-4 right-4 flex gap-2 z-30">
                           {project.languages.slice(0, 6).map((lang, langIndex) => (
@@ -372,7 +376,7 @@ export default function ProjectsSection() {
               })}
             </div>
 
-                        {/* Indicateur de progression avec boutons intégrés */}
+            {/* Indicateur de progression avec boutons intégrés */}
             <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-4 z-40">
               {/* Bouton précédent */}
               <button
@@ -380,8 +384,8 @@ export default function ProjectsSection() {
                 disabled={isTransitioning}
                 className={`w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center transition-all ${
                   isTransitioning
-                    ? 'text-gray-300 cursor-not-allowed opacity-50'
-                    : 'text-gray-700 hover:text-primary hover:bg-white active:scale-95'
+                    ? "text-gray-300 cursor-not-allowed opacity-50"
+                    : "text-gray-700 hover:text-primary hover:bg-white active:scale-95"
                 }`}
               >
                 <ChevronLeft size={18} />
@@ -395,8 +399,8 @@ export default function ProjectsSection() {
                     onClick={() => goToProject(index)}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
                       index === currentProjectIndex
-                        ? 'w-8 bg-primary'
-                        : 'w-1.5 bg-gray-300 hover:bg-gray-400'
+                        ? "w-8 bg-primary"
+                        : "w-1.5 bg-gray-300 hover:bg-gray-400"
                     }`}
                   />
                 ))}
@@ -408,8 +412,8 @@ export default function ProjectsSection() {
                 disabled={isTransitioning}
                 className={`w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center transition-all ${
                   isTransitioning
-                    ? 'text-gray-300 cursor-not-allowed opacity-50'
-                    : 'text-gray-700 hover:text-primary hover:bg-white active:scale-95'
+                    ? "text-gray-300 cursor-not-allowed opacity-50"
+                    : "text-gray-700 hover:text-primary hover:bg-white active:scale-95"
                 }`}
               >
                 <ChevronRight size={18} />
@@ -437,7 +441,7 @@ export default function ProjectsSection() {
                 onMouseLeave={() => setHoveredProject(null)}
               >
                 <ContentBox noPadding className="h-full flex flex-col" shadow="md">
-                                    {/* Image */}
+                  {/* Image */}
                   <div className="relative h-64 overflow-hidden flex items-center justify-center">
                     {/* Image floutée en arrière-plan */}
                     <div className="absolute inset-0 z-0">
@@ -491,13 +495,17 @@ export default function ProjectsSection() {
                         <LanguageBadge key={langIndex} language={lang} size="sm" />
                       ))}
                       {project.languages.length > 8 && (
-                        <div className="text-white text-xs font-medium">+{project.languages.length - 8}</div>
+                        <div className="text-white text-xs font-medium">
+                          +{project.languages.length - 8}
+                        </div>
                       )}
                     </div>
 
                     {/* Title at bottom */}
                     <div className="absolute bottom-0 left-0 right-0 p-4 z-30">
-                      <h3 className="text-lg font-semibold text-white">{t(`projects.${project.key}.title`)}</h3>
+                      <h3 className="text-lg font-semibold text-white">
+                        {t(`projects.${project.key}.title`)}
+                      </h3>
                     </div>
                   </div>
 
@@ -544,7 +552,13 @@ export default function ProjectsSection() {
         {!isMobile && totalPages > 1 && (
           <div className="flex justify-center items-center mt-6 relative">
             <div className="flex items-center gap-4">
-              <Button variant="outline" size="icon" onClick={prevPage} disabled={currentPage === 0} className="h-8 w-8">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={prevPage}
+                disabled={currentPage === 0}
+                className="h-8 w-8"
+              >
                 <ChevronLeft size={16} />
               </Button>
 
