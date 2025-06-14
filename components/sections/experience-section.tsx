@@ -32,7 +32,10 @@ const getDisplayPeriod = (position: Position): string => {
   return displayPeriod
 }
   return (
-    <section id="experience-section">
+    <section id="experience-section" className="relative">
+      {/* Section background enhancement */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10"></div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
