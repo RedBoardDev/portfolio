@@ -1,0 +1,217 @@
+service: portfolio-static-site
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
+  environment:
+    STAGE: ${self:provider.stage}
+
+plugins:
+  - serverless-s3-sync
+  - serverless-cloudfront-invalidate
+
+custom:
+  # S3 Bucket configuration
+  s3Bucket: ${self:service}-${self:provider.stage}-${self:provider.region}
+
+  # S3 Sync configuration
+  s3Sync:
+    - bucketName: ${self:custom.s3Bucket}
+      localDir: out
+      deleteRemoved: true
+      acl: public-read
+      followSymlinks: true
+      defaultContentType: text/html
+      params:
+        - match: "*.html"
+          CacheControl: "max-age=3600"
+        - match: "*.css"
+          CacheControl: "max-age=31536000"
+        - match: "*.js"
+          CacheControl: "max-age=31536000"
+        - match: "*.png"
+          CacheControl: "max-age=31536000"
+        - match: "*.jpg"
+          CacheControl: "max-age=31536000"
+        - match: "*.jpeg"
+          CacheControl: "max-age=31536000"
+        - match: "*.gif"
+          CacheControl: "max-age=31536000"
+        - match: "*.svg"
+          CacheControl: "max-age=31536000"
+        - match: "*.webp"
+          CacheControl: "max-age=31536000"
+        - match: "_next/static/**"
+          CacheControl: "max-age=31536000, immutable"
+
+  # CloudFront Invalidation
+  cloudfrontInvalidate:
+    - distributionIdKey: "CloudFrontDistribution"
+      items:
+        - "/*"
+
+resources:
+  Resources:
+    # S3 Bucket for static website hosting
+    StaticSiteBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.s3Bucket}
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: 404.html
+
+    # S3 Bucket Policy
+    StaticSiteBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: !Ref StaticSiteBucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action: s3:GetObject
+              Resource: !Sub "${StaticSiteBucket}/*"
+
+    # CloudFront Origin Access Control
+    CloudFrontOriginAccessControl:
+      Type: AWS::CloudFront::OriginAccessControl
+      Properties:
+        OriginAccessControlConfig:
+          Name: ${self:service}-${self:provider.stage}-oac
+          OriginAccessControlOriginType: s3
+          SigningBehavior: always
+          SigningProtocol: sigv4
+
+    # CloudFront Distribution
+    CloudFrontDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Origins:
+            - DomainName: !GetAtt StaticSiteBucket.RegionalDomainName
+              Id: S3Origin
+              S3OriginConfig:
+                OriginAccessIdentity: ""
+              OriginAccessControlId: !Ref CloudFrontOriginAccessControl
+
+          Enabled: true
+          HttpVersion: http2
+          DefaultRootObject: index.html
+
+          DefaultCacheBehavior:
+            AllowedMethods:
+              - DELETE
+              - GET
+              - HEAD
+              - OPTIONS
+              - PATCH
+              - POST
+              - PUT
+            CachedMethods:
+              - GET
+              - HEAD
+            TargetOriginId: S3Origin
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: none
+            ViewerProtocolPolicy: redirect-to-https
+            MinTTL: 0
+            DefaultTTL: 3600
+            MaxTTL: 86400
+            Compress: true
+
+          CacheBehaviors:
+            # Cache static assets for longer
+            - PathPattern: "_next/static/*"
+              TargetOriginId: S3Origin
+              ViewerProtocolPolicy: redirect-to-https
+              AllowedMethods:
+                - GET
+                - HEAD
+              CachedMethods:
+                - GET
+                - HEAD
+              ForwardedValues:
+                QueryString: false
+                Cookies:
+                  Forward: none
+              MinTTL: 31536000
+              DefaultTTL: 31536000
+              MaxTTL: 31536000
+              Compress: true
+
+            # Cache images
+            - PathPattern: "*.png"
+              TargetOriginId: S3Origin
+              ViewerProtocolPolicy: redirect-to-https
+              AllowedMethods:
+                - GET
+                - HEAD
+              CachedMethods:
+                - GET
+                - HEAD
+              ForwardedValues:
+                QueryString: false
+                Cookies:
+                  Forward: none
+              MinTTL: 86400
+              DefaultTTL: 86400
+              MaxTTL: 31536000
+              Compress: true
+
+            - PathPattern: "*.jpg"
+              TargetOriginId: S3Origin
+              ViewerProtocolPolicy: redirect-to-https
+              AllowedMethods:
+                - GET
+                - HEAD
+              CachedMethods:
+                - GET
+                - HEAD
+              ForwardedValues:
+                QueryString: false
+                Cookies:
+                  Forward: none
+              MinTTL: 86400
+              DefaultTTL: 86400
+              MaxTTL: 31536000
+              Compress: true
+
+          CustomErrorResponses:
+            - ErrorCode: 404
+              ResponseCode: 404
+              ResponsePagePath: /404.html
+            - ErrorCode: 403
+              ResponseCode: 404
+              ResponsePagePath: /404.html
+
+          PriceClass: PriceClass_100
+
+  Outputs:
+    WebsiteURL:
+      Value: !GetAtt StaticSiteBucket.WebsiteURL
+      Description: URL for website hosted on S3
+
+    CloudFrontDistribution:
+      Value: !Ref CloudFrontDistribution
+      Description: CloudFront Distribution ID
+
+    CloudFrontURL:
+      Value: !GetAtt CloudFrontDistribution.DomainName
+      Description: CloudFront Distribution URL
+
+    S3BucketName:
+      Value: !Ref StaticSiteBucket
+      Description: Name of the S3 bucket

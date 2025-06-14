@@ -1,0 +1,70 @@
+name: CD - Deploy to AWS
+
+on:
+  workflow_run:
+    workflows: ["CI - Build and Test"]
+    branches: [main, release]
+    types: [completed]
+
+env:
+  NODE_VERSION: '20'
+  AWS_REGION: 'us-east-1'
+
+jobs:
+  deploy:
+    name: Deploy to AWS
+    runs-on: ubuntu-latest
+    environment: production
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/
+          key: build-${{ github.event.workflow_run.head_sha }}
+          fail-on-cache-miss: false
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Build for production
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Install Serverless Framework
+        run: npm install -g serverless@3
+
+      - name: Setup AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy with Serverless
+        run: |
+          serverless deploy --stage production --verbose
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Invalidate CloudFront
+        run: |
+          DISTRIBUTION_ID=$(serverless info --stage production --verbose | grep "CloudFrontDistribution" | awk '{print $2}')
+          if [ ! -z "$DISTRIBUTION_ID" ]; then
+            aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+            echo "CloudFront cache invalidated for distribution: $DISTRIBUTION_ID"
+          fi
