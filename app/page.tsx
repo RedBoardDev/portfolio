@@ -262,14 +262,20 @@ export default function Home() {
                     transition={{ duration: 0.5, delay: 0.6 }}
                     className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start"
                   >
-                    <Button
-                      variant="default"
-                      size="lg"
-                      className="gap-2 shadow-md hover:shadow-lg transition-all text-sm sm:text-base"
+                    <a
+                      href="https://www.linkedin.com/ambry/?x-li-ambry-ep=AQIpeR23nv6HrAAAAZduiSPWHSDHuw-De5H9qJ3OxRmG7-ZMbOs4WtynbMlMPSvzAbH0PhXWJNJ3UnTHmRPWzVDH5EH81bUwoSSlsifeuAbh4sU7qIXEnM7n3ofyY5vdwSQxYLhVuofwCgh9bWLESJryYOJ4-XtncfEefZfbQN5jyBheoCIIoGhsPg5OmSSczvJWLCKp-G30OKCdP8B1khDnzc8OMS7vN5u_8-LfkgYTV9GrLcB7PaoKFRddQnp4VZs3XrMDY1LvMccaCXZTcNR2R4Y1DdXpq8ZsjcIo4WweqYuh3VJyIX-D1GiEeXCsY0PiMzdyFCmrniwP-QBfAlVxSds55w2wp2gLLYMehruJ0TDoOeDbIGbc-MpitLNKmknwSMRkiPpbjmNEYJnzbSkrVZOsDlwYOo9sQ0aSFiWFjkKRieIkDBu141sq-C4GF4L79GHGZjfmEYH5XZ4pz38-8IdSBM935VZ7zNTR6ENvOTf9sk4L5KCcsLu8hGJ1dxTr4HFco8V1by5mLHqwbX2i_ymsC8p24serI2ccLzGxNhW0-mxa5j3rmDTbkeJzfe_cnw&x-ambry-um-filename=Profile.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <Download size={16} />
-                      <span>{loading ? "..." : t("hero.downloadCV")}</span>
-                    </Button>
+                      <Button
+                        variant="default"
+                        size="lg"
+                        className="gap-2 shadow-md hover:shadow-lg transition-all text-sm sm:text-base"
+                      >
+                        <Download size={16} />
+                        <span>{loading ? "..." : t("hero.downloadCV")}</span>
+                      </Button>
+                    </a>
                     <Button
                       variant="outline"
                       size="lg"
