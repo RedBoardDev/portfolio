@@ -23,7 +23,8 @@ custom:
     - bucketName: ${self:custom.s3Bucket}
       localDir: out
       deleteRemoved: true
-      acl: public-read
+      # Remove public-read ACL since bucket is private
+      # acl: public-read
       followSymlinks: true
       defaultContentType: text/html
       params:
@@ -62,26 +63,31 @@ resources:
       Properties:
         BucketName: ${self:custom.s3Bucket}
         PublicAccessBlockConfiguration:
-          BlockPublicAcls: false
-          BlockPublicPolicy: false
-          IgnorePublicAcls: false
-          RestrictPublicBuckets: false
-        WebsiteConfiguration:
-          IndexDocument: index.html
-          ErrorDocument: 404.html
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+        # Remove WebsiteConfiguration since we're using CloudFront
+        # WebsiteConfiguration:
+        #   IndexDocument: index.html
+        #   ErrorDocument: 404.html
 
-    # S3 Bucket Policy
+    # S3 Bucket Policy for CloudFront access only
     StaticSiteBucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
         Bucket: !Ref StaticSiteBucket
         PolicyDocument:
           Statement:
-            - Sid: PublicReadGetObject
+            - Sid: AllowCloudFrontServicePrincipal
               Effect: Allow
-              Principal: "*"
+              Principal:
+                Service: cloudfront.amazonaws.com
               Action: s3:GetObject
               Resource: !Sub "${StaticSiteBucket}/*"
+              Condition:
+                StringEquals:
+                  AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
 
     # CloudFront Origin Access Control
     CloudFrontOriginAccessControl:
@@ -101,8 +107,9 @@ resources:
           Origins:
             - DomainName: !GetAtt StaticSiteBucket.RegionalDomainName
               Id: S3Origin
-              S3OriginConfig:
-                OriginAccessIdentity: ""
+              # Remove deprecated S3OriginConfig
+              # S3OriginConfig:
+              #   OriginAccessIdentity: ""
               OriginAccessControlId: !Ref CloudFrontOriginAccessControl
 
           Enabled: true
@@ -200,16 +207,17 @@ resources:
           PriceClass: PriceClass_100
 
   Outputs:
-    WebsiteURL:
-      Value: !GetAtt StaticSiteBucket.WebsiteURL
-      Description: URL for website hosted on S3
+    # Remove WebsiteURL since we're not using S3 website hosting
+    # WebsiteURL:
+    #   Value: !GetAtt StaticSiteBucket.WebsiteURL
+    #   Description: URL for website hosted on S3
 
     CloudFrontDistribution:
       Value: !Ref CloudFrontDistribution
       Description: CloudFront Distribution ID
 
     CloudFrontURL:
-      Value: !GetAtt CloudFrontDistribution.DomainName
+      Value: !Sub "https://${CloudFrontDistribution.DomainName}"
       Description: CloudFront Distribution URL
 
     S3BucketName:
