@@ -37,6 +37,29 @@ export interface StreakStats {
   excludedDays: string[]
 }
 
+// Types pour l'API GitHub
+interface GitHubContributionDay {
+  date: string
+  contributionCount: number
+}
+
+interface GitHubWeek {
+  contributionDays: GitHubContributionDay[]
+}
+
+interface GitHubRepository {
+  name: string
+  languages?: {
+    edges: Array<{
+      size: number
+      node: {
+        name: string
+        color: string
+      }
+    }>
+  }
+}
+
 /**
  * Fetches GitHub contribution data for a user
  *
@@ -103,14 +126,14 @@ export async function fetchGitHubContributions(username: string): Promise<GitHub
     const contributions: GitHubContribution[] = []
 
     // Flatten the weeks array into a single array of contribution days
-    contributionCalendar.weeks.forEach((week: any) => {
-      week.contributionDays.forEach((day: any) => {
+    for (const week of contributionCalendar.weeks as GitHubWeek[]) {
+      for (const day of week.contributionDays) {
         contributions.push({
           date: day.date,
           count: day.contributionCount,
         })
-      })
-    })
+      }
+    }
 
     return contributions
   } catch (error) {
@@ -262,10 +285,10 @@ export async function fetchGitHubLanguages(username: string): Promise<GitHubLang
     let totalBytes = 0
 
     // Aggregate language data across all repositories
-    const repositories = data.data.user.repositories.nodes
-    repositories.forEach((repo: any) => {
-      if (repo.languages && repo.languages.edges) {
-        repo.languages.edges.forEach((edge: any) => {
+    const repositories = data.data.user.repositories.nodes as GitHubRepository[]
+    for (const repo of repositories) {
+      if (repo.languages?.edges) {
+        for (const edge of repo.languages.edges) {
           const { name, color } = edge.node
           const size = edge.size
 
@@ -276,9 +299,9 @@ export async function fetchGitHubLanguages(username: string): Promise<GitHubLang
           if (!languageColors[name] && color) {
             languageColors[name] = color
           }
-        })
+        }
       }
-    })
+    }
 
     // Convert to percentage and sort
     const languages: GitHubLanguage[] = Object.entries(languageCounts)
@@ -409,14 +432,14 @@ export function getLongestStreak(contributions: GitHubContribution[]): number {
   let currentStreak = 0
   let longestStreak = 0
 
-  contributions.forEach((day) => {
+  for (const day of contributions) {
     if (day.count > 0) {
       currentStreak++
       longestStreak = Math.max(longestStreak, currentStreak)
     } else {
       currentStreak = 0
     }
-  })
+  }
 
   return longestStreak
 }

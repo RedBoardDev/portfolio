@@ -1,29 +1,26 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion"
-import { projectsData } from "@/data/projects"
 import { Button } from "@/components/ui/button"
-import { Github, ExternalLink, ChevronRight, ChevronLeft, ArrowRight } from "lucide-react"
-import { LanguageBadge } from "@/components/ui/language-badge"
 import { ContentBox } from "@/components/ui/content-box"
+import { LanguageBadge } from "@/components/ui/language-badge"
 import { OptimizedImage } from "@/components/ui/optimized-image"
+import { projectsData } from "@/data/projects"
 import { useTranslation } from "@/hooks/use-translation"
+import { motion } from "framer-motion"
+import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 export default function ProjectsSection() {
   const { t } = useTranslation("projects")
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
   const [currentPage, setCurrentPage] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
-  const [direction, setDirection] = useState(0) // -1 pour gauche, 1 pour droite, 0 pour initial
   const [isDragging, setIsDragging] = useState(false)
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const swipeContainerRef = useRef<HTMLDivElement>(null)
-  const cardRef = useRef<HTMLDivElement>(null)
   const startTouchRef = useRef({ x: 0, y: 0 })
   const [swipeOffset, setSwipeOffset] = useState(0)
-  const [swipeDirection, setSwipeDirection] = useState<"left" | "right" | null>(null)
 
   // Détecter si l'appareil est mobile
   useEffect(() => {
@@ -52,7 +49,6 @@ export default function ProjectsSection() {
   // Fonctions de navigation
   const nextPage = useCallback(() => {
     if (currentPage < totalPages - 1) {
-      setDirection(1)
       setCurrentPage((prev) => prev + 1)
       // Scroll vers le haut de la section sur desktop
       if (!isMobile && swipeContainerRef.current) {
@@ -63,7 +59,6 @@ export default function ProjectsSection() {
 
   const prevPage = useCallback(() => {
     if (currentPage > 0) {
-      setDirection(-1)
       setCurrentPage((prev) => prev - 1)
       // Scroll vers le haut de la section sur desktop
       if (!isMobile && swipeContainerRef.current) {
@@ -95,7 +90,6 @@ export default function ProjectsSection() {
         const maxOffset = 120
         const clampedOffset = Math.max(-maxOffset, Math.min(maxOffset, deltaX))
         setSwipeOffset(clampedOffset)
-        setSwipeDirection(deltaX > 0 ? "right" : "left")
       }
     },
     [isDragging]
@@ -112,7 +106,6 @@ export default function ProjectsSection() {
         // Swipe vers la droite - projet précédent (avec rebouclage)
         if (!isTransitioning) {
           setIsTransitioning(true)
-          setDirection(-1)
           setCurrentProjectIndex((prev) => (prev === 0 ? projectsData.length - 1 : prev - 1))
           setTimeout(() => setIsTransitioning(false), 350)
         }
@@ -120,7 +113,6 @@ export default function ProjectsSection() {
         // Swipe vers la gauche - projet suivant (avec rebouclage)
         if (!isTransitioning) {
           setIsTransitioning(true)
-          setDirection(1)
           setCurrentProjectIndex((prev) => (prev === projectsData.length - 1 ? 0 : prev + 1))
           setTimeout(() => setIsTransitioning(false), 350)
         }
@@ -136,7 +128,7 @@ export default function ProjectsSection() {
       const animate = () => {
         const elapsed = Date.now() - startTime
         const progress = Math.min(elapsed / duration, 1)
-        const easeOut = 1 - Math.pow(1 - progress, 3)
+        const easeOut = 1 - (1 - progress) ** 3
 
         setSwipeOffset(startOffset * (1 - easeOut))
 
@@ -145,7 +137,6 @@ export default function ProjectsSection() {
         } else {
           setIsDragging(false)
           setSwipeOffset(0)
-          setSwipeDirection(null)
         }
       }
 
@@ -158,7 +149,6 @@ export default function ProjectsSection() {
   const goToNextProject = () => {
     if (!isTransitioning) {
       setIsTransitioning(true)
-      setDirection(1)
       // Navigation circulaire : retour au début si on est à la fin
       setCurrentProjectIndex((prev) => (prev === projectsData.length - 1 ? 0 : prev + 1))
       setTimeout(() => setIsTransitioning(false), 350)
@@ -168,7 +158,6 @@ export default function ProjectsSection() {
   const goToPreviousProject = () => {
     if (!isTransitioning) {
       setIsTransitioning(true)
-      setDirection(-1)
       // Navigation circulaire : aller à la fin si on est au début
       setCurrentProjectIndex((prev) => (prev === 0 ? projectsData.length - 1 : prev - 1))
       setTimeout(() => setIsTransitioning(false), 350)
@@ -179,7 +168,6 @@ export default function ProjectsSection() {
   const goToProject = (index: number) => {
     if (index !== currentProjectIndex && !isTransitioning) {
       setIsTransitioning(true)
-      setDirection(index > currentProjectIndex ? 1 : -1)
       setCurrentProjectIndex(index)
       setTimeout(() => setIsTransitioning(false), 350)
     }
@@ -202,7 +190,7 @@ export default function ProjectsSection() {
         <div className="mb-6">
           <h2 className="text-3xl font-bold text-gray-900 inline-block relative">
             {t("section.title")}
-            <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
+            <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary" />
           </h2>
         </div>
 

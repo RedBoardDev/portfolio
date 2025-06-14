@@ -1,10 +1,10 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { skillsData } from "@/data/skills"
-import { SkillBadge } from "@/components/ui/skill-badge"
 import { ContentBox } from "@/components/ui/content-box"
+import { SkillBadge } from "@/components/ui/skill-badge"
+import { skillsData } from "@/data/skills"
 import { useTranslation } from "@/hooks/use-translation"
+import { motion } from "framer-motion"
 
 export default function SkillsSection() {
   const { t, loading } = useTranslation("skills")
@@ -12,7 +12,7 @@ export default function SkillsSection() {
   return (
     <section id="skills-section" className="relative">
       {/* Section background enhancement */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ export default function SkillsSection() {
       >
         <h2 className="text-3xl font-bold text-gray-900 mb-6 inline-block relative">
           {loading ? "..." : t("title")}
-          <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
+          <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary" />
         </h2>
 
         {/* Skills grid */}

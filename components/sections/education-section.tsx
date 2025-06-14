@@ -1,12 +1,12 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { educations } from "@/data/education"
-import { MapPin, Calendar } from "lucide-react"
+import { ContentBox } from "@/components/ui/content-box"
 import { ImageWithExternalLink } from "@/components/ui/image-with-external-link"
 import { SkillBadge } from "@/components/ui/skill-badge"
-import { ContentBox } from "@/components/ui/content-box"
+import { educations } from "@/data/education"
 import { useTranslation } from "@/hooks/use-translation"
+import { motion } from "framer-motion"
+import { Calendar, MapPin } from "lucide-react"
 
 export default function EducationSection() {
   const { t, formatDate, loading } = useTranslation("education")
@@ -14,7 +14,7 @@ export default function EducationSection() {
   return (
     <section id="education-section" className="relative">
       {/* Section background enhancement */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export default function EducationSection() {
       >
         <h2 className="text-3xl font-bold text-gray-900 mb-8 inline-block relative">
           {loading ? "..." : t("title")}
-          <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
+          <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary" />
         </h2>
 
         <div className="relative space-y-6">
@@ -98,7 +98,7 @@ export default function EducationSection() {
                       {/* Skills section for mobile view */}
                       <div className="mt-4 md:hidden">
                         <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center">
-                          <span className="w-1 h-4 bg-primary/60 rounded-full mr-2"></span>
+                          <span className="w-1 h-4 bg-primary/60 rounded-full mr-2" />
                           {loading ? "..." : t("skillsAcquired")}
                         </h4>
                         <div className="flex flex-wrap gap-2">
@@ -116,7 +116,7 @@ export default function EducationSection() {
                     {/* Skills section as a separate block on the right - desktop only */}
                     <div className="hidden md:block md:border-l md:border-gray-100 md:pl-6 md:ml-2 md:w-64 lg:w-72">
                       <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center">
-                        <span className="w-1 h-4 bg-primary/60 rounded-full mr-2"></span>
+                        <span className="w-1 h-4 bg-primary/60 rounded-full mr-2" />
                         {loading ? "..." : t("skillsAcquired")}
                       </h4>
                       <div className="flex flex-wrap gap-2">

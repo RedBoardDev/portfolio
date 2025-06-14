@@ -1,23 +1,23 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useTranslation } from "@/hooks/use-translation"
+import type { SectionName } from "@/lib/types"
+import { AnimatePresence, motion } from "framer-motion"
 import {
-  Menu,
-  X,
-  User,
   Briefcase,
-  GraduationCap,
   CodeIcon,
   FolderKanban,
-  Mail,
   Github,
+  GraduationCap,
   Linkedin,
+  Mail,
+  Menu,
+  User,
+  X,
 } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 import { LanguageSwitcher } from "./language-switcher"
-import { useTranslation } from "@/hooks/use-translation"
 import { SectionSEO } from "./seo/section-seo"
-import type { SectionName } from "@/lib/types"
 
 interface NavigationBarProps {
   onNavigate: {
@@ -90,26 +90,26 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
     }
 
     const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
+      for (const entry of entries) {
         if (entry.isIntersecting) {
           const id = entry.target.id.replace("-section", "")
           setActiveSection(id as SectionName)
         }
-      })
+      }
     }
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions)
 
     // Observe all sections
-    sectionElements.forEach((section) => {
+    for (const section of sectionElements) {
       observer.observe(section)
-    })
+    }
 
     return () => {
       // Clean up
-      sectionElements.forEach((section) => {
+      for (const section of sectionElements) {
         observer.unobserve(section)
-      })
+      }
     }
   }, [])
 
@@ -161,7 +161,9 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
           viewBox="0 0 159 159"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
+          aria-label="Logo"
         >
+          <title>Logo Malt</title>
           <path d="M91.7167 110.023L86.1777 115.562L102.362 131.746C110.345 139.729 122.474 148.086 135.044 135.517C144.268 126.293 142.224 117.308 137.327 110.023H91.7167Z" />
           <path d="M66.4967 49.136L72.0357 43.597L55.8517 27.413C47.8687 19.43 35.7397 11.073 23.1697 23.642C13.9457 32.866 15.9897 41.851 20.8867 49.136H66.4967Z" />
           <path d="M135.045 23.642C122.475 11.071 110.346 19.429 102.362 27.413L26.9406 102.834C18.9576 110.817 10.6006 122.946 23.1696 135.516C35.7406 148.087 47.8686 139.729 55.8526 131.745L131.274 56.324C139.257 48.341 147.614 36.212 135.045 23.642Z" />
@@ -215,14 +217,14 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
           <div
             className={`flex ${isMobile && scrolled ? "opacity-0" : "opacity-100"} transition-opacity`}
           >
-            <a
-              href="#"
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={`font-bold text-xl flex items-center transition-colors ${
                 scrolled ? "text-gray-900" : "text-gray-800"
               }`}
             >
               <span className="text-primary">T</span>O
-            </a>
+            </button>
           </div>
 
           {/* Desktop Navigation */}

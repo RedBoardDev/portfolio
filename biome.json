@@ -34,7 +34,6 @@
     "rules": {
       "recommended": true,
       "complexity": {
-        "noExcessiveCognitiveComplexity": "warn",
         "noStaticOnlyClass": "warn"
       },
       "correctness": {

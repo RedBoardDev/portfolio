@@ -45,7 +45,7 @@ export function SkillBadge({ name, icon, description, showTooltip = false }: Ski
             <p className="font-semibold mb-1">{name}</p>
             <p className="text-gray-300 text-xs">{description}</p>
           </div>
-          <div className="absolute bottom-[-6px] left-1/2 transform -translate-x-1/2 w-3 h-3 rotate-45 bg-gray-800"></div>
+          <div className="absolute bottom-[-6px] left-1/2 transform -translate-x-1/2 w-3 h-3 rotate-45 bg-gray-800" />
         </div>
       )}
     </div>

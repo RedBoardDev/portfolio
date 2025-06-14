@@ -2,29 +2,29 @@
 
 import type React from "react"
 
-import { useRef, useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, MapPin, Download, ArrowUp, Code } from "lucide-react"
-import AboutSection from "@/components/sections/about-section"
-import ExperienceSection from "@/components/sections/experience-section"
-import EducationSection from "@/components/sections/education-section"
-import SkillsSection from "@/components/sections/skills-section"
-import ProjectsSection from "@/components/sections/projects-section"
-import ContactSection from "@/components/sections/contact-section"
 import { NavigationBar } from "@/components/navigation-bar"
+import AboutSection from "@/components/sections/about-section"
+import ContactSection from "@/components/sections/contact-section"
+import EducationSection from "@/components/sections/education-section"
+import ExperienceSection from "@/components/sections/experience-section"
+import ProjectsSection from "@/components/sections/projects-section"
+import SkillsSection from "@/components/sections/skills-section"
+import { Button } from "@/components/ui/button"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 import { useTranslation } from "@/hooks/use-translation"
+import { motion } from "framer-motion"
+import { ArrowUp, Code, Download, Github, Linkedin, Mail, MapPin } from "lucide-react"
 import dynamic from "next/dynamic"
+import { useEffect, useRef, useState } from "react"
 
 // Chargement dynamique des sections non critiques
 const DynamicSkillsSection = dynamic(() => import("@/components/sections/skills-section"), {
-  loading: () => <div className="min-h-[200px] animate-pulse bg-gray-50 rounded-xl"></div>,
+  loading: () => <div className="min-h-[200px] animate-pulse bg-gray-50 rounded-xl" />,
   ssr: false,
 })
 
 const DynamicProjectsSection = dynamic(() => import("@/components/sections/projects-section"), {
-  loading: () => <div className="min-h-[300px] animate-pulse bg-gray-50 rounded-xl"></div>,
+  loading: () => <div className="min-h-[300px] animate-pulse bg-gray-50 rounded-xl" />,
   ssr: false,
 })
 
@@ -109,13 +109,13 @@ export default function Home() {
             backgroundSize: "40px 40px",
           }}
           aria-hidden="true"
-        ></div>
+        />
         {/* Hero Section - Optimisé pour responsive */}
         <section className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-24 sm:pt-28 md:pt-20 pb-20 px-6 sm:px-8 md:px-10 lg:px-12 overflow-hidden">
           {/* Background Elements - Professional effect */}
           <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
             {/* Primary gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-gray-50 to-white"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-gray-50 to-white" />
 
             {/* Professional geometric pattern */}
             <div
@@ -125,12 +125,12 @@ export default function Home() {
                   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='%233b82f6' fillOpacity='1'%3E%3Cpath d='M0 0h40v40H0V0zm20 10a10 10 0 0 1 0 20 10 10 0 0 1 0-20zm0 2a8 8 0 0 0 0 16 8 8 0 0 0 0-16z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\")",
                 backgroundSize: "40px 40px",
               }}
-            ></div>
+            />
 
             {/* Subtle gradients */}
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-            <div className="absolute top-1/4 left-0 w-72 h-72 bg-blue-400/5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute top-1/4 left-0 w-72 h-72 bg-blue-400/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
           </div>
 
           <div className="max-w-6xl mx-auto w-full">
@@ -144,15 +144,15 @@ export default function Home() {
               >
                 <div className="relative">
                   {/* Main gradient ring */}
-                  <div className="absolute -inset-2 bg-gradient-to-br from-primary/30 via-blue-500/20 to-primary/30 rounded-full blur-md"></div>
+                  <div className="absolute -inset-2 bg-gradient-to-br from-primary/30 via-blue-500/20 to-primary/30 rounded-full blur-md" />
 
                   {/* Secondary ring for depth */}
-                  <div className="absolute -inset-1 bg-gradient-to-tr from-white via-gray-50 to-white rounded-full shadow-xl"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-tr from-white via-gray-50 to-white rounded-full shadow-xl" />
 
                   {/* Main image container */}
                   <div className="relative overflow-hidden w-44 h-44 xs:w-52 xs:h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-gray-50 to-white border-2 border-white shadow-2xl">
                     {/* Subtle inner glow */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/5 via-transparent to-blue-500/5"></div>
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/5 via-transparent to-blue-500/5" />
 
                     <OptimizedImage
                       src="https://image.noelshack.com/fichiers/2025/24/3/1749663120-t1.jpg"
@@ -163,7 +163,7 @@ export default function Home() {
                     />
 
                     {/* Subtle overlay for professional polish */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent rounded-full"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent rounded-full" />
                   </div>
 
                   {/* Professional status indicator */}
@@ -180,7 +180,7 @@ export default function Home() {
                       </div>
 
                       {/* Availability indicator */}
-                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-md"></div>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-md" />
                     </div>
                   </motion.div>
                 </div>
@@ -199,7 +199,7 @@ export default function Home() {
                     animate={{ width: "3rem" }}
                     transition={{ duration: 0.8, delay: 0.3 }}
                     className="h-1 bg-primary absolute -top-3 left-1/2 lg:left-0 transform -translate-x-1/2 lg:translate-x-0"
-                  ></motion.div>
+                  />
 
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
@@ -210,7 +210,7 @@ export default function Home() {
                     Thomas{" "}
                     <span className="text-primary relative">
                       OTT
-                      <span className="absolute -bottom-1 left-0 w-full h-[6px] bg-primary/20"></span>
+                      <span className="absolute -bottom-1 left-0 w-full h-[6px] bg-primary/20" />
                     </span>
                   </motion.h1>
 
@@ -320,6 +320,7 @@ export default function Home() {
                         className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#FC5656] hover:bg-[#FC5656] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FC5656] focus-visible:ring-offset-2"
                         aria-label="Profil Malt"
                       >
+                        <span className="sr-only">Profil Malt</span>
                         <svg
                           width="20"
                           height="20"
@@ -328,6 +329,7 @@ export default function Home() {
                           xmlns="http://www.w3.org/2000/svg"
                           aria-hidden="true"
                         >
+                          <title>Logo Malt</title>
                           <path d="M91.7167 110.023L86.1777 115.562L102.362 131.746C110.345 139.729 122.474 148.086 135.044 135.517C144.268 126.293 142.224 117.308 137.327 110.023H91.7167Z" />
                           <path d="M66.4967 49.136L72.0357 43.597L55.8517 27.413C47.8687 19.43 35.7397 11.073 23.1697 23.642C13.9457 32.866 15.9897 41.851 20.8867 49.136H66.4967Z" />
                           <path d="M135.045 23.642C122.475 11.071 110.346 19.429 102.362 27.413L26.9406 102.834C18.9576 110.817 10.6006 122.946 23.1696 135.516C35.7406 148.087 47.8686 139.729 55.8526 131.745L131.274 56.324C139.257 48.341 147.614 36.212 135.045 23.642Z" />
@@ -435,6 +437,7 @@ export default function Home() {
                   fill="currentColor"
                   className="text-gray-400 hover:text-[#FC5656] transition-colors"
                 >
+                  <title>Logo Malt</title>
                   <path d="M91.7167 110.023L86.1777 115.562L102.362 131.746C110.345 139.729 122.474 148.086 135.044 135.517C144.268 126.293 142.224 117.308 137.327 110.023H91.7167Z" />
                   <path d="M66.4967 49.136L72.0357 43.597L55.8517 27.413C47.8687 19.43 35.7397 11.073 23.1697 23.642C13.9457 32.866 15.9897 41.851 20.8867 49.136H66.4967Z" />
                   <path d="M135.045 23.642C122.475 11.071 110.346 19.429 102.362 27.413L26.9406 102.834C18.9576 110.817 10.6006 122.946 23.1696 135.516C35.7406 148.087 47.8686 139.729 55.8526 131.745L131.274 56.324C139.257 48.341 147.614 36.212 135.045 23.642Z" />

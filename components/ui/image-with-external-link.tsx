@@ -1,7 +1,7 @@
 "use client"
 
-import Image from "next/image"
 import { ExternalLink } from "lucide-react"
+import Image from "next/image"
 
 interface ImageWithExternalLinkProps {
   src: string

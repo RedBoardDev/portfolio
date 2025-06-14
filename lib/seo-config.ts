@@ -56,7 +56,7 @@ export const getMetadata = ({
 } = {}): Metadata => {
   const metaTitle = title ? `${title} | ${SITE_CONFIG.name}` : SITE_CONFIG.title
   const metaDescription = description || SITE_CONFIG.description
-  const metaImage = image || SITE_CONFIG.profileImage
+  const _metaImage = image || SITE_CONFIG.profileImage
   const metaUrl = url ? `${SITE_CONFIG.url}${url}` : SITE_CONFIG.url
   const allKeywords = [...SITE_CONFIG.keywords, ...keywords]
 

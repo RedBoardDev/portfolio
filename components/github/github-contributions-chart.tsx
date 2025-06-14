@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
 // import {
 //   fetchGitHubContributions,
 //   fetchGitHubStats,
@@ -14,12 +13,13 @@ import { useEffect, useState, useRef } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useTranslation } from "@/hooks/use-translation"
 import { useLanguage } from "@/lib/language-context"
+import { useEffect, useRef, useState } from "react"
 
 interface GitHubContributionsProps {
   username?: string
 }
 
-const getContributionColor = (count: number): string => {
+const _getContributionColor = (count: number): string => {
   if (count === 0) return "#ebedf0"
   if (count === 1) return "#9be9a8"
   if (count === 2) return "#40c463"
@@ -27,23 +27,25 @@ const getContributionColor = (count: number): string => {
   return "#216e39"
 }
 
-export function GitHubContributions({ username = "redBoardDev" }: GitHubContributionsProps) {
+export function GitHubContributions({
+  username: _username = "redBoardDev",
+}: GitHubContributionsProps) {
   const { t, loading: translationLoading } = useTranslation("about")
-  const { language } = useLanguage()
+  const { language: _language } = useLanguage()
   // const containerRef = useRef<HTMLDivElement>(null)
   // const graphRef = useRef<HTMLDivElement>(null)
   // const [contributions, setContributions] = useState<GitHubContribution[] | null>(null)
   // const [stats, setStats] = useState<GitHubStats | null>(null)
   // const [languages, setLanguages] = useState<GitHubLanguage[] | null>(null)
   // const [streakStats, setStreakStats] = useState<StreakStats | null>(null)
-  const [isLoading, setIsLoading] = useState(false) // Désactivé pour l'instant
-  const [error, setError] = useState<string | null>(null)
+  const [isLoading, _setIsLoading] = useState(false) // Désactivé pour l'instant
+  const [error, _setError] = useState<string | null>(null)
   // const [yearlyContributions, setYearlyContributions] = useState(0)
 
   // Valeurs statiques temporaires
   const yearlyContributions = 1247
   const totalContributions = 6969
-  const currentStreak = 258
+  const _currentStreak = 258
   const longestStreak = 258
   const totalRepos = 32
 
@@ -125,7 +127,7 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
             <span className="font-semibold">{totalRepos}+</span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full">
-            <div className="h-full w-4/5 bg-primary rounded-full"></div>
+            <div className="h-full w-4/5 bg-primary rounded-full" />
           </div>
         </div>
 
@@ -135,7 +137,7 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
             <span className="font-semibold">{totalContributions?.toLocaleString()}+</span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full">
-            <div className="h-full w-11/12 bg-primary rounded-full"></div>
+            <div className="h-full w-11/12 bg-primary rounded-full" />
           </div>
         </div>
 
@@ -147,18 +149,18 @@ export function GitHubContributions({ username = "redBoardDev" }: GitHubContribu
             </span>
           </div>
           <div className="h-2 bg-gray-100 rounded-full">
-            <div className="h-full w-4/5 bg-orange-500 rounded-full"></div>
+            <div className="h-full w-4/5 bg-orange-500 rounded-full" />
           </div>
         </div>
 
         <div>
           <p className="text-gray-600 mb-1 text-sm">{t("github.mostUsedLanguages")} (5)</p>
           <div className="h-2 bg-gray-100 rounded-full overflow-hidden flex">
-            <div className="h-full w-[35%] bg-blue-500"></div>
-            <div className="h-full w-[25%] bg-yellow-400"></div>
-            <div className="h-full w-[20%] bg-teal-500"></div>
-            <div className="h-full w-[12%] bg-orange-500"></div>
-            <div className="h-full w-[8%] bg-purple-500"></div>
+            <div className="h-full w-[35%] bg-blue-500" />
+            <div className="h-full w-[25%] bg-yellow-400" />
+            <div className="h-full w-[20%] bg-teal-500" />
+            <div className="h-full w-[12%] bg-orange-500" />
+            <div className="h-full w-[8%] bg-purple-500" />
           </div>
           <div className="flex flex-wrap gap-x-4 gap-y-2 mt-2 text-xs text-gray-600">
             <span>TypeScript</span>

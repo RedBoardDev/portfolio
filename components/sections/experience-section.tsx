@@ -1,20 +1,25 @@
 "use client"
 
-import { motion } from "framer-motion"
-import {
-  experiences,
-  calculateDuration,
-  calculateTotalDuration,
-  type Position,
-} from "@/data/experiences"
-import { Calendar, MapPin } from "lucide-react"
+import { ContentBox } from "@/components/ui/content-box"
 import { ImageWithExternalLink } from "@/components/ui/image-with-external-link"
 import { SkillBadge } from "@/components/ui/skill-badge"
-import { ContentBox } from "@/components/ui/content-box"
+import {
+  type Position,
+  calculateDuration,
+  calculateTotalDuration,
+  experiences,
+} from "@/data/experiences"
 import { useTranslation } from "@/hooks/use-translation"
+import { motion } from "framer-motion"
+import { Calendar, MapPin } from "lucide-react"
 
 export default function ExperienceSection() {
-  const { t, formatDate, formatDuration, language, loading } = useTranslation("experience")
+  const {
+    t,
+    formatDuration,
+    language,
+    loading,
+  } = useTranslation("experience")
 
   // Helper to format display period string
   const getDisplayPeriod = (position: Position): string => {
@@ -39,7 +44,7 @@ export default function ExperienceSection() {
   return (
     <section id="experience-section" className="relative">
       {/* Section background enhancement */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -49,7 +54,7 @@ export default function ExperienceSection() {
       >
         <h2 className="text-3xl font-bold text-gray-900 mb-8 inline-block relative">
           {t("section.title")}
-          <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary"></span>
+          <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary" />
         </h2>
 
         <div className="space-y-6">
@@ -132,7 +137,7 @@ export default function ExperienceSection() {
                       {experience.positions.map((position, posIndex) => (
                         <div key={posIndex} className="relative pl-6 pb-6 last:pb-0">
                           {/* Position line */}
-                          <div className="absolute left-0 top-0 w-[1px] h-full bg-gray-200"></div>
+                          <div className="absolute left-0 top-0 w-[1px] h-full bg-gray-200" />
 
                           <div>
                             <h4 className="text-lg font-semibold text-gray-900">
@@ -185,7 +190,7 @@ export default function ExperienceSection() {
                       <div className="md:w-64 lg:w-72 md:border-l md:border-gray-100 md:pl-6">
                         <div className="mb-3">
                           <h4 className="text-sm font-medium text-gray-700 flex items-center">
-                            <span className="w-1 h-4 bg-primary/60 rounded-full mr-2"></span>
+                            <span className="w-1 h-4 bg-primary/60 rounded-full mr-2" />
                             {t("ui.skillsAcquired")}
                           </h4>
                         </div>

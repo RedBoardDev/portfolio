@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect } from "react"
 import { SITE_CONFIG } from "@/lib/seo-config"
+import { useEffect } from "react"
 
 type SectionName = "about" | "experience" | "projects" | "contact"
 

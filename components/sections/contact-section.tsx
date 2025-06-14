@@ -1,11 +1,11 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Mail, Github, Linkedin, Code, Briefcase, Check, Copy, ExternalLink } from "lucide-react"
 import { ContentBox } from "@/components/ui/content-box"
 import { useTranslation } from "@/hooks/use-translation"
+import { motion } from "framer-motion"
+import { Briefcase, Check, Code, Copy, ExternalLink, Github, Linkedin, Mail } from "lucide-react"
+import { useState } from "react"
 
 export default function ContactSection() {
   const { t, loading } = useTranslation("contact")
@@ -21,7 +21,7 @@ export default function ContactSection() {
   return (
     <section id="contact-section" className="relative">
       {/* Section background enhancement */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -56,8 +56,8 @@ export default function ContactSection() {
                       </h4>
                       <div className="hidden sm:flex items-center bg-green-50 px-2.5 py-1 rounded-full border border-green-100">
                         <div className="relative flex items-center justify-center mr-1.5">
-                          <div className="w-2 h-2 rounded-full bg-green-500 z-10"></div>
-                          <div className="absolute w-3 h-3 rounded-full bg-green-400 opacity-40 animate-ping"></div>
+                          <div className="w-2 h-2 rounded-full bg-green-500 z-10" />
+                          <div className="absolute w-3 h-3 rounded-full bg-green-400 opacity-40 animate-ping" />
                         </div>
                         <span className="text-green-700 text-xs font-medium">
                           {loading ? "..." : t("services.available")}
@@ -66,8 +66,8 @@ export default function ContactSection() {
                       {/* Version mobile plus élégante */}
                       <div className="sm:hidden flex items-center">
                         <div className="relative flex items-center justify-center mr-1.5">
-                          <div className="w-2 h-2 rounded-full bg-green-500 z-10"></div>
-                          <div className="absolute w-3 h-3 rounded-full bg-green-400 opacity-40 animate-ping"></div>
+                          <div className="w-2 h-2 rounded-full bg-green-500 z-10" />
+                          <div className="absolute w-3 h-3 rounded-full bg-green-400 opacity-40 animate-ping" />
                         </div>
                         <span className="text-green-600 text-xs font-medium">
                           {loading ? "..." : t("services.availableMobile")}
@@ -104,6 +104,7 @@ export default function ContactSection() {
                               strokeLinejoin="round"
                               className="text-green-600"
                             >
+                              <title>Maintenance</title>
                               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                             </svg>
                           </div>
@@ -131,6 +132,7 @@ export default function ContactSection() {
                               strokeLinejoin="round"
                               className="text-purple-600"
                             >
+                              <title>Sécurité</title>
                               <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                             </svg>
@@ -159,6 +161,7 @@ export default function ContactSection() {
                               strokeLinejoin="round"
                               className="text-orange-600"
                             >
+                              <title>Conseil</title>
                               <path d="M2 3h20" />
                               <path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3" />
                               <path d="m7 21 5-5 5 5" />
@@ -190,6 +193,7 @@ export default function ContactSection() {
                           fill="currentColor"
                           xmlns="http://www.w3.org/2000/svg"
                         >
+                          <title>Logo Malt</title>
                           <path d="M91.7167 110.023L86.1777 115.562L102.362 131.746C110.345 139.729 122.474 148.086 135.044 135.517C144.268 126.293 142.224 117.308 137.327 110.023H91.7167Z" />
                           <path d="M66.4967 49.136L72.0357 43.597L55.8517 27.413C47.8687 19.43 35.7397 11.073 23.1697 23.642C13.9457 32.866 15.9897 41.851 20.8867 49.136H66.4967Z" />
                           <path d="M135.045 23.642C122.475 11.071 110.346 19.429 102.362 27.413L26.9406 102.834C18.9576 110.817 10.6006 122.946 23.1696 135.516C35.7406 148.087 47.8686 139.729 55.8526 131.745L131.274 56.324C139.257 48.341 147.614 36.212 135.045 23.642Z" />
@@ -337,7 +341,7 @@ export default function ContactSection() {
                     </span>
                   </div>
                   <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full w-full bg-primary rounded-full"></div>
+                    <div className="h-full w-full bg-primary rounded-full" />
                   </div>
                 </div>
 
@@ -351,7 +355,7 @@ export default function ContactSection() {
                     </span>
                   </div>
                   <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full w-[85%] bg-primary rounded-full"></div>
+                    <div className="h-full w-[85%] bg-primary rounded-full" />
                   </div>
                 </div>
               </div>

@@ -1,9 +1,9 @@
 "use client"
 
-import { useLanguage, type Language } from "@/lib/language-context"
-import { useState, useRef, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { type Language, useLanguage } from "@/lib/language-context"
+import { AnimatePresence, motion } from "framer-motion"
 import { Check } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
 export function LanguageSwitcher() {
   const { language, setLanguage, isLoaded } = useLanguage()
@@ -41,7 +41,7 @@ export function LanguageSwitcher() {
 
   // Ne pas afficher pendant le chargement pour éviter l'hydration mismatch
   if (!isLoaded) {
-    return <div className="w-16 h-8 bg-gray-100 rounded-md animate-pulse"></div>
+    return <div className="w-16 h-8 bg-gray-100 rounded-md animate-pulse" />
   }
 
   return (

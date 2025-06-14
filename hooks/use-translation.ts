@@ -3,13 +3,17 @@
 import { type Language, useLanguage } from "@/lib/language-context"
 import { useCallback, useEffect, useState } from "react"
 
+// Type pour les traductions
+type TranslationValue = string | number | boolean | TranslationObject | TranslationValue[]
+type TranslationObject = { [key: string]: TranslationValue }
+
 // Cache pour les traductions chargées
-const translationCache = new Map<string, Record<string, any>>()
+const translationCache = new Map<string, TranslationObject>()
 
 // Hook de traduction optimisé
 export function useTranslation(namespace = "common") {
   const { language, isLoaded } = useLanguage()
-  const [translations, setTranslations] = useState<Record<string, any>>({})
+  const [translations, setTranslations] = useState<Record<string, unknown>>({})
   const [loading, setLoading] = useState(true)
 
   // Fonction pour charger les traductions
@@ -32,7 +36,7 @@ export function useTranslation(namespace = "common") {
       translationCache.set(cacheKey, data)
       return data
     } catch (error) {
-      console.error(`Error loading translations:`, error)
+      console.error("Error loading translations:", error)
       return {}
     }
   }, [])
@@ -53,11 +57,11 @@ export function useTranslation(namespace = "common") {
 
   // Fonction pour obtenir une traduction par clé avec support des clés imbriquées et des tableaux
   const t = useCallback(
-    (key: string, fallback?: any): any => {
+    (key: string, fallback?: string): unknown => {
       if (loading || !translations) return fallback || key
 
       const keys = key.split(".")
-      let value: any = translations
+      let value: unknown = translations
 
       for (const k of keys) {
         if (value && typeof value === "object" && k in value) {
