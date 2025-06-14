@@ -3,69 +3,59 @@ export interface Project {
   image: string
   languages: string[] // Renommé de technologies à languages
   githubLink: string
-  liveLink?: string
-  featured?: boolean
+  liveLink?: string // Lien optionnel vers le site
 }
 
 // Update project descriptions with more SEO-friendly content
 export const projectsData: Project[] = [
   {
-    key: "apiPlatformAdmin",
-    image: "/placeholder.svg?height=400&width=600",
-    languages: ["JavaScript", "React", "TypeScript", "PHP"],
-    githubLink: "https://github.com/redBoardDev/api-platform-admin",
-    liveLink: "https://api-platform.com/docs/admin/",
-    featured: true,
+    key: "teapotTracker",
+    image: "/assets/projects/teapottracker.png",
+    languages: ["TypeScript", "JavaScript", "Node.js"],
+    githubLink: "https://github.com/RedBoardDev/TeapotTracker",
   },
   {
-    key: "symfonyDocker",
+    key: "chromeFlex",
     image: "/placeholder.svg?height=400&width=600",
-    languages: ["Docker", "PHP", "Nginx", "PostgreSQL"],
-    githubLink: "https://github.com/redBoardDev/symfony-docker",
+    languages: ["TypeScript", "JavaScript", "Vite"],
+    githubLink: "https://github.com/RedBoardDev/ChromeFlex",
   },
   {
-    key: "blockchainProject",
-    image: "/placeholder.svg?height=400&width=600",
-    languages: ["Solidity", "JavaScript", "React", "Ethereum"],
-    githubLink: "https://github.com/redBoardDev/blockchain-project",
-    liveLink: "https://blockchain-demo.thomasott.fr",
+    key: "atlasGenAI",
+    image: "/assets/projects/atlas.png",
+    languages: ["TypeScript", "Python", "Docker"],
+    githubLink: "https://github.com/RedBoardDev/Atlas-GenAI",
+    liveLink: "https://atlas.thomasott.fr/",
   },
   {
-    key: "fullStackApp",
+    key: "invoicing",
     image: "/placeholder.svg?height=400&width=600",
-    languages: ["React", "Node.js", "TypeScript", "MySQL"],
-    githubLink: "https://github.com/redBoardDev/fullstack-app",
-    liveLink: "https://app.thomasott.fr",
+    languages: ["TypeScript", "React", "Node.js"],
+    githubLink: "https://github.com/RedBoardDev/invoicing",
   },
   {
-    key: "portfolio",
-    image: "/placeholder.svg?height=400&width=600",
-    languages: ["Next.js", "React", "TypeScript", "TailwindCSS"],
-    githubLink: "https://github.com/redBoardDev/portfolio",
-    liveLink: "https://thomasott.fr",
+    key: "epitechIntranetStatistics",
+    image: "/assets/projects/epitechintranetstats.png",
+    languages: ["JavaScript", "CSS", "HTML"],
+    githubLink: "https://github.com/RedBoardDev/EpitechIntranetStatistics",
+    liveLink: "https://chromewebstore.google.com/detail/epitech-intranet-statisti/fhelhbblcnpdfkiefkanbjjpkpejgodj",
   },
   {
-    key: "reactNativeApp",
-    image: "/placeholder.svg?height=400&width=600",
-    languages: ["React Native", "JavaScript", "Firebase"],
-    githubLink: "https://github.com/redBoardDev/react-native-app",
+    key: "rtype",
+    image: "/assets/projects/rtype.png",
+    languages: ["C++", "CMake", "Docker"],
+    githubLink: "https://github.com/RedBoardDev/rtype",
   },
   {
-    key: "smartContractEth",
+    key: "epitechArea",
     image: "/placeholder.svg?height=400&width=600",
-    languages: ["Solidity", "JavaScript", "Ethereum"],
-    githubLink: "https://github.com/redBoardDev/eth-smart-contract",
+    languages: ["JavaScript", "React", "Node.js"],
+    githubLink: "https://github.com/RedBoardDev/epitech-area",
   },
   {
-    key: "kubernetesServices",
+    key: "myFarm",
     image: "/placeholder.svg?height=400&width=600",
-    languages: ["Kubernetes", "Docker", "Go", "GitLab CI"],
-    githubLink: "https://github.com/redBoardDev/k8s-microservices",
-  },
-  {
-    key: "cliTool",
-    image: "/placeholder.svg?height=400&width=600",
-    languages: ["Node.js", "JavaScript", "Bash"],
-    githubLink: "https://github.com/redBoardDev/dev-cli-tool",
+    languages: ["C", "Makefile"],
+    githubLink: "https://github.com/RedBoardDev/MyFarm",
   },
 ]

@@ -16,41 +16,37 @@
     }
   },
   "projects": {
-    "apiPlatformAdmin": {
-      "title": "API Platform Admin",
-      "description": "Contribution significative au projet open source API Platform Admin, un outil d'administration généré automatiquement pour les APIs RESTful basées sur API Platform. Mes améliorations ont optimisé l'interface utilisateur et l'expérience développeur, facilitant la gestion des ressources API via une interface moderne en React."
+    "teapotTracker": {
+      "title": "TeapotTracker",
+      "description": "Bot Discord qui met à jour son statut basé sur le suivi du temps reçu via clockify. Implémente une Clean Architecture avec Domain-Driven Design, déploiement automatisé avec PM2 et mises à jour en temps réel des sessions de travail. Le bot écoute les webhooks et affiche différents statuts selon l'activité."
     },
-    "symfonyDocker": {
-      "title": "Symfony Docker",
-      "description": "Infrastructure Docker optimisée pour les projets Symfony incluant PHP-FPM, Nginx, et PostgreSQL. Cette configuration soigneusement élaborée permet un développement Symfony fluide et un déploiement simplifié avec des performances optimales en production."
+    "chromeFlex": {
+      "title": "ChromeFlex",
+      "description": "Framework d'extension Chrome modulaire pour ajouter facilement des fonctionnalités personnalisées spécifiques aux sites avec une architecture plug-and-play. Construit avec TypeScript et des outils de développement modernes, il offre aux développeurs une plateforme flexible pour améliorer l'expérience de navigation web."
     },
-    "blockchainProject": {
-      "title": "Blockchain Project",
-      "description": "Application décentralisée (dApp) innovante basée sur la blockchain Ethereum utilisant des contrats intelligents pour sécuriser les transactions et les données. Cette solution exploite la puissance de Solidity et React pour créer une expérience utilisateur fluide tout en préservant les avantages de la technologie blockchain."
+    "atlasGenAI": {
+      "title": "Atlas-GenAI",
+      "description": "Projet alimenté par l'IA avec des capacités génératives avancées et des fonctionnalités d'automatisation intelligente. Construit avec TypeScript et Python, incluant la conteneurisation Docker pour un déploiement évolutif. Le projet exploite les technologies IA modernes pour fournir des solutions sophistiquées."
     },
-    "fullStackApp": {
-      "title": "Full-Stack Application",
-      "description": "Plateforme web complète avec système d'authentification sécurisé, gestion efficace des données et interface utilisateur réactive. Comprend un tableau de bord administrateur intuitif et des fonctionnalités avancées de visualisation des données, le tout bâti sur une architecture robuste React/Node.js."
+    "invoicing": {
+      "title": "Système de Facturation",
+      "description": "Système moderne de facturation et de gestion des paiements construit avec TypeScript pour les petites entreprises et freelances. Génération automatisée de factures, gestion complète des clients, suivi des paiements et rapports financiers avec une interface React intuitive. Simplifie tout le processus de facturation."
     },
-    "portfolio": {
-      "title": "Portfolio Personnel",
-      "description": "Mon portfolio personnel (ce site) développé avec Next.js, React et TailwindCSS, optimisé pour les performances et le référencement. Conçu selon les meilleures pratiques d'accessibilité et d'UX, il présente mon parcours professionnel, mes compétences techniques et mes projets de manière claire et interactive."
+    "epitechIntranetStatistics": {
+      "title": "Epitech Intranet Statistics",
+      "description": "Application web fournissant des statistiques avancées pour la plateforme Intranet Epitech. Extension Chrome avec visualisation complète des données, tableau de bord personnalisable pour le suivi académique et fonctionnalités d'expérience utilisateur améliorées. Aide les étudiants à suivre efficacement leur parcours académique."
     },
-    "reactNativeApp": {
-      "title": "Application mobile React Native",
-      "description": "Application mobile cross-platform développée avec React Native pour iOS et Android offrant une expérience utilisateur native. Cette solution intègre des API REST personnalisées et exploite pleinement les fonctionnalités natives des appareils mobiles pour une expérience utilisateur optimale."
+    "rtype": {
+      "title": "Jeu R-Type",
+      "description": "Jeu de tir à défilement horizontal 2D basé sur le classique arcade R-Type original. Construit en C++ avec une architecture client-serveur robuste, gameplay multijoueur, support multi-plateforme et pratiques modernes de développement de jeux. Inclut l'architecture Entity Component System et la synchronisation réseau."
     },
-    "smartContractEth": {
-      "title": "Smart Contract ETH",
-      "description": "Développement avancé de contrats intelligents sur la blockchain Ethereum pour la gestion de tokens non-fongibles (NFT). Ce projet implémente des mécanismes de sécurité robustes et des fonctionnalités innovantes permettant des transactions transparentes et sécurisées sur la blockchain."
+    "epitechArea": {
+      "title": "Epitech AREA",
+      "description": "Plateforme d'automatisation connectant différents services et applications via des workflows et intégrations personnalisés. Construit avec JavaScript et React, permettant aux utilisateurs de créer des règles d'automatisation sophistiquées entre diverses APIs et services. Similaire à IFTTT mais adapté aux besoins des développeurs et étudiants."
     },
-    "kubernetesServices": {
-      "title": "Microservices avec Kubernetes",
-      "description": "Architecture évolutive de microservices déployée sur Kubernetes avec pipeline CI/CD automatisé. Cette solution utilise un service mesh pour une communication inter-services efficace et permet un scaling horizontal transparent pour répondre à des charges variables."
-    },
-    "cliTool": {
-      "title": "CLI pour l'automatisation",
-      "description": "Outil en ligne de commande puissant pour automatiser les tâches de développement récurrentes. Cette solution hautement configurable et extensible via un système de plugins permet de gagner un temps considérable lors du développement de projets complexes."
+    "myFarm": {
+      "title": "MyFarm RPG",
+      "description": "Moteur de jeu RPG personnalisé développé en C avec des mécaniques classiques de simulation agricole. Gestion complète des ressources, système de progression des personnages et environnement de jeu rétro. Les joueurs peuvent cultiver des récoltes, gérer le bétail et construire leur empire agricole virtuel avec des éléments de prise de décision stratégique."
     }
   }
 }
