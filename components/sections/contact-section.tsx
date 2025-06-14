@@ -42,9 +42,9 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-5 gap-8">
+        <div className="flex flex-col md:grid md:grid-cols-5 gap-8">
           {/* Freelance Services Section */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-3 order-2 md:order-1">
             <ContentBox className="h-full" shadow="md">
               <div className="p-6 sm:p-6">
                 <div className="space-y-6">
@@ -217,7 +217,7 @@ export default function ContactSection() {
           </div>
 
           {/* Contact Info */}
-          <div className="md:col-span-2 flex flex-col space-y-6 h-full">
+          <div className="md:col-span-2 flex flex-col space-y-6 h-full order-1 md:order-2">
             {/* Contact Methods */}
             <ContentBox className="flex-grow" shadow="md">
               <h3 className="text-xl font-bold mb-6 text-gray-900">
