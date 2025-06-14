@@ -41,7 +41,7 @@ jobs:
       #   run: npm run typescript:check
 
       - name: Check coding standards
-        run: npm run check-all
+        run: npm run check:all
 
       - name: Build
         run: npm run build
