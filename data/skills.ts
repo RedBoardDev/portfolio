@@ -13,20 +13,32 @@ export const skillsData: SkillCategory[] = [
     key: "programming",
     skills: [
       {
-        key: "javascript",
+        key: "js",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
       },
       {
-        key: "typescript",
+        key: "ts",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
       },
       {
-        key: "php",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg",
+        key: "python",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        key: "java",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+      },
+      {
+        key: "c",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
       },
       {
         key: "cpp",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+      },
+      {
+        key: "haskell",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/haskell/haskell-original.svg",
       },
       {
         key: "bash",
@@ -38,7 +50,7 @@ export const skillsData: SkillCategory[] = [
     key: "frameworks",
     skills: [
       {
-        key: "react",
+        key: "reactjs",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
       },
       {
@@ -54,8 +66,8 @@ export const skillsData: SkillCategory[] = [
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
       },
       {
-        key: "symfony",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg",
+        key: "fastify",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastify/fastify-original.svg",
       },
     ],
   },
@@ -71,16 +83,8 @@ export const skillsData: SkillCategory[] = [
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
       },
       {
-        key: "mongodb",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-      },
-      {
         key: "prisma",
         logo: "https://www.prisma.io/images/favicon-32x32.png",
-      },
-      {
-        key: "git",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
       },
     ],
   },
@@ -92,9 +96,22 @@ export const skillsData: SkillCategory[] = [
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
       },
       {
+        key: "git",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      },
+      {
+        key: "jenkins",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
+      },
+      {
+        key: "linux",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+      },
+      {
         key: "aws",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
       },
+
       {
         key: "cicd",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
@@ -102,6 +119,10 @@ export const skillsData: SkillCategory[] = [
       {
         key: "nginx",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
+      },
+      {
+        key: "makefile",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cmake/cmake-original.svg",
       },
     ],
   },

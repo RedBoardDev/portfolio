@@ -4,21 +4,33 @@
     "programming": {
       "name": "Langages de programmation",
       "skills": {
-        "javascript": {
+        "js": {
           "name": "JavaScript",
-          "description": "Langage principal pour le développement web frontend et backend avec Node.js"
+          "description": "Langage principal pour le développement web frontend et backend"
         },
-        "typescript": {
+        "ts": {
           "name": "TypeScript",
           "description": "Utilisé pour ajouter un typage statique et améliorer la maintenabilité du code"
         },
-        "php": {
-          "name": "PHP",
-          "description": "Utilisé pour le développement backend, notamment avec Symfony"
+        "python": {
+          "name": "Python",
+          "description": "Langage polyvalent pour le développement web, data science et automatisation"
+        },
+        "java": {
+          "name": "Java",
+          "description": "Langage orienté objet pour applications d'entreprise et développement Android"
+        },
+        "c": {
+          "name": "C",
+          "description": "Langage de programmation bas niveau pour la programmation système et systèmes embarqués"
         },
         "cpp": {
-          "name": "C/C++",
+          "name": "C++",
           "description": "Utilisé pour des projets système et applications performantes"
+        },
+        "haskell": {
+          "name": "Haskell",
+          "description": "Langage de programmation fonctionnelle pour projets académiques et de recherche"
         },
         "bash": {
           "name": "Bash",
@@ -27,9 +39,9 @@
       }
     },
     "frameworks": {
-      "name": "Frameworks & Librairies",
+      "name": "Frameworks & Runtime",
       "skills": {
-        "react": {
+        "reactjs": {
           "name": "React",
           "description": "Librairie principale pour le développement d'interfaces utilisateur"
         },
@@ -45,14 +57,14 @@
           "name": "Express",
           "description": "Framework minimaliste pour créer des API REST avec Node.js"
         },
-        "symfony": {
-          "name": "Symfony",
-          "description": "Framework PHP pour le développement d'applications web robustes"
+        "fastify": {
+          "name": "Fastify",
+          "description": "Framework web rapide et léger pour Node.js"
         }
       }
     },
     "databases": {
-      "name": "Bases de données & Outils",
+      "name": "Bases de données & ORM",
       "skills": {
         "mysql": {
           "name": "MySQL",
@@ -62,31 +74,36 @@
           "name": "PostgreSQL",
           "description": "SGBDR avancé avec fonctionnalités étendues"
         },
-        "mongodb": {
-          "name": "MongoDB",
-          "description": "Base de données NoSQL orientée documents"
-        },
         "prisma": {
           "name": "Prisma",
           "description": "ORM moderne pour Node.js et TypeScript"
-        },
-        "git": {
-          "name": "Git",
-          "description": "Système de contrôle de version pour la gestion du code source"
         }
       }
     },
     "devops": {
-      "name": "DevOps & Infrastructure",
+      "name": "DevOps & Outils",
       "skills": {
         "docker": {
           "name": "Docker",
           "description": "Conteneurisation d'applications pour le déploiement"
         },
+        "git": {
+          "name": "Git",
+          "description": "Système de contrôle de version pour la gestion du code source"
+        },
+        "jenkins": {
+          "name": "Jenkins",
+          "description": "Serveur d'automatisation pour l'intégration et le déploiement continus"
+        },
+        "linux": {
+          "name": "Linux",
+          "description": "Système d'exploitation pour serveurs et environnements de développement"
+        },
         "aws": {
           "name": "AWS",
           "description": "Services cloud pour l'hébergement et le déploiement d'applications"
         },
+
         "cicd": {
           "name": "CI/CD",
           "description": "Intégration et déploiement continus avec GitHub Actions"
@@ -94,6 +111,10 @@
         "nginx": {
           "name": "Nginx",
           "description": "Serveur web et proxy inverse pour les applications"
+        },
+        "makefile": {
+          "name": "Makefile",
+          "description": "Outil d'automatisation de build pour compiler et gérer les projets"
         }
       }
     },
