@@ -2,26 +2,21 @@ service: portfolio-static-site
 
 frameworkVersion: '3'
 
-provider:
-  name: aws
-  runtime: nodejs20.x
-  region: eu-west-3
-
 plugins:
   - serverless-s3-sync
   - serverless-cloudfront-invalidate
 
-custom:
-  # S3 Bucket configuration
-  s3Bucket: ${self:service}-${self:provider.region}
+provider:
+  name: aws
+  stage: ${opt:stage, 'production'}
+  runtime: nodejs20.x
+  region: ${opt:region, 'eu-west-3'}
 
-  # S3 Sync configuration
+custom:
   s3Sync:
-    - bucketName: ${self:custom.s3Bucket}
+    - bucketName: portfolio-static-site-${self:provider.stage}
       localDir: out
       deleteRemoved: true
-      # Remove public-read ACL since bucket is private
-      # acl: public-read
       followSymlinks: true
       defaultContentType: text/html
       params:
@@ -45,98 +40,73 @@ custom:
           CacheControl: "max-age=31536000"
         - match: "_next/static/**"
           CacheControl: "max-age=31536000, immutable"
-
-  # CloudFront Invalidation
   cloudfrontInvalidate:
-    - distributionIdKey: "CloudFrontDistribution"
+    - distributionIdKey: CloudFrontDistributionId
       items:
-        - "/*"
+        - /*
 
 resources:
   Resources:
-    # S3 Bucket for static website hosting
-    StaticSiteBucket:
+    S3Bucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: ${self:custom.s3Bucket}
+        BucketName: portfolio-static-site-${self:provider.stage}
         PublicAccessBlockConfiguration:
-          BlockPublicAcls: true
-          BlockPublicPolicy: true
-          IgnorePublicAcls: true
-          RestrictPublicBuckets: true
-        # Remove WebsiteConfiguration since we're using CloudFront
-        # WebsiteConfiguration:
-        #   IndexDocument: index.html
-        #   ErrorDocument: 404.html
-
-    # S3 Bucket Policy for CloudFront access only
-    StaticSiteBucketPolicy:
+          BlockPublicAcls: false
+          IgnorePublicAcls: false
+          BlockPublicPolicy: false
+          RestrictPublicBuckets: false
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: 404.html
+    S3BucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
-        Bucket: !Ref StaticSiteBucket
+        Bucket:
+          Ref: S3Bucket
         PolicyDocument:
           Statement:
-            - Sid: AllowCloudFrontServicePrincipal
-              Effect: Allow
-              Principal:
-                Service: cloudfront.amazonaws.com
-              Action: s3:GetObject
-              Resource: !Sub "${StaticSiteBucket}/*"
-              Condition:
-                StringEquals:
-                  AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
-
-    # CloudFront Origin Access Control
-    CloudFrontOriginAccessControl:
-      Type: AWS::CloudFront::OriginAccessControl
-      Properties:
-        OriginAccessControlConfig:
-          Name: ${self:service}-oac
-          OriginAccessControlOriginType: s3
-          SigningBehavior: always
-          SigningProtocol: sigv4
-
-    # CloudFront Distribution
+            - Effect: Allow
+              Principal: '*'
+              Action:
+                - s3:GetObject
+              Resource:
+                Fn::Join:
+                  - ''
+                  - - 'arn:aws:s3:::'
+                    - Ref: S3Bucket
+                    - '/*'
     CloudFrontDistribution:
       Type: AWS::CloudFront::Distribution
       Properties:
         DistributionConfig:
-          Origins:
-            - DomainName: !GetAtt StaticSiteBucket.RegionalDomainName
-              Id: S3Origin
-              OriginAccessControlId: !Ref CloudFrontOriginAccessControl
-
           Enabled: true
-          HttpVersion: http2
-          DefaultRootObject: index.html
-
+          Origins:
+            - DomainName: { 'Fn::GetAtt': ['S3Bucket', 'DomainName'] }
+              Id: S3-Bucket-Origin
+              S3OriginConfig:
+                OriginAccessIdentity: ''
           DefaultCacheBehavior:
-            AllowedMethods:
-              - DELETE
-              - GET
-              - HEAD
-              - OPTIONS
-              - PATCH
-              - POST
-              - PUT
-            CachedMethods:
-              - GET
-              - HEAD
-            TargetOriginId: S3Origin
+            TargetOriginId: S3-Bucket-Origin
+            ViewerProtocolPolicy: redirect-to-https
             ForwardedValues:
               QueryString: false
               Cookies:
                 Forward: none
-            ViewerProtocolPolicy: redirect-to-https
             MinTTL: 0
             DefaultTTL: 3600
             MaxTTL: 86400
             Compress: true
-
+            AllowedMethods:
+              - GET
+              - HEAD
+            CachedMethods:
+              - GET
+              - HEAD
           CacheBehaviors:
             # Cache static assets for longer
             - PathPattern: "_next/static/*"
-              TargetOriginId: S3Origin
+              TargetOriginId: S3-Bucket-Origin
               ViewerProtocolPolicy: redirect-to-https
               AllowedMethods:
                 - GET
@@ -152,68 +122,27 @@ resources:
               DefaultTTL: 31536000
               MaxTTL: 31536000
               Compress: true
-
-            # Cache images
-            - PathPattern: "*.png"
-              TargetOriginId: S3Origin
-              ViewerProtocolPolicy: redirect-to-https
-              AllowedMethods:
-                - GET
-                - HEAD
-              CachedMethods:
-                - GET
-                - HEAD
-              ForwardedValues:
-                QueryString: false
-                Cookies:
-                  Forward: none
-              MinTTL: 86400
-              DefaultTTL: 86400
-              MaxTTL: 31536000
-              Compress: true
-
-            - PathPattern: "*.jpg"
-              TargetOriginId: S3Origin
-              ViewerProtocolPolicy: redirect-to-https
-              AllowedMethods:
-                - GET
-                - HEAD
-              CachedMethods:
-                - GET
-                - HEAD
-              ForwardedValues:
-                QueryString: false
-                Cookies:
-                  Forward: none
-              MinTTL: 86400
-              DefaultTTL: 86400
-              MaxTTL: 31536000
-              Compress: true
-
+          DefaultRootObject: index.html
           CustomErrorResponses:
             - ErrorCode: 404
-              ResponseCode: 404
               ResponsePagePath: /404.html
+              ResponseCode: 404
+              ErrorCachingMinTTL: 300
             - ErrorCode: 403
-              ResponseCode: 404
               ResponsePagePath: /404.html
-
+              ResponseCode: 404
+              ErrorCachingMinTTL: 300
           PriceClass: PriceClass_100
-
   Outputs:
-    # Remove WebsiteURL since we're not using S3 website hosting
-    # WebsiteURL:
-    #   Value: !GetAtt StaticSiteBucket.WebsiteURL
-    #   Description: URL for website hosted on S3
-
-    CloudFrontDistribution:
-      Value: !Ref CloudFrontDistribution
+    CloudFrontDistributionId:
+      Value:
+        Ref: CloudFrontDistribution
       Description: CloudFront Distribution ID
-
     CloudFrontURL:
-      Value: !Sub "https://${CloudFrontDistribution.DomainName}"
+      Value:
+        Fn::Sub: "https://${CloudFrontDistribution.DomainName}"
       Description: CloudFront Distribution URL
-
     S3BucketName:
-      Value: !Ref StaticSiteBucket
+      Value:
+        Ref: S3Bucket
       Description: Name of the S3 bucket
