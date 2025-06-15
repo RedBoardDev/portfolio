@@ -4,7 +4,7 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs22.x
+  runtime: nodejs20.x
   region: ${opt:region, 'eu-west-3'}
   stage: ${opt:stage, 'dev'}
   environment:
@@ -107,9 +107,6 @@ resources:
           Origins:
             - DomainName: !GetAtt StaticSiteBucket.RegionalDomainName
               Id: S3Origin
-              # Remove deprecated S3OriginConfig
-              # S3OriginConfig:
-              #   OriginAccessIdentity: ""
               OriginAccessControlId: !Ref CloudFrontOriginAccessControl
 
           Enabled: true
