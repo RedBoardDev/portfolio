@@ -180,7 +180,7 @@ export default function ContactSection() {
 
                   <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-4 border-t border-gray-100">
                     <a
-                      href="https://www.malt.fr/profile/thomasott"
+                      href="https://www.malt.fr/profile/thomasott1"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1"

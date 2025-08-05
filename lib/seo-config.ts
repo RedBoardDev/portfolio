@@ -143,7 +143,7 @@ export const getPersonSchema = () => ({
   sameAs: [
     SITE_CONFIG.author.linkedin,
     SITE_CONFIG.author.github,
-    "https://www.malt.fr/profile/thomasott",
+    "https://www.malt.fr/profile/thomasott1",
   ],
   knowsAbout: [
     "JavaScript",

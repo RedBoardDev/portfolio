@@ -173,7 +173,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
           <path d="M141.799 59.942L101.718 100.023H132.439C143.729 100.023 158.215 97.356 158.215 79.58C158.215 66.534 150.413 61.63 141.799 59.942Z" />
         </svg>
       ),
-      url: "https://www.malt.fr/profile/thomasott",
+      url: "https://www.malt.fr/profile/thomasott1",
       label: "Malt",
       hoverColor: "#FC5656",
     },

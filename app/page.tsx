@@ -314,7 +314,7 @@ export default function Home() {
                     </p>
                     <div className="flex space-x-4 justify-center lg:justify-start">
                       <a
-                        href="https://www.malt.fr/profile/thomasott"
+                        href="https://www.malt.fr/profile/thomasott1"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#FC5656] hover:bg-[#FC5656] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FC5656] focus-visible:ring-offset-2"
@@ -425,7 +425,7 @@ export default function Home() {
             </div>
             <div className="flex space-x-4">
               <a
-                href="https://www.malt.fr/profile/thomasott"
+                href="https://www.malt.fr/profile/thomasott1"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Malt"
