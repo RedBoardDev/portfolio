@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "lint": "npm run lint:check",
     "lint:fix": "biome lint --write .",
     "lint:check": "biome check .",
     "format:fix": "biome format --write .",
