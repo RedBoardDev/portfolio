@@ -1,5 +1,6 @@
 "use client"
 
+import { SectionHeading } from "@/components/shared/section-heading"
 import { ContentBox } from "@/components/ui/content-box"
 import { ImageWithExternalLink } from "@/components/ui/image-with-external-link"
 import { SkillBadge } from "@/components/ui/skill-badge"
@@ -14,12 +15,7 @@ import { motion } from "framer-motion"
 import { Calendar, MapPin } from "lucide-react"
 
 export default function ExperienceSection() {
-  const {
-    t,
-    formatDuration,
-    language,
-    loading,
-  } = useTranslation("experience")
+  const { t, formatDuration, language, loading } = useTranslation("experience")
 
   // Helper to format display period string
   const getDisplayPeriod = (position: Position): string => {
@@ -43,19 +39,13 @@ export default function ExperienceSection() {
   }
   return (
     <section id="experience-section" className="relative">
-      {/* Section background enhancement */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10" />
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 inline-block relative">
-          {t("section.title")}
-          <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary" />
-        </h2>
+        <SectionHeading title={t("section.title")} className="mb-10" />
 
         <div className="space-y-6">
           {experiences.map((experience, index) => {

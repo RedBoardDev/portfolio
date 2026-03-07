@@ -14,7 +14,7 @@ const sectionData = {
   about: {
     title: `À propos | ${SITE_CONFIG.name}`,
     description:
-      "Découvrez mon parcours de développeur full-stack spécialisé en React, Next.js et TypeScript.",
+      "Découvrez mon parcours de développeur front-end spécialisé en React, Next.js et TypeScript.",
     canonical: `${SITE_CONFIG.url}#about`,
   },
   experience: {

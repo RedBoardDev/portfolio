@@ -1,47 +1,40 @@
 "use client"
 
+import { SectionHeading } from "@/components/shared/section-heading"
 import { Button } from "@/components/ui/button"
 import { ContentBox } from "@/components/ui/content-box"
 import { useTranslation } from "@/hooks/use-translation"
 import { motion } from "framer-motion"
-import { Briefcase, Check, Code, Copy, ExternalLink, Github, Linkedin, Mail } from "lucide-react"
+import { Check, Code, Copy, ExternalLink, Github, Linkedin, Mail } from "lucide-react"
 import { useState } from "react"
 
 export default function ContactSection() {
   const { t, loading } = useTranslation("contact")
   const [emailCopied, setEmailCopied] = useState(false)
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
       setEmailCopied(true)
-      setTimeout(() => setEmailCopied(false), 2000) // Réinitialiser après 2 secondes
-    })
+      window.setTimeout(() => setEmailCopied(false), 2000)
+    } catch (error) {
+      console.error("Failed to copy email", error)
+    }
   }
 
   return (
     <section id="contact-section" className="relative">
-      {/* Section background enhancement */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10" />
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <div className="mb-8">
-          <div className="flex items-center gap-4 mb-2">
-            <div className="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center">
-              <Briefcase className="h-8 w-8 text-blue-500" />
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900">
-                {loading ? "..." : t("freelance.title")}
-              </h2>
-              <p className="text-gray-600 text-lg">{loading ? "..." : t("freelance.subtitle")}</p>
-            </div>
-          </div>
-        </div>
+        <SectionHeading
+          title={loading ? "..." : t("freelance.title")}
+          description={loading ? "..." : t("freelance.subtitle")}
+          className="mb-10"
+        />
 
         <div className="flex flex-col md:grid md:grid-cols-5 gap-8">
           {/* Freelance Services Section */}
@@ -75,7 +68,7 @@ export default function ContactSection() {
                       </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                      <div className="rounded-[16px] border border-slate-200/80 bg-white/80 p-4 shadow-[0_18px_38px_-34px_rgba(15,23,42,0.28)]">
                         <div className="flex items-center mb-2">
                           <div className="w-8 h-8 rounded-md bg-blue-100 flex items-center justify-center mr-3">
                             <Code className="h-4 w-4 text-blue-600" />
@@ -89,7 +82,7 @@ export default function ContactSection() {
                         </p>
                       </div>
 
-                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                      <div className="rounded-[16px] border border-slate-200/80 bg-white/80 p-4 shadow-[0_18px_38px_-34px_rgba(15,23,42,0.28)]">
                         <div className="flex items-center mb-2">
                           <div className="w-8 h-8 rounded-md bg-green-100 flex items-center justify-center mr-3">
                             <svg
@@ -117,7 +110,7 @@ export default function ContactSection() {
                         </p>
                       </div>
 
-                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                      <div className="rounded-[16px] border border-slate-200/80 bg-white/80 p-4 shadow-[0_18px_38px_-34px_rgba(15,23,42,0.28)]">
                         <div className="flex items-center mb-2">
                           <div className="w-8 h-8 rounded-md bg-purple-100 flex items-center justify-center mr-3">
                             <svg
@@ -146,7 +139,7 @@ export default function ContactSection() {
                         </p>
                       </div>
 
-                      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                      <div className="rounded-[16px] border border-slate-200/80 bg-white/80 p-4 shadow-[0_18px_38px_-34px_rgba(15,23,42,0.28)]">
                         <div className="flex items-center mb-2">
                           <div className="w-8 h-8 rounded-md bg-orange-100 flex items-center justify-center mr-3">
                             <svg
@@ -178,14 +171,16 @@ export default function ContactSection() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-4 border-t border-gray-100">
-                    <a
-                      href="https://www.malt.fr/profile/thomasott1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1"
+                  <div className="mt-6 flex flex-col gap-4 border-t border-gray-100 pt-4 sm:flex-row">
+                    <Button
+                      asChild
+                      className="w-full flex-1 gap-2 border-[#FC5656] bg-[#FC5656] text-white shadow-[0_16px_30px_-22px_rgba(252,86,86,0.42)] hover:border-[#e04747] hover:bg-[#e04747]"
                     >
-                      <Button className="w-full gap-2 bg-[#FC5656] hover:bg-[#e04747] text-white">
+                      <a
+                        href="https://www.malt.fr/profile/thomasott1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <svg
                           width="20"
                           height="20"
@@ -203,18 +198,15 @@ export default function ContactSection() {
                           <path d="M141.799 59.942L101.718 100.023H132.439C143.729 100.023 158.215 97.356 158.215 79.58C158.215 66.534 150.413 61.63 141.799 59.942Z" />
                         </svg>
                         {loading ? "..." : t("buttons.contactMalt")}
-                      </Button>
-                    </a>
+                      </a>
+                    </Button>
 
-                    <a href="mailto:ott.thomas68@gmail.com" className="flex-1">
-                      <Button
-                        variant="outline"
-                        className="w-full gap-2 border-primary text-primary hover:bg-primary hover:text-white"
-                      >
+                    <Button asChild variant="outline" className="w-full flex-1 gap-2">
+                      <a href="mailto:ott.thomas68@gmail.com">
                         <Mail size={18} />
                         {loading ? "..." : t("buttons.sendEmail")}
-                      </Button>
-                    </a>
+                      </a>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -237,12 +229,13 @@ export default function ContactSection() {
                   transition={{ delay: 0.1 }}
                 >
                   <button
+                    type="button"
                     onClick={() => copyToClipboard("ott.thomas68@gmail.com")}
-                    className="flex items-center group w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md"
+                    className="flex w-full items-center rounded-md text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     aria-label={loading ? "..." : t("contact.copyEmail")}
                     aria-live="polite"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center mr-4 shadow-sm group-hover:scale-105 transition-transform">
+                    <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500 shadow-sm">
                       <Mail className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
                     <div className="flex-grow">
@@ -276,10 +269,10 @@ export default function ContactSection() {
                     href="https://www.linkedin.com/in/thomas--ott"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center group w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md"
+                    className="flex w-full items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     aria-label="Open LinkedIn profile in a new tab"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-blue-700 flex items-center justify-center mr-4 shadow-sm group-hover:scale-105 transition-transform">
+                    <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-700 shadow-sm">
                       <Linkedin className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
                     <div className="flex-grow">
@@ -304,10 +297,10 @@ export default function ContactSection() {
                     href="https://github.com/redBoardDev"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center group w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md"
+                    className="flex w-full items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                     aria-label="Open GitHub profile in a new tab"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center mr-4 shadow-sm group-hover:scale-105 transition-transform">
+                    <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 shadow-sm">
                       <Github className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
                     <div className="flex-grow">

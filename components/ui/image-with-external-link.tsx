@@ -29,7 +29,7 @@ export function ImageWithExternalLink({
   return (
     <div className={`relative ${containerClassName}`}>
       <div
-        className={`rounded-lg overflow-hidden bg-white border border-gray-100 flex-shrink-0 ${className}`}
+        className={`flex-shrink-0 overflow-hidden rounded-md border border-gray-200 bg-white shadow-sm ${className}`}
       >
         <Image
           src={src || "/placeholder.svg"}
@@ -44,11 +44,11 @@ export function ImageWithExternalLink({
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute -bottom-1 -right-1 w-6 h-6 flex items-center justify-center rounded-full backdrop-blur-md bg-white/80 hover:bg-white/90 transition-all duration-200 border border-white/30 shadow-lg hover:shadow-xl hover:scale-105"
+          className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full border border-white/30 bg-white/90 shadow-md transition-[background-color,box-shadow] duration-200 hover:bg-white"
           title={buttonTitle}
           aria-label={buttonAriaLabel}
         >
-          <ExternalLink size={12} className="text-primary/80" />
+          <ExternalLink size={11} className="text-primary" />
         </a>
       )}
     </div>

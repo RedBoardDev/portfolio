@@ -4,35 +4,35 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 32 38% 96%;
+    --foreground: 222 39% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 39% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 39% 12%;
 
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 221 89% 56%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 36 28% 92%;
+    --secondary-foreground: 222 39% 16%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 35 22% 91%;
+    --muted-foreground: 218 16% 38%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 218 58% 95%;
+    --accent-foreground: 222 39% 16%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 20% 84%;
+    --input: 220 20% 84%;
+    --ring: 221 89% 56%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 
   .dark {
@@ -70,26 +70,89 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body), sans-serif;
+    background-image: radial-gradient(circle at top left, rgba(32, 88, 255, 0.1), transparent 28%),
+      radial-gradient(circle at 85% 18%, rgba(232, 181, 64, 0.1), transparent 18%),
+      linear-gradient(180deg, rgba(252, 250, 245, 0.96), rgba(247, 243, 236, 0.98));
+    background-attachment: fixed;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(rgba(15, 23, 42, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+    -webkit-mask-image: radial-gradient(circle at center, black 28%, transparent 88%);
+    mask-image: radial-gradient(circle at center, black 28%, transparent 88%);
+    opacity: 0.45;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), sans-serif;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    text-wrap: pretty;
+  }
+
+  :where(code, pre, .font-mono) {
+    font-family: var(--font-mono), monospace;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  section[id$="-section"] {
+    scroll-margin-top: 7.5rem;
   }
 }
 
-/* Styles personnalisés pour les sections */
+::selection {
+  background: rgba(37, 99, 235, 0.18);
+  color: rgb(15, 23, 42);
+}
+
 .education-timeline-item:hover .education-timeline-connector {
   @apply bg-gray-300;
 }
 
-/* Masquer la barre de défilement tout en permettant le défilement */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Animations personnalisées pour la photo de profil */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes float {
   0%,
   100% {
@@ -116,4 +179,18 @@
 
 .animate-float-delayed {
   animation: float-delayed 3s ease-in-out infinite 1.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

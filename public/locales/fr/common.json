@@ -5,17 +5,23 @@
     "education": "Formation",
     "skills": "Compétences",
     "projects": "Projets",
-    "freelance": "Freelance"
+    "freelance": "Contact",
+    "available": "Disponible"
   },
   "hero": {
-    "title": "Développeur Full-Stack",
+    "title": "Développeur front-end",
     "name": "Thomas OTT",
-    "description": "Je conçois et développe des applications web modernes et performantes, en utilisant les technologies",
+    "description": "Je conçois des interfaces web exigeantes, rapides et accessibles, avec une attention forte portée à l’expérience utilisateur, à la qualité d’exécution et à l’ingénierie autour de",
     "technologies": {
       "react": "React",
       "typescript": "TypeScript",
       "nodejs": "Node.js",
       "and": "et"
+    },
+    "highlights": {
+      "interfaces": "Interfaces robustes et responsive",
+      "accessibility": "Accessibilité, lisibilité et soin des détails",
+      "performance": "Performance orientée production"
     },
     "location": "Mulhouse, Grand Est, France",
     "downloadCV": "Télécharger CV",

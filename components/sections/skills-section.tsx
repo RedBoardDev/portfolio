@@ -1,5 +1,6 @@
 "use client"
 
+import { SectionHeading } from "@/components/shared/section-heading"
 import { ContentBox } from "@/components/ui/content-box"
 import { SkillBadge } from "@/components/ui/skill-badge"
 import { skillsData } from "@/data/skills"
@@ -11,30 +12,31 @@ export default function SkillsSection() {
 
   return (
     <section id="skills-section" className="relative">
-      {/* Section background enhancement */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-white rounded-xl -z-10" />
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-bold text-gray-900 mb-6 inline-block relative">
-          {loading ? "..." : t("title")}
-          <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-primary" />
-        </h2>
+        <SectionHeading title={loading ? "..." : t("title")} className="mb-10" />
 
-        {/* Skills grid */}
         <ContentBox shadow="md">
-          <div className="grid gap-y-6">
+          <div className="grid gap-4 md:grid-cols-2">
             {skillsData.map((category, categoryIndex) => (
-              <div key={categoryIndex}>
-                <h3 className="text-lg font-semibold mb-4 text-gray-800">
-                  {loading ? "..." : t(`categories.${category.key}.name`)}
-                </h3>
+              <div
+                key={categoryIndex}
+                className="rounded-[18px] border border-slate-200/80 bg-white/58 p-5"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    {loading ? "..." : t(`categories.${category.key}.name`)}
+                  </h3>
+                  <span className="font-mono text-xs uppercase tracking-[0.22em] text-slate-400">
+                    {String(category.skills.length).padStart(2, "0")}
+                  </span>
+                </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-2.5">
                   {category.skills.map((skill, skillIndex) => (
                     <SkillBadge
                       key={skillIndex}

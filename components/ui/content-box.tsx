@@ -10,8 +10,6 @@ export interface ContentBoxProps {
   footerContent?: ReactNode
   noPadding?: boolean
   variant?: "default" | "subtle" | "outline"
-  borderAccent?: "none" | "left" | "top" | "bottom" | "right"
-  borderAccentColor?: string
   shadow?: "none" | "sm" | "md" | "lg"
 }
 
@@ -24,50 +22,32 @@ export function ContentBox({
   footerContent,
   noPadding = false,
   variant = "default",
-  borderAccent = "none",
-  borderAccentColor = "bg-primary",
   shadow = "sm",
 }: ContentBoxProps) {
-  // Styles de base pour toutes les variantes
-  const baseStyles = "rounded-xl border border-gray-100"
+  const baseStyles =
+    "relative overflow-hidden rounded-[20px] border border-white/70 backdrop-blur-md"
 
-  // Styles spécifiques à chaque variante
   const variantStyles = {
-    default: "bg-white",
-    subtle: "bg-gray-50/80",
-    outline: "bg-transparent border-gray-200",
+    default:
+      "bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(255,255,255,0.74))] supports-[backdrop-filter]:bg-white/72",
+    subtle:
+      "bg-[linear-gradient(180deg,rgba(255,255,255,0.76),rgba(255,255,255,0.56))] supports-[backdrop-filter]:bg-white/56",
+    outline: "bg-transparent border-slate-300/70",
   }
 
-  // Styles pour l'accent de bordure
-  const borderAccentStyles = {
-    none: "",
-    left: "relative",
-    top: "relative",
-    bottom: "relative",
-    right: "relative",
-  }
-
-  // Styles pour les ombres
   const shadowStyles = {
     none: "",
-    sm: "shadow-sm hover:shadow transition-shadow duration-200",
-    md: "shadow hover:shadow-md transition-shadow duration-200",
-    lg: "shadow-md hover:shadow-lg transition-shadow duration-200",
+    sm: "shadow-[0_24px_58px_-40px_rgba(15,23,42,0.28)]",
+    md: "shadow-[0_28px_68px_-42px_rgba(15,23,42,0.32)]",
+    lg: "shadow-[0_34px_78px_-46px_rgba(15,23,42,0.36)]",
   }
 
   return (
-    <div
-      className={cn(
-        baseStyles,
-        variantStyles[variant],
-        borderAccentStyles[borderAccent],
-        shadowStyles[shadow],
-        className
-      )}
-    >
-      {/* Header avec titre optionnel */}
+    <div className={cn(baseStyles, variantStyles[variant], shadowStyles[shadow], className)}>
+      <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-90" />
+
       {(title || headerContent) && (
-        <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+        <div className="relative z-[1] flex items-center justify-between border-b border-slate-200/80 px-6 py-4">
           {title && (
             <h3 className={cn("text-lg font-semibold text-gray-900", titleClassName)}>{title}</h3>
           )}
@@ -75,11 +55,11 @@ export function ContentBox({
         </div>
       )}
 
-      {/* Contenu principal */}
-      <div className={noPadding ? "" : "p-6"}>{children}</div>
+      <div className={cn("relative z-[1]", noPadding ? "" : "p-6")}>{children}</div>
 
-      {/* Footer optionnel */}
-      {footerContent && <div className="px-6 py-4 border-t border-gray-100">{footerContent}</div>}
+      {footerContent && (
+        <div className="relative z-[1] border-t border-slate-200/80 px-6 py-4">{footerContent}</div>
+      )}
     </div>
   )
 }

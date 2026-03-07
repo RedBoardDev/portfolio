@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   name: "Thomas OTT",
   title: "Thomas OTT - portfolio",
   description:
-    "Développeur full-stack freelance spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences.",
+    "Développeur front-end spécialisé en React, Next.js et TypeScript. Découvrez mes projets, mon approche UI et mon exigence de qualité.",
   url: "https://thomasott.fr",
   author: {
     name: "Thomas Ott",
@@ -14,7 +14,7 @@ export const SITE_CONFIG = {
   },
   keywords: [
     "Thomas OTT développeur",
-    "développeur full-stack Mulhouse",
+    "développeur front-end Mulhouse",
     "freelance React Mulhouse",
     "développeur Next.js Alsace",
     "TypeScript expert France",
@@ -39,9 +39,9 @@ export const getMetadata = ({
   image,
   url,
   keywords = [],
-  type = "website",
-  publishedTime,
-  modifiedTime,
+  type: _type = "website",
+  publishedTime: _publishedTime,
+  modifiedTime: _modifiedTime,
   authors = [SITE_CONFIG.author.name],
 }: {
   title?: string
@@ -127,8 +127,8 @@ export const getPersonSchema = () => ({
   email: SITE_CONFIG.author.email,
   image: `${SITE_CONFIG.url}/assets/profile.png`,
   description:
-    "Thomas OTT, développeur full-stack freelance spécialisé en React, Next.js et TypeScript. Basé à Mulhouse, Grand Est, France.",
-  jobTitle: "Développeur Full-Stack React & TypeScript",
+    "Thomas OTT, développeur front-end spécialisé en React, Next.js et TypeScript. Basé à Mulhouse, Grand Est, France.",
+  jobTitle: "Développeur Front-End React & TypeScript",
   alternateName: ["Thomas OTT", "Thomas OTT Dev", "Thomas Ott Développeur"],
   worksFor: {
     "@type": "Organization",

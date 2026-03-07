@@ -1,5 +1,6 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { useTranslation } from "@/hooks/use-translation"
 import type { SectionName } from "@/lib/types"
 import { AnimatePresence, motion } from "framer-motion"
@@ -34,10 +35,8 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
   const { t, loading } = useTranslation("common")
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
   const [activeSection, setActiveSection] = useState<SectionName | null>("about")
 
-  // Refs for the sections
   const sectionRefs = useRef({
     about: null as HTMLElement | null,
     experience: null as HTMLElement | null,
@@ -49,28 +48,18 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      setScrolled(window.scrollY > 18)
     }
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768) // 768px is the md breakpoint in Tailwind
-    }
-
-    // Initial check
-    handleResize()
 
     window.addEventListener("scroll", handleScroll)
-    window.addEventListener("resize", handleResize)
+    handleScroll()
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", handleResize)
     }
   }, [])
 
-  // Set up intersection observer to track which section is in view
   useEffect(() => {
-    // Find all section elements
     sectionRefs.current.about = document.getElementById("about-section")
     sectionRefs.current.experience = document.getElementById("experience-section")
     sectionRefs.current.education = document.getElementById("education-section")
@@ -78,38 +67,54 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
     sectionRefs.current.projects = document.getElementById("projects-section")
     sectionRefs.current.contact = document.getElementById("contact-section")
 
-    const sectionElements = Object.values(sectionRefs.current).filter(
-      (el) => el !== null
-    ) as HTMLElement[]
+    const sectionElements = Object.values(sectionRefs.current).filter(Boolean) as HTMLElement[]
 
-    // Create observer
-    const observerOptions = {
-      root: null, // viewport
-      rootMargin: "-100px 0px -300px 0px", // top, right, bottom, left
-      threshold: 0, // trigger when any part of the element is in view
-    }
-
-    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          const id = entry.target.id.replace("-section", "")
-          setActiveSection(id as SectionName)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id.replace("-section", "")
+            setActiveSection(id as SectionName)
+          }
         }
+      },
+      {
+        root: null,
+        rootMargin: "-140px 0px -40% 0px",
+        threshold: 0.1,
       }
-    }
+    )
 
-    const observer = new IntersectionObserver(handleIntersect, observerOptions)
-
-    // Observe all sections
     for (const section of sectionElements) {
       observer.observe(section)
     }
 
     return () => {
-      // Clean up
       for (const section of sectionElements) {
         observer.unobserve(section)
       }
+    }
+  }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : ""
+
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [mobileMenuOpen])
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false)
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown)
     }
   }, [])
 
@@ -147,7 +152,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
     {
       name: t("navigation.freelance"),
       action: onNavigate.contact,
-      icon: <Briefcase size={16} />,
+      icon: <Mail size={16} />,
       id: "contact",
     },
   ]
@@ -175,114 +180,115 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
       ),
       url: "https://www.malt.fr/profile/thomasott1",
       label: "Malt",
-      hoverColor: "#FC5656",
+      hoverClassName: "hover:text-[#FC5656]",
     },
     {
       icon: <Github size={16} />,
       url: "https://github.com/redBoardDev",
       label: "GitHub",
-      hoverColor: "#24292e",
+      hoverClassName: "hover:text-[#24292e]",
     },
     {
       icon: <Linkedin size={16} />,
       url: "https://www.linkedin.com/in/thomas--ott",
       label: "LinkedIn",
-      hoverColor: "#0077B5",
+      hoverClassName: "hover:text-[#0077B5]",
     },
     {
       icon: <Mail size={16} />,
       url: "mailto:ott.thomas68@gmail.com",
       label: "Email",
-      hoverColor: "var(--primary)",
+      hoverClassName: "hover:text-primary",
     },
   ]
 
-  // Determine header background style based on scroll state and device
-  const headerBgClass =
-    isMobile && scrolled
-      ? "bg-transparent" // Mobile + scrolled: transparent background
-      : scrolled
-        ? "bg-white/80 backdrop-blur-sm border-b border-gray-100/80 shadow-sm" // Desktop + scrolled: semi-transparent
-        : "bg-transparent" // Not scrolled: transparent for all devices
+  const frameClass = scrolled
+    ? "border-slate-200/80 bg-white/86 shadow-[0_22px_60px_-34px_rgba(15,23,42,0.32)]"
+    : "border-white/70 bg-white/64 shadow-[0_24px_56px_-40px_rgba(15,23,42,0.26)]"
+
+  const handleNav = (section: SectionName, action: () => void) => {
+    action()
+    setActiveSection(section)
+    setMobileMenuOpen(false)
+  }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBgClass}`}
-    >
-      {/* Include SectionSEO component */}
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
       <SectionSEO activeSection={activeSection} />
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 md:px-10 lg:px-12">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo - Hidden on mobile when scrolled */}
-          <div
-            className={`flex ${isMobile && scrolled ? "opacity-0" : "opacity-100"} transition-opacity`}
-          >
+
+      <div className="mx-auto max-w-6xl">
+        <div
+          className={`rounded-[20px] border px-3 py-2.5 backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300 ${frameClass}`}
+        >
+          <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3">
             <button
+              type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className={`font-bold text-xl flex items-center transition-colors ${
-                scrolled ? "text-gray-900" : "text-gray-800"
-              }`}
+              className="group flex items-center rounded-[14px] px-1 py-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              aria-label="Retour en haut de page"
             >
-              <span className="text-primary">T</span>O
+              <span className="hidden min-w-0 sm:flex flex-col">
+                <span className="truncate text-base font-semibold text-slate-950">Thomas OTT</span>
+                <span className="text-sm text-slate-500">{loading ? "..." : t("hero.title")}</span>
+              </span>
+              <span className="text-base font-semibold text-slate-950 sm:hidden">Thomas OTT</span>
             </button>
-          </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-1">
-            {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}-section`}
-                onClick={(e) => {
-                  e.preventDefault()
-                  item.action()
-                  setActiveSection(item.id as SectionName)
-                }}
-                className={`
-                  px-3 py-2 text-sm font-medium rounded-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
-                  ${
-                    scrolled
-                      ? "text-gray-600 hover:text-primary hover:bg-gray-50/80"
-                      : "text-gray-700 hover:text-primary hover:bg-white/30"
-                  }
-                  ${activeSection === item.id ? "text-primary" : ""}
-                `}
-                aria-current={activeSection === item.id ? "page" : undefined}
+            <nav className="hidden lg:flex justify-center">
+              <div className="flex items-center gap-1 rounded-[16px] border border-slate-200/80 bg-white/52 px-2 py-1.5">
+                {navItems.map((item) => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}-section`}
+                    onClick={(event) => {
+                      event.preventDefault()
+                      handleNav(item.id as SectionName, item.action)
+                    }}
+                    className={`rounded-xl px-4 py-2 text-sm font-medium transition-[background-color,color,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                      activeSection === item.id
+                        ? "bg-slate-950 text-white shadow-[0_12px_24px_-16px_rgba(15,23,42,0.5)]"
+                        : "text-slate-600 hover:bg-white hover:text-slate-950"
+                    }`}
+                    aria-current={activeSection === item.id ? "page" : undefined}
+                  >
+                    {loading ? "..." : item.name}
+                  </a>
+                ))}
+              </div>
+            </nav>
+
+            <div className="hidden md:flex items-center justify-end gap-2">
+              <LanguageSwitcher />
+
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="hidden lg:inline-flex"
+                onClick={() => handleNav("contact", onNavigate.contact)}
               >
-                {loading ? "..." : item.name}
-              </a>
-            ))}
+                {loading ? "..." : t("hero.contact")}
+              </Button>
+            </div>
 
-            {/* Language Switcher */}
-            <LanguageSwitcher />
-          </nav>
+            <div className="flex items-center justify-end gap-2 md:hidden">
+              <LanguageSwitcher />
 
-          {/* Mobile Navigation Button */}
-          <div className="md:hidden flex items-center gap-2">
-            {/* Language Switcher Mobile */}
-            <LanguageSwitcher />
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`
-                p-2 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
-                ${
-                  scrolled
-                    ? "text-gray-600 hover:text-primary hover:bg-gray-50/80"
-                    : "text-gray-700 hover:text-primary hover:bg-white/30"
-                }
-              `}
-              aria-label="Menu de navigation"
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen((open) => !open)}
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300/75 bg-white/82 text-slate-700 shadow-[0_16px_28px_-24px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color,box-shadow] duration-200 hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                aria-label="Menu de navigation"
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-menu"
+              >
+                {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation Menu - Redesigned for quick access */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -292,50 +298,51 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {/* Backdrop */}
-            <motion.div
-              className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            <motion.button
+              type="button"
+              className="absolute inset-0 bg-slate-950/28 backdrop-blur-[3px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
+              aria-label="Fermer le menu"
             />
 
-            {/* Menu panel */}
             <motion.div
               id="mobile-menu"
-              className="absolute right-4 top-20 w-56 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden"
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              className="absolute left-4 right-4 top-[5.4rem] overflow-hidden rounded-[22px] border border-white/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.88))] shadow-[0_32px_70px_-40px_rgba(15,23,42,0.5)]"
+              initial={{ opacity: 0, y: -18, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              exit={{ opacity: 0, y: -18, scale: 0.96 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
             >
-              <div className="p-2">
+              <div className="border-b border-slate-200/80 px-5 py-4">
+                <p className="font-mono text-[0.68rem] uppercase tracking-[0.26em] text-slate-500">
+                  Navigation
+                </p>
+                <p className="mt-2 text-sm text-slate-600">
+                  {loading ? "..." : t("hero.title")} · Mulhouse
+                </p>
+              </div>
+
+              <div className="p-3">
                 {navItems.map((item) => (
                   <motion.a
                     key={item.id}
                     href={`#${item.id}-section`}
-                    whileTap={{ scale: 0.97 }}
-                    className={`
-                      w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-left
-                      transition-colors mb-0.5 last:mb-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1
-                      ${
-                        activeSection === item.id
-                          ? "bg-primary/10 text-primary"
-                          : "text-gray-700 hover:bg-gray-50 hover:text-primary"
-                      }
-                    `}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      item.action()
-                      setActiveSection(item.id as SectionName)
-                      setMobileMenuOpen(false)
+                    whileTap={{ scale: 0.98 }}
+                    className={`mb-1.5 flex w-full items-center gap-3 rounded-[14px] px-4 py-3 text-sm font-medium transition-[background-color,color] duration-200 last:mb-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 ${
+                      activeSection === item.id
+                        ? "bg-slate-950 text-white"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-slate-950"
+                    }`}
+                    onClick={(event) => {
+                      event.preventDefault()
+                      handleNav(item.id as SectionName, item.action)
                     }}
                     aria-current={activeSection === item.id ? "page" : undefined}
                   >
-                    <span
-                      className={`${activeSection === item.id ? "text-primary" : "text-gray-400"}`}
-                    >
+                    <span className={activeSection === item.id ? "text-white" : "text-slate-400"}>
                       {item.icon}
                     </span>
                     {loading ? "..." : item.name}
@@ -343,21 +350,25 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                 ))}
               </div>
 
-              {/* Social links footer */}
-              <div className="mt-1 py-2.5 px-3 border-t border-gray-100 bg-gray-50/80">
-                <div className="flex items-center justify-center space-x-5">
-                  {socialLinks.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.url}
-                      target={link.url.startsWith("http") ? "_blank" : undefined}
-                      rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
-                      aria-label={link.label}
-                      className={`text-gray-500 hover:text-[${link.hoverColor}] transition-colors`}
-                    >
-                      {link.icon}
-                    </a>
-                  ))}
+              <div className="border-t border-slate-200/80 bg-slate-50/80 px-5 py-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+                    Links
+                  </span>
+                  <div className="flex items-center gap-3">
+                    {socialLinks.map((link, index) => (
+                      <a
+                        key={index}
+                        href={link.url}
+                        target={link.url.startsWith("http") ? "_blank" : undefined}
+                        rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                        aria-label={link.label}
+                        className={`text-slate-500 transition-colors ${link.hoverClassName}`}
+                      >
+                        {link.icon}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

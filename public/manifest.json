@@ -1,7 +1,7 @@
 {
   "name": "Thomas OTT - portfolio",
   "short_name": "Thomas OTT",
-  "description": "Développeur full-stack freelance spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences.",
+  "description": "Développeur front-end spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

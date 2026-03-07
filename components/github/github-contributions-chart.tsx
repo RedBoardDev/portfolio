@@ -174,20 +174,3 @@ export function GitHubContributions({
     </div>
   )
 }
-
-// Couleurs de secours pour les langages
-function getLanguageColor(index: number): string {
-  const colors = [
-    "#3572A5", // Python (bleu)
-    "#f1e05a", // JavaScript (jaune)
-    "#2b7489", // TypeScript (bleu-vert)
-    "#e34c26", // HTML (orange)
-    "#563d7c", // CSS (violet)
-    "#4F5D95", // PHP (violet foncé)
-    "#00ADD8", // Go (bleu clair)
-    "#b07219", // Java (marron)
-    "#dea584", // Rust (beige)
-    "#178600", // C# (vert)
-  ]
-  return colors[index % colors.length]
-}

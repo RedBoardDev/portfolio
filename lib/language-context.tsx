@@ -12,11 +12,10 @@ interface LanguageContextType {
   isLoaded: boolean
 }
 
-// Valeurs par défaut du contexte
 const defaultContext: LanguageContextType = {
-  language: "en",
+  language: "fr",
   setLanguage: () => {},
-  isLoaded: false,
+  isLoaded: true,
 }
 
 // Création du contexte
@@ -30,48 +29,46 @@ interface LanguageProviderProps {
   children: ReactNode
 }
 
-// Provider du contexte de langue
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [language, setLanguageState] = useState<Language>("en")
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [language, setLanguageState] = useState<Language>("fr")
 
-  // Fonction pour changer de langue
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)
-    // Sauvegarder la préférence de langue dans localStorage
-    if (typeof window !== "undefined") {
-      localStorage.setItem("preferred-language", lang)
-    }
   }
 
-  // Effect pour initialiser la langue en fonction de localStorage ou navigator.language
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Vérifier localStorage d'abord
-      const storedLanguage = localStorage.getItem("preferred-language") as Language | null
-
-      if (storedLanguage && (storedLanguage === "fr" || storedLanguage === "en")) {
-        setLanguageState(storedLanguage)
-      } else {
-        // Utiliser la langue du navigateur comme fallback
-        const browserLang = navigator.language.toLowerCase()
-        // Si c'est français (fr, fr-FR, fr-CA, etc.), utiliser français, sinon anglais
-        const detectedLang: Language = browserLang.startsWith("fr") ? "fr" : "en"
-        setLanguageState(detectedLang)
-        localStorage.setItem("preferred-language", detectedLang)
-      }
-
-      setIsLoaded(true)
+    if (typeof window === "undefined") {
+      return
     }
+
+    const storedLanguage = localStorage.getItem("preferred-language")
+    if (storedLanguage === "fr" || storedLanguage === "en") {
+      setLanguageState(storedLanguage)
+      return
+    }
+
+    const browserLanguages = navigator.languages?.length
+      ? navigator.languages
+      : [navigator.language]
+    const detectedLanguage = browserLanguages.some((entry) => entry.toLowerCase().startsWith("fr"))
+      ? "fr"
+      : "en"
+
+    setLanguageState(detectedLanguage)
+    localStorage.setItem("preferred-language", detectedLanguage)
   }, [])
 
-  // Pendant le chargement, ne pas rendre les enfants pour éviter l'hydration mismatch
-  if (!isLoaded) {
-    return null
-  }
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return
+    }
+
+    localStorage.setItem("preferred-language", language)
+    document.documentElement.lang = language
+  }, [language])
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, isLoaded }}>
+    <LanguageContext.Provider value={{ language, setLanguage, isLoaded: true }}>
       {children}
     </LanguageContext.Provider>
   )

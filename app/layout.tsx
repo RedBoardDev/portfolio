@@ -4,13 +4,26 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/lib/language-context"
 import { getMetadata, getOrganizationSchema, getPersonSchema } from "@/lib/seo-config"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { IBM_Plex_Mono, Manrope, Space_Grotesk } from "next/font/google"
 import Script from "next/script"
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
-  display: "swap", // Optimize font display
-  variable: "--font-inter", // For Tailwind variable
+  display: "swap",
+  variable: "--font-body",
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display",
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  variable: "--font-mono",
 })
 
 export const metadata: Metadata = getMetadata()
@@ -21,7 +34,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr" className={inter.variable}>
+    <html
+      lang="fr"
+      className={`${manrope.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
+    >
       <head>
         <meta name="theme-color" content="#3b82f6" />
         <link rel="icon" href="/assets/favicon.ico" sizes="any" />
@@ -33,7 +49,13 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="en" href="https://thomasott.fr" />
         <link rel="alternate" hrefLang="x-default" href="https://thomasott.fr" />
       </head>
-      <body className={inter.className}>
+      <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-slate-950 focus:px-4 focus:py-3 focus:text-sm focus:font-medium focus:text-white"
+        >
+          Aller au contenu
+        </a>
         <LanguageProvider>
           <ThemeProvider attribute="class" defaultTheme="light">
             {children}
@@ -61,7 +83,7 @@ export default function RootLayout({
               name: "Thomas OTT - portfolio",
               url: "https://thomasott.fr",
               description:
-                "Développeur full-stack freelance spécialisé en React, Next.js et TypeScript. Découvrez mes projets et compétences.",
+                "Développeur front-end spécialisé en React, Next.js et TypeScript. Découvrez mes projets, mon approche UI et mon exigence de qualité.",
               author: {
                 "@type": "Person",
                 name: "Thomas OTT",

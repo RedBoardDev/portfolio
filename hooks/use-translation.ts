@@ -1,94 +1,54 @@
 "use client"
 
 import { type Language, useLanguage } from "@/lib/language-context"
-import { useCallback, useEffect, useState } from "react"
+import {
+  type TranslationNamespace,
+  type TranslationRecord,
+  type TranslationValue,
+  translationCatalog,
+} from "@/lib/translations"
+import { useCallback } from "react"
 
-// Type pour les traductions
-type TranslationValue = string | number | boolean | TranslationObject | TranslationValue[]
-type TranslationObject = { [key: string]: TranslationValue }
+const isTranslationRecord = (value: TranslationValue | undefined): value is TranslationRecord =>
+  typeof value === "object" && value !== null && !Array.isArray(value)
 
-// Cache pour les traductions chargées
-const translationCache = new Map<string, TranslationObject>()
+const asString = (value: TranslationValue | undefined, fallback: string): string =>
+  typeof value === "string" ? value : fallback
 
-// Hook de traduction optimisé
-export function useTranslation(namespace = "common") {
-  const { language, isLoaded } = useLanguage()
-  const [translations, setTranslations] = useState<Record<string, unknown>>({})
-  const [loading, setLoading] = useState(true)
+const getNestedValue = (record: TranslationRecord, key: string): TranslationValue | undefined => {
+  const keys = key.split(".")
+  let current: TranslationValue | undefined = record
 
-  // Fonction pour charger les traductions
-  const loadTranslations = useCallback(async (lang: Language, ns: string) => {
-    const cacheKey = `${lang}-${ns}`
-
-    // Vérifier le cache d'abord
-    if (translationCache.has(cacheKey)) {
-      return translationCache.get(cacheKey)!
+  for (const item of keys) {
+    if (!isTranslationRecord(current) || !(item in current)) {
+      return undefined
     }
+    current = current[item]
+  }
 
-    try {
-      const response = await fetch(`/locales/${lang}/${ns}.json`)
-      if (!response.ok) {
-        throw new Error(`Failed to load translations for ${lang}/${ns}`)
-      }
-      const data = await response.json()
+  return current
+}
 
-      // Mettre en cache
-      translationCache.set(cacheKey, data)
-      return data
-    } catch (error) {
-      console.error("Error loading translations:", error)
-      return {}
-    }
-  }, [])
+export function useTranslation(namespace: TranslationNamespace = "common") {
+  const { language } = useLanguage()
+  const translations = translationCatalog[language] ?? translationCatalog.fr
+  const namespaceTranslations = translations[namespace]
 
-  // Charger les traductions quand la langue ou le namespace change
-  useEffect(() => {
-    if (!isLoaded) return
-
-    const loadData = async () => {
-      setLoading(true)
-      const data = await loadTranslations(language, namespace)
-      setTranslations(data)
-      setLoading(false)
-    }
-
-    loadData()
-  }, [language, namespace, isLoaded, loadTranslations])
-
-  // Fonction pour obtenir une traduction par clé avec support des clés imbriquées et des tableaux
   const t = useCallback(
-    (key: string, fallback?: string): unknown => {
-      if (loading || !translations) return fallback || key
-
-      const keys = key.split(".")
-      let value: unknown = translations
-
-      for (const k of keys) {
-        if (value && typeof value === "object" && k in value) {
-          value = value[k]
-        } else {
-          return fallback || key
-        }
-      }
-
-      // Retourner la valeur telle quelle (string, array, ou object)
-      return value !== undefined ? value : fallback || key
+    (key: string, fallback?: string): TranslationValue => {
+      const value = getNestedValue(namespaceTranslations, key)
+      return value ?? fallback ?? key
     },
-    [translations, loading]
+    [namespaceTranslations]
   )
 
-  // Fonction pour formater les dates selon la langue
   const formatDate = useCallback(
     (dateStr: string): string => {
-      if (loading || !translations) return dateStr
-
-      // Si la date est juste une année (ex: "2026"), on la retourne telle quelle
       if (dateStr.length === 4) return dateStr
 
       const date = new Date(dateStr)
-      const monthNames = translations.months || {}
-
-      // Récupérer le nom du mois traduit
+      const monthNamesValue = getNestedValue(namespaceTranslations, "months")
+      const monthNames = isTranslationRecord(monthNamesValue) ? monthNamesValue : {}
       const monthKeys = [
         "jan",
         "feb",
@@ -104,18 +64,15 @@ export function useTranslation(namespace = "common") {
         "dec",
       ]
       const monthKey = monthKeys[date.getMonth()]
-      const monthName = monthNames[monthKey] || monthKey
+      const monthName = asString(monthNames[monthKey], monthKey)
 
       return `${monthName} ${date.getFullYear()}`
     },
-    [translations, loading]
+    [namespaceTranslations]
   )
 
-  // Fonction pour formater les durées selon la langue
   const formatDuration = useCallback(
     (startDate: string, endDate?: string): string => {
-      if (loading || !translations) return ""
-
       const start = new Date(startDate)
       const end = endDate ? new Date(endDate) : new Date()
 
@@ -126,35 +83,44 @@ export function useTranslation(namespace = "common") {
       const months = monthsDiff % 12
 
       if (years === 0 && months === 0) {
-        return t("ui.duration.lessThanOneMonth", "< 1 mois")
+        return asString(t("ui.duration.lessThanOneMonth", "< 1 month"), "< 1 month")
       }
 
       if (years === 0) {
         return months === 1
-          ? t("ui.duration.oneMonth", "1 mois")
-          : t("ui.duration.months", "{count} mois").replace("{count}", months.toString())
+          ? asString(t("ui.duration.oneMonth", "1 month"), "1 month")
+          : asString(t("ui.duration.months", "{count} months"), "{count} months").replace(
+              "{count}",
+              months.toString()
+            )
       }
 
       if (months === 0) {
         return years === 1
-          ? t("ui.duration.oneYear", "1 an")
-          : t("ui.duration.years", "{count} ans").replace("{count}", years.toString())
+          ? asString(t("ui.duration.oneYear", "1 year"), "1 year")
+          : asString(t("ui.duration.years", "{count} years"), "{count} years").replace(
+              "{count}",
+              years.toString()
+            )
       }
 
       const yearPlural = years > 1 ? "s" : ""
-      return t("ui.duration.yearsAndMonths", "{years} an{yearPlural} {months} mois")
+      return asString(
+        t("ui.duration.yearsAndMonths", "{years} year{yearPlural} {months} months"),
+        "{years} year{yearPlural} {months} months"
+      )
         .replace("{years}", years.toString())
         .replace("{yearPlural}", yearPlural)
         .replace("{months}", months.toString())
     },
-    [t, loading, translations]
+    [t]
   )
 
   return {
     t,
     formatDate,
     formatDuration,
-    loading: loading || !isLoaded,
+    loading: false,
     language,
   }
 }
