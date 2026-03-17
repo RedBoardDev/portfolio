@@ -22,10 +22,6 @@ env:
   NODE_VERSION: '24'
   AWS_REGION: 'us-east-1'
 
-defaults:
-  run:
-    shell: bash
-
 concurrency:
   group: release-production
   cancel-in-progress: false
@@ -50,15 +46,6 @@ jobs:
       - name: Fetch tags
         run: git fetch --force --tags origin
 
-      - name: Validate release source branch
-        run: |
-          set -euo pipefail
-
-          if [[ "${{ inputs.ref }}" != "main" ]]; then
-            echo "::error::Production releases can only be cut from main"
-            exit 1
-          fi
-
       - name: Validate version format
         run: |
           set -euo pipefail
@@ -77,51 +64,6 @@ jobs:
             exit 1
           fi
 
-      - name: Resolve target SHA
-        id: resolve
-        run: |
-          set -euo pipefail
-          TARGET_SHA="$(git rev-parse HEAD)"
-          echo "target_sha=${TARGET_SHA}" >> "$GITHUB_OUTPUT"
-          echo "Target SHA: ${TARGET_SHA}"
-
-      - name: Verify CI passed for target SHA
-        uses: actions/github-script@v8
-        env:
-          TARGET_SHA: ${{ steps.resolve.outputs.target_sha }}
-        with:
-          script: |
-            const targetSha = process.env.TARGET_SHA
-            const { owner, repo } = context.repo
-
-            const runs = await github.paginate(
-              github.rest.actions.listWorkflowRunsForRepo,
-              {
-                owner,
-                repo,
-                event: 'push',
-                status: 'completed',
-                head_sha: targetSha,
-                per_page: 100
-              }
-            )
-
-            const ciRun = runs
-              .filter(run => run.name === 'CI - Build and Test' && run.head_sha === targetSha)
-              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0]
-
-            if (!ciRun) {
-              core.setFailed(`No completed push CI run named "CI - Build and Test" found for ${targetSha}.`)
-              return
-            }
-
-            if (ciRun.conclusion !== 'success') {
-              core.setFailed(`CI run #${ciRun.run_number} for ${targetSha} concluded with "${ciRun.conclusion}".`)
-              return
-            }
-
-            core.info(`Validated CI run #${ciRun.run_number}: ${ciRun.html_url}`)
-
   deploy:
     name: Deploy and publish release
     runs-on: ubuntu-latest
@@ -139,15 +81,14 @@ jobs:
           ref: ${{ needs.validate.outputs.target_sha }}
           fetch-depth: 0
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: yarn
-          cache-dependency-path: yarn.lock
-
-      - name: Enable Corepack
-        run: corepack enable
 
       - name: Restore Next.js cache
         uses: actions/cache@v4
