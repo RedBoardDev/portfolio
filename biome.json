@@ -9,6 +9,7 @@
     "ignoreUnknown": false,
     "ignore": [
       ".next/**",
+      ".yarn/**",
       "node_modules/**",
       "out/**",
       "build/**",

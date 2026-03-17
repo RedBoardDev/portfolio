@@ -2,9 +2,11 @@
 
 # Dependencies
 /node_modules
-/.pnp
-.pnp.js
+
+# Yarn Berry (zero-install cache, ignore runtime state)
 .yarn/install-state.gz
+.yarn/unplugged/
+.yarn/build-state.yml
 
 # Testing
 /coverage
@@ -34,7 +36,6 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
-next-env.d.ts
 
 # IDE
 .vscode/
@@ -44,10 +45,6 @@ next-env.d.ts
 
 # OS
 Thumbs.db
-
-# Package managers
-.pnpm-debug.log*
-pnpm-lock.yaml
 
 # Logs
 logs
@@ -83,7 +80,6 @@ jspm_packages/
 # Optional npm cache directory
 .npm
 
-# Optional eslint cache
 .eslintcache
 
 # Optional REPL history
