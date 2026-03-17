@@ -1,73 +1,34 @@
 name: Release - Deploy to AWS
+run-name: Release v${{ inputs.version }} to production
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version (semver, without the v prefix)'
+        description: Release version (semver, without the v prefix)
         required: true
-        type: string
-      ref:
-        description: 'Git ref to release'
-        required: true
-        default: 'main'
         type: string
       prerelease:
-        description: 'Publish as pre-release'
+        description: Publish as pre-release
         required: true
         default: false
         type: boolean
 
 env:
-  NODE_VERSION: '24'
-  AWS_REGION: 'us-east-1'
+  NODE_VERSION: "24"
+  AWS_REGION: "us-east-1"
 
 concurrency:
   group: release-production
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
-  validate:
-    name: Validate release request
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      actions: read
-    outputs:
-      target_sha: ${{ steps.resolve.outputs.target_sha }}
-
-    steps:
-      - name: Checkout target ref
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ inputs.ref }}
-          fetch-depth: 0
-
-      - name: Fetch tags
-        run: git fetch --force --tags origin
-
-      - name: Validate version format
-        run: |
-          set -euo pipefail
-
-          if ! echo "${{ inputs.version }}" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$'; then
-            echo "::error::Invalid version format. Use semver (e.g. 0.1.0, 1.0.0-beta.1)"
-            exit 1
-          fi
-
-      - name: Check tag does not exist
-        run: |
-          set -euo pipefail
-
-          if git ls-remote --exit-code --tags origin "refs/tags/v${{ inputs.version }}" >/dev/null 2>&1; then
-            echo "::error::Tag v${{ inputs.version }} already exists"
-            exit 1
-          fi
-
-  deploy:
+  release:
     name: Deploy and publish release
     runs-on: ubuntu-latest
-    needs: validate
     environment: production
     timeout-minutes: 30
     permissions:
@@ -75,11 +36,30 @@ jobs:
       id-token: write
 
     steps:
-      - name: Checkout target SHA
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ needs.validate.outputs.target_sha }}
-          fetch-depth: 0
+      - name: Validate version format
+        run: |
+          set -euo pipefail
+
+          VERSION='${{ inputs.version }}'
+
+          if [[ ! "$VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$ ]]; then
+            echo "::error::Invalid version format. Use semver, for example: 1.2.3 or 1.2.3-beta.1"
+            exit 1
+          fi
+
+      - name: Check release tag does not already exist
+        run: |
+          set -euo pipefail
+
+          TAG="v${{ inputs.version }}"
+
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            echo "::error::Tag $TAG already exists"
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
       - name: Enable Corepack
         run: corepack enable
@@ -94,7 +74,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx', '**/*.mjs', '**/*.cjs', 'next.config.*') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-
 
@@ -102,20 +82,20 @@ jobs:
         run: yarn install --immutable
 
       - name: Build
-        run: yarn build
         env:
           NODE_ENV: production
+        run: yarn build
 
       - name: Configure AWS credentials via OIDC
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy with Serverless
         env:
-          CI: 'true'
-          SLS_INTERACTIVE_SETUP_ENABLE: '0'
+          CI: "true"
+          SLS_INTERACTIVE_SETUP_ENABLE: "0"
         run: yarn serverless deploy --stage production --verbose
 
       - name: Invalidate CloudFront
@@ -124,19 +104,22 @@ jobs:
           CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
           set -euo pipefail
+
           aws cloudfront create-invalidation \
             --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
             --paths '/*'
 
-      - name: Create annotated tag
+      - name: Create and push tag
         run: |
           set -euo pipefail
+
+          TAG="v${{ inputs.version }}"
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git tag -a "v${{ inputs.version }}" "${{ needs.validate.outputs.target_sha }}" -m "Release v${{ inputs.version }}"
-          git push origin "v${{ inputs.version }}"
+          git tag -a "$TAG" -m "Release $TAG"
+          git push origin "$TAG"
 
       - name: Create GitHub release
         env:
@@ -144,15 +127,16 @@ jobs:
         run: |
           set -euo pipefail
 
+          TAG="v${{ inputs.version }}"
           EXTRA_ARGS=()
+
           if [[ "${{ inputs.prerelease }}" == "true" ]]; then
             EXTRA_ARGS+=(--prerelease)
           fi
 
-          gh release create "v${{ inputs.version }}" \
+          gh release create "$TAG" \
             --verify-tag \
-            --target "${{ needs.validate.outputs.target_sha }}" \
-            --title "v${{ inputs.version }}" \
+            --title "$TAG" \
             --generate-notes \
             --fail-on-no-commits \
             "${EXTRA_ARGS[@]}"
