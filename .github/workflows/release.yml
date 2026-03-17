@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version (semver, sans le préfixe v)'
+        description: 'Release version (semver, without the v prefix)'
         required: true
         type: string
       ref:
-        description: 'Git ref à release'
+        description: 'Git ref to release'
         required: true
         default: 'main'
         type: string
