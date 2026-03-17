@@ -2,53 +2,54 @@ name: CI - Build and Test
 
 on:
   push:
-    branches: [main, release, test-ci]
+    branches: [main]
   pull_request:
-    branches: [main, release]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '24'
 
 jobs:
   ci:
     name: Build and Test
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: yarn
+          cache-dependency-path: yarn.lock
 
-      - name: Cache node_modules
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Restore Next.js cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.npm
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-
 
       - name: Install dependencies
-        run: npm ci --prefer-offline --no-audit
+        run: yarn install --immutable
 
       - name: Lint
-        run: npm run lint
+        run: yarn lint
 
       - name: Build
-        run: npm run build
+        run: yarn build
         env:
           NODE_ENV: production
-
-      - name: Cache build artifacts
-        if: github.ref == 'refs/heads/release'
-        uses: actions/cache@v4
-        with:
-          path: |
-            .next/
-          key: build-${{ github.sha }}

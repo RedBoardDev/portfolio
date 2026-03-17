@@ -23,7 +23,6 @@ custom:
     - bucketName: ${self:custom.s3Bucket}
       localDir: out
       deleteRemoved: true
-      acl: public-read
       followSymlinks: true
       defaultContentType: text/html
       params:
@@ -56,19 +55,16 @@ custom:
 
 resources:
   Resources:
-    # S3 Bucket for static website hosting
+    # Private S3 bucket served through CloudFront OAC
     StaticSiteBucket:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3Bucket}
         PublicAccessBlockConfiguration:
-          BlockPublicAcls: false
-          BlockPublicPolicy: false
-          IgnorePublicAcls: false
-          RestrictPublicBuckets: false
-        WebsiteConfiguration:
-          IndexDocument: index.html
-          ErrorDocument: 404.html
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
 
     # S3 Bucket Policy
     StaticSiteBucketPolicy:
@@ -77,11 +73,15 @@ resources:
         Bucket: !Ref StaticSiteBucket
         PolicyDocument:
           Statement:
-            - Sid: PublicReadGetObject
+            - Sid: AllowCloudFrontRead
               Effect: Allow
-              Principal: "*"
+              Principal:
+                Service: cloudfront.amazonaws.com
               Action: s3:GetObject
-              Resource: !Sub "${StaticSiteBucket}/*"
+              Resource: !Sub "${StaticSiteBucket.Arn}/*"
+              Condition:
+                StringEquals:
+                  AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
 
     # CloudFront Origin Access Control
     CloudFrontOriginAccessControl:
@@ -200,10 +200,6 @@ resources:
           PriceClass: PriceClass_100
 
   Outputs:
-    WebsiteURL:
-      Value: !GetAtt StaticSiteBucket.WebsiteURL
-      Description: URL for website hosted on S3
-
     CloudFrontDistribution:
       Value: !Ref CloudFrontDistribution
       Description: CloudFront Distribution ID

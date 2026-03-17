@@ -1,0 +1,217 @@
+name: Release - Deploy to AWS
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (semver, sans le préfixe v)'
+        required: true
+        type: string
+      ref:
+        description: 'Git ref à release'
+        required: true
+        default: 'main'
+        type: string
+      prerelease:
+        description: 'Publish as pre-release'
+        required: true
+        default: false
+        type: boolean
+
+env:
+  NODE_VERSION: '24'
+  AWS_REGION: 'us-east-1'
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: release-production
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate release request
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      target_sha: ${{ steps.resolve.outputs.target_sha }}
+
+    steps:
+      - name: Checkout target ref
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+
+      - name: Fetch tags
+        run: git fetch --force --tags origin
+
+      - name: Validate release source branch
+        run: |
+          set -euo pipefail
+
+          if [[ "${{ inputs.ref }}" != "main" ]]; then
+            echo "::error::Production releases can only be cut from main"
+            exit 1
+          fi
+
+      - name: Validate version format
+        run: |
+          set -euo pipefail
+
+          if ! echo "${{ inputs.version }}" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$'; then
+            echo "::error::Invalid version format. Use semver (e.g. 0.1.0, 1.0.0-beta.1)"
+            exit 1
+          fi
+
+      - name: Check tag does not exist
+        run: |
+          set -euo pipefail
+
+          if git ls-remote --exit-code --tags origin "refs/tags/v${{ inputs.version }}" >/dev/null 2>&1; then
+            echo "::error::Tag v${{ inputs.version }} already exists"
+            exit 1
+          fi
+
+      - name: Resolve target SHA
+        id: resolve
+        run: |
+          set -euo pipefail
+          TARGET_SHA="$(git rev-parse HEAD)"
+          echo "target_sha=${TARGET_SHA}" >> "$GITHUB_OUTPUT"
+          echo "Target SHA: ${TARGET_SHA}"
+
+      - name: Verify CI passed for target SHA
+        uses: actions/github-script@v8
+        env:
+          TARGET_SHA: ${{ steps.resolve.outputs.target_sha }}
+        with:
+          script: |
+            const targetSha = process.env.TARGET_SHA
+            const { owner, repo } = context.repo
+
+            const runs = await github.paginate(
+              github.rest.actions.listWorkflowRunsForRepo,
+              {
+                owner,
+                repo,
+                event: 'push',
+                status: 'completed',
+                head_sha: targetSha,
+                per_page: 100
+              }
+            )
+
+            const ciRun = runs
+              .filter(run => run.name === 'CI - Build and Test' && run.head_sha === targetSha)
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0]
+
+            if (!ciRun) {
+              core.setFailed(`No completed push CI run named "CI - Build and Test" found for ${targetSha}.`)
+              return
+            }
+
+            if (ciRun.conclusion !== 'success') {
+              core.setFailed(`CI run #${ciRun.run_number} for ${targetSha} concluded with "${ciRun.conclusion}".`)
+              return
+            }
+
+            core.info(`Validated CI run #${ciRun.run_number}: ${ciRun.html_url}`)
+
+  deploy:
+    name: Deploy and publish release
+    runs-on: ubuntu-latest
+    needs: validate
+    environment: production
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Checkout target SHA
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.validate.outputs.target_sha }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+          cache-dependency-path: yarn.lock
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Restore Next.js cache
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build
+        run: yarn build
+        env:
+          NODE_ENV: production
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy with Serverless
+        env:
+          CI: 'true'
+          SLS_INTERACTIVE_SETUP_ENABLE: '0'
+        run: yarn serverless deploy --stage production --verbose
+
+      - name: Invalidate CloudFront
+        if: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        env:
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+        run: |
+          set -euo pipefail
+          aws cloudfront create-invalidation \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+            --paths '/*'
+
+      - name: Create annotated tag
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git tag -a "v${{ inputs.version }}" "${{ needs.validate.outputs.target_sha }}" -m "Release v${{ inputs.version }}"
+          git push origin "v${{ inputs.version }}"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          EXTRA_ARGS=()
+          if [[ "${{ inputs.prerelease }}" == "true" ]]; then
+            EXTRA_ARGS+=(--prerelease)
+          fi
+
+          gh release create "v${{ inputs.version }}" \
+            --verify-tag \
+            --target "${{ needs.validate.outputs.target_sha }}" \
+            --title "v${{ inputs.version }}" \
+            --generate-notes \
+            --fail-on-no-commits \
+            "${EXTRA_ARGS[@]}"
