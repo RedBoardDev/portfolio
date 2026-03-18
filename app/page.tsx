@@ -87,7 +87,7 @@ export default function Home() {
       />
 
       <main id="main-content" className="relative overflow-hidden bg-background">
-        <section className="relative overflow-hidden px-6 pb-24 pt-36 sm:px-8 sm:pt-40 md:px-10 lg:px-12 lg:pb-28 lg:pt-32">
+        <section className="relative overflow-hidden px-6 pb-10 pt-28 sm:px-8 sm:pb-16 sm:pt-28 md:px-10 md:pb-20 md:pt-32 lg:px-12 lg:pb-28 lg:pt-32">
           <div className="absolute inset-0 -z-10" aria-hidden="true">
             <div className="absolute inset-x-0 top-0 h-[72%] bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.16),transparent_35%),radial-gradient(circle_at_82%_18%,rgba(245,158,11,0.12),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.42),transparent)]" />
             <div className="absolute left-[4%] top-16 h-28 w-28 rounded-full border border-white/80 bg-white/40 blur-2xl" />
@@ -96,18 +96,19 @@ export default function Home() {
           </div>
 
           <div className="mx-auto max-w-6xl">
-            <div className="grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
+            <div className="grid items-center gap-0 sm:gap-6 md:gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
               <motion.div
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 className="order-2 text-center lg:order-1 lg:text-left"
               >
+                {/* Nom + titre visibles uniquement sur desktop (sur mobile c'est à côté de la photo) */}
                 <motion.h1
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.08 }}
-                  className="mt-6 text-4xl font-semibold leading-[0.92] text-slate-950 sm:text-5xl lg:text-[5.35rem]"
+                  className="mt-6 hidden text-[5.35rem] font-semibold leading-[0.92] text-slate-950 lg:block"
                 >
                   Thomas
                   <span className="block text-primary/95">OTT</span>
@@ -117,7 +118,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.12 }}
-                  className="mt-4 text-lg font-medium text-slate-600"
+                  className="mt-4 hidden text-lg font-medium text-slate-600 lg:block"
                 >
                   {loading ? "..." : t("hero.title")}
                 </motion.p>
@@ -270,11 +271,12 @@ export default function Home() {
                 transition={{ duration: 0.75, ease: "easeOut" }}
                 className="order-1 flex justify-center lg:order-2 lg:justify-end"
               >
-                <div className="relative">
+                {/* Desktop: photo only */}
+                <div className="relative hidden lg:block">
                   <div className="absolute inset-0 scale-[1.12] rounded-full border border-white/70" />
                   <div className="absolute inset-0 scale-[1.18] rounded-full bg-primary/10 blur-3xl" />
 
-                  <div className="relative h-[280px] w-[280px] overflow-hidden rounded-full border border-white/80 bg-white/50 shadow-[0_34px_72px_-44px_rgba(15,23,42,0.48)] sm:h-[320px] sm:w-[320px] md:h-[360px] md:w-[360px]">
+                  <div className="relative h-[360px] w-[360px] overflow-hidden rounded-full border border-white/80 bg-white/50 shadow-[0_34px_72px_-44px_rgba(15,23,42,0.48)]">
                     <OptimizedImage
                       src="/assets/profile.png"
                       alt="Thomas OTT - Développeur front-end"
@@ -282,6 +284,34 @@ export default function Home() {
                       className="object-cover"
                       priority
                     />
+                  </div>
+                </div>
+
+                {/* Mobile/Tablet: photo + nom/titre côte à côte */}
+                <div className="flex items-center gap-5 lg:hidden">
+                  <div className="relative shrink-0">
+                    <div className="absolute inset-0 scale-[1.12] rounded-full border border-white/70" />
+                    <div className="absolute inset-0 scale-[1.18] rounded-full bg-primary/10 blur-3xl" />
+
+                    <div className="relative h-[120px] w-[120px] overflow-hidden rounded-full border border-white/80 bg-white/50 shadow-[0_34px_72px_-44px_rgba(15,23,42,0.48)] sm:h-[150px] sm:w-[150px] md:h-[180px] md:w-[180px]">
+                      <OptimizedImage
+                        src="/assets/profile.png"
+                        alt="Thomas OTT - Développeur front-end"
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
+                  </div>
+
+                  <div className="text-left">
+                    <h1 className="text-3xl font-semibold leading-[0.92] text-slate-950 sm:text-4xl md:text-5xl">
+                      Thomas
+                      <span className="block text-primary/95">OTT</span>
+                    </h1>
+                    <p className="mt-2 text-sm font-medium text-slate-600 sm:text-base md:text-lg">
+                      {loading ? "..." : t("hero.title")}
+                    </p>
                   </div>
                 </div>
               </motion.div>

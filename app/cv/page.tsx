@@ -13,5 +13,5 @@ export const metadata: Metadata = {
 
 export default function CVPage() {
   // Redirection vers le PDF pour l'affichage direct dans le navigateur
-  redirect("/assets/resume-fr-thomas-ott.pdf")
+  redirect("/assets/en/Thomas_Ott_Software_Engineer_Resume.pdf")
 }
