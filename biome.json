@@ -15,7 +15,8 @@
       "build/**",
       "dist/**",
       ".git/**",
-      "coverage/**"
+      "coverage/**",
+      "src/locales/**"
     ]
   },
   "formatter": {

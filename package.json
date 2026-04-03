@@ -12,10 +12,14 @@
     "lint:check": "biome check .",
     "format:fix": "biome format --write .",
     "format:check": "biome format .",
-    "deploy": "yarn build && serverless deploy --stage production",
-    "deploy:dev": "yarn build && serverless deploy --stage dev"
+    "i18n:extract": "lingui extract",
+    "i18n:compile": "lingui compile --typescript",
+    "deploy": "yarn i18n:compile && yarn build && serverless deploy --stage production",
+    "deploy:dev": "yarn i18n:compile && yarn build && serverless deploy --stage dev"
   },
   "dependencies": {
+    "@lingui/core": "^5.9.4",
+    "@lingui/react": "^5.9.4",
     "@radix-ui/react-slot": "1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -30,6 +34,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@lingui/cli": "^5.9.4",
+    "@lingui/format-po": "^5.9.4",
+    "@lingui/swc-plugin": "^5.11.0",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
