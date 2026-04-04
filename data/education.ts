@@ -1,51 +1,51 @@
+import type { MessageDescriptor } from "@lingui/core"
+import { msg } from "@lingui/core/macro"
+
 export interface Education {
-  key: string // Clé pour la traduction
+  institution: MessageDescriptor
+  degree: MessageDescriptor
+  field: MessageDescriptor
+  location: MessageDescriptor
+  description: MessageDescriptor
+  skills: MessageDescriptor[]
   logo?: string
   startDate: string // Format: "YYYY-MM"
-  endDate: string // Format: "YYYY-MM" ou "YYYY" pour les dates futures
-  url?: string // Lien vers le site de l'établissement
-}
-
-// Fonction pour formater les dates au format d'affichage
-export const formatDisplayDate = (dateStr: string): string => {
-  // Si la date est juste une année (ex: "2026"), on la retourne telle quelle
-  if (dateStr.length === 4) return dateStr
-
-  const date = new Date(dateStr)
-  const months = [
-    "janv.",
-    "févr.",
-    "mars",
-    "avr.",
-    "mai",
-    "juin",
-    "juil.",
-    "août",
-    "sept.",
-    "oct.",
-    "nov.",
-    "déc.",
-  ]
-  return `${months[date.getMonth()]} ${date.getFullYear()}`
+  endDate: string // Format: "YYYY-MM" or "YYYY" for future dates
+  url?: string
 }
 
 export const educations: Education[] = [
   {
-    key: "epitech",
+    institution: msg`EPITECH - European Institute of Technology`,
+    degree: msg`Master's degree`,
+    field: msg`Information Technology`,
+    location: msg`Mulhouse, France`,
+    description: msg`Expert training in information technology with project-based pedagogy.`,
+    skills: [msg`Web Development`, msg`Algorithms`, msg`DevOps`, msg`Software Architecture`],
     logo: "/assets/logos/companies/epitech.jpeg",
     startDate: "2021-10",
     endDate: "2026",
     url: "https://www.epitech.eu/",
   },
   {
-    key: "laurea",
+    institution: msg`Laurea University of Applied Sciences`,
+    degree: msg`Bachelor's degree`,
+    field: msg`Business Information Technology`,
+    location: msg`Helsinki, Finland`,
+    description: msg`Exchange year in Finland, providing international experience.`,
+    skills: [msg`Project Management`, msg`Business Intelligence`, msg`UX/UI Design`],
     logo: "/assets/logos/education/laurea.jpeg",
     startDate: "2024-08",
     endDate: "2025-06",
     url: "https://www.laurea.fi/en/",
   },
   {
-    key: "lycee",
+    institution: msg`Lycée Louis Armand - Mulhouse`,
+    degree: msg`High School Diploma`,
+    field: msg`Computer Engineering`,
+    location: msg`Mulhouse, France`,
+    description: msg`Initial training in computer engineering with a practical approach to information technologies.`,
+    skills: [msg`Programming`, msg`Networks`, msg`Information Systems`],
     logo: "/assets/logos/education/lycee-louis-armand.jpeg",
     startDate: "2018-09",
     endDate: "2021-07",

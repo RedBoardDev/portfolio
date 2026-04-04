@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 
 export const metadata: Metadata = {
-  title: "CV Thomas OTT | Développeur Front-End React TypeScript",
+  title: "Thomas OTT Resume | Front-End React TypeScript Developer",
   description:
-    "Curriculum Vitae de Thomas OTT, développeur front-end spécialisé en React, Next.js et TypeScript. Téléchargement PDF disponible.",
+    "Thomas OTT resume, front-end developer specialized in React, Next.js and TypeScript. PDF download available.",
   robots: {
     index: true,
     follow: true,

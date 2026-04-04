@@ -3,13 +3,13 @@
 import { SectionHeading } from "@/components/shared/section-heading"
 import { Button } from "@/components/ui/button"
 import { ContentBox } from "@/components/ui/content-box"
-import { useTranslation } from "@/hooks/use-translation"
+import { Trans, useLingui } from "@lingui/react/macro"
 import { motion } from "framer-motion"
 import { Check, Code, Copy, ExternalLink, Github, Linkedin, Mail } from "lucide-react"
 import { useState } from "react"
 
 export default function ContactSection() {
-  const { t, loading } = useTranslation("contact")
+  const { t } = useLingui()
   const [emailCopied, setEmailCopied] = useState(false)
 
   const copyToClipboard = async (text: string) => {
@@ -31,13 +31,12 @@ export default function ContactSection() {
         transition={{ duration: 0.6 }}
       >
         <SectionHeading
-          title={loading ? "..." : t("freelance.title")}
-          description={loading ? "..." : t("freelance.subtitle")}
+          title={t`Freelance Developer`}
+          description={t`Available for your web and mobile projects`}
           className="mb-10"
         />
 
         <div className="flex flex-col md:grid md:grid-cols-5 gap-8">
-          {/* Freelance Services Section */}
           <div className="md:col-span-3 order-2 md:order-1">
             <ContentBox className="h-full" shadow="md">
               <div className="p-6 sm:p-6">
@@ -45,7 +44,7 @@ export default function ContactSection() {
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-lg font-semibold text-gray-800">
-                        {loading ? "..." : t("services.title")}
+                        <Trans>My services</Trans>
                       </h4>
                       <div className="hidden sm:flex items-center bg-green-50 px-2.5 py-1 rounded-full border border-green-100">
                         <div className="relative flex items-center justify-center mr-1.5">
@@ -53,17 +52,16 @@ export default function ContactSection() {
                           <div className="absolute w-3 h-3 rounded-full bg-green-400 opacity-40 animate-ping" />
                         </div>
                         <span className="text-green-700 text-xs font-medium">
-                          {loading ? "..." : t("services.available")}
+                          <Trans>Currently available</Trans>
                         </span>
                       </div>
-                      {/* Version mobile plus élégante */}
                       <div className="sm:hidden flex items-center">
                         <div className="relative flex items-center justify-center mr-1.5">
                           <div className="w-2 h-2 rounded-full bg-green-500 z-10" />
                           <div className="absolute w-3 h-3 rounded-full bg-green-400 opacity-40 animate-ping" />
                         </div>
                         <span className="text-green-600 text-xs font-medium">
-                          {loading ? "..." : t("services.availableMobile")}
+                          <Trans>Available</Trans>
                         </span>
                       </div>
                     </div>
@@ -74,11 +72,14 @@ export default function ContactSection() {
                             <Code className="h-4 w-4 text-blue-600" />
                           </div>
                           <h5 className="font-medium">
-                            {loading ? "..." : t("services.webDev.title")}
+                            <Trans>Web Development</Trans>
                           </h5>
                         </div>
                         <p className="text-sm text-gray-600">
-                          {loading ? "..." : t("services.webDev.description")}
+                          <Trans>
+                            Showcase websites, complex web applications, e-commerce and design
+                            integration.
+                          </Trans>
                         </p>
                       </div>
 
@@ -102,11 +103,14 @@ export default function ContactSection() {
                             </svg>
                           </div>
                           <h5 className="font-medium">
-                            {loading ? "..." : t("services.maintenance.title")}
+                            <Trans>Maintenance & Support</Trans>
                           </h5>
                         </div>
                         <p className="text-sm text-gray-600">
-                          {loading ? "..." : t("services.maintenance.description")}
+                          <Trans>
+                            Evolutionary, corrective maintenance and technical support for your
+                            existing applications.
+                          </Trans>
                         </p>
                       </div>
 
@@ -125,17 +129,19 @@ export default function ContactSection() {
                               strokeLinejoin="round"
                               className="text-purple-600"
                             >
-                              <title>Sécurité</title>
+                              <title>Security</title>
                               <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                             </svg>
                           </div>
                           <h5 className="font-medium">
-                            {loading ? "..." : t("services.security.title")}
+                            <Trans>Security & Performance</Trans>
                           </h5>
                         </div>
                         <p className="text-sm text-gray-600">
-                          {loading ? "..." : t("services.security.description")}
+                          <Trans>
+                            Security audits, performance optimization and GDPR compliance.
+                          </Trans>
                         </p>
                       </div>
 
@@ -154,18 +160,20 @@ export default function ContactSection() {
                               strokeLinejoin="round"
                               className="text-orange-600"
                             >
-                              <title>Conseil</title>
+                              <title>Consulting</title>
                               <path d="M2 3h20" />
                               <path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3" />
                               <path d="m7 21 5-5 5 5" />
                             </svg>
                           </div>
                           <h5 className="font-medium">
-                            {loading ? "..." : t("services.consulting.title")}
+                            <Trans>Consulting & Training</Trans>
                           </h5>
                         </div>
                         <p className="text-sm text-gray-600">
-                          {loading ? "..." : t("services.consulting.description")}
+                          <Trans>
+                            Technical support, technology choice and training for your teams.
+                          </Trans>
                         </p>
                       </div>
                     </div>
@@ -197,14 +205,14 @@ export default function ContactSection() {
                           <path d="M25.776 59.136C14.486 59.136 0 61.803 0 79.579C0 92.625 7.802 97.528 16.416 99.217L56.497 59.136H25.776Z" />
                           <path d="M141.799 59.942L101.718 100.023H132.439C143.729 100.023 158.215 97.356 158.215 79.58C158.215 66.534 150.413 61.63 141.799 59.942Z" />
                         </svg>
-                        {loading ? "..." : t("buttons.contactMalt")}
+                        <Trans>Contact me on Malt</Trans>
                       </a>
                     </Button>
 
                     <Button asChild variant="outline" className="w-full flex-1 gap-2">
                       <a href="mailto:ott.thomas68@gmail.com">
                         <Mail size={18} />
-                        {loading ? "..." : t("buttons.sendEmail")}
+                        <Trans>Send me an email</Trans>
                       </a>
                     </Button>
                   </div>
@@ -213,12 +221,10 @@ export default function ContactSection() {
             </ContentBox>
           </div>
 
-          {/* Contact Info */}
           <div className="md:col-span-2 flex flex-col space-y-6 h-full order-1 md:order-2">
-            {/* Contact Methods */}
             <ContentBox className="flex-grow" shadow="md">
               <h3 className="text-xl font-bold mb-6 text-gray-900">
-                {loading ? "..." : t("contact.title")}
+                <Trans>My contact details</Trans>
               </h3>
 
               <div className="space-y-6">
@@ -232,7 +238,7 @@ export default function ContactSection() {
                     type="button"
                     onClick={() => copyToClipboard("ott.thomas68@gmail.com")}
                     className="flex w-full items-center rounded-md text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                    aria-label={loading ? "..." : t("contact.copyEmail")}
+                    aria-label={t`Copy email address`}
                     aria-live="polite"
                   >
                     <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500 shadow-sm">
@@ -240,7 +246,7 @@ export default function ContactSection() {
                     </div>
                     <div className="flex-grow">
                       <p className="text-sm font-medium text-gray-500">
-                        {loading ? "..." : t("contact.email")}
+                        <Trans>Email</Trans>
                       </p>
                       <p className="text-gray-900 group-hover:text-primary transition-colors">
                         ott.thomas68@gmail.com
@@ -250,7 +256,9 @@ export default function ContactSection() {
                       {emailCopied ? (
                         <div className="flex items-center text-green-500">
                           <Check size={16} className="mr-1" aria-hidden="true" />
-                          <span className="text-xs">{loading ? "..." : t("contact.copied")}</span>
+                          <span className="text-xs">
+                            <Trans>Copied!</Trans>
+                          </span>
                         </div>
                       ) : (
                         <Copy size={16} aria-hidden="true" />
@@ -270,13 +278,13 @@ export default function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex w-full items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                    aria-label="Open LinkedIn profile in a new tab"
+                    aria-label={t`Open LinkedIn profile in a new tab`}
                   >
                     <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-700 shadow-sm">
                       <Linkedin className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
                     <div className="flex-grow">
-                      <p className="text-sm font-medium text-gray-500">LinkedIn</p>
+                      <p className="text-sm font-medium text-gray-500">{t`LinkedIn`}</p>
                       <p className="text-gray-900 group-hover:text-primary transition-colors">
                         linkedin.com/in/thomas--ott
                       </p>
@@ -298,13 +306,13 @@ export default function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex w-full items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                    aria-label="Open GitHub profile in a new tab"
+                    aria-label={t`Open GitHub profile in a new tab`}
                   >
                     <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 shadow-sm">
                       <Github className="h-5 w-5 text-white" aria-hidden="true" />
                     </div>
                     <div className="flex-grow">
-                      <p className="text-sm font-medium text-gray-500">GitHub</p>
+                      <p className="text-sm font-medium text-gray-500">{t`GitHub`}</p>
                       <p className="text-gray-900 group-hover:text-primary transition-colors">
                         github.com/redBoardDev
                       </p>
@@ -317,20 +325,19 @@ export default function ContactSection() {
               </div>
             </ContentBox>
 
-            {/* Langues Card */}
             <ContentBox className="flex-grow" shadow="md">
               <h3 className="text-xl font-bold mb-6 text-gray-900">
-                {loading ? "..." : t("languages.title")}
+                <Trans>Languages</Trans>
               </h3>
 
               <div className="space-y-10">
                 <div>
                   <div className="flex justify-between mb-3">
                     <span className="font-medium text-gray-900">
-                      {loading ? "..." : t("languages.french")}
+                      <Trans>French</Trans>
                     </span>
                     <span className="text-gray-500">
-                      {loading ? "..." : t("languages.frenchLevel")}
+                      <Trans>Native</Trans>
                     </span>
                   </div>
                   <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
@@ -341,10 +348,10 @@ export default function ContactSection() {
                 <div>
                   <div className="flex justify-between mb-3">
                     <span className="font-medium text-gray-900">
-                      {loading ? "..." : t("languages.english")}
+                      <Trans>English</Trans>
                     </span>
                     <span className="text-gray-500">
-                      {loading ? "..." : t("languages.englishLevel")}
+                      <Trans>Professional</Trans>
                     </span>
                   </div>
                   <div className="h-3 bg-gray-100 rounded-full overflow-hidden">

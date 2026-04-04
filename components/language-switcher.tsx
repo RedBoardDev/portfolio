@@ -1,18 +1,22 @@
 "use client"
 
-import { type Language, useLanguage } from "@/lib/language-context"
+import type { Locale } from "@/lib/i18n"
+import { useLanguage } from "@/lib/i18n-provider"
+import { useLingui } from "@lingui/react/macro"
 import { AnimatePresence, motion } from "framer-motion"
 import { Check, ChevronDown } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 export function LanguageSwitcher() {
-  const { language, setLanguage, isLoaded } = useLanguage()
+  const { language, setLanguage } = useLanguage()
+  const { t } = useLingui()
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
-  const languages: { code: Language; label: string; flag: string }[] = [
-    { code: "fr", label: "Français", flag: "🇫🇷" },
-    { code: "en", label: "English", flag: "🇬🇧" },
+  const languages: { code: Locale; label: string; flag: string }[] = [
+    { code: "en", label: "English", flag: "\u{1F1EC}\u{1F1E7}" },
+    { code: "fr", label: "Français", flag: "\u{1F1EB}\u{1F1F7}" },
+    { code: "fi", label: "Suomi", flag: "\u{1F1EB}\u{1F1EE}" },
   ]
 
   useEffect(() => {
@@ -28,16 +32,12 @@ export function LanguageSwitcher() {
     }
   }, [])
 
-  const changeLanguage = (lang: Language) => {
+  const changeLanguage = (lang: Locale) => {
     setLanguage(lang)
     setIsOpen(false)
   }
 
   const currentLanguage = languages.find((lang) => lang.code === language)
-
-  if (!isLoaded) {
-    return <div className="h-11 w-[82px] animate-pulse rounded-xl bg-[hsl(var(--background))]" />
-  }
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -47,7 +47,7 @@ export function LanguageSwitcher() {
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        aria-label="Changer de langue"
+        aria-label={t`Change language`}
       >
         <span className="text-base">{currentLanguage?.flag}</span>
         <span className="text-sm font-medium">{currentLanguage?.code.toUpperCase()}</span>

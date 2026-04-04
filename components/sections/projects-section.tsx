@@ -6,13 +6,13 @@ import { ContentBox } from "@/components/ui/content-box"
 import { LanguageBadge } from "@/components/ui/language-badge"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 import { projectsData } from "@/data/projects"
-import { useTranslation } from "@/hooks/use-translation"
+import { Trans, useLingui } from "@lingui/react/macro"
 import { motion } from "framer-motion"
 import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react"
 import { type TouchEvent, useCallback, useEffect, useRef, useState } from "react"
 
 export default function ProjectsSection() {
-  const { t } = useTranslation("projects")
+  const { t } = useLingui()
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
   const [currentPage, setCurrentPage] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
@@ -173,7 +173,7 @@ export default function ProjectsSection() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <SectionHeading title={t("section.title")} className="mb-10" />
+        <SectionHeading title={t`Projects`} className="mb-10" />
 
         {isMobile ? (
           <div
@@ -226,7 +226,7 @@ export default function ProjectsSection() {
 
                 return (
                   <motion.div
-                    key={project.key}
+                    key={`mobile-${index}`}
                     className="absolute inset-0 cursor-grab active:cursor-grabbing"
                     style={{
                       zIndex,
@@ -257,7 +257,9 @@ export default function ProjectsSection() {
                         <div className="absolute inset-0 z-10">
                           <OptimizedImage
                             src={project.image || "/placeholder.svg?height=400&width=600"}
-                            alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
+                            alt={t`Screenshot of project ${{
+                              projectTitle: t(project.title),
+                            }}`}
                             fill
                             className="object-contain"
                             draggable="false"
@@ -279,16 +281,14 @@ export default function ProjectsSection() {
                         </div>
 
                         <div className="absolute inset-x-0 bottom-0 z-30 p-5">
-                          <h3 className="text-xl font-semibold text-white">
-                            {t(`projects.${project.key}.title`)}
-                          </h3>
+                          <h3 className="text-xl font-semibold text-white">{t(project.title)}</h3>
                         </div>
                       </div>
 
                       <div className="flex flex-1 flex-col bg-white/82 p-5">
                         <div className="flex-1">
                           <p className="line-clamp-5 text-sm leading-7 text-slate-700">
-                            {t(`projects.${project.key}.description`)}
+                            {t(project.description)}
                           </p>
                         </div>
 
@@ -301,7 +301,9 @@ export default function ProjectsSection() {
                             onClick={(event) => isDragging && event.preventDefault()}
                           >
                             <Github size={16} className="mr-2" />
-                            <span className="text-sm">{t("ui.code")}</span>
+                            <span className="text-sm">
+                              <Trans>Code</Trans>
+                            </span>
                           </a>
 
                           {project.liveLink ? (
@@ -312,7 +314,9 @@ export default function ProjectsSection() {
                               className="inline-flex items-center rounded-xl border border-slate-200/80 bg-white/72 px-3.5 py-2 text-slate-700 transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-slate-950"
                               onClick={(event) => isDragging && event.preventDefault()}
                             >
-                              <span className="text-sm">{t("ui.demo")}</span>
+                              <span className="text-sm">
+                                <Trans>Demo</Trans>
+                              </span>
                               <ExternalLink size={16} className="ml-2" />
                             </a>
                           ) : null}
@@ -334,7 +338,7 @@ export default function ProjectsSection() {
                     ? "cursor-not-allowed text-slate-300 opacity-50"
                     : "text-slate-700 hover:bg-white hover:text-slate-950 active:scale-95"
                 }`}
-                aria-label="Projet précédent"
+                aria-label={t`Previous project`}
               >
                 <ChevronLeft size={18} />
               </button>
@@ -350,7 +354,9 @@ export default function ProjectsSection() {
                         ? "h-2 w-10 bg-slate-950"
                         : "h-2 w-2 bg-slate-300 hover:bg-slate-400"
                     }`}
-                    aria-label={`Aller au projet ${index + 1}`}
+                    aria-label={t`Go to project ${{
+                      index: index + 1,
+                    }}`}
                   />
                 ))}
               </div>
@@ -364,7 +370,7 @@ export default function ProjectsSection() {
                     ? "cursor-not-allowed text-slate-300 opacity-50"
                     : "text-slate-700 hover:bg-white hover:text-slate-950 active:scale-95"
                 }`}
-                aria-label="Projet suivant"
+                aria-label={t`Next project`}
               >
                 <ChevronRight size={18} />
               </button>
@@ -372,7 +378,8 @@ export default function ProjectsSection() {
 
             <div className="absolute left-0 right-0 top-4 z-40 text-center">
               <div className="inline-block rounded-2xl border border-white/30 bg-slate-950/42 px-4 py-2 text-xs text-white backdrop-blur-sm">
-                Glissez pour naviguer • {currentProjectIndex + 1}/{projectsData.length}
+                <Trans>Swipe to navigate</Trans> &bull; {currentProjectIndex + 1}/
+                {projectsData.length}
               </div>
             </div>
           </div>
@@ -380,7 +387,7 @@ export default function ProjectsSection() {
           <div className="mb-4 grid grid-cols-1 gap-7 md:grid-cols-3">
             {currentProjects.map((project, index) => (
               <motion.div
-                key={`${project.key}-${index}`}
+                key={`desktop-${currentPage}-${index}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -403,7 +410,9 @@ export default function ProjectsSection() {
                     <div className="absolute inset-0 z-10">
                       <OptimizedImage
                         src={project.image || "/placeholder.svg?height=400&width=600"}
-                        alt={`Capture d'écran du projet ${t(`projects.${project.key}.title`)}`}
+                        alt={t`Screenshot of project ${{
+                          projectTitle: t(project.title),
+                        }}`}
                         fill
                         className="object-contain"
                         aspectRatio={1.67}
@@ -429,16 +438,14 @@ export default function ProjectsSection() {
                     </div>
 
                     <div className="absolute inset-x-0 bottom-0 z-30 p-4">
-                      <h3 className="text-lg font-semibold text-white">
-                        {t(`projects.${project.key}.title`)}
-                      </h3>
+                      <h3 className="text-lg font-semibold text-white">{t(project.title)}</h3>
                     </div>
                   </div>
 
                   <div className="flex flex-grow flex-col bg-white/82 p-5">
                     <div className="flex-grow">
                       <p className="line-clamp-4 text-sm leading-7 text-slate-700">
-                        {t(`projects.${project.key}.description`)}
+                        {t(project.description)}
                       </p>
                     </div>
 
@@ -450,7 +457,7 @@ export default function ProjectsSection() {
                         className="inline-flex items-center rounded-xl border border-slate-200/80 bg-white/72 px-3.5 py-2 text-xs font-medium text-slate-700 transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-slate-950"
                       >
                         <Github size={14} className="mr-1" />
-                        {t("ui.code")}
+                        <Trans>Code</Trans>
                       </a>
 
                       {project.liveLink ? (
@@ -460,7 +467,7 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center rounded-xl border border-slate-200/80 bg-white/72 px-3.5 py-2 text-xs font-medium text-slate-700 transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-slate-950"
                         >
-                          {t("ui.demo")}
+                          <Trans>Demo</Trans>
                           <ExternalLink size={14} className="ml-1" />
                         </a>
                       ) : null}
@@ -508,7 +515,9 @@ export default function ProjectsSection() {
               rel="noopener noreferrer"
               className="group absolute right-0 inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors hover:text-slate-950"
             >
-              <span>{t("ui.viewAll")}</span>
+              <span>
+                <Trans>View all projects</Trans>
+              </span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>
@@ -522,7 +531,9 @@ export default function ProjectsSection() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors hover:text-slate-950"
             >
-              <span>{t("ui.viewAll")}</span>
+              <span>
+                <Trans>View all projects</Trans>
+              </span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>

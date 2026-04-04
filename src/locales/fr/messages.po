@@ -1,0 +1,883 @@
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: components/github/github-contributions-chart.tsx
+msgid "{longestStreak} days"
+msgstr "{longestStreak} jours"
+
+#: components/sections/experience-section.tsx
+msgid "{months, plural, one {# month} other {# months}}"
+msgstr "{months, plural, one {# mois} other {# mois}}"
+
+#: components/github/github-contributions-chart.tsx
+msgid "{yearlyContributions} contributions in the last year"
+msgstr "{yearlyContributions} contributions sur les 12 derniers mois"
+
+#: components/sections/experience-section.tsx
+msgid "{years, plural, one {# year} other {# years}}"
+msgstr "{years, plural, one {# an} other {# ans}}"
+
+#: components/sections/experience-section.tsx
+msgid "{years, plural, one {# year} other {# years}} {remainingMonths, plural, one {# month} other {# months}}"
+msgstr "{years, plural, one {# an} other {# ans}} {remainingMonths, plural, one {# mois} other {# mois}}"
+
+#: data/projects.ts
+msgid "2D side-scrolling shoot'em up game based on the original R-Type arcade classic. Built in C++ with robust client-server architecture, featuring multiplayer gameplay, cross-platform support, and modern game development practices. Includes Entity Component System architecture and network synchronization."
+msgstr "Jeu de tir à défilement horizontal 2D basé sur le classique arcade R-Type original. Construit en C++ avec une architecture client-serveur robuste, gameplay multijoueur, support multi-plateforme et pratiques modernes de développement de jeux. Inclut l'architecture Entity Component System et la synchronisation réseau."
+
+#: app/not-found.tsx
+msgid "404"
+msgstr "404"
+
+#: components/navigation-bar.tsx
+#: components/sections/about-section.tsx
+msgid "About"
+msgstr "À propos"
+
+#: data/experiences.ts
+msgid "Adaptability"
+msgstr "Adaptabilité"
+
+#: data/skills.ts
+msgid "Advanced RDBMS with extended features"
+msgstr "SGBDR avancé avec fonctionnalités étendues"
+
+#: data/skills.ts
+msgid "Agile/Scrum"
+msgstr "Agile/Scrum"
+
+#: data/projects.ts
+msgid "AI-powered project with advanced generative capabilities and intelligent automation features. Built with TypeScript and Python, featuring Docker containerization for scalable deployment and development. The project leverages modern AI technologies to provide sophisticated solutions for various use cases."
+msgstr "Projet alimenté par l'IA avec des capacités génératives avancées et des fonctionnalités d'automatisation intelligente. Construit avec TypeScript et Python, incluant la conteneurisation Docker pour un déploiement évolutif. Le projet exploite les technologies IA modernes pour fournir des solutions sophistiquées."
+
+#: data/experiences.ts
+msgid "AkorD"
+msgstr "AkorD"
+
+#: data/education.ts
+msgid "Algorithms"
+msgstr "Algorithmique"
+
+#: app/page.tsx
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+#: data/skills.ts
+msgid "Application containerization for deployment"
+msgstr "Conteneurisation d'applications pour le déploiement"
+
+#: data/projects.ts
+msgid "Atlas-GenAI"
+msgstr "Atlas-GenAI"
+
+#: data/projects.ts
+msgid "Automation platform connecting different services and applications through custom workflows and integrations. Built with JavaScript and React, enabling users to create sophisticated automation rules between various APIs and services. Similar to IFTTT but tailored for developer and student needs."
+msgstr "Plateforme d'automatisation connectant différents services et applications via des workflows et intégrations personnalisés. Construit avec JavaScript et React, permettant aux utilisateurs de créer des règles d'automatisation sophistiquées entre diverses APIs et services. Similaire à IFTTT mais adapté aux besoins des développeurs et étudiants."
+
+#: data/skills.ts
+msgid "Automation server for continuous integration and deployment"
+msgstr "Serveur d'automatisation pour l'intégration et le déploiement continus"
+
+#: components/sections/contact-section.tsx
+msgid "Available"
+msgstr "Disponible"
+
+#: components/sections/contact-section.tsx
+msgid "Available for your web and mobile projects"
+msgstr "Disponible pour vos projets web et mobiles"
+
+#: data/skills.ts
+msgid "AWS"
+msgstr "AWS"
+
+#: data/experiences.ts
+#: data/experiences.ts
+msgid "AWS Lambda"
+msgstr "AWS Lambda"
+
+#: data/education.ts
+msgid "Bachelor's degree"
+msgstr "Bachelor"
+
+#: app/not-found.tsx
+msgid "Back home"
+msgstr "Retour à l'accueil"
+
+#: app/page.tsx
+#: components/navigation-bar.tsx
+msgid "Back to top"
+msgstr "Retour en haut de page"
+
+#: app/page.tsx
+msgid "Based in France, relocating to Helsinki, Finland"
+msgstr "Basé en France, bientôt installé à Helsinki, Finlande"
+
+#: data/skills.ts
+msgid "Bash"
+msgstr "Bash"
+
+#: data/experiences.ts
+msgid "Bug fixes and performance improvements"
+msgstr "Correction de bugs et amélioration des performances"
+
+#: data/skills.ts
+msgid "Build automation tool for compiling and managing projects"
+msgstr "Outil d'automatisation de build pour compiler et gérer les projets"
+
+#: data/education.ts
+msgid "Business Information Technology"
+msgstr "Business Information Technology"
+
+#: data/education.ts
+msgid "Business Intelligence"
+msgstr "Business Intelligence"
+
+#: data/skills.ts
+msgid "C"
+msgstr "C"
+
+#: data/skills.ts
+msgid "C++"
+msgstr "C++"
+
+#: components/language-switcher.tsx
+msgid "Change language"
+msgstr "Changer de langue"
+
+#: data/projects.ts
+msgid "ChromeFlex"
+msgstr "ChromeFlex"
+
+#: data/skills.ts
+msgid "CI/CD"
+msgstr "CI/CD"
+
+#: data/skills.ts
+msgid "Clear communication with technical and non-technical stakeholders"
+msgstr "Communication claire avec les parties prenantes techniques et non techniques"
+
+#: components/navigation-bar.tsx
+msgid "Close menu"
+msgstr "Fermer le menu"
+
+#: data/skills.ts
+msgid "Cloud services for hosting and deploying applications"
+msgstr "Services cloud pour l'hébergement et le déploiement d'applications"
+
+#: components/sections/projects-section.tsx
+#: components/sections/projects-section.tsx
+msgid "Code"
+msgstr "Code"
+
+#: data/experiences.ts
+msgid "Collaboration with the development team"
+msgstr "Collaboration avec l'équipe de développement"
+
+#: data/skills.ts
+msgid "Communication"
+msgstr "Communication"
+
+#: data/education.ts
+msgid "Computer Engineering"
+msgstr "Ingénierie informatique"
+
+#: components/sections/contact-section.tsx
+msgid "Consulting & Training"
+msgstr "Conseil & Formation"
+
+#: components/navigation-bar.tsx
+msgid "Contact"
+msgstr "Contact"
+
+#: app/page.tsx
+#: components/navigation-bar.tsx
+msgid "Contact me"
+msgstr "Me contacter"
+
+#: components/sections/contact-section.tsx
+msgid "Contact me on Malt"
+msgstr "Me contacter sur Malt"
+
+#: data/skills.ts
+msgid "Continuous integration and deployment with GitHub Actions"
+msgstr "Intégration et déploiement continus avec GitHub Actions"
+
+#: components/github/github-contributions-chart.tsx
+msgid "Contributions chart (soon)"
+msgstr "Graphique des contributions (bientôt disponible)"
+
+#: components/sections/contact-section.tsx
+msgid "Copied!"
+msgstr "Copié!"
+
+#: components/sections/contact-section.tsx
+msgid "Copy email address"
+msgstr "Copier l'adresse email"
+
+#: components/sections/about-section.tsx
+msgid "Curious by nature, I also explored blockchain and Web3, which gave me a broader vision of current technological challenges and the ability to quickly adapt to new paradigms."
+msgstr "Curieux de nature, j’ai aussi exploré la blockchain et le Web3, ce qui m’a donné une vision plus large des enjeux technologiques actuels et la capacité de m’adapter rapidement à de nouveaux paradigmes."
+
+#: components/sections/contact-section.tsx
+msgid "Currently available"
+msgstr "Actuellement disponible"
+
+#: data/projects.ts
+msgid "Custom RPG game engine developed in C with classic farming simulation mechanics. Features comprehensive resource management, character progression system, and retro-style gaming environment. Players can cultivate crops, manage livestock, and build their virtual farming empire with strategic decision-making elements."
+msgstr "Moteur de jeu RPG personnalisé développé en C avec des mécaniques classiques de simulation agricole. Gestion complète des ressources, système de progression des personnages et environnement de jeu rétro. Les joueurs peuvent cultiver des récoltes, gérer le bétail et construire leur empire agricole virtuel avec des éléments de prise de décision stratégique."
+
+#: data/skills.ts
+msgid "Databases & ORM"
+msgstr "Bases de données & ORM"
+
+#: components/sections/projects-section.tsx
+#: components/sections/projects-section.tsx
+msgid "Demo"
+msgstr "Démo"
+
+#: data/experiences.ts
+msgid "Design and implementation of new features"
+msgstr "Conception et implémentation de nouvelles fonctionnalités"
+
+#: data/experiences.ts
+msgid "Developer"
+msgstr "Développeur"
+
+#: data/experiences.ts
+msgid "Development and maintenance of modern web applications"
+msgstr "Développement et maintenance d'applications web modernes"
+
+#: data/experiences.ts
+msgid "Development of features for web applications"
+msgstr "Développement de fonctionnalités pour des applications web"
+
+#: data/education.ts
+#: data/experiences.ts
+#: data/experiences.ts
+msgid "DevOps"
+msgstr "DevOps"
+
+#: data/skills.ts
+msgid "DevOps & Tools"
+msgstr "DevOps & Outils"
+
+#: data/projects.ts
+msgid "Discord bot that updates its status based on time tracking received via clockify. Features Clean Architecture with Domain-Driven Design, automated deployment with PM2, and real-time status updates for work sessions. The bot listens for webhook payloads and displays different statuses based on work activity."
+msgstr "Bot Discord qui met à jour son statut basé sur le suivi du temps reçu via clockify. Implémente une Clean Architecture avec Domain-Driven Design, déploiement automatisé avec PM2 et mises à jour en temps réel des sessions de travail. Le bot écoute les webhooks et affiche différents statuts selon l'activité."
+
+#: data/experiences.ts
+#: data/skills.ts
+msgid "Docker"
+msgstr "Docker"
+
+#: app/page.tsx
+msgid "Download CV"
+msgstr "Télécharger le CV"
+
+#: app/page.tsx
+msgid "Download CV - Thomas OTT"
+msgstr "Télécharger le CV - Thomas OTT"
+
+#: components/navigation-bar.tsx
+#: components/sections/education-section.tsx
+msgid "Education"
+msgstr "Formation"
+
+#: data/skills.ts
+msgid "Effective collaboration within multidisciplinary teams"
+msgstr "Collaboration efficace au sein d'équipes multidisciplinaires"
+
+#: app/page.tsx
+#: components/navigation-bar.tsx
+#: components/sections/contact-section.tsx
+msgid "Email"
+msgstr "Email"
+
+#: components/sections/contact-section.tsx
+msgid "English"
+msgstr "Anglais"
+
+#: data/education.ts
+msgid "EPITECH - European Institute of Technology"
+msgstr "EPITECH - European Institute of Technology"
+
+#: data/experiences.ts
+msgid "Epitech - The IT Excellence School"
+msgstr "Epitech - L'école de l'excellence informatique"
+
+#: data/projects.ts
+msgid "Epitech AREA"
+msgstr "Epitech AREA"
+
+#: data/projects.ts
+msgid "Epitech Intranet Statistics"
+msgstr "Epitech Intranet Statistics"
+
+#: data/experiences.ts
+msgid "Epitech Regional Assistant (AER)"
+msgstr "Assistant Epitech Région (AER)"
+
+#: components/sections/contact-section.tsx
+msgid "Evolutionary, corrective maintenance and technical support for your existing applications."
+msgstr "Maintenance évolutive, corrective et support technique pour vos applications existantes."
+
+#: data/education.ts
+msgid "Exchange year in Finland, providing international experience."
+msgstr "Année d'échange en Finlande, permettant d'acquérir une expérience internationale."
+
+#: components/navigation-bar.tsx
+#: components/sections/experience-section.tsx
+msgid "Experience"
+msgstr "Expérience"
+
+#: data/education.ts
+msgid "Expert training in information technology with project-based pedagogy."
+msgstr "Formation d'expert en technologies de l'information avec une pédagogie par projets."
+
+#: data/skills.ts
+msgid "Express"
+msgstr "Express"
+
+#: data/skills.ts
+msgid "Fast and low overhead web framework for Node.js"
+msgstr "Framework web rapide et léger pour Node.js"
+
+#: data/skills.ts
+msgid "Fastify"
+msgstr "Fastify"
+
+#: app/page.tsx
+msgid "Find me on"
+msgstr "Me retrouver sur"
+
+#: data/skills.ts
+msgid "Frameworks & Runtime"
+msgstr "Frameworks et runtime"
+
+#: data/experiences.ts
+msgid "Freelance"
+msgstr "Freelance"
+
+#: components/sections/contact-section.tsx
+msgid "Freelance Developer"
+msgstr "Développeur Freelance"
+
+#: components/sections/contact-section.tsx
+msgid "French"
+msgstr "Français"
+
+#: app/page.tsx
+#: app/page.tsx
+#: components/navigation-bar.tsx
+#: components/navigation-bar.tsx
+msgid "Front-End Developer"
+msgstr "Développeur front-end"
+
+#: data/experiences.ts
+msgid "Full Stack Developer"
+msgstr "Développeur Full Stack"
+
+#: data/skills.ts
+msgid "Functional programming language for academic and research projects"
+msgstr "Langage de programmation fonctionnelle pour projets académiques et de recherche"
+
+#: data/skills.ts
+msgid "Git"
+msgstr "Git"
+
+#: app/page.tsx
+#: components/navigation-bar.tsx
+#: components/sections/contact-section.tsx
+msgid "GitHub"
+msgstr "GitHub"
+
+#: components/sections/about-section.tsx
+msgid "GitHub Contributions"
+msgstr "Contributions GitHub"
+
+#: app/page.tsx
+msgid "GitHub profile"
+msgstr "Profil GitHub"
+
+#: components/sections/projects-section.tsx
+msgid "Go to project {index}"
+msgstr "Aller au projet {index}"
+
+#: data/skills.ts
+msgid "Haskell"
+msgstr "Haskell"
+
+#: data/education.ts
+msgid "Helsinki, Finland"
+msgstr "Helsinki, Finlande"
+
+#: data/education.ts
+msgid "High School Diploma"
+msgstr "Baccalauréat"
+
+#: app/page.tsx
+msgid "I design fast, accessible and polished web interfaces with a strong focus on user experience, implementation quality and production-grade engineering around <0>React</0>, <1>TypeScript</1> and <2>Node.js</2>."
+msgstr "Je conçois des interfaces web rapides, accessibles et soignées, avec une attention forte portée à l’expérience utilisateur, à la qualité d’exécution et à l’ingénierie de production autour de <0>React</0>, <1>TypeScript</1> et <2>Node.js</2>."
+
+#: data/education.ts
+msgid "Information Systems"
+msgstr "Systèmes d'information"
+
+#: data/education.ts
+msgid "Information Technology"
+msgstr "Technologies de l'information"
+
+#: data/education.ts
+msgid "Initial training in computer engineering with a practical approach to information technologies."
+msgstr "Formation initiale en ingénierie informatique avec une approche pratique des technologies de l'information."
+
+#: data/experiences.ts
+#: data/experiences.ts
+msgid "Internship"
+msgstr "Stage"
+
+#: data/projects.ts
+msgid "Invoicing System"
+msgstr "Système de Facturation"
+
+#: data/skills.ts
+msgid "Iterative and collaborative project management methodology"
+msgstr "Méthodologie de gestion de projet itérative et collaborative"
+
+#: data/skills.ts
+msgid "Java"
+msgstr "Java"
+
+#: data/experiences.ts
+#: data/skills.ts
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: data/skills.ts
+msgid "JavaScript runtime environment for server-side development"
+msgstr "Environnement d'exécution JavaScript côté serveur"
+
+#: data/skills.ts
+msgid "Jenkins"
+msgstr "Jenkins"
+
+#: data/skills.ts
+msgid "Knowledge transfer and student mentoring"
+msgstr "Transmission de connaissances et accompagnement d'étudiants"
+
+#: components/sections/contact-section.tsx
+msgid "Languages"
+msgstr "Langues"
+
+#: data/education.ts
+msgid "Laurea University of Applied Sciences"
+msgstr "Laurea University of Applied Sciences"
+
+#: app/page.tsx
+#: components/navigation-bar.tsx
+#: components/sections/contact-section.tsx
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: app/page.tsx
+msgid "LinkedIn profile"
+msgstr "Profil LinkedIn"
+
+#: components/navigation-bar.tsx
+msgid "Links"
+msgstr "Liens"
+
+#: data/skills.ts
+msgid "Linux"
+msgstr "Linux"
+
+#: components/github/github-contributions-chart.tsx
+msgid "Longest streak"
+msgstr "Plus longue série"
+
+#: data/skills.ts
+msgid "Low-level programming language for system programming and embedded systems"
+msgstr "Langage de programmation bas niveau pour la programmation système et systèmes embarqués"
+
+#: data/education.ts
+msgid "Lycée Louis Armand - Mulhouse"
+msgstr "Lycée Louis Armand - Mulhouse"
+
+#: data/skills.ts
+msgid "Main language for frontend and backend web development"
+msgstr "Langage principal pour le développement web frontend et backend"
+
+#: data/skills.ts
+msgid "Main library for user interface development"
+msgstr "Librairie principale pour le développement d'interfaces utilisateur"
+
+#: components/sections/contact-section.tsx
+msgid "Maintenance & Support"
+msgstr "Maintenance et support"
+
+#: data/skills.ts
+msgid "Makefile"
+msgstr "Makefile"
+
+#: app/page.tsx
+#: components/navigation-bar.tsx
+msgid "Malt"
+msgstr "Malt"
+
+#: app/page.tsx
+#: app/page.tsx
+msgid "Malt profile"
+msgstr "Profil Malt"
+
+#: data/education.ts
+msgid "Master's degree"
+msgstr "Master"
+
+#: data/skills.ts
+msgid "Methodologies & Soft Skills"
+msgstr "Méthodologies & Soft Skills"
+
+#: data/skills.ts
+msgid "Minimalist framework for creating REST APIs with Node.js"
+msgstr "Framework minimaliste pour créer des API REST avec Node.js"
+
+#: data/projects.ts
+msgid "Modern invoicing and billing system built with TypeScript for small businesses and freelancers. Features automated invoice generation, comprehensive client management, payment tracking, and financial reporting with a clean and intuitive React interface. Streamlines the entire billing process from creation to payment."
+msgstr "Système moderne de facturation et de gestion des paiements construit avec TypeScript pour les petites entreprises et freelances. Génération automatisée de factures, gestion complète des clients, suivi des paiements et rapports financiers avec une interface React intuitive. Simplifie tout le processus de facturation."
+
+#: data/skills.ts
+msgid "Modern ORM for Node.js and TypeScript"
+msgstr "ORM moderne pour Node.js et TypeScript"
+
+#: data/projects.ts
+msgid "Modular Chrome extension framework for easily adding custom, site-specific features on the fly with a plug-and-play architecture. Built with TypeScript and modern development tools, it provides developers with a flexible platform to enhance web browsing experiences across different websites."
+msgstr "Framework d'extension Chrome modulaire pour ajouter facilement des fonctionnalités personnalisées spécifiques aux sites avec une architecture plug-and-play. Construit avec TypeScript et des outils de développement modernes, il offre aux développeurs une plateforme flexible pour améliorer l'expérience de navigation web."
+
+#: components/github/github-contributions-chart.tsx
+msgid "Most used languages"
+msgstr "Langages les plus utilisés"
+
+#: data/education.ts
+#: data/education.ts
+msgid "Mulhouse, France"
+msgstr "Mulhouse, France"
+
+#: data/experiences.ts
+#: data/experiences.ts
+msgid "Mulhouse, Grand Est, France · On-site"
+msgstr "Mulhouse, Grand Est, France · Sur site"
+
+#: components/sections/contact-section.tsx
+msgid "My contact details"
+msgstr "Mes coordonnées"
+
+#: components/sections/contact-section.tsx
+msgid "My services"
+msgstr "Mes services"
+
+#: data/projects.ts
+msgid "MyFarm RPG"
+msgstr "MyFarm RPG"
+
+#: data/skills.ts
+msgid "MySQL"
+msgstr "MySQL"
+
+#: components/sections/contact-section.tsx
+msgid "Native"
+msgstr "Natif"
+
+#: components/navigation-bar.tsx
+msgid "Navigation"
+msgstr "Navigation"
+
+#: components/navigation-bar.tsx
+msgid "Navigation menu"
+msgstr "Menu de navigation"
+
+#: data/education.ts
+msgid "Networks"
+msgstr "Réseaux"
+
+#: components/sections/projects-section.tsx
+msgid "Next project"
+msgstr "Projet suivant"
+
+#: data/skills.ts
+msgid "Next.js"
+msgstr "Next.js"
+
+#: data/skills.ts
+msgid "Nginx"
+msgstr "Nginx"
+
+#: data/experiences.ts
+#: data/skills.ts
+msgid "Node.js"
+msgstr "Node.js"
+
+#: data/skills.ts
+msgid "Object-oriented language for enterprise applications and Android development"
+msgstr "Langage orienté objet pour applications d'entreprise et développement Android"
+
+#: components/sections/contact-section.tsx
+msgid "Open GitHub profile in a new tab"
+msgstr "Ouvrir le profil GitHub dans un nouvel onglet"
+
+#: components/sections/contact-section.tsx
+msgid "Open LinkedIn profile in a new tab"
+msgstr "Ouvrir le profil LinkedIn dans un nouvel onglet"
+
+#: data/skills.ts
+msgid "Operating system for servers and development environments"
+msgstr "Système d'exploitation pour serveurs et environnements de développement"
+
+#: app/not-found.tsx
+msgid "Page not found"
+msgstr "Page non trouvée"
+
+#: app/not-found.tsx
+msgid "Page not found | Thomas OTT"
+msgstr "Page non trouvée | Thomas OTT"
+
+#: data/experiences.ts
+msgid "Participation in organizing events and promoting the school"
+msgstr "Participation à l'organisation d'événements et à la promotion de l'école"
+
+#: components/sections/about-section.tsx
+msgid "Passionate front-end developer, I create modern and performant web interfaces. My approach combines technical rigor and attention to detail to deliver exceptional user experiences."
+msgstr "Développeur front-end passionné, je conçois des interfaces web modernes et performantes. Mon approche allie rigueur technique et souci du détail pour offrir des expériences utilisateur de grande qualité."
+
+#: data/experiences.ts
+msgid "Performance optimization and user experience enhancement"
+msgstr "Optimisation des performances et de l'expérience utilisateur"
+
+#: data/skills.ts
+msgid "Planning, execution and monitoring of IT projects"
+msgstr "Planification, exécution et suivi de projets informatiques"
+
+#: data/skills.ts
+msgid "PostgreSQL"
+msgstr "PostgreSQL"
+
+#: components/sections/experience-section.tsx
+msgid "present"
+msgstr "aujourd'hui"
+
+#: components/sections/projects-section.tsx
+msgid "Previous project"
+msgstr "Projet précédent"
+
+#: data/skills.ts
+msgid "Prisma"
+msgstr "Prisma"
+
+#: components/sections/contact-section.tsx
+msgid "Professional"
+msgstr "Professionnel"
+
+#: data/education.ts
+msgid "Programming"
+msgstr "Programmation"
+
+#: data/skills.ts
+msgid "Programming Languages"
+msgstr "Langages de programmation"
+
+#: data/education.ts
+#: data/experiences.ts
+#: data/skills.ts
+msgid "Project Management"
+msgstr "Gestion de projet"
+
+#: components/navigation-bar.tsx
+#: components/sections/projects-section.tsx
+msgid "Projects"
+msgstr "Projets"
+
+#: data/skills.ts
+msgid "Python"
+msgstr "Python"
+
+#: data/projects.ts
+msgid "R-Type Game"
+msgstr "Jeu R-Type"
+
+#: data/experiences.ts
+#: data/experiences.ts
+#: data/skills.ts
+msgid "React"
+msgstr "React"
+
+#: data/skills.ts
+msgid "React framework for web applications with server-side rendering"
+msgstr "Framework React pour applications web avec rendu côté serveur"
+
+#: data/skills.ts
+msgid "Relational database management system"
+msgstr "Système de gestion de base de données relationnelle"
+
+#: data/experiences.ts
+msgid "Remote"
+msgstr "À distance"
+
+#: components/github/github-contributions-chart.tsx
+msgid "Repositories"
+msgstr "Dépôts"
+
+#: components/sections/projects-section.tsx
+#: components/sections/projects-section.tsx
+msgid "Screenshot of project {projectTitle}"
+msgstr "Capture d'écran du projet {projectTitle}"
+
+#: data/skills.ts
+msgid "Scripting for automation and system configuration"
+msgstr "Scripting pour l'automatisation et la configuration système"
+
+#: components/sections/contact-section.tsx
+msgid "Security & Performance"
+msgstr "Sécurité & Performance"
+
+#: components/sections/contact-section.tsx
+msgid "Security audits, performance optimization and GDPR compliance."
+msgstr "Audit de sécurité, optimisation des performances et mise en conformité RGPD."
+
+#: app/page.tsx
+msgid "Send email"
+msgstr "Envoyer un e-mail"
+
+#: components/sections/contact-section.tsx
+msgid "Send me an email"
+msgstr "M'envoyer un email"
+
+#: components/sections/contact-section.tsx
+msgid "Showcase websites, complex web applications, e-commerce and design integration."
+msgstr "Sites vitrines, applications web complexes, e-commerce et intégration de designs."
+
+#: components/navigation-bar.tsx
+#: components/sections/skills-section.tsx
+msgid "Skills"
+msgstr "Compétences"
+
+#: components/sections/education-section.tsx
+#: components/sections/education-section.tsx
+#: components/sections/experience-section.tsx
+msgid "Skills acquired"
+msgstr "Compétences acquises"
+
+#: data/education.ts
+msgid "Software Architecture"
+msgstr "Architecture logicielle"
+
+#: components/sections/about-section.tsx
+msgid "Specialized in React, TypeScript and the Next.js ecosystem, I master the complete chain of modern front-end development: from pixel-perfect UI integration to state management, performance optimization and automated testing."
+msgstr "Spécialisé en React, TypeScript et dans l’écosystème Next.js, je maîtrise toute la chaîne du développement front-end moderne : de l’intégration pixel-perfect au state management, à l’optimisation des performances et aux tests automatisés."
+
+#: data/experiences.ts
+msgid "Supervision of IT projects and educational assistance for students"
+msgstr "Encadrement de projets informatiques et assistance pédagogique auprès des étudiants"
+
+#: components/sections/projects-section.tsx
+msgid "Swipe to navigate"
+msgstr "Glissez pour naviguer"
+
+#: data/experiences.ts
+#: data/skills.ts
+msgid "Teaching"
+msgstr "Pédagogie"
+
+#: data/skills.ts
+msgid "Teamwork"
+msgstr "Travail d'équipe"
+
+#: data/projects.ts
+msgid "TeapotTracker"
+msgstr "TeapotTracker"
+
+#: data/experiences.ts
+msgid "Technical and methodological support for students"
+msgstr "Soutien technique et méthodologique aux étudiants"
+
+#: components/sections/contact-section.tsx
+msgid "Technical support, technology choice and training for your teams."
+msgstr "Accompagnement technique, choix de technologies et formation de vos équipes."
+
+#: app/not-found.tsx
+#: app/not-found.tsx
+msgid "The page you are looking for does not exist or has been moved."
+msgstr "La page que vous recherchez n'existe pas ou a été déplacée."
+
+#: app/page.tsx
+#: app/page.tsx
+msgid "Thomas OTT - Front-End Developer"
+msgstr "Thomas OTT - Développeur front-end"
+
+#: components/github/github-contributions-chart.tsx
+msgid "Total contributions"
+msgstr "Contributions totales"
+
+#: components/sections/about-section.tsx
+msgid "Trained at Epitech with project-based pedagogy, I developed strong autonomy and an ability to solve complex problems. I am currently completing an international exchange year at Laurea University in Helsinki, Finland."
+msgstr "Formé à Epitech avec une pédagogie par projets, j’ai développé une forte autonomie et une vraie capacité à résoudre des problèmes complexes. Je termine actuellement une année d’échange internationale à Laurea University, à Helsinki en Finlande."
+
+#: data/experiences.ts
+#: data/skills.ts
+msgid "TypeScript"
+msgstr "TypeScript"
+
+#: data/skills.ts
+msgid "Used for system projects and high-performance applications"
+msgstr "Utilisé pour des projets système et applications performantes"
+
+#: data/skills.ts
+msgid "Used to add static typing and improve code maintainability"
+msgstr "Utilisé pour ajouter un typage statique et améliorer la maintenabilité du code"
+
+#: data/education.ts
+msgid "UX/UI Design"
+msgstr "UX/UI Design"
+
+#: data/skills.ts
+msgid "Versatile language for web development, data science, and automation"
+msgstr "Langage polyvalent pour le développement web, data science et automatisation"
+
+#: data/skills.ts
+msgid "Version control system for source code management"
+msgstr "Système de contrôle de version pour la gestion du code source"
+
+#: components/sections/projects-section.tsx
+#: components/sections/projects-section.tsx
+msgid "View all projects"
+msgstr "Voir tous les projets"
+
+#: components/sections/education-section.tsx
+#: components/sections/education-section.tsx
+#: components/sections/experience-section.tsx
+#: components/sections/experience-section.tsx
+#: components/sections/experience-section.tsx
+#: components/sections/experience-section.tsx
+msgid "Visit website"
+msgstr "Visiter le site"
+
+#: data/projects.ts
+msgid "Web application providing advanced statistics and information for the Epitech Intranet platform. Chrome extension with comprehensive data visualization, customizable dashboard for tracking academic progress, and enhanced user experience features. Helps students monitor their academic journey more effectively."
+msgstr "Application web fournissant des statistiques avancées pour la plateforme Intranet Epitech. Extension Chrome avec visualisation complète des données, tableau de bord personnalisable pour le suivi académique et fonctionnalités d'expérience utilisateur améliorées. Aide les étudiants à suivre efficacement leur parcours académique."
+
+#: components/sections/contact-section.tsx
+#: data/education.ts
+msgid "Web Development"
+msgstr "Développement web"
+
+#: data/skills.ts
+msgid "Web server and reverse proxy for applications"
+msgstr "Serveur web et proxy inverse pour les applications"

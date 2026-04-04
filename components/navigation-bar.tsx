@@ -1,8 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { useTranslation } from "@/hooks/use-translation"
 import type { SectionName } from "@/lib/types"
+import { Trans, useLingui } from "@lingui/react/macro"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   Briefcase,
@@ -32,7 +32,7 @@ interface NavigationBarProps {
 }
 
 export function NavigationBar({ onNavigate }: NavigationBarProps) {
-  const { t, loading } = useTranslation("common")
+  const { t } = useLingui()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<SectionName | null>("about")
@@ -120,37 +120,37 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
 
   const navItems = [
     {
-      name: t("navigation.about"),
+      name: t`About`,
       action: onNavigate.about,
       icon: <User size={16} />,
       id: "about",
     },
     {
-      name: t("navigation.experience"),
+      name: t`Experience`,
       action: onNavigate.experience,
       icon: <Briefcase size={16} />,
       id: "experience",
     },
     {
-      name: t("navigation.education"),
+      name: t`Education`,
       action: onNavigate.education,
       icon: <GraduationCap size={16} />,
       id: "education",
     },
     {
-      name: t("navigation.skills"),
+      name: t`Skills`,
       action: onNavigate.skills,
       icon: <CodeIcon size={16} />,
       id: "skills",
     },
     {
-      name: t("navigation.projects"),
+      name: t`Projects`,
       action: onNavigate.projects,
       icon: <FolderKanban size={16} />,
       id: "projects",
     },
     {
-      name: t("navigation.freelance"),
+      name: t`Contact`,
       action: onNavigate.contact,
       icon: <Mail size={16} />,
       id: "contact",
@@ -179,25 +179,25 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
         </svg>
       ),
       url: "https://www.malt.fr/profile/thomasott1",
-      label: "Malt",
+      label: t`Malt`,
       hoverClassName: "hover:text-[#FC5656]",
     },
     {
       icon: <Github size={16} />,
       url: "https://github.com/redBoardDev",
-      label: "GitHub",
+      label: t`GitHub`,
       hoverClassName: "hover:text-[#24292e]",
     },
     {
       icon: <Linkedin size={16} />,
       url: "https://www.linkedin.com/in/thomas--ott",
-      label: "LinkedIn",
+      label: t`LinkedIn`,
       hoverClassName: "hover:text-[#0077B5]",
     },
     {
       icon: <Mail size={16} />,
       url: "mailto:ott.thomas68@gmail.com",
-      label: "Email",
+      label: t`Email`,
       hoverClassName: "hover:text-primary",
     },
   ]
@@ -225,11 +225,13 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="group flex items-center rounded-[14px] px-1 py-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-              aria-label="Retour en haut de page"
+              aria-label={t`Back to top`}
             >
               <span className="hidden min-w-0 sm:flex flex-col">
                 <span className="truncate text-base font-semibold text-slate-950">Thomas OTT</span>
-                <span className="text-sm text-slate-500">{loading ? "..." : t("hero.title")}</span>
+                <span className="text-sm text-slate-500">
+                  <Trans>Front-End Developer</Trans>
+                </span>
               </span>
               <span className="text-base font-semibold text-slate-950 sm:hidden">Thomas OTT</span>
             </button>
@@ -251,7 +253,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                     }`}
                     aria-current={activeSection === item.id ? "page" : undefined}
                   >
-                    {loading ? "..." : item.name}
+                    {item.name}
                   </a>
                 ))}
               </div>
@@ -267,7 +269,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                 className="hidden lg:inline-flex"
                 onClick={() => handleNav("contact", onNavigate.contact)}
               >
-                {loading ? "..." : t("hero.contact")}
+                <Trans>Contact me</Trans>
               </Button>
             </div>
 
@@ -278,7 +280,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                 type="button"
                 onClick={() => setMobileMenuOpen((open) => !open)}
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300/75 bg-white/82 text-slate-700 shadow-[0_16px_28px_-24px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color,box-shadow] duration-200 hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                aria-label="Menu de navigation"
+                aria-label={t`Navigation menu`}
                 aria-expanded={mobileMenuOpen}
                 aria-controls="mobile-menu"
               >
@@ -305,7 +307,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              aria-label="Fermer le menu"
+              aria-label={t`Close menu`}
             />
 
             <motion.div
@@ -318,10 +320,10 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
             >
               <div className="border-b border-slate-200/80 px-5 py-4">
                 <p className="font-mono text-[0.68rem] uppercase tracking-[0.26em] text-slate-500">
-                  Navigation
+                  <Trans>Navigation</Trans>
                 </p>
                 <p className="mt-2 text-sm text-slate-600">
-                  {loading ? "..." : t("hero.title")} · Mulhouse
+                  <Trans>Front-End Developer</Trans>
                 </p>
               </div>
 
@@ -345,7 +347,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                     <span className={activeSection === item.id ? "text-white" : "text-slate-400"}>
                       {item.icon}
                     </span>
-                    {loading ? "..." : item.name}
+                    {item.name}
                   </motion.a>
                 ))}
               </div>
@@ -353,7 +355,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
               <div className="border-t border-slate-200/80 bg-slate-50/80 px-5 py-4">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
-                    Links
+                    <Trans>Links</Trans>
                   </span>
                   <div className="flex items-center gap-3">
                     {socialLinks.map((link, index) => (

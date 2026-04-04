@@ -11,7 +11,7 @@ import ProjectsSection from "@/components/sections/projects-section"
 import SkillsSection from "@/components/sections/skills-section"
 import { Button } from "@/components/ui/button"
 import { OptimizedImage } from "@/components/ui/optimized-image"
-import { useTranslation } from "@/hooks/use-translation"
+import { Trans, useLingui } from "@lingui/react/macro"
 import { motion } from "framer-motion"
 import { ArrowUp, Download, Github, Linkedin, Mail, MapPin } from "lucide-react"
 import dynamic from "next/dynamic"
@@ -28,7 +28,7 @@ const DynamicProjectsSection = dynamic(() => import("@/components/sections/proje
 })
 
 export default function Home() {
-  const { t, loading } = useTranslation("common")
+  const { t } = useLingui()
   const aboutRef = useRef<HTMLDivElement>(null)
   const experienceRef = useRef<HTMLDivElement>(null)
   const educationRef = useRef<HTMLDivElement>(null)
@@ -38,7 +38,7 @@ export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
 
-  const scrollToSection = (sectionRef: React.RefObject<HTMLDivElement>) => {
+  const scrollToSection = (sectionRef: React.RefObject<HTMLDivElement | null>) => {
     sectionRef.current?.scrollIntoView({ behavior: "smooth" })
     setHasScrolled(true)
   }
@@ -120,7 +120,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: 0.12 }}
                   className="mt-4 hidden text-lg font-medium text-slate-600 lg:block"
                 >
-                  {loading ? "..." : t("hero.title")}
+                  <Trans>Front-End Developer</Trans>
                 </motion.p>
 
                 <motion.p
@@ -129,25 +129,13 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: 0.16 }}
                   className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg lg:mx-0"
                 >
-                  {loading ? (
-                    "..."
-                  ) : (
-                    <>
-                      {t("hero.description")}{" "}
-                      <span className="font-semibold text-slate-950">
-                        {t("hero.technologies.react")}
-                      </span>
-                      ,{" "}
-                      <span className="font-semibold text-slate-950">
-                        {t("hero.technologies.typescript")}
-                      </span>{" "}
-                      {t("hero.technologies.and")}{" "}
-                      <span className="font-semibold text-slate-950">
-                        {t("hero.technologies.nodejs")}
-                      </span>
-                      .
-                    </>
-                  )}
+                  <Trans>
+                    I design fast, accessible and polished web interfaces with a strong focus on
+                    user experience, implementation quality and production-grade engineering around{" "}
+                    <span className="font-semibold text-slate-950">React</span>,{" "}
+                    <span className="font-semibold text-slate-950">TypeScript</span> and{" "}
+                    <span className="font-semibold text-slate-950">Node.js</span>.
+                  </Trans>
                 </motion.p>
 
                 <motion.div
@@ -157,14 +145,9 @@ export default function Home() {
                   className="mt-6 flex items-center justify-center gap-2 text-sm text-slate-500 lg:justify-start"
                 >
                   <MapPin size={16} className="text-primary" />
-                  <a
-                    href="https://www.google.com/maps/search/?api=1&query=Mulhouse,+Grand+Est,+France"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-mono uppercase tracking-[0.16em] transition-colors hover:text-slate-950"
-                  >
-                    {loading ? "..." : t("hero.location")}
-                  </a>
+                  <span className="font-mono uppercase tracking-[0.16em]">
+                    <Trans>Based in France, relocating to Helsinki, Finland</Trans>
+                  </span>
                 </motion.div>
 
                 <motion.div
@@ -179,12 +162,12 @@ export default function Home() {
                       download="resume-fr-thomas-ott.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={
-                        loading ? "Télécharger le CV" : `${t("hero.downloadCV")} - Thomas OTT`
-                      }
+                      aria-label={t`Download CV - Thomas OTT`}
                     >
                       <Download size={16} aria-hidden="true" />
-                      <span>{loading ? "..." : t("hero.downloadCV")}</span>
+                      <span>
+                        <Trans>Download CV</Trans>
+                      </span>
                     </a>
                   </Button>
 
@@ -196,7 +179,9 @@ export default function Home() {
                     className="gap-2"
                   >
                     <Mail size={16} />
-                    <span>{loading ? "..." : t("hero.contact")}</span>
+                    <span>
+                      <Trans>Contact me</Trans>
+                    </span>
                   </Button>
                 </motion.div>
 
@@ -207,7 +192,7 @@ export default function Home() {
                   className="mt-8"
                 >
                   <p className="mb-3 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-slate-500">
-                    {loading ? "..." : t("hero.findMe")}
+                    <Trans>Find me on</Trans>
                   </p>
                   <div className="flex justify-center gap-3 lg:justify-start">
                     <a
@@ -215,9 +200,9 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200/80 bg-white/82 text-[#FC5656] shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-[#FC5656]/30 hover:bg-white hover:text-[#FC5656] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FC5656] focus-visible:ring-offset-2"
-                      aria-label="Profil Malt"
+                      aria-label={t`Malt profile`}
                     >
-                      <span className="sr-only">Profil Malt</span>
+                      <span className="sr-only">{t`Malt profile`}</span>
                       <svg
                         width="20"
                         height="20"
@@ -241,7 +226,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200/80 bg-white/82 text-slate-700 shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-[#24292e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#24292e] focus-visible:ring-offset-2"
-                      aria-label="GitHub Profile"
+                      aria-label={t`GitHub profile`}
                     >
                       <Github size={20} />
                     </a>
@@ -250,14 +235,14 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200/80 bg-white/82 text-slate-700 shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-[#0077B5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077B5] focus-visible:ring-offset-2"
-                      aria-label="LinkedIn Profile"
+                      aria-label={t`LinkedIn profile`}
                     >
                       <Linkedin size={20} />
                     </a>
                     <a
                       href="mailto:ott.thomas68@gmail.com"
                       className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200/80 bg-white/82 text-slate-700 shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                      aria-label="Send Email"
+                      aria-label={t`Send email`}
                     >
                       <Mail size={20} />
                     </a>
@@ -279,7 +264,7 @@ export default function Home() {
                   <div className="relative h-[360px] w-[360px] overflow-hidden rounded-full border border-white/80 bg-white/50 shadow-[0_34px_72px_-44px_rgba(15,23,42,0.48)]">
                     <OptimizedImage
                       src="/assets/profile.png"
-                      alt="Thomas OTT - Développeur front-end"
+                      alt={t`Thomas OTT - Front-End Developer`}
                       fill
                       className="object-cover"
                       priority
@@ -296,7 +281,7 @@ export default function Home() {
                     <div className="relative h-[120px] w-[120px] overflow-hidden rounded-full border border-white/80 bg-white/50 shadow-[0_34px_72px_-44px_rgba(15,23,42,0.48)] sm:h-[150px] sm:w-[150px] md:h-[180px] md:w-[180px]">
                       <OptimizedImage
                         src="/assets/profile.png"
-                        alt="Thomas OTT - Développeur front-end"
+                        alt={t`Thomas OTT - Front-End Developer`}
                         fill
                         className="object-cover"
                         priority
@@ -310,7 +295,7 @@ export default function Home() {
                       <span className="block text-primary/95">OTT</span>
                     </h1>
                     <p className="mt-2 text-sm font-medium text-slate-600 sm:text-base md:text-lg">
-                      {loading ? "..." : t("hero.title")}
+                      <Trans>Front-End Developer</Trans>
                     </p>
                   </div>
                 </div>
@@ -354,7 +339,7 @@ export default function Home() {
             transition={{ duration: 0.2 }}
             onClick={scrollToTop}
             className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-xl border border-white/80 bg-slate-950 text-white shadow-[0_22px_40px_-22px_rgba(15,23,42,0.55)] transition-[background-color,box-shadow] duration-200 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            aria-label={loading ? "..." : t("hero.scrollToTop")}
+            aria-label={t`Back to top`}
           >
             <ArrowUp className="h-5 w-5" aria-hidden="true" />
           </motion.button>
@@ -369,7 +354,7 @@ export default function Home() {
                 Thomas OTT
               </p>
               <p className="mt-2 text-sm text-slate-600">
-                © {new Date().getFullYear()} Thomas OTT. {loading ? "..." : t("footer.rights")}
+                © {new Date().getFullYear()} Thomas OTT. <Trans>All rights reserved.</Trans>
               </p>
             </div>
 
@@ -378,7 +363,7 @@ export default function Home() {
                 href="https://www.malt.fr/profile/thomasott1"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Malt"
+                aria-label={t`Malt`}
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-500 transition-[background-color,color] duration-200 hover:bg-white hover:text-[#FC5656]"
               >
                 <svg
@@ -402,7 +387,7 @@ export default function Home() {
                 href="https://github.com/redBoardDev"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GitHub"
+                aria-label={t`GitHub`}
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-500 transition-[background-color,color] duration-200 hover:bg-white hover:text-[#24292e]"
               >
                 <Github className="h-5 w-5" />
@@ -411,14 +396,14 @@ export default function Home() {
                 href="https://www.linkedin.com/in/thomas--ott"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn"
+                aria-label={t`LinkedIn`}
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-500 transition-[background-color,color] duration-200 hover:bg-white hover:text-[#0077B5]"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
                 href="mailto:ott.thomas68@gmail.com"
-                aria-label="Email"
+                aria-label={t`Email`}
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-500 transition-[background-color,color] duration-200 hover:bg-white hover:text-primary"
               >
                 <Mail className="h-5 w-5" />
