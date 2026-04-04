@@ -11,17 +11,13 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-stats.tsx
 msgid "{longestStreak} days"
 msgstr "{longestStreak} jours"
 
 #: components/sections/experience-section.tsx
 msgid "{months, plural, one {# month} other {# months}}"
 msgstr "{months, plural, one {# mois} other {# mois}}"
-
-#: components/github/github-contributions-chart.tsx
-msgid "{yearlyContributions} contributions in the last year"
-msgstr "{yearlyContributions} contributions sur les 12 derniers mois"
 
 #: components/sections/experience-section.tsx
 msgid "{years, plural, one {# year} other {# years}}"
@@ -212,9 +208,17 @@ msgstr "Me contacter sur Malt"
 msgid "Continuous integration and deployment with GitHub Actions"
 msgstr "Intégration et déploiement continus avec GitHub Actions"
 
-#: components/github/github-contributions-chart.tsx
-msgid "Contributions chart (soon)"
-msgstr "Graphique des contributions (bientôt disponible)"
+#: components/github/github-heatmap.tsx
+msgid "contribution"
+msgstr "contribution"
+
+#: components/github/github-heatmap.tsx
+msgid "contributions"
+msgstr "contributions"
+
+#: components/github/github-heatmap.tsx
+msgid "contributions in the last year"
+msgstr "contributions cette année"
 
 #: components/sections/contact-section.tsx
 msgid "Copied!"
@@ -483,6 +487,10 @@ msgstr "Langues"
 msgid "Laurea University of Applied Sciences"
 msgstr "Laurea University of Applied Sciences"
 
+#: components/github/github-heatmap.tsx
+msgid "Less"
+msgstr "Moins"
+
 #: app/page.tsx
 #: components/navigation-bar.tsx
 #: components/sections/contact-section.tsx
@@ -501,7 +509,7 @@ msgstr "Liens"
 msgid "Linux"
 msgstr "Linux"
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-stats.tsx
 msgid "Longest streak"
 msgstr "Plus longue série"
 
@@ -563,7 +571,11 @@ msgstr "ORM moderne pour Node.js et TypeScript"
 msgid "Modular Chrome extension framework for easily adding custom, site-specific features on the fly with a plug-and-play architecture. Built with TypeScript and modern development tools, it provides developers with a flexible platform to enhance web browsing experiences across different websites."
 msgstr "Framework d'extension Chrome modulaire pour ajouter facilement des fonctionnalités personnalisées spécifiques aux sites avec une architecture plug-and-play. Construit avec TypeScript et des outils de développement modernes, il offre aux développeurs une plateforme flexible pour améliorer l'expérience de navigation web."
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-heatmap.tsx
+msgid "More"
+msgstr "Plus"
+
+#: components/github/github-stats.tsx
 msgid "Most used languages"
 msgstr "Langages les plus utilisés"
 
@@ -731,7 +743,7 @@ msgstr "Système de gestion de base de données relationnelle"
 msgid "Remote"
 msgstr "À distance"
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-stats.tsx
 msgid "Repositories"
 msgstr "Dépôts"
 
@@ -822,7 +834,7 @@ msgstr "La page que vous recherchez n'existe pas ou a été déplacée."
 msgid "Thomas OTT - Front-End Developer"
 msgstr "Thomas OTT - Développeur front-end"
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-stats.tsx
 msgid "Total contributions"
 msgstr "Contributions totales"
 
@@ -834,6 +846,10 @@ msgstr "Formé à Epitech avec une pédagogie par projets, j’ai développé un
 #: data/skills.ts
 msgid "TypeScript"
 msgstr "TypeScript"
+
+#: components/github/github-heatmap.tsx
+msgid "Unable to load GitHub data"
+msgstr "Impossible de charger les données GitHub"
 
 #: data/skills.ts
 msgid "Used for system projects and high-performance applications"

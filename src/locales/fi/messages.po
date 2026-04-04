@@ -11,17 +11,13 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-stats.tsx
 msgid "{longestStreak} days"
 msgstr "{longestStreak} päivää"
 
 #: components/sections/experience-section.tsx
 msgid "{months, plural, one {# month} other {# months}}"
 msgstr "{months, plural, one {# kuukausi} other {# kuukautta}}"
-
-#: components/github/github-contributions-chart.tsx
-msgid "{yearlyContributions} contributions in the last year"
-msgstr "{yearlyContributions} kontribuutiota viimeisen vuoden aikana"
 
 #: components/sections/experience-section.tsx
 msgid "{years, plural, one {# year} other {# years}}"
@@ -212,9 +208,17 @@ msgstr "Ota yhteyttä Maltin kautta"
 msgid "Continuous integration and deployment with GitHub Actions"
 msgstr "Jatkuva integraatio ja käyttöönotto GitHub Actionsin avulla"
 
-#: components/github/github-contributions-chart.tsx
-msgid "Contributions chart (soon)"
-msgstr "Kontribuutiokaavio (tulossa pian)"
+#: components/github/github-heatmap.tsx
+msgid "contribution"
+msgstr "kontribuutio"
+
+#: components/github/github-heatmap.tsx
+msgid "contributions"
+msgstr "kontribuutiota"
+
+#: components/github/github-heatmap.tsx
+msgid "contributions in the last year"
+msgstr "kontribuutiota viimeisen vuoden aikana"
 
 #: components/sections/contact-section.tsx
 msgid "Copied!"
@@ -483,6 +487,10 @@ msgstr "Kielet"
 msgid "Laurea University of Applied Sciences"
 msgstr "Laurea University of Applied Sciences"
 
+#: components/github/github-heatmap.tsx
+msgid "Less"
+msgstr "Vähemmän"
+
 #: app/page.tsx
 #: components/navigation-bar.tsx
 #: components/sections/contact-section.tsx
@@ -501,7 +509,7 @@ msgstr "Linkit"
 msgid "Linux"
 msgstr "Linux"
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-stats.tsx
 msgid "Longest streak"
 msgstr "Pisin putki"
 
@@ -563,7 +571,11 @@ msgstr "Moderni ORM Node.js:lle ja TypeScriptille"
 msgid "Modular Chrome extension framework for easily adding custom, site-specific features on the fly with a plug-and-play architecture. Built with TypeScript and modern development tools, it provides developers with a flexible platform to enhance web browsing experiences across different websites."
 msgstr "Modulaarinen Chrome-laajennuskehys, jonka plug-and-play-arkkitehtuuri mahdollistaa räätälöityjen, sivustokohtaisten ominaisuuksien helpon lisäämisen lennossa. Rakennettu TypeScriptillä ja moderneilla kehitystyökaluilla, ja se tarjoaa kehittäjille joustavan alustan verkkoselailukokemuksen parantamiseen eri sivustoilla."
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-heatmap.tsx
+msgid "More"
+msgstr "Enemmän"
+
+#: components/github/github-stats.tsx
 msgid "Most used languages"
 msgstr "Eniten käytetyt kielet"
 
@@ -731,7 +743,7 @@ msgstr "Relaatiotietokannan hallintajärjestelmä"
 msgid "Remote"
 msgstr "Etänä"
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-stats.tsx
 msgid "Repositories"
 msgstr "Repositoriot"
 
@@ -822,7 +834,7 @@ msgstr "Etsimääsi sivua ei ole olemassa tai se on siirretty."
 msgid "Thomas OTT - Front-End Developer"
 msgstr "Thomas OTT - Front-end-kehittäjä"
 
-#: components/github/github-contributions-chart.tsx
+#: components/github/github-stats.tsx
 msgid "Total contributions"
 msgstr "Kontribuutioita yhteensä"
 
@@ -834,6 +846,10 @@ msgstr "Epitechissä projektipohjaisella pedagogiikalla kouluttautuneena kehitin
 #: data/skills.ts
 msgid "TypeScript"
 msgstr "TypeScript"
+
+#: components/github/github-heatmap.tsx
+msgid "Unable to load GitHub data"
+msgstr "GitHub-tietoja ei voitu ladata"
 
 #: data/skills.ts
 msgid "Used for system projects and high-performance applications"
