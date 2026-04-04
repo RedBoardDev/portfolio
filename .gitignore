@@ -37,6 +37,9 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 
+# Lingui compiled catalogs
+src/locales/*/messages.ts
+
 # IDE
 .vscode/
 .idea/

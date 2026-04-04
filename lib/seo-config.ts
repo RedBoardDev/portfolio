@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   name: "Thomas OTT",
   title: "Thomas OTT - portfolio",
   description:
-    "Développeur front-end spécialisé en React, Next.js et TypeScript. Découvrez mes projets, mon approche UI et mon exigence de qualité.",
+    "Front-end developer specialized in React, Next.js and TypeScript. Explore my projects, UI approach and production-grade engineering standards.",
   url: "https://thomasott.fr",
   author: {
     name: "Thomas Ott",
@@ -127,9 +127,9 @@ export const getPersonSchema = () => ({
   email: SITE_CONFIG.author.email,
   image: `${SITE_CONFIG.url}/assets/profile.png`,
   description:
-    "Thomas OTT, développeur front-end spécialisé en React, Next.js et TypeScript. Basé à Mulhouse, Grand Est, France.",
-  jobTitle: "Développeur Front-End React & TypeScript",
-  alternateName: ["Thomas OTT", "Thomas OTT Dev", "Thomas Ott Développeur"],
+    "Thomas OTT, front-end developer specialized in React, Next.js and TypeScript, based in Mulhouse, Grand Est, France.",
+  jobTitle: "Front-End React & TypeScript Developer",
+  alternateName: ["Thomas OTT", "Thomas OTT Dev", "Thomas Ott Developer"],
   worksFor: {
     "@type": "Organization",
     name: "Freelance",
@@ -172,7 +172,7 @@ export const getWebSiteSchema = () => ({
   url: SITE_CONFIG.url,
   name: SITE_CONFIG.name,
   description: SITE_CONFIG.description,
-  inLanguage: ["fr-FR", "en-US"],
+  inLanguage: ["en-US", "fr-FR"],
   author: {
     "@id": `${SITE_CONFIG.url}#person`,
   },
@@ -190,7 +190,7 @@ export const getOrganizationSchema = () => ({
   name: SITE_CONFIG.name,
   url: SITE_CONFIG.url,
   logo: `${SITE_CONFIG.url}/assets/profile.png`,
-  description: "Services de développement web professionnel",
+  description: "Professional web development services",
   address: {
     "@type": "PostalAddress",
     addressCountry: "FR",

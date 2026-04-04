@@ -1,88 +1,80 @@
+import type { MessageDescriptor } from "@lingui/core"
+import { msg } from "@lingui/core/macro"
+
 export interface Position {
-  key: string // Clé pour la traduction
+  title: MessageDescriptor
+  type: MessageDescriptor
+  location: MessageDescriptor
+  description: MessageDescriptor[]
   startDate: string // Format: "YYYY-MM"
   endDate?: string // Format: "YYYY-MM", optional (if not provided, means "Present")
-  skills: string[]
+  skills: MessageDescriptor[]
 }
 
 export interface Experience {
-  key: string // Clé pour la traduction
+  name: MessageDescriptor
   logo: string
-  url?: string // URL du site web de l'entreprise
+  url?: string
   positions: Position[]
-}
-
-// Calculate duration between two dates
-export const calculateDuration = (startDate: string, endDate?: string): string => {
-  const start = new Date(startDate)
-  const end = endDate ? new Date(endDate) : new Date()
-
-  const monthsDiff =
-    (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth())
-
-  const years = Math.floor(monthsDiff / 12)
-  const months = monthsDiff % 12
-
-  if (years === 0 && months === 0) return "< 1 mois"
-  if (years === 0) return `${months} mois`
-  if (months === 0) return `${years} an${years > 1 ? "s" : ""}`
-  return `${years} an${years > 1 ? "s" : ""} ${months} mois`
-}
-
-// Calculate total duration across all positions for a company
-export const calculateTotalDuration = (positions: Position[]): string => {
-  // Sort positions by start date
-  const sortedPositions = [...positions].sort(
-    (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
-  )
-
-  // Get earliest start date and latest end date
-  const earliestStart = sortedPositions[0].startDate
-
-  // Find the latest end date, or use current date if any position is ongoing
-  let latestEnd: string | undefined
-  for (const pos of sortedPositions) {
-    if (!pos.endDate) {
-      latestEnd = undefined // If any position is current, the overall experience is ongoing
-      break
-    }
-    if (!latestEnd || new Date(pos.endDate) > new Date(latestEnd)) {
-      latestEnd = pos.endDate
-    }
-  }
-
-  return calculateDuration(earliestStart, latestEnd)
 }
 
 export const experiences: Experience[] = [
   {
-    key: "akord",
+    name: msg`AkorD`,
     logo: "/assets/logos/companies/akord.jpeg",
     url: "https://akord.fr",
     positions: [
       {
-        key: "fullStackDeveloper",
+        title: msg`Full Stack Developer`,
+        type: msg`Freelance`,
+        location: msg`Remote`,
+        description: [
+          msg`Development and maintenance of modern web applications`,
+          msg`Design and implementation of new features`,
+          msg`Performance optimization and user experience enhancement`,
+        ],
         startDate: "2023-09",
-        skills: ["DevOps", "AWS Lambda", "Node.js", "React", "TypeScript", "Docker"],
+        skills: [
+          msg`DevOps`,
+          msg`AWS Lambda`,
+          msg`Node.js`,
+          msg`React`,
+          msg`TypeScript`,
+          msg`Docker`,
+        ],
       },
       {
-        key: "developer",
+        title: msg`Developer`,
+        type: msg`Internship`,
+        location: msg`Mulhouse, Grand Est, France · On-site`,
+        description: [
+          msg`Development of features for web applications`,
+          msg`Bug fixes and performance improvements`,
+          msg`Collaboration with the development team`,
+        ],
         startDate: "2023-02",
         endDate: "2023-08",
-        skills: ["DevOps", "AWS Lambda", "JavaScript", "React"],
+        skills: [msg`DevOps`, msg`AWS Lambda`, msg`JavaScript`, msg`React`],
       },
     ],
   },
   {
-    key: "epitech",
+    name: msg`Epitech - The IT Excellence School`,
     logo: "/assets/logos/companies/epitech.jpeg",
     url: "https://www.epitech.eu/",
     positions: [
       {
-        key: "aer",
+        title: msg`Epitech Regional Assistant (AER)`,
+        type: msg`Internship`,
+        location: msg`Mulhouse, Grand Est, France · On-site`,
+        description: [
+          msg`Supervision of IT projects and educational assistance for students`,
+          msg`Participation in organizing events and promoting the school`,
+          msg`Technical and methodological support for students`,
+        ],
         startDate: "2022-03",
         endDate: "2023-02",
-        skills: ["Adaptabilité", "Gestion de projet", "Pédagogie"],
+        skills: [msg`Adaptability`, msg`Project Management`, msg`Teaching`],
       },
     ],
   },

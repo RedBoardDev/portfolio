@@ -1,7 +1,7 @@
 import type React from "react"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { LanguageProvider } from "@/lib/language-context"
+import { I18nProvider } from "@/lib/i18n-provider"
 import { getMetadata, getOrganizationSchema, getPersonSchema } from "@/lib/seo-config"
 import type { Metadata } from "next"
 import { IBM_Plex_Mono, Manrope, Space_Grotesk } from "next/font/google"
@@ -35,7 +35,8 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="fr"
+      lang="en"
+      suppressHydrationWarning
       className={`${manrope.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
     >
       <head>
@@ -54,15 +55,14 @@ export default function RootLayout({
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-slate-950 focus:px-4 focus:py-3 focus:text-sm focus:font-medium focus:text-white"
         >
-          Aller au contenu
+          Skip to content
         </a>
-        <LanguageProvider>
-          <ThemeProvider attribute="class" defaultTheme="light">
+        <I18nProvider>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
             {children}
           </ThemeProvider>
-        </LanguageProvider>
+        </I18nProvider>
 
-        {/* Structured Data for SEO */}
         <Script
           id="schema-organization"
           type="application/ld+json"
@@ -83,12 +83,12 @@ export default function RootLayout({
               name: "Thomas OTT - portfolio",
               url: "https://thomasott.fr",
               description:
-                "Développeur front-end spécialisé en React, Next.js et TypeScript. Découvrez mes projets, mon approche UI et mon exigence de qualité.",
+                "Front-end developer specialized in React, Next.js and TypeScript. Explore my projects, UI approach and production-grade engineering standards.",
               author: {
                 "@type": "Person",
                 name: "Thomas OTT",
               },
-              inLanguage: ["fr-FR", "en-US"],
+              inLanguage: ["en-US", "fr-FR"],
               potentialAction: {
                 "@type": "SearchAction",
                 target: "https://thomasott.fr#{search_term_string}",
