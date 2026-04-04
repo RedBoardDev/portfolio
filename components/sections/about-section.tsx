@@ -1,6 +1,7 @@
 "use client"
 
-import { GitHubContributions } from "@/components/github/github-contributions-chart"
+import { GitHubHeatmap } from "@/components/github/github-heatmap"
+import { GitHubStats } from "@/components/github/github-stats"
 import { SectionHeading } from "@/components/shared/section-heading"
 import { ContentBox } from "@/components/ui/content-box"
 import { Trans, useLingui } from "@lingui/react/macro"
@@ -57,7 +58,8 @@ export default function AboutSection() {
 
           <div>
             <ContentBox title={t`GitHub Contributions`} shadow="md">
-              <GitHubContributions username="redBoardDev" />
+              <GitHubHeatmap username="redBoardDev" />
+              <GitHubStats username="redBoardDev" />
             </ContentBox>
           </div>
         </div>
