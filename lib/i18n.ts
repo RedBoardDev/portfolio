@@ -1,5 +1,5 @@
-import { messages as defaultMessages } from "@/src/locales/en/messages"
 import { i18n } from "@lingui/core"
+import { messages as defaultMessages } from "../src/locales/en/messages"
 
 export type Locale = "en" | "fr" | "fi"
 
@@ -15,7 +15,7 @@ export async function loadCatalog(locale: Locale) {
     return
   }
 
-  const { messages } = await import(`../src/locales/${locale}/messages.ts`)
+  const { messages } = await import(`../src/locales/${locale}/messages`)
   i18n.load(locale, messages)
   i18n.activate(locale)
 }

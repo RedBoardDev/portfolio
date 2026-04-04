@@ -5,17 +5,21 @@
   "packageManager": "yarn@4.13.0",
   "scripts": {
     "dev": "next dev --turbopack",
+    "predev": "yarn i18n:compile",
     "build": "next build",
+    "prebuild": "yarn i18n:compile",
     "start": "next start",
-    "lint": "yarn lint:check",
+    "lint": "biome check .",
+    "prelint": "yarn i18n:compile",
     "lint:fix": "biome lint --write .",
     "lint:check": "biome check .",
+    "prelint:check": "yarn i18n:compile",
     "format:fix": "biome format --write .",
     "format:check": "biome format .",
     "i18n:extract": "lingui extract --clean",
     "i18n:compile": "lingui compile --typescript",
-    "deploy": "yarn i18n:compile && yarn build && serverless deploy --stage production",
-    "deploy:dev": "yarn i18n:compile && yarn build && serverless deploy --stage dev"
+    "deploy": "yarn build && serverless deploy --stage production",
+    "deploy:dev": "yarn build && serverless deploy --stage dev"
   },
   "dependencies": {
     "@lingui/core": "^5.9.4",
