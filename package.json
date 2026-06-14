@@ -15,8 +15,8 @@
     "format:check": "biome format .",
     "i18n:extract": "lingui extract --clean",
     "i18n:compile": "lingui compile --typescript",
-    "deploy": "yarn build && serverless deploy --stage production",
-    "deploy:dev": "yarn build && serverless deploy --stage dev"
+    "deploy": "yarn build && bash scripts/deploy.sh production",
+    "deploy:dev": "yarn build && bash scripts/deploy.sh dev"
   },
   "dependencies": {
     "@lingui/core": "^5.9.4",

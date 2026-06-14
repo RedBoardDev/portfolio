@@ -10,48 +10,11 @@ provider:
   environment:
     STAGE: ${self:provider.stage}
 
-plugins:
-  - serverless-s3-sync
-  - serverless-cloudfront-invalidate
-
 custom:
-  # S3 Bucket configuration (account id keeps the name globally unique — S3 names are global)
+  # Account id keeps the bucket name globally unique (S3 names are global).
+  # File upload + CloudFront invalidation are handled by scripts/deploy.sh (AWS CLI),
+  # which is far more reliable in CI than the serverless-s3-sync plugin (S3 RequestTimeout).
   s3Bucket: ${self:service}-${self:provider.stage}-${aws:accountId}
-
-  # S3 Sync configuration
-  s3Sync:
-    - bucketName: ${self:custom.s3Bucket}
-      localDir: out
-      deleteRemoved: true
-      followSymlinks: true
-      defaultContentType: text/html
-      params:
-        - match: "*.html"
-          CacheControl: "max-age=3600"
-        - match: "*.css"
-          CacheControl: "max-age=31536000"
-        - match: "*.js"
-          CacheControl: "max-age=31536000"
-        - match: "*.png"
-          CacheControl: "max-age=31536000"
-        - match: "*.jpg"
-          CacheControl: "max-age=31536000"
-        - match: "*.jpeg"
-          CacheControl: "max-age=31536000"
-        - match: "*.gif"
-          CacheControl: "max-age=31536000"
-        - match: "*.svg"
-          CacheControl: "max-age=31536000"
-        - match: "*.webp"
-          CacheControl: "max-age=31536000"
-        - match: "_next/static/**"
-          CacheControl: "max-age=31536000, immutable"
-
-  # CloudFront Invalidation
-  cloudfrontInvalidate:
-    - distributionIdKey: "CloudFrontDistribution"
-      items:
-        - "/*"
 
 resources:
   Resources:

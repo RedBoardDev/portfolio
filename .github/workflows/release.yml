@@ -102,22 +102,11 @@ jobs:
           NODE_ENV: production
         run: yarn build
 
-      - name: Deploy with Serverless
+      - name: Deploy (CloudFormation + S3 + CloudFront)
         env:
           CI: "true"
           SLS_INTERACTIVE_SETUP_ENABLE: "0"
-        run: yarn serverless deploy --stage production --verbose
-
-      - name: Invalidate CloudFront
-        if: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID != '' }}
-        env:
-          CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
-        run: |
-          set -euo pipefail
-
-          aws cloudfront create-invalidation \
-            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
-            --paths '/*'
+        run: bash scripts/deploy.sh production
 
       - name: Create and push tag
         run: |

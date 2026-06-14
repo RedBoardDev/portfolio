@@ -1,0 +1,83 @@
+name: Deploy to AWS
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: Deployment stage
+        required: true
+        default: production
+        type: choice
+        options:
+          - production
+          - dev
+
+env:
+  NODE_VERSION: "24"
+  AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION || secrets.AWS_DEFAULT_REGION }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+
+concurrency:
+  group: deploy-${{ inputs.stage }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Fail fast when AWS credentials are missing
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${AWS_DEFAULT_REGION:-}" ]]; then
+            echo "::error::AWS_DEFAULT_REGION is not set. Add it as a repository variable or secret."
+            exit 1
+          fi
+
+          if [[ -z "${AWS_ACCESS_KEY_ID:-}" || -z "${AWS_SECRET_ACCESS_KEY:-}" ]]; then
+            echo "::error::AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY must be set."
+            exit 1
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+
+      - name: Restore Next.js cache
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx', '**/*.mjs', '**/*.cjs', 'next.config.*') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('yarn.lock') }}-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build
+        env:
+          NODE_ENV: production
+        run: yarn build
+
+      - name: Deploy (CloudFormation + S3 + CloudFront)
+        env:
+          CI: "true"
+          SLS_INTERACTIVE_SETUP_ENABLE: "0"
+        run: bash scripts/deploy.sh "${{ inputs.stage }}"
