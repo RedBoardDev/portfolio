@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   name: "Thomas OTT",
   title: "Thomas OTT - portfolio",
   description:
-    "Front-end developer specialized in React, Next.js and TypeScript. Explore my projects, UI approach and production-grade engineering standards.",
+    "Software engineer building full-stack web apps, backends, CLIs and serverless platforms with TypeScript, Node.js, Go and React. Explore my projects and production-grade engineering standards.",
   url: "https://thomasott.fr",
   author: {
     name: "Thomas Ott",
@@ -14,8 +14,10 @@ export const SITE_CONFIG = {
   },
   keywords: [
     "Thomas OTT développeur",
-    "développeur front-end Mulhouse",
-    "freelance React Mulhouse",
+    "software engineer Mulhouse",
+    "développeur full-stack Mulhouse",
+    "freelance TypeScript Node.js",
+    "développeur Go France",
     "développeur Next.js Alsace",
     "TypeScript expert France",
     "développeur web Mulhouse",
@@ -127,8 +129,8 @@ export const getPersonSchema = () => ({
   email: SITE_CONFIG.author.email,
   image: `${SITE_CONFIG.url}/assets/profile.png`,
   description:
-    "Thomas OTT, front-end developer specialized in React, Next.js and TypeScript, based in Mulhouse, Grand Est, France.",
-  jobTitle: "Front-End React & TypeScript Developer",
+    "Thomas OTT, software engineer specialized in TypeScript, Node.js, Go and React, building full-stack web apps, backends and serverless platforms. Based in Mulhouse, Grand Est, France.",
+  jobTitle: "Software Engineer",
   alternateName: ["Thomas OTT", "Thomas OTT Dev", "Thomas Ott Developer"],
   worksFor: {
     "@type": "Organization",
@@ -146,22 +148,25 @@ export const getPersonSchema = () => ({
     "https://www.malt.fr/profile/thomasott1",
   ],
   knowsAbout: [
-    "JavaScript",
     "TypeScript",
+    "JavaScript",
+    "Go",
+    "Node.js",
     "React",
     "Next.js",
-    "Node.js",
+    "AWS",
+    "Serverless",
     "Web Development",
-    "Frontend Development",
     "Backend Development",
-    "SEO Optimization",
+    "CLI Development",
+    "Domain-Driven Design",
     "Performance Optimization",
   ],
   hasOccupation: {
     "@type": "Occupation",
-    name: "Software Developer",
-    description: "Full-stack web developer specializing in modern JavaScript frameworks",
-    skills: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
+    name: "Software Engineer",
+    description: "Full-stack engineer building web apps, backends, CLIs and serverless systems",
+    skills: ["TypeScript", "Node.js", "Go", "React", "Next.js", "AWS", "PostgreSQL"],
   },
 })
 

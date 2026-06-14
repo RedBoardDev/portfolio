@@ -13,43 +13,42 @@ export default function AboutSection() {
   return (
     <section id="about-section" className="relative">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <SectionHeading title={t`About`} className="mb-10" />
+        <SectionHeading eyebrow={t`About`} title={t`About me`} className="mb-10" />
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:items-start">
           <div className="lg:col-span-2">
             <ContentBox shadow="md">
-              <div className="space-y-4 text-slate-700">
+              <div className="space-y-4 text-muted-foreground">
                 <p className="leading-8">
                   <Trans>
-                    Passionate front-end developer, I create modern and performant web interfaces.
-                    My approach combines technical rigor and attention to detail to deliver
-                    exceptional user experiences.
+                    I build maintainable SaaS and business web apps end-to-end — from user needs and
+                    domain modeling all the way to production. My approach is Clean Architecture:
+                    clear boundaries, a deliberate project structure, and code that stays sane as
+                    the product grows. I move fast, but I build for the long run, with refactoring,
+                    reliability and security, and clean delivery (CI/CD, QA, cloud) baked in rather
+                    than bolted on.
                   </Trans>
                 </p>
                 <p className="leading-8">
                   <Trans>
-                    Specialized in React, TypeScript and the Next.js ecosystem, I master the
-                    complete chain of modern front-end development: from pixel-perfect UI
-                    integration to state management, performance optimization and automated testing.
+                    Right now I'm a full-stack developer at AkorD on Kare, a SaaS that digitalizes
+                    safety-register workflows for public-access facilities in France, where
+                    regulatory compliance meets daily field operations. In parallel, I co-founded
+                    Moboo, a no-code platform for building mobile apps through a visual editor,
+                    where I lead the frontend architecture.
                   </Trans>
                 </p>
                 <p className="leading-8">
                   <Trans>
-                    Curious by nature, I also explored blockchain and Web3, which gave me a broader
-                    vision of current technological challenges and the ability to quickly adapt to
-                    new paradigms.
-                  </Trans>
-                </p>
-                <p className="leading-8">
-                  <Trans>
-                    Trained at Epitech with project-based pedagogy, I developed strong autonomy and
-                    an ability to solve complex problems. I am currently completing an international
-                    exchange year at Laurea University in Helsinki, Finland.
+                    I'm an Epitech student graduating in 2026, with an academic year in Helsinki
+                    working on product-oriented teams in English. I'm open to opportunities in
+                    Finland and remote, with teams building serious products to a high engineering
+                    standard.
                   </Trans>
                 </p>
               </div>
@@ -58,8 +57,8 @@ export default function AboutSection() {
 
           <div>
             <ContentBox title={t`GitHub Contributions`} shadow="md">
-              <GitHubHeatmap username="redBoardDev" />
-              <GitHubStats username="redBoardDev" />
+              <GitHubHeatmap />
+              <GitHubStats />
             </ContentBox>
           </div>
         </div>

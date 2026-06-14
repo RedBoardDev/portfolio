@@ -12,18 +12,18 @@ import SkillsSection from "@/components/sections/skills-section"
 import { Button } from "@/components/ui/button"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 import { Trans, useLingui } from "@lingui/react/macro"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { ArrowUp, Download, Github, Linkedin, Mail, MapPin } from "lucide-react"
 import dynamic from "next/dynamic"
 import { useEffect, useRef, useState } from "react"
 
 const DynamicSkillsSection = dynamic(() => import("@/components/sections/skills-section"), {
-  loading: () => <div className="min-h-[200px] animate-pulse rounded-[20px] bg-white/50" />,
+  loading: () => <div className="min-h-[200px] animate-pulse rounded-[20px] bg-muted" />,
   ssr: false,
 })
 
 const DynamicProjectsSection = dynamic(() => import("@/components/sections/projects-section"), {
-  loading: () => <div className="min-h-[300px] animate-pulse rounded-[20px] bg-white/50" />,
+  loading: () => <div className="min-h-[300px] animate-pulse rounded-[20px] bg-muted" />,
   ssr: false,
 })
 
@@ -89,10 +89,10 @@ export default function Home() {
       <main id="main-content" className="relative overflow-hidden bg-background">
         <section className="relative overflow-hidden px-6 pb-10 pt-28 sm:px-8 sm:pb-16 sm:pt-28 md:px-10 md:pb-20 md:pt-32 lg:px-12 lg:pb-28 lg:pt-32">
           <div className="absolute inset-0 -z-10" aria-hidden="true">
-            <div className="absolute inset-x-0 top-0 h-[72%] bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.16),transparent_35%),radial-gradient(circle_at_82%_18%,rgba(245,158,11,0.12),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.42),transparent)]" />
+            <div className="absolute inset-x-0 top-0 h-[72%] bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.12),transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.45),transparent)]" />
             <div className="absolute left-[4%] top-16 h-28 w-28 rounded-full border border-white/80 bg-white/40 blur-2xl" />
             <div className="absolute bottom-12 right-[8%] h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
-            <div className="absolute right-[16%] top-20 h-px w-24 bg-slate-300/80" />
+            <div className="absolute right-[16%] top-20 h-px w-24 bg-border" />
           </div>
 
           <div className="mx-auto max-w-6xl">
@@ -108,7 +108,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.08 }}
-                  className="mt-6 hidden text-[5.35rem] font-semibold leading-[0.92] text-slate-950 lg:block"
+                  className="mt-6 hidden text-[5.35rem] font-semibold leading-[0.92] text-foreground lg:block"
                 >
                   Thomas
                   <span className="block text-primary/95">OTT</span>
@@ -118,23 +118,24 @@ export default function Home() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.12 }}
-                  className="mt-4 hidden text-lg font-medium text-slate-600 lg:block"
+                  className="mt-4 hidden text-lg font-medium text-muted-foreground lg:block"
                 >
-                  <Trans>Front-End Developer</Trans>
+                  <Trans>Software Engineer</Trans>
                 </motion.p>
 
                 <motion.p
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.16 }}
-                  className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg lg:mx-0"
+                  className="mx-auto mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg lg:mx-0"
                 >
                   <Trans>
-                    I design fast, accessible and polished web interfaces with a strong focus on
-                    user experience, implementation quality and production-grade engineering around{" "}
-                    <span className="font-semibold text-slate-950">React</span>,{" "}
-                    <span className="font-semibold text-slate-950">TypeScript</span> and{" "}
-                    <span className="font-semibold text-slate-950">Node.js</span>.
+                    I build reliable end-to-end software - web apps, backends, CLIs and serverless
+                    platforms - with a strong focus on clean architecture, performance and
+                    production-grade engineering around{" "}
+                    <span className="font-semibold text-foreground">TypeScript</span>,{" "}
+                    <span className="font-semibold text-foreground">Node.js</span> and{" "}
+                    <span className="font-semibold text-foreground">Go</span>.
                   </Trans>
                 </motion.p>
 
@@ -142,10 +143,10 @@ export default function Home() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.24 }}
-                  className="mt-6 flex items-center justify-center gap-2 text-sm text-slate-500 lg:justify-start"
+                  className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground lg:justify-start"
                 >
                   <MapPin size={16} className="text-primary" />
-                  <span className="font-mono uppercase tracking-[0.16em]">
+                  <span className="font-mono uppercase tracking-[0.08em] sm:tracking-[0.16em]">
                     <Trans>Based in France, relocating to Helsinki, Finland</Trans>
                   </span>
                 </motion.div>
@@ -158,8 +159,8 @@ export default function Home() {
                 >
                   <Button asChild variant="default" size="lg" className="gap-2">
                     <a
-                      href="/assets/resume-fr-thomas-ott.pdf"
-                      download="resume-fr-thomas-ott.pdf"
+                      href="/assets/en/Thomas_Ott_Software_Engineer_Resume.pdf"
+                      download="Thomas_Ott_Software_Engineer_Resume.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={t`Download CV - Thomas OTT`}
@@ -191,7 +192,7 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="mt-8"
                 >
-                  <p className="mb-3 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-slate-500">
+                  <p className="mb-3 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-muted-foreground">
                     <Trans>Find me on</Trans>
                   </p>
                   <div className="flex justify-center gap-3 lg:justify-start">
@@ -199,7 +200,7 @@ export default function Home() {
                       href="https://www.malt.fr/profile/thomasott1"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200/80 bg-white/82 text-[#FC5656] shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-[#FC5656]/30 hover:bg-white hover:text-[#FC5656] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FC5656] focus-visible:ring-offset-2"
+                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/70 bg-card/80 text-[#FC5656] shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-[#FC5656]/30 hover:bg-white hover:text-[#FC5656] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FC5656] focus-visible:ring-offset-2"
                       aria-label={t`Malt profile`}
                     >
                       <span className="sr-only">{t`Malt profile`}</span>
@@ -222,10 +223,10 @@ export default function Home() {
                       </svg>
                     </a>
                     <a
-                      href="https://github.com/redBoardDev"
+                      href="https://github.com/RedBoardDev"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200/80 bg-white/82 text-slate-700 shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-[#24292e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#24292e] focus-visible:ring-offset-2"
+                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/70 bg-card/80 text-foreground/80 shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-[#24292e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#24292e] focus-visible:ring-offset-2"
                       aria-label={t`GitHub profile`}
                     >
                       <Github size={20} />
@@ -234,14 +235,14 @@ export default function Home() {
                       href="https://www.linkedin.com/in/thomas--ott"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200/80 bg-white/82 text-slate-700 shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-[#0077B5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077B5] focus-visible:ring-offset-2"
+                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/70 bg-card/80 text-foreground/80 shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-[#0077B5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077B5] focus-visible:ring-offset-2"
                       aria-label={t`LinkedIn profile`}
                     >
                       <Linkedin size={20} />
                     </a>
                     <a
                       href="mailto:ott.thomas68@gmail.com"
-                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200/80 bg-white/82 text-slate-700 shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/70 bg-card/80 text-foreground/80 shadow-[0_18px_32px_-26px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color] duration-200 hover:border-slate-300 hover:bg-white hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                       aria-label={t`Send email`}
                     >
                       <Mail size={20} />
@@ -261,10 +262,10 @@ export default function Home() {
                   <div className="absolute inset-0 scale-[1.12] rounded-full border border-white/70" />
                   <div className="absolute inset-0 scale-[1.18] rounded-full bg-primary/10 blur-3xl" />
 
-                  <div className="relative h-[360px] w-[360px] overflow-hidden rounded-full border border-white/80 bg-white/50 shadow-[0_34px_72px_-44px_rgba(15,23,42,0.48)]">
+                  <div className="relative h-[360px] w-[360px] overflow-hidden rounded-full border border-white/80 bg-muted shadow-[0_34px_72px_-44px_rgba(15,23,42,0.48)]">
                     <OptimizedImage
                       src="/assets/profile.png"
-                      alt={t`Thomas OTT - Front-End Developer`}
+                      alt={t`Thomas OTT - Software Engineer`}
                       fill
                       className="object-cover"
                       priority
@@ -278,10 +279,10 @@ export default function Home() {
                     <div className="absolute inset-0 scale-[1.12] rounded-full border border-white/70" />
                     <div className="absolute inset-0 scale-[1.18] rounded-full bg-primary/10 blur-3xl" />
 
-                    <div className="relative h-[120px] w-[120px] overflow-hidden rounded-full border border-white/80 bg-white/50 shadow-[0_34px_72px_-44px_rgba(15,23,42,0.48)] sm:h-[150px] sm:w-[150px] md:h-[180px] md:w-[180px]">
+                    <div className="relative h-[120px] w-[120px] overflow-hidden rounded-full border border-white/80 bg-muted shadow-[0_34px_72px_-44px_rgba(15,23,42,0.48)] sm:h-[150px] sm:w-[150px] md:h-[180px] md:w-[180px]">
                       <OptimizedImage
                         src="/assets/profile.png"
-                        alt={t`Thomas OTT - Front-End Developer`}
+                        alt={t`Thomas OTT - Software Engineer`}
                         fill
                         className="object-cover"
                         priority
@@ -290,12 +291,12 @@ export default function Home() {
                   </div>
 
                   <div className="text-left">
-                    <h1 className="text-3xl font-semibold leading-[0.92] text-slate-950 sm:text-4xl md:text-5xl">
+                    <h1 className="text-3xl font-semibold leading-[0.92] text-foreground sm:text-4xl md:text-5xl">
                       Thomas
                       <span className="block text-primary/95">OTT</span>
                     </h1>
-                    <p className="mt-2 text-sm font-medium text-slate-600 sm:text-base md:text-lg">
-                      <Trans>Front-End Developer</Trans>
+                    <p className="mt-2 text-sm font-medium text-muted-foreground sm:text-base md:text-lg">
+                      <Trans>Software Engineer</Trans>
                     </p>
                   </div>
                 </div>
@@ -330,30 +331,32 @@ export default function Home() {
           </div>
         </div>
 
-        {showScrollTop && (
-          <motion.button
-            type="button"
-            initial={{ opacity: 0, scale: 0.9, y: 8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 8 }}
-            transition={{ duration: 0.2 }}
-            onClick={scrollToTop}
-            className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-xl border border-white/80 bg-slate-950 text-white shadow-[0_22px_40px_-22px_rgba(15,23,42,0.55)] transition-[background-color,box-shadow] duration-200 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            aria-label={t`Back to top`}
-          >
-            <ArrowUp className="h-5 w-5" aria-hidden="true" />
-          </motion.button>
-        )}
+        <AnimatePresence>
+          {showScrollTop && (
+            <motion.button
+              type="button"
+              initial={{ opacity: 0, scale: 0.9, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 8 }}
+              transition={{ duration: 0.2 }}
+              onClick={scrollToTop}
+              className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-xl border border-white/80 bg-slate-950 text-white shadow-[0_22px_40px_-22px_rgba(15,23,42,0.55)] transition-[background-color,box-shadow] duration-200 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              aria-label={t`Back to top`}
+            >
+              <ArrowUp className="h-5 w-5" aria-hidden="true" />
+            </motion.button>
+          )}
+        </AnimatePresence>
       </main>
 
-      <footer className="border-t border-slate-200/80 bg-white/70 py-8 backdrop-blur-sm">
+      <footer className="border-t border-border/70 bg-card/70 py-8 backdrop-blur-sm">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 md:px-10 lg:px-12">
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-slate-500">
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-muted-foreground">
                 Thomas OTT
               </p>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-muted-foreground">
                 © {new Date().getFullYear()} Thomas OTT. <Trans>All rights reserved.</Trans>
               </p>
             </div>
@@ -364,7 +367,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t`Malt`}
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-500 transition-[background-color,color] duration-200 hover:bg-white hover:text-[#FC5656]"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-border/70 bg-card/70 text-muted-foreground transition-[background-color,color] duration-200 hover:bg-white hover:text-[#FC5656]"
               >
                 <svg
                   width="18"
@@ -384,11 +387,11 @@ export default function Home() {
                 </svg>
               </a>
               <a
-                href="https://github.com/redBoardDev"
+                href="https://github.com/RedBoardDev"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t`GitHub`}
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-500 transition-[background-color,color] duration-200 hover:bg-white hover:text-[#24292e]"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-border/70 bg-card/70 text-muted-foreground transition-[background-color,color] duration-200 hover:bg-white hover:text-[#24292e]"
               >
                 <Github className="h-5 w-5" />
               </a>
@@ -397,14 +400,14 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t`LinkedIn`}
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-500 transition-[background-color,color] duration-200 hover:bg-white hover:text-[#0077B5]"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-border/70 bg-card/70 text-muted-foreground transition-[background-color,color] duration-200 hover:bg-white hover:text-[#0077B5]"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
                 href="mailto:ott.thomas68@gmail.com"
                 aria-label={t`Email`}
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/80 bg-white/70 text-slate-500 transition-[background-color,color] duration-200 hover:bg-white hover:text-primary"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-border/70 bg-card/70 text-muted-foreground transition-[background-color,color] duration-200 hover:bg-white hover:text-primary"
               >
                 <Mail className="h-5 w-5" />
               </a>

@@ -2,72 +2,95 @@ import type { MessageDescriptor } from "@lingui/core"
 import { msg } from "@lingui/core/macro"
 
 export interface Project {
-  title: MessageDescriptor
+  title: string
   description: MessageDescriptor
-  image: string
+  image?: string
   languages: string[]
+  primaryLanguage: string
   githubLink: string
   liveLink?: string
 }
 
 export const projectsData: Project[] = [
   {
-    title: msg`TeapotTracker`,
-    description: msg`Discord bot that updates its status based on time tracking received via clockify. Features Clean Architecture with Domain-Driven Design, automated deployment with PM2, and real-time status updates for work sessions. The bot listens for webhook payloads and displays different statuses based on work activity.`,
-    image: "/assets/projects/teapottracker.png",
-    languages: ["TypeScript", "JavaScript", "Node.js"],
-    githubLink: "https://github.com/RedBoardDev/TeapotTracker",
+    title: "ghr — GitHub Runners Controller",
+    description: msg`Self-hosted GitHub Actions runner controller for macOS, built on GitHub's official scale-set Go SDK. Provisions ephemeral JIT runners with min/max autoscaling, handles binary downloads, registration and process lifecycle, and integrates natively with launchd plus Discord/webhook and Uptime Kuma notifications.`,
+    languages: ["Go", "Shell", "Makefile"],
+    primaryLanguage: "Go",
+    githubLink: "https://github.com/RedBoardDev/gh-runners-tool",
   },
   {
-    title: msg`ChromeFlex`,
-    description: msg`Modular Chrome extension framework for easily adding custom, site-specific features on the fly with a plug-and-play architecture. Built with TypeScript and modern development tools, it provides developers with a flexible platform to enhance web browsing experiences across different websites.`,
-    image: "/placeholder.svg?height=400&width=600",
-    languages: ["TypeScript", "JavaScript", "Vite"],
-    githubLink: "https://github.com/RedBoardDev/ChromeFlex",
+    title: "mintlify-search-cli",
+    description: msg`CLI client for Mintlify-hosted MCP documentation servers, designed for LLM coding agents like Claude Code and Cursor. Exposes semantic search returning structured JSON, single-call page retrieval, and a sandboxed docs filesystem — a fast, lightweight alternative to the official MCP integration.`,
+    languages: ["Go", "Shell", "Makefile"],
+    primaryLanguage: "Go",
+    githubLink: "https://github.com/RedBoardDev/mintlify-search-cli",
   },
   {
-    title: msg`Atlas-GenAI`,
-    description: msg`AI-powered project with advanced generative capabilities and intelligent automation features. Built with TypeScript and Python, featuring Docker containerization for scalable deployment and development. The project leverages modern AI technologies to provide sophisticated solutions for various use cases.`,
-    image: "/assets/projects/atlas.png",
-    languages: ["TypeScript", "Python", "Docker"],
-    githubLink: "https://github.com/RedBoardDev/Atlas-GenAI",
-    liveLink: "https://atlas.thomasott.fr/",
+    title: "ORE Supply Farmer Bot",
+    description: msg`Production-grade ORE Protocol farming bot for Solana, built with Domain-Driven Design and a hexagonal architecture. Monitors on-chain rounds in real time and executes EV-optimized placements with a deterministic, risk-managed strategy and clean separation between domain and infrastructure.`,
+    languages: ["TypeScript", "Node.js", "Solana"],
+    primaryLanguage: "TypeScript",
+    githubLink: "https://github.com/RedBoardDev/ore-supply-farmer-bot",
   },
   {
-    title: msg`Invoicing System`,
-    description: msg`Modern invoicing and billing system built with TypeScript for small businesses and freelancers. Features automated invoice generation, comprehensive client management, payment tracking, and financial reporting with a clean and intuitive React interface. Streamlines the entire billing process from creation to payment.`,
-    image: "/placeholder.svg?height=400&width=600",
+    title: "Pixel Canvas",
+    description: msg`Collaborative r/place-style pixel canvas powered by a fully serverless AWS architecture. Features real-time WebSocket updates, Discord OAuth2 authentication and bot commands, chunk-based viewport rendering, admin session management and per-user rate limiting. Infrastructure defined as code with Terraform.`,
+    languages: ["TypeScript", "AWS", "Terraform", "Go"],
+    primaryLanguage: "TypeScript",
+    githubLink: "https://github.com/RedBoardDev/pixel-canvas",
+  },
+  {
+    title: "All-in-One Board",
+    description: msg`A one-page dashboard framework that centralizes everything you track — crypto prices, DeFi PnL, analytics, weather, news — into flexible, code-defined cards rendered live on a single screen. Define a card once and it stays in sync, so you replace ten browser tabs with one personal dashboard.`,
     languages: ["TypeScript", "React", "Node.js"],
-    githubLink: "https://github.com/RedBoardDev/invoicing",
+    primaryLanguage: "TypeScript",
+    githubLink: "https://github.com/RedBoardDev/all-in-one-board",
   },
   {
-    title: msg`Epitech Intranet Statistics`,
-    description: msg`Web application providing advanced statistics and information for the Epitech Intranet platform. Chrome extension with comprehensive data visualization, customizable dashboard for tracking academic progress, and enhanced user experience features. Helps students monitor their academic journey more effectively.`,
+    title: "SolDecoder Monitor",
+    description: msg`Professional Discord bot for real-time monitoring of Solana DeFi trading positions. A decorator-based feature system delivers position-size calculations, live PnL tracking and pool statistics directly inside your server, giving traders portfolio-grade tooling without leaving Discord.`,
+    languages: ["TypeScript", "Node.js", "Solana"],
+    primaryLanguage: "TypeScript",
+    githubLink: "https://github.com/RedBoardDev/soldecoder-monitor",
+  },
+  {
+    title: "Cookmate",
+    description: msg`Personal recipe hub that ingests recipes from any source — web pages, Instagram, plain text, screenshots — and normalizes them into a single DSL. Cook step-by-step with timers, plan weekly meals and auto-generate smart shopping lists, all in one private app shaped for daily use.`,
+    languages: ["TypeScript", "React", "Node.js"],
+    primaryLanguage: "TypeScript",
+    githubLink: "https://github.com/RedBoardDev/cookmate",
+  },
+  {
+    title: "Recipe Import Service",
+    description: msg`Service that turns any recipe URL or raw text into clean schema.org/Recipe JSON-LD. Runs asynchronous import jobs with BullMQ workers, tracks the full job lifecycle step by step, and streams real-time progress to clients over WebSocket before normalizing results to a consistent schema.`,
+    languages: ["TypeScript", "Node.js", "Docker"],
+    primaryLanguage: "TypeScript",
+    githubLink: "https://github.com/RedBoardDev/recipe-import-from-anything",
+  },
+  {
+    title: "Strakk",
+    description: msg`All-in-one fitness app built with Kotlin Multiplatform and Compose Multiplatform — shared business logic with native UI on iOS and Android. Includes workout logging, AI-powered meal photo scanning and food recognition, macro and water tracking, and weekly body check-ins with AI-generated nutrition goals.`,
+    languages: ["Kotlin", "Swift", "PostgreSQL"],
+    primaryLanguage: "Kotlin",
+    githubLink: "https://github.com/RedBoardDev/Strakk",
+  },
+  {
+    title: "Epitech Intranet Statistics",
+    description: msg`Chrome extension that supercharges the Epitech intranet with advanced statistics and data visualization, giving students a customizable dashboard to track their academic progress. My most-starred open-source project, with 15 stars on GitHub.`,
     image: "/assets/projects/epitechintranetstats.png",
     languages: ["JavaScript", "CSS", "HTML"],
+    primaryLanguage: "JavaScript",
     githubLink: "https://github.com/RedBoardDev/EpitechIntranetStatistics",
     liveLink:
       "https://chromewebstore.google.com/detail/epitech-intranet-statisti/fhelhbblcnpdfkiefkanbjjpkpejgodj",
   },
   {
-    title: msg`R-Type Game`,
-    description: msg`2D side-scrolling shoot'em up game based on the original R-Type arcade classic. Built in C++ with robust client-server architecture, featuring multiplayer gameplay, cross-platform support, and modern game development practices. Includes Entity Component System architecture and network synchronization.`,
+    title: "R-Type",
+    description: msg`2D side-scrolling shoot'em up inspired by the R-Type arcade classic, built in C++ around a custom Entity Component System. Client-server architecture with network synchronization between players and cross-platform installers released for Linux and Windows.`,
     image: "/assets/projects/rtype.png",
     languages: ["C++", "CMake", "Docker"],
+    primaryLanguage: "C++",
     githubLink: "https://github.com/RedBoardDev/rtype",
-  },
-  {
-    title: msg`Epitech AREA`,
-    description: msg`Automation platform connecting different services and applications through custom workflows and integrations. Built with JavaScript and React, enabling users to create sophisticated automation rules between various APIs and services. Similar to IFTTT but tailored for developer and student needs.`,
-    image: "/placeholder.svg?height=400&width=600",
-    languages: ["JavaScript", "React", "Node.js"],
-    githubLink: "https://github.com/RedBoardDev/epitech-area",
-  },
-  {
-    title: msg`MyFarm RPG`,
-    description: msg`Custom RPG game engine developed in C with classic farming simulation mechanics. Features comprehensive resource management, character progression system, and retro-style gaming environment. Players can cultivate crops, manage livestock, and build their virtual farming empire with strategic decision-making elements.`,
-    image: "/placeholder.svg?height=400&width=600",
-    languages: ["C", "Makefile"],
-    githubLink: "https://github.com/RedBoardDev/MyFarm",
   },
 ]

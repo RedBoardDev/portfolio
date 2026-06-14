@@ -15,7 +15,7 @@ const sectionData: Partial<
   about: {
     title: `About | ${SITE_CONFIG.name}`,
     description:
-      "Explore my front-end background and approach across React, Next.js and TypeScript.",
+      "Explore my software engineering background across TypeScript, Node.js, Go and React - full-stack, backend and tooling.",
     canonical: `${SITE_CONFIG.url}#about`,
   },
   experience: {
@@ -30,7 +30,8 @@ const sectionData: Partial<
   },
   contact: {
     title: `Contact | ${SITE_CONFIG.name}`,
-    description: "Get in touch for web product work, front-end engineering and consulting.",
+    description:
+      "Get in touch for software engineering work - full-stack, backend and developer tooling.",
     canonical: `${SITE_CONFIG.url}#contact`,
   },
 }

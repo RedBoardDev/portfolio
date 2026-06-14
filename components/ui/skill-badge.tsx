@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useId, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 
 interface SkillBadgeProps {
@@ -20,6 +20,7 @@ export function SkillBadge({ name, icon, description, showTooltip = false }: Ski
   const [isTooltipVisible, setIsTooltipVisible] = useState(false)
   const [tooltipPosition, setTooltipPosition] = useState<TooltipPosition | null>(null)
   const badgeRef = useRef<HTMLDivElement>(null)
+  const tooltipId = useId()
 
   const updateTooltipPosition = useCallback(() => {
     if (!badgeRef.current || !showTooltip || !description) {
@@ -86,11 +87,17 @@ export function SkillBadge({ name, icon, description, showTooltip = false }: Ski
         onMouseLeave={closeTooltip}
         onFocus={openTooltip}
         onBlur={closeTooltip}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            closeTooltip()
+          }
+        }}
         tabIndex={showTooltip ? 0 : undefined}
+        aria-describedby={isTooltipVisible && description ? tooltipId : undefined}
       >
-        <div className="flex items-center gap-2 rounded-xl border border-slate-200/80 bg-white/78 px-3.5 py-2.5 shadow-[0_14px_30px_-28px_rgba(15,23,42,0.38)] transition-[background-color,border-color,box-shadow] duration-200 hover:border-slate-300 hover:bg-white">
+        <div className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/70 px-3.5 py-2.5 shadow-[0_1px_2px_rgba(15,23,42,0.05)] transition-[background-color,border-color,box-shadow] duration-200 hover:border-border hover:bg-card">
           {icon ? (
-            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md bg-slate-100/90">
+            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md bg-muted">
               <img
                 src={icon || "/placeholder.svg"}
                 alt=""
@@ -99,13 +106,14 @@ export function SkillBadge({ name, icon, description, showTooltip = false }: Ski
               />
             </div>
           ) : null}
-          <span className="text-sm font-medium text-slate-800">{name}</span>
+          <span className="text-sm font-medium text-foreground">{name}</span>
         </div>
       </div>
 
       {showTooltip && description && isTooltipVisible && tooltipPosition
         ? createPortal(
             <div
+              id={tooltipId}
               className="fixed z-[120] min-w-[132px] max-w-[220px]"
               style={{
                 left: tooltipPosition.left,
