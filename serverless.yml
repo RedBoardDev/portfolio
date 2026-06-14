@@ -15,8 +15,8 @@ plugins:
   - serverless-cloudfront-invalidate
 
 custom:
-  # S3 Bucket configuration
-  s3Bucket: ${self:service}-${self:provider.stage}-${self:provider.region}
+  # S3 Bucket configuration (account id keeps the name globally unique — S3 names are global)
+  s3Bucket: ${self:service}-${self:provider.stage}-${aws:accountId}
 
   # S3 Sync configuration
   s3Sync:
