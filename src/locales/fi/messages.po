@@ -11,10 +11,6 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: components/github/github-stats.tsx
-msgid "{longestStreak} days"
-msgstr "{longestStreak} päivää"
-
 #: components/sections/experience-section.tsx
 msgid "{months, plural, one {# month} other {# months}}"
 msgstr "{months, plural, one {# kuukausi} other {# kuukautta}}"
@@ -28,17 +24,29 @@ msgid "{years, plural, one {# year} other {# years}} {remainingMonths, plural, o
 msgstr "{years, plural, one {# vuosi} other {# vuotta}} {remainingMonths, plural, one {# kuukausi} other {# kuukautta}}"
 
 #: data/projects.ts
-msgid "2D side-scrolling shoot'em up game based on the original R-Type arcade classic. Built in C++ with robust client-server architecture, featuring multiplayer gameplay, cross-platform support, and modern game development practices. Includes Entity Component System architecture and network synchronization."
-msgstr "2D-sivuttain rullaava shoot'em up -peli alkuperäisen R-Type-arcadeklassikon pohjalta. Rakennettu C++:lla vahvalla asiakas-palvelinarkkitehtuurilla, ja siinä on moninpelattavuus, monialustatuki sekä modernit pelinkehityskäytännöt. Sisältää Entity Component System -arkkitehtuurin ja verkon synkronoinnin."
+msgid "2D side-scrolling shoot'em up inspired by the R-Type arcade classic, built in C++ around a custom Entity Component System. Client-server architecture with network synchronization between players and cross-platform installers released for Linux and Windows."
+msgstr "2D-sivultavieritettävä shoot'em up, joka on saanut innoituksensa R-Type-arcadeklassikosta, rakennettu C++:lla oman Entity Component Systemin ympärille. Client-server-arkkitehtuuri pelaajien välisellä verkkosynkronoinnilla ja monialustaiset asennusohjelmat Linuxille ja Windowsille."
 
 #: app/not-found.tsx
 msgid "404"
 msgstr "404"
 
+#: data/projects.ts
+msgid "A one-page dashboard framework that centralizes everything you track — crypto prices, DeFi PnL, analytics, weather, news — into flexible, code-defined cards rendered live on a single screen. Define a card once and it stays in sync, so you replace ten browser tabs with one personal dashboard."
+msgstr "Yhden sivun dashboard-framework, joka kokoaa kaiken seuraamasi — kryptohinnat, DeFi-PnL:n, analytiikan, sään, uutiset — joustaviin, koodilla määriteltyihin kortteihin, jotka näkyvät reaaliajassa yhdellä näytöllä. Määrittele kortti kerran ja se pysyy ajan tasalla, joten korvaat kymmenen selainvälilehteä yhdellä henkilökohtaisella dashboardilla."
+
+#: components/sections/projects-section.tsx
+msgid "A selection of the tools, bots and apps I build - from Go CLIs and serverless platforms to Solana DeFi automation."
+msgstr "Valikoima rakentamiani työkaluja, botteja ja sovelluksia - Go-CLI-työkaluista ja serverless-alustoista Solanan DeFi-automaatioon."
+
 #: components/navigation-bar.tsx
 #: components/sections/about-section.tsx
 msgid "About"
 msgstr "Tietoja"
+
+#: components/sections/about-section.tsx
+msgid "About me"
+msgstr "Tietoa minusta"
 
 #: data/experiences.ts
 msgid "Adaptability"
@@ -52,10 +60,6 @@ msgstr "Edistynyt relaatiotietokanta laajennetuilla ominaisuuksilla"
 msgid "Agile/Scrum"
 msgstr "Agile/Scrum"
 
-#: data/projects.ts
-msgid "AI-powered project with advanced generative capabilities and intelligent automation features. Built with TypeScript and Python, featuring Docker containerization for scalable deployment and development. The project leverages modern AI technologies to provide sophisticated solutions for various use cases."
-msgstr "Tekoälypohjainen projekti, jossa on edistyneitä generatiivisia kyvykkyyksiä ja älykkäitä automaatio-ominaisuuksia. Rakennettu TypeScriptillä ja Pythonilla, ja Docker-kontitus mahdollistaa skaalautuvan kehityksen ja käyttöönoton. Projekti hyödyntää moderneja tekoälyteknologioita tarjotakseen kehittyneitä ratkaisuja erilaisiin käyttötapauksiin."
-
 #: data/experiences.ts
 msgid "AkorD"
 msgstr "AkorD"
@@ -68,17 +72,25 @@ msgstr "Algoritmit"
 msgid "All rights reserved."
 msgstr "Kaikki oikeudet pidätetään."
 
+#: data/projects.ts
+msgid "All-in-one fitness app built with Kotlin Multiplatform and Compose Multiplatform — shared business logic with native UI on iOS and Android. Includes workout logging, AI-powered meal photo scanning and food recognition, macro and water tracking, and weekly body check-ins with AI-generated nutrition goals."
+msgstr "All-in-one-kuntoilusovellus, rakennettu Kotlin Multiplatformilla ja Compose Multiplatformilla — jaettu liiketoimintalogiikka ja natiivi käyttöliittymä iOS:lle ja Androidille. Sisältää treenien kirjaamisen, tekoälypohjaisen ateriakuvien skannauksen ja ruoan tunnistuksen, makro- ja vedenseurannan sekä viikoittaiset kehoseurannat tekoälyn luomilla ravitsemustavoitteilla."
+
 #: data/skills.ts
 msgid "Application containerization for deployment"
 msgstr "Sovellusten kontitus käyttöönottoa varten"
 
-#: data/projects.ts
-msgid "Atlas-GenAI"
-msgstr "Atlas-GenAI"
+#: data/skills.ts
+msgid "Architecture & Practices"
+msgstr "Arkkitehtuuri & käytännöt"
 
-#: data/projects.ts
-msgid "Automation platform connecting different services and applications through custom workflows and integrations. Built with JavaScript and React, enabling users to create sophisticated automation rules between various APIs and services. Similar to IFTTT but tailored for developer and student needs."
-msgstr "Automaatioalusta, joka yhdistää eri palveluita ja sovelluksia räätälöityjen workflowiden ja integraatioiden avulla. Rakennettu JavaScriptillä ja Reactilla, ja sen avulla käyttäjät voivat luoda kehittyneitä automaatiosääntöjä erilaisten APIen ja palveluiden välille. Samankaltainen kuin IFTTT, mutta sovitettu kehittäjien ja opiskelijoiden tarpeisiin."
+#: components/sections/contact-section.tsx
+msgid "Architecture & structure"
+msgstr "Arkkitehtuuri & rakenne"
+
+#: data/skills.ts
+msgid "Automated build, test and deployment pipelines with GitHub Actions"
+msgstr "Automatisoidut build-, testaus- ja julkaisuputket GitHub Actionsilla"
 
 #: data/skills.ts
 msgid "Automation server for continuous integration and deployment"
@@ -89,8 +101,8 @@ msgid "Available"
 msgstr "Saatavilla"
 
 #: components/sections/contact-section.tsx
-msgid "Available for your web and mobile projects"
-msgstr "Saatavilla web- ja mobiiliprojekteihisi"
+msgid "Available for freelance projects and full-time software engineering roles."
+msgstr "Käytettävissä freelance-projekteihin ja kokoaikaisiin ohjelmistokehittäjän tehtäviin."
 
 #: data/skills.ts
 msgid "AWS"
@@ -113,6 +125,10 @@ msgstr "Takaisin etusivulle"
 #: components/navigation-bar.tsx
 msgid "Back to top"
 msgstr "Takaisin ylös"
+
+#: components/sections/education-section.tsx
+msgid "Background"
+msgstr "Tausta"
 
 #: app/page.tsx
 msgid "Based in France, relocating to Helsinki, Finland"
@@ -146,21 +162,34 @@ msgstr "C"
 msgid "C++"
 msgstr "C++"
 
+#: components/sections/experience-section.tsx
+msgid "Career"
+msgstr "Ura"
+
 #: components/language-switcher.tsx
 msgid "Change language"
 msgstr "Vaihda kieli"
 
 #: data/projects.ts
-msgid "ChromeFlex"
-msgstr "ChromeFlex"
+msgid "Chrome extension that supercharges the Epitech intranet with advanced statistics and data visualization, giving students a customizable dashboard to track their academic progress. My most-starred open-source project, with 15 stars on GitHub."
+msgstr "Chrome-laajennus, joka tehostaa Epitechin intranetiä edistyneillä tilastoilla ja datan visualisoinnilla ja antaa opiskelijoille muokattavan dashboardin opintojen edistymisen seurantaan. Tähditetyin avoimen lähdekoodin projektini, 15 tähteä GitHubissa."
 
+#: data/skills.ts
 #: data/skills.ts
 msgid "CI/CD"
 msgstr "CI/CD"
 
 #: data/skills.ts
-msgid "Clear communication with technical and non-technical stakeholders"
-msgstr "Selkeä viestintä teknisten ja ei-teknisten sidosryhmien kanssa"
+msgid "Clean Architecture"
+msgstr "Clean Architecture"
+
+#: components/sections/contact-section.tsx
+msgid "Clean Architecture, clear boundaries, conventions and lightweight docs that keep a codebase healthy as it scales."
+msgstr "Clean Architecture, selkeät rajat, konventiot ja kevyt dokumentaatio, jotka pitävät koodikannan terveenä sen kasvaessa."
+
+#: data/projects.ts
+msgid "CLI client for Mintlify-hosted MCP documentation servers, designed for LLM coding agents like Claude Code and Cursor. Exposes semantic search returning structured JSON, single-call page retrieval, and a sandboxed docs filesystem — a fast, lightweight alternative to the official MCP integration."
+msgstr "CLI-asiakas Mintlifyssä isännöityihin MCP-dokumentaatiopalvelimiin, suunniteltu LLM-koodausagenteille kuten Claude Code ja Cursor. Tarjoaa semanttisen haun, joka palauttaa jäsenneltyä JSONia, yhden kutsun sivunhaun ja hiekkalaatikoidun dokumentaatiotiedostojärjestelmän — nopea, kevyt vaihtoehto viralliselle MCP-integraatiolle."
 
 #: components/navigation-bar.tsx
 msgid "Close menu"
@@ -171,7 +200,6 @@ msgid "Cloud services for hosting and deploying applications"
 msgstr "Pilvipalvelut sovellusten hostaamiseen ja käyttöönottoon"
 
 #: components/sections/projects-section.tsx
-#: components/sections/projects-section.tsx
 msgid "Code"
 msgstr "Koodi"
 
@@ -179,19 +207,16 @@ msgstr "Koodi"
 msgid "Collaboration with the development team"
 msgstr "Yhteistyö kehitystiimin kanssa"
 
-#: data/skills.ts
-msgid "Communication"
-msgstr "Viestintä"
+#: data/projects.ts
+msgid "Collaborative r/place-style pixel canvas powered by a fully serverless AWS architecture. Features real-time WebSocket updates, Discord OAuth2 authentication and bot commands, chunk-based viewport rendering, admin session management and per-user rate limiting. Infrastructure defined as code with Terraform."
+msgstr "Yhteisöllinen r/place-tyylinen pikselikanvas, jota pyörittää täysin serverless AWS-arkkitehtuuri. Sisältää reaaliaikaiset WebSocket-päivitykset, Discord OAuth2 -tunnistautumisen ja bot-komennot, lohkopohjaisen näkymän renderöinnin, admin-istuntojen hallinnan ja käyttäjäkohtaisen nopeusrajoituksen. Infrastruktuuri määritelty koodina Terraformilla."
 
 #: data/education.ts
 msgid "Computer Engineering"
 msgstr "Tietokonetekniikka"
 
-#: components/sections/contact-section.tsx
-msgid "Consulting & Training"
-msgstr "Konsultointi ja koulutus"
-
 #: components/navigation-bar.tsx
+#: components/sections/contact-section.tsx
 msgid "Contact"
 msgstr "Yhteystiedot"
 
@@ -213,6 +238,7 @@ msgid "contribution"
 msgstr "kontribuutio"
 
 #: components/github/github-heatmap.tsx
+#: components/github/github-stats.tsx
 msgid "contributions"
 msgstr "kontribuutiota"
 
@@ -228,26 +254,17 @@ msgstr "Kopioitu!"
 msgid "Copy email address"
 msgstr "Kopioi sähköpostiosoite"
 
-#: components/sections/about-section.tsx
-msgid "Curious by nature, I also explored blockchain and Web3, which gave me a broader vision of current technological challenges and the ability to quickly adapt to new paradigms."
-msgstr "Luonteeltani uteliaana olen tutkinut myös blockchainia ja Web3:a, mikä on antanut minulle laajemman näkemyksen nykyisistä teknologiahaasteista ja kyvyn sopeutua nopeasti uusiin paradigmoihin."
-
-#: components/sections/contact-section.tsx
-msgid "Currently available"
-msgstr "Saatavilla tällä hetkellä"
-
-#: data/projects.ts
-msgid "Custom RPG game engine developed in C with classic farming simulation mechanics. Features comprehensive resource management, character progression system, and retro-style gaming environment. Players can cultivate crops, manage livestock, and build their virtual farming empire with strategic decision-making elements."
-msgstr "C-kielellä kehitetty oma RPG-pelimoottori klassisilla farming-simulaation mekaniikoilla. Sisältää kattavan resurssienhallinnan, hahmonkehitysjärjestelmän ja retrotyylisen peliympäristön. Pelaajat voivat viljellä satoa, hoitaa karjaa ja rakentaa virtuaalisen maatilaimperiuminsa strategisten päätösten avulla."
-
 #: data/skills.ts
 msgid "Databases & ORM"
 msgstr "Tietokannat ja ORM"
 
-#: components/sections/projects-section.tsx
-#: components/sections/projects-section.tsx
-msgid "Demo"
-msgstr "Demo"
+#: components/github/github-stats.tsx
+msgid "day streak"
+msgstr "päivän putki"
+
+#: data/skills.ts
+msgid "Decoupling the domain from infrastructure via ports and adapters"
+msgstr "Domainin ja infrastruktuurin erottaminen porttien ja adaptereiden avulla"
 
 #: data/experiences.ts
 msgid "Design and implementation of new features"
@@ -275,14 +292,14 @@ msgstr "DevOps"
 msgid "DevOps & Tools"
 msgstr "DevOps ja työkalut"
 
-#: data/projects.ts
-msgid "Discord bot that updates its status based on time tracking received via clockify. Features Clean Architecture with Domain-Driven Design, automated deployment with PM2, and real-time status updates for work sessions. The bot listens for webhook payloads and displays different statuses based on work activity."
-msgstr "Discord-botti, joka päivittää tilansa Clockifysta saadun ajanseurannan perusteella. Sisältää Clean Architecture- ja Domain-Driven Design -periaatteet, automatisoidun käyttöönoton PM2:lla sekä reaaliaikaiset tilapäivitykset työjaksoille. Botti kuuntelee webhook-payloadia ja näyttää erilaisia tiloja työskentelyn mukaan."
-
 #: data/experiences.ts
 #: data/skills.ts
 msgid "Docker"
 msgstr "Docker"
+
+#: data/skills.ts
+msgid "Domain-Driven Design"
+msgstr "Domain-Driven Design"
 
 #: app/page.tsx
 msgid "Download CV"
@@ -296,10 +313,6 @@ msgstr "Lataa CV - Thomas OTT"
 #: components/sections/education-section.tsx
 msgid "Education"
 msgstr "Koulutus"
-
-#: data/skills.ts
-msgid "Effective collaboration within multidisciplinary teams"
-msgstr "Tehokas yhteistyö monialaisissa tiimeissä"
 
 #: app/page.tsx
 #: components/navigation-bar.tsx
@@ -319,21 +332,9 @@ msgstr "EPITECH - European Institute of Technology"
 msgid "Epitech - The IT Excellence School"
 msgstr "Epitech - IT-huippuosaamisen koulu"
 
-#: data/projects.ts
-msgid "Epitech AREA"
-msgstr "Epitech AREA"
-
-#: data/projects.ts
-msgid "Epitech Intranet Statistics"
-msgstr "Epitech Intranet Statistics"
-
 #: data/experiences.ts
 msgid "Epitech Regional Assistant (AER)"
 msgstr "Epitechin alueellinen assistentti (AER)"
-
-#: components/sections/contact-section.tsx
-msgid "Evolutionary, corrective maintenance and technical support for your existing applications."
-msgstr "Evolutiivinen ja korjaava ylläpito sekä tekninen tuki olemassa oleville sovelluksillesi."
 
 #: data/education.ts
 msgid "Exchange year in Finland, providing international experience."
@@ -357,6 +358,10 @@ msgid "Fast and low overhead web framework for Node.js"
 msgstr "Nopea ja kevyt web-framework Node.js:lle"
 
 #: data/skills.ts
+msgid "Fast, concurrent language used for CLIs and backend tooling"
+msgstr "Nopea, rinnakkainen kieli CLI- ja backend-työkaluihin"
+
+#: data/skills.ts
 msgid "Fastify"
 msgstr "Fastify"
 
@@ -373,23 +378,16 @@ msgid "Freelance"
 msgstr "Freelance"
 
 #: components/sections/contact-section.tsx
-msgid "Freelance Developer"
-msgstr "Freelance-kehittäjä"
-
-#: components/sections/contact-section.tsx
 msgid "French"
 msgstr "Ranska"
-
-#: app/page.tsx
-#: app/page.tsx
-#: components/navigation-bar.tsx
-#: components/navigation-bar.tsx
-msgid "Front-End Developer"
-msgstr "Front-end-kehittäjä"
 
 #: data/experiences.ts
 msgid "Full Stack Developer"
 msgstr "Full stack -kehittäjä"
+
+#: components/sections/contact-section.tsx
+msgid "Full-stack engineer at AkorD (Kare) and co-founder of Moboo. I build SaaS end-to-end, with a focus on clean, maintainable architecture."
+msgstr "Full-stack-insinööri AkorD:lla (Kare) ja Moboon perustajajäsen. Rakennan SaaS:ia päästä päähän, painottaen selkeää ja ylläpidettävää arkkitehtuuria."
 
 #: data/skills.ts
 msgid "Functional programming language for academic and research projects"
@@ -413,9 +411,18 @@ msgstr "GitHub-kontribuutiot"
 msgid "GitHub profile"
 msgstr "GitHub-profiili"
 
+#: data/skills.ts
+msgid "Go"
+msgstr "Go"
+
+#: components/sections/contact-section.tsx
+msgid "Go CLIs, AWS serverless apps and automation bots across TypeScript, Node.js, Postgres and Terraform."
+msgstr "Go-CLI-työkaluja, AWS-serverless-sovelluksia ja automaatiobotteja TypeScriptillä, Node.js:llä, Postgresilla ja Terraformilla."
+
+#. placeholder {0}: pageIndex + 1
 #: components/sections/projects-section.tsx
-msgid "Go to project {index}"
-msgstr "Siirry projektiin {index}"
+msgid "Go to page {0}"
+msgstr "Siirry sivulle {0}"
 
 #: data/skills.ts
 msgid "Haskell"
@@ -425,13 +432,29 @@ msgstr "Haskell"
 msgid "Helsinki, Finland"
 msgstr "Helsinki, Suomi"
 
+#: data/skills.ts
+msgid "Hexagonal Architecture"
+msgstr "Heksagonaalinen arkkitehtuuri"
+
 #: data/education.ts
 msgid "High School Diploma"
 msgstr "Lukion päättötutkinto"
 
+#: components/sections/about-section.tsx
+msgid "I build maintainable SaaS and business web apps end-to-end — from user needs and domain modeling all the way to production. My approach is Clean Architecture: clear boundaries, a deliberate project structure, and code that stays sane as the product grows. I move fast, but I build for the long run, with refactoring, reliability and security, and clean delivery (CI/CD, QA, cloud) baked in rather than bolted on."
+msgstr "Rakennan ylläpidettäviä SaaS- ja liiketoiminnan verkkosovelluksia päästä päähän — käyttäjätarpeista ja domainin mallintamisesta aina tuotantoon asti. Lähestymistapani on Clean Architecture: selkeät rajat, harkittu projektirakenne ja koodi, joka pysyy terveenä tuotteen kasvaessa. Etenen nopeasti, mutta rakennan kestämään: refaktorointi, luotettavuus ja tietoturva sekä siisti toimitus (CI/CD, QA, pilvi) ovat mukana alusta asti, ei jälkikäteen liimattuna."
+
 #: app/page.tsx
-msgid "I design fast, accessible and polished web interfaces with a strong focus on user experience, implementation quality and production-grade engineering around <0>React</0>, <1>TypeScript</1> and <2>Node.js</2>."
-msgstr "Suunnittelen nopeita, saavutettavia ja viimeisteltyjä verkkokäyttöliittymiä, joissa painotan vahvasti käyttökokemusta, toteutuksen laatua ja tuotantotason kehitystä hyödyntäen <0>React</0>-, <1>TypeScript</1>- ja <2>Node.js</2>-teknologioita."
+msgid "I build reliable end-to-end software - web apps, backends, CLIs and serverless platforms - with a strong focus on clean architecture, performance and production-grade engineering around <0>TypeScript</0>, <1>Node.js</1> and <2>Go</2>."
+msgstr "Rakennan luotettavia päästä päähän -ohjelmistoja - verkkosovelluksia, backendejä, CLI-työkaluja ja serverless-alustoja - vahvasti keskittyen selkeään arkkitehtuuriin, suorituskykyyn ja tuotantotason insinöörityöhön <0>TypeScriptin</0>, <1>Node.js:n</1> ja <2>Gon</2> ympärillä."
+
+#: components/sections/about-section.tsx
+msgid "I'm an Epitech student graduating in 2026, with an academic year in Helsinki working on product-oriented teams in English. I'm open to opportunities in Finland and remote, with teams building serious products to a high engineering standard."
+msgstr "Olen Epitechin opiskelija (valmistun 2026), ja vietin lukuvuoden Helsingissä tuotelähtöisissä tiimeissä englanniksi. Olen avoin mahdollisuuksille Suomessa ja etänä, tiimeissä jotka rakentavat vakavasti otettavia tuotteita korkealla insinööritasolla."
+
+#: data/skills.ts
+msgid "In-memory store for caching and BullMQ job queues"
+msgstr "Muistinvarainen tietovarasto välimuistiin ja BullMQ-työjonoihin"
 
 #: data/education.ts
 msgid "Information Systems"
@@ -440,6 +463,10 @@ msgstr "Tietojärjestelmät"
 #: data/education.ts
 msgid "Information Technology"
 msgstr "Tietotekniikka"
+
+#: data/skills.ts
+msgid "Infrastructure as code for provisioning cloud resources"
+msgstr "Infrastruktuuri koodina pilviresurssien provisiointiin"
 
 #: data/education.ts
 msgid "Initial training in computer engineering with a practical approach to information technologies."
@@ -450,13 +477,9 @@ msgstr "Peruskoulutus tietokonetekniikassa käytännönläheisellä lähestymist
 msgid "Internship"
 msgstr "Harjoittelu"
 
-#: data/projects.ts
-msgid "Invoicing System"
-msgstr "Laskutusjärjestelmä"
-
 #: data/skills.ts
-msgid "Iterative and collaborative project management methodology"
-msgstr "Iteratiivinen ja yhteistyöhön perustuva projektinhallintamenetelmä"
+msgid "Iterative, collaborative delivery in multidisciplinary teams"
+msgstr "Iteratiivista, yhteistyöhön perustuvaa toimitusta monialaisissa tiimeissä"
 
 #: data/skills.ts
 msgid "Java"
@@ -476,8 +499,8 @@ msgid "Jenkins"
 msgstr "Jenkins"
 
 #: data/skills.ts
-msgid "Knowledge transfer and student mentoring"
-msgstr "Osaamisen jakaminen ja opiskelijoiden mentorointi"
+msgid "Kotlin"
+msgstr "Kotlin"
 
 #: components/sections/contact-section.tsx
 msgid "Languages"
@@ -487,9 +510,17 @@ msgstr "Kielet"
 msgid "Laurea University of Applied Sciences"
 msgstr "Laurea University of Applied Sciences"
 
+#: data/skills.ts
+msgid "Layered, dependency-inverted design for testable, maintainable code"
+msgstr "Kerroksittainen, riippuvuuskäänteinen suunnittelu testattavaa ja ylläpidettävää koodia varten"
+
 #: components/github/github-heatmap.tsx
 msgid "Less"
 msgstr "Vähemmän"
+
+#: components/sections/contact-section.tsx
+msgid "Let's work together"
+msgstr "Tehdään yhteistyötä"
 
 #: app/page.tsx
 #: components/navigation-bar.tsx
@@ -509,10 +540,6 @@ msgstr "Linkit"
 msgid "Linux"
 msgstr "Linux"
 
-#: components/github/github-stats.tsx
-msgid "Longest streak"
-msgstr "Pisin putki"
-
 #: data/skills.ts
 msgid "Low-level programming language for system programming and embedded systems"
 msgstr "Matalan tason ohjelmointikieli järjestelmäohjelmointiin ja sulautettuihin järjestelmiin"
@@ -530,8 +557,8 @@ msgid "Main library for user interface development"
 msgstr "Pääkirjasto käyttöliittymien kehittämiseen"
 
 #: components/sections/contact-section.tsx
-msgid "Maintenance & Support"
-msgstr "Ylläpito ja tuki"
+msgid "Maintainable business web apps, from user needs and domain modeling through to clean, production-ready delivery."
+msgstr "Ylläpidettäviä liiketoiminnan verkkosovelluksia, käyttäjätarpeista ja domainin mallintamisesta aina siistiin, tuotantovalmiiseen toimitukseen."
 
 #: data/skills.ts
 msgid "Makefile"
@@ -552,24 +579,20 @@ msgid "Master's degree"
 msgstr "Maisterin tutkinto"
 
 #: data/skills.ts
-msgid "Methodologies & Soft Skills"
-msgstr "Menetelmät ja vuorovaikutustaidot"
-
-#: data/skills.ts
 msgid "Minimalist framework for creating REST APIs with Node.js"
 msgstr "Minimalistinen framework REST-rajapintojen rakentamiseen Node.js:llä"
 
-#: data/projects.ts
-msgid "Modern invoicing and billing system built with TypeScript for small businesses and freelancers. Features automated invoice generation, comprehensive client management, payment tracking, and financial reporting with a clean and intuitive React interface. Streamlines the entire billing process from creation to payment."
-msgstr "Moderni laskutus- ja veloitusjärjestelmä, joka on rakennettu TypeScriptillä pienyrityksille ja freelancereille. Sisältää automatisoidun laskujen luonnin, kattavan asiakashallinnan, maksujen seurannan ja talousraportoinnin selkeällä ja intuitiivisella React-käyttöliittymällä. Sujuvoittaa koko laskutusprosessin luomisesta maksuun."
+#: data/skills.ts
+msgid "Modeling complex domains around business logic and clear boundaries"
+msgstr "Monimutkaisten domainien mallintaminen liiketoimintalogiikan ja selkeiden rajojen ympärille"
+
+#: data/skills.ts
+msgid "Modern JVM language used for Kotlin Multiplatform mobile apps"
+msgstr "Moderni JVM-kieli Kotlin Multiplatform -mobiilisovelluksiin"
 
 #: data/skills.ts
 msgid "Modern ORM for Node.js and TypeScript"
 msgstr "Moderni ORM Node.js:lle ja TypeScriptille"
-
-#: data/projects.ts
-msgid "Modular Chrome extension framework for easily adding custom, site-specific features on the fly with a plug-and-play architecture. Built with TypeScript and modern development tools, it provides developers with a flexible platform to enhance web browsing experiences across different websites."
-msgstr "Modulaarinen Chrome-laajennuskehys, jonka plug-and-play-arkkitehtuuri mahdollistaa räätälöityjen, sivustokohtaisten ominaisuuksien helpon lisäämisen lennossa. Rakennettu TypeScriptillä ja moderneilla kehitystyökaluilla, ja se tarjoaa kehittäjille joustavan alustan verkkoselailukokemuksen parantamiseen eri sivustoilla."
 
 #: components/github/github-heatmap.tsx
 msgid "More"
@@ -593,14 +616,6 @@ msgstr "Mulhouse, Grand Est, Ranska · Paikan päällä"
 msgid "My contact details"
 msgstr "Yhteystietoni"
 
-#: components/sections/contact-section.tsx
-msgid "My services"
-msgstr "Palveluni"
-
-#: data/projects.ts
-msgid "MyFarm RPG"
-msgstr "MyFarm RPG"
-
 #: data/skills.ts
 msgid "MySQL"
 msgstr "MySQL"
@@ -622,8 +637,8 @@ msgid "Networks"
 msgstr "Verkot"
 
 #: components/sections/projects-section.tsx
-msgid "Next project"
-msgstr "Seuraava projekti"
+msgid "Next projects"
+msgstr "Seuraavat projektit"
 
 #: data/skills.ts
 msgid "Next.js"
@@ -641,6 +656,11 @@ msgstr "Node.js"
 #: data/skills.ts
 msgid "Object-oriented language for enterprise applications and Android development"
 msgstr "Olio-ohjelmointikieli yrityssovelluksiin ja Android-kehitykseen"
+
+#. placeholder {0}: project.title
+#: components/sections/projects-section.tsx
+msgid "Open {0}"
+msgstr "Avaa {0}"
 
 #: components/sections/contact-section.tsx
 msgid "Open GitHub profile in a new tab"
@@ -666,17 +686,17 @@ msgstr "Sivua ei löytynyt | Thomas OTT"
 msgid "Participation in organizing events and promoting the school"
 msgstr "Osallistuminen tapahtumien järjestämiseen ja koulun tunnettuuden edistämiseen"
 
-#: components/sections/about-section.tsx
-msgid "Passionate front-end developer, I create modern and performant web interfaces. My approach combines technical rigor and attention to detail to deliver exceptional user experiences."
-msgstr "Intohimoisena front-end-kehittäjänä rakennan moderneja ja suorituskykyisiä verkkokäyttöliittymiä. Lähestymistapani yhdistää teknisen täsmällisyyden ja huolellisen viimeistelyn, jotta käyttökokemus olisi erinomainen."
-
 #: data/experiences.ts
 msgid "Performance optimization and user experience enhancement"
 msgstr "Suorituskyvyn optimointi ja käyttökokemuksen parantaminen"
 
-#: data/skills.ts
-msgid "Planning, execution and monitoring of IT projects"
-msgstr "IT-projektien suunnittelu, toteutus ja seuranta"
+#: components/sections/contact-section.tsx
+msgid "Performance, reliability and security by design, with CI/CD, QA automation and cloud deployments."
+msgstr "Suorituskyky, luotettavuus ja tietoturva jo suunnittelusta lähtien, CI/CD:llä, QA-automaatiolla ja pilvideploymenteilla."
+
+#: data/projects.ts
+msgid "Personal recipe hub that ingests recipes from any source — web pages, Instagram, plain text, screenshots — and normalizes them into a single DSL. Cook step-by-step with timers, plan weekly meals and auto-generate smart shopping lists, all in one private app shaped for daily use."
+msgstr "Henkilökohtainen reseptikeskus, joka tuo reseptit mistä tahansa lähteestä — verkkosivuilta, Instagramista, tekstistä, kuvakaappauksista — ja normalisoi ne yhdeksi DSL:ksi. Kokkaa vaihe vaiheelta ajastimilla, suunnittele viikon ateriat ja luo automaattisesti älykkäät ostoslistat, kaikki yhdessä yksityisessä sovelluksessa päivittäiseen käyttöön."
 
 #: data/skills.ts
 msgid "PostgreSQL"
@@ -687,16 +707,24 @@ msgid "present"
 msgstr "nyt"
 
 #: components/sections/projects-section.tsx
-msgid "Previous project"
-msgstr "Edellinen projekti"
+msgid "Previous projects"
+msgstr "Edelliset projektit"
 
 #: data/skills.ts
 msgid "Prisma"
 msgstr "Prisma"
 
+#: data/projects.ts
+msgid "Production-grade ORE Protocol farming bot for Solana, built with Domain-Driven Design and a hexagonal architecture. Monitors on-chain rounds in real time and executes EV-optimized placements with a deterministic, risk-managed strategy and clean separation between domain and infrastructure."
+msgstr "Tuotantotason ORE Protocol -farmausbotti Solanalle, rakennettu Domain-Driven Designilla ja heksagonaalisella arkkitehtuurilla. Seuraa on-chain-kierroksia reaaliajassa ja toteuttaa EV-optimoituja sijoituksia deterministisellä, riskienhallitulla strategialla ja selkeällä domainin ja infrastruktuurin erottelulla."
+
 #: components/sections/contact-section.tsx
 msgid "Professional"
 msgstr "Ammatillinen"
+
+#: data/projects.ts
+msgid "Professional Discord bot for real-time monitoring of Solana DeFi trading positions. A decorator-based feature system delivers position-size calculations, live PnL tracking and pool statistics directly inside your server, giving traders portfolio-grade tooling without leaving Discord."
+msgstr "Ammattimainen Discord-botti Solanan DeFi-kaupankäyntipositioiden reaaliaikaiseen seurantaan. Dekoraattoripohjainen ominaisuusjärjestelmä tuo positiokokojen laskennan, reaaliaikaisen PnL-seurannan ja poolitilastot suoraan palvelimellesi, antaen treidaajille salkkutason työkalut poistumatta Discordista."
 
 #: data/education.ts
 msgid "Programming"
@@ -708,7 +736,6 @@ msgstr "Ohjelmointikielet"
 
 #: data/education.ts
 #: data/experiences.ts
-#: data/skills.ts
 msgid "Project Management"
 msgstr "Projektinhallinta"
 
@@ -721,10 +748,6 @@ msgstr "Projektit"
 msgid "Python"
 msgstr "Python"
 
-#: data/projects.ts
-msgid "R-Type Game"
-msgstr "R-Type-peli"
-
 #: data/experiences.ts
 #: data/experiences.ts
 #: data/skills.ts
@@ -736,33 +759,45 @@ msgid "React framework for web applications with server-side rendering"
 msgstr "React-framework verkkosovelluksiin palvelinpuolen renderöinnillä"
 
 #: data/skills.ts
+msgid "Redis"
+msgstr "Redis"
+
+#: data/skills.ts
 msgid "Relational database management system"
 msgstr "Relaatiotietokannan hallintajärjestelmä"
+
+#: components/sections/contact-section.tsx
+msgid "Reliable delivery"
+msgstr "Luotettava toimitus"
 
 #: data/experiences.ts
 msgid "Remote"
 msgstr "Etänä"
 
-#: components/github/github-stats.tsx
-msgid "Repositories"
-msgstr "Repositoriot"
+#: components/sections/about-section.tsx
+msgid "Right now I'm a full-stack developer at AkorD on Kare, a SaaS that digitalizes safety-register workflows for public-access facilities in France, where regulatory compliance meets daily field operations. In parallel, I co-founded Moboo, a no-code platform for building mobile apps through a visual editor, where I lead the frontend architecture."
+msgstr "Tällä hetkellä olen full-stack-kehittäjä AkorD:lla Karessa, SaaS:ssa joka digitalisoi yleisölle avointen tilojen turvallisuusrekisterien työnkulut Ranskassa, missä sääntelyn vaatimustenmukaisuus kohtaa päivittäisen kenttätoiminnan. Samalla olen perustanut Moboon, no-code-alustan mobiilisovellusten rakentamiseen visuaalisella editorilla, jossa johdan frontend-arkkitehtuuria."
 
+#: components/sections/contact-section.tsx
+msgid "SaaS, end-to-end"
+msgstr "SaaS, päästä päähän"
+
+#. placeholder {0}: project.title
 #: components/sections/projects-section.tsx
-#: components/sections/projects-section.tsx
-msgid "Screenshot of project {projectTitle}"
-msgstr "Kuvakaappaus projektista {projectTitle}"
+msgid "Screenshot of {0}"
+msgstr "Kuvakaappaus: {0}"
 
 #: data/skills.ts
 msgid "Scripting for automation and system configuration"
 msgstr "Skriptikieli automaatioon ja järjestelmän konfigurointiin"
 
-#: components/sections/contact-section.tsx
-msgid "Security & Performance"
-msgstr "Tietoturva ja suorituskyky"
+#: components/sections/projects-section.tsx
+msgid "Selected work"
+msgstr "Valittuja töitä"
 
-#: components/sections/contact-section.tsx
-msgid "Security audits, performance optimization and GDPR compliance."
-msgstr "Tietoturva-auditoinnit, suorituskyvyn optimointi ja GDPR-vaatimustenmukaisuus."
+#: data/projects.ts
+msgid "Self-hosted GitHub Actions runner controller for macOS, built on GitHub's official scale-set Go SDK. Provisions ephemeral JIT runners with min/max autoscaling, handles binary downloads, registration and process lifecycle, and integrates natively with launchd plus Discord/webhook and Uptime Kuma notifications."
+msgstr "Itseisännöity GitHub Actions -runner-ohjain macOS:lle, rakennettu GitHubin virallisen scale-set Go SDK:n päälle. Provisioi lyhytikäisiä JIT-runnereita min/max-automaattiskaalauksella, hoitaa binäärien lataukset, rekisteröinnin ja prosessien elinkaaren, ja integroituu natiivisti launchd:hen sekä Discord/webhook- ja Uptime Kuma -ilmoituksiin."
 
 #: app/page.tsx
 msgid "Send email"
@@ -772,9 +807,13 @@ msgstr "Lähetä sähköpostia"
 msgid "Send me an email"
 msgstr "Lähetä minulle sähköpostia"
 
+#: data/projects.ts
+msgid "Service that turns any recipe URL or raw text into clean schema.org/Recipe JSON-LD. Runs asynchronous import jobs with BullMQ workers, tracks the full job lifecycle step by step, and streams real-time progress to clients over WebSocket before normalizing results to a consistent schema."
+msgstr "Palvelu, joka muuntaa minkä tahansa resepti-URL:n tai raakatekstin siistiksi schema.org/Recipe JSON-LD:ksi. Suorittaa asynkronisia tuontitöitä BullMQ-workereilla, seuraa työn koko elinkaarta vaihe vaiheelta ja striimaa reaaliaikaisen edistymisen asiakkaille WebSocketin yli ennen tulosten normalisointia yhtenäiseen skeemaan."
+
 #: components/sections/contact-section.tsx
-msgid "Showcase websites, complex web applications, e-commerce and design integration."
-msgstr "Esittelysivustot, monimutkaiset verkkosovellukset, verkkokauppa ja designin integraatio."
+msgid "Side projects"
+msgstr "Sivuprojektit"
 
 #: components/navigation-bar.tsx
 #: components/sections/skills-section.tsx
@@ -791,38 +830,32 @@ msgstr "Hankitut taidot"
 msgid "Software Architecture"
 msgstr "Ohjelmistoarkkitehtuuri"
 
-#: components/sections/about-section.tsx
-msgid "Specialized in React, TypeScript and the Next.js ecosystem, I master the complete chain of modern front-end development: from pixel-perfect UI integration to state management, performance optimization and automated testing."
-msgstr "Olen erikoistunut Reactiin, TypeScriptiin ja Next.js-ekosysteemiin, ja hallitsen koko modernin front-end-kehityksen ketjun: pixel-perfect-käyttöliittymien toteutuksesta tilanhallintaan, suorituskyvyn optimointiin ja automatisoituun testaukseen."
+#: app/page.tsx
+#: app/page.tsx
+#: components/navigation-bar.tsx
+#: components/navigation-bar.tsx
+msgid "Software Engineer"
+msgstr "Ohjelmistokehittäjä"
 
 #: data/experiences.ts
 msgid "Supervision of IT projects and educational assistance for students"
 msgstr "IT-projektien ohjaus ja pedagoginen tuki opiskelijoille"
 
-#: components/sections/projects-section.tsx
-msgid "Swipe to navigate"
-msgstr "Pyyhkäise navigoidaksesi"
-
 #: data/experiences.ts
-#: data/skills.ts
 msgid "Teaching"
 msgstr "Opetus"
-
-#: data/skills.ts
-msgid "Teamwork"
-msgstr "Tiimityö"
-
-#: data/projects.ts
-msgid "TeapotTracker"
-msgstr "TeapotTracker"
 
 #: data/experiences.ts
 msgid "Technical and methodological support for students"
 msgstr "Tekninen ja menetelmällinen tuki opiskelijoille"
 
-#: components/sections/contact-section.tsx
-msgid "Technical support, technology choice and training for your teams."
-msgstr "Tekninen tuki, teknologiavalinnat ja koulutus tiimeillesi."
+#: data/skills.ts
+msgid "Terraform"
+msgstr "Terraform"
+
+#: data/skills.ts
+msgid "Testing"
+msgstr "Testaus"
 
 #: app/not-found.tsx
 #: app/not-found.tsx
@@ -831,25 +864,21 @@ msgstr "Etsimääsi sivua ei ole olemassa tai se on siirretty."
 
 #: app/page.tsx
 #: app/page.tsx
-msgid "Thomas OTT - Front-End Developer"
-msgstr "Thomas OTT - Front-end-kehittäjä"
+msgid "Thomas OTT - Software Engineer"
+msgstr "Thomas OTT – ohjelmistokehittäjä"
 
-#: components/github/github-stats.tsx
-msgid "Total contributions"
-msgstr "Kontribuutioita yhteensä"
-
-#: components/sections/about-section.tsx
-msgid "Trained at Epitech with project-based pedagogy, I developed strong autonomy and an ability to solve complex problems. I am currently completing an international exchange year at Laurea University in Helsinki, Finland."
-msgstr "Epitechissä projektipohjaisella pedagogiikalla kouluttautuneena kehitin vahvan oma-aloitteisuuden ja kyvyn ratkaista monimutkaisia ongelmia. Viimeistelen parhaillani kansainvälistä vaihtovuotta Laurea Universityssa Helsingissä, Suomessa."
+#: components/sections/skills-section.tsx
+msgid "Toolbox"
+msgstr "Työkalupakki"
 
 #: data/experiences.ts
 #: data/skills.ts
 msgid "TypeScript"
 msgstr "TypeScript"
 
-#: components/github/github-heatmap.tsx
-msgid "Unable to load GitHub data"
-msgstr "GitHub-tietoja ei voitu ladata"
+#: data/skills.ts
+msgid "Unit and integration testing to safeguard behavior and intent"
+msgstr "Yksikkö- ja integraatiotestausta käyttäytymisen ja tarkoituksen turvaamiseksi"
 
 #: data/skills.ts
 msgid "Used for system projects and high-performance applications"
@@ -871,10 +900,18 @@ msgstr "Monipuolinen kieli web-kehitykseen, data scienceen ja automaatioon"
 msgid "Version control system for source code management"
 msgstr "Versionhallintajärjestelmä lähdekoodin hallintaan"
 
+#. placeholder {0}: project.title
 #: components/sections/projects-section.tsx
+msgid "View {0} source code on GitHub"
+msgstr "Katso {0} lähdekoodi GitHubissa"
+
 #: components/sections/projects-section.tsx
-msgid "View all projects"
-msgstr "Näytä kaikki projektit"
+msgid "View all projects on GitHub"
+msgstr "Katso kaikki projektit GitHubissa"
+
+#: components/sections/projects-section.tsx
+msgid "Visit"
+msgstr "Vieraile"
 
 #: components/sections/education-section.tsx
 #: components/sections/education-section.tsx
@@ -885,11 +922,6 @@ msgstr "Näytä kaikki projektit"
 msgid "Visit website"
 msgstr "Vieraile sivustolla"
 
-#: data/projects.ts
-msgid "Web application providing advanced statistics and information for the Epitech Intranet platform. Chrome extension with comprehensive data visualization, customizable dashboard for tracking academic progress, and enhanced user experience features. Helps students monitor their academic journey more effectively."
-msgstr "Web-sovellus, joka tarjoaa edistyneitä tilastoja ja tietoa Epitech Intranet -alustalle. Chrome-laajennus sisältää kattavan datavisualisoinnin, muokattavan kojelaudan opintojen etenemisen seurantaan sekä parannettuja käyttökokemusominaisuuksia. Auttaa opiskelijoita seuraamaan opintopolkuansa tehokkaammin."
-
-#: components/sections/contact-section.tsx
 #: data/education.ts
 msgid "Web Development"
 msgstr "Web-kehitys"
@@ -897,3 +929,7 @@ msgstr "Web-kehitys"
 #: data/skills.ts
 msgid "Web server and reverse proxy for applications"
 msgstr "Web-palvelin ja käänteinen välityspalvelin sovelluksille"
+
+#: components/sections/contact-section.tsx
+msgid "What I build"
+msgstr "Mitä rakennan"

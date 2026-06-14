@@ -3,6 +3,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nProvider } from "@/lib/i18n-provider"
 import { getMetadata, getOrganizationSchema, getPersonSchema } from "@/lib/seo-config"
+import { MotionConfig } from "framer-motion"
 import type { Metadata } from "next"
 import { IBM_Plex_Mono, Manrope, Space_Grotesk } from "next/font/google"
 import Script from "next/script"
@@ -59,7 +60,7 @@ export default function RootLayout({
         </a>
         <I18nProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-            {children}
+            <MotionConfig reducedMotion="user">{children}</MotionConfig>
           </ThemeProvider>
         </I18nProvider>
 
@@ -83,7 +84,7 @@ export default function RootLayout({
               name: "Thomas OTT - portfolio",
               url: "https://thomasott.fr",
               description:
-                "Front-end developer specialized in React, Next.js and TypeScript. Explore my projects, UI approach and production-grade engineering standards.",
+                "Software engineer building full-stack web apps, backends, CLIs and serverless platforms with TypeScript, Node.js, Go and React.",
               author: {
                 "@type": "Person",
                 name: "Thomas OTT",

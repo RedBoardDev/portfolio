@@ -184,7 +184,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
     },
     {
       icon: <Github size={16} />,
-      url: "https://github.com/redBoardDev",
+      url: "https://github.com/RedBoardDev",
       label: t`GitHub`,
       hoverClassName: "hover:text-[#24292e]",
     },
@@ -203,8 +203,8 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
   ]
 
   const frameClass = scrolled
-    ? "border-slate-200/80 bg-white/86 shadow-[0_22px_60px_-34px_rgba(15,23,42,0.32)]"
-    : "border-white/70 bg-white/64 shadow-[0_24px_56px_-40px_rgba(15,23,42,0.26)]"
+    ? "border-border/70 bg-card/72 shadow-[0_22px_60px_-34px_rgba(15,23,42,0.32)]"
+    : "border-white/40 bg-card/55 shadow-[0_24px_56px_-40px_rgba(15,23,42,0.26)]"
 
   const handleNav = (section: SectionName, action: () => void) => {
     action()
@@ -218,7 +218,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
 
       <div className="mx-auto max-w-6xl">
         <div
-          className={`rounded-[20px] border px-3 py-2.5 backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300 ${frameClass}`}
+          className={`rounded-[20px] border px-3 py-2.5 backdrop-blur-2xl backdrop-saturate-150 transition-[background-color,border-color,box-shadow] duration-300 ${frameClass}`}
         >
           <div className="grid grid-cols-[auto_1fr_auto] items-center gap-3">
             <button
@@ -228,16 +228,16 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
               aria-label={t`Back to top`}
             >
               <span className="hidden min-w-0 sm:flex flex-col">
-                <span className="truncate text-base font-semibold text-slate-950">Thomas OTT</span>
-                <span className="text-sm text-slate-500">
-                  <Trans>Front-End Developer</Trans>
+                <span className="truncate text-base font-semibold text-foreground">Thomas OTT</span>
+                <span className="text-sm text-muted-foreground">
+                  <Trans>Software Engineer</Trans>
                 </span>
               </span>
-              <span className="text-base font-semibold text-slate-950 sm:hidden">Thomas OTT</span>
+              <span className="text-base font-semibold text-foreground sm:hidden">Thomas OTT</span>
             </button>
 
             <nav className="hidden lg:flex justify-center">
-              <div className="flex items-center gap-1 rounded-[16px] border border-slate-200/80 bg-white/52 px-2 py-1.5">
+              <div className="flex items-center gap-1">
                 {navItems.map((item) => (
                   <a
                     key={item.id}
@@ -249,7 +249,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                     className={`rounded-xl px-4 py-2 text-sm font-medium transition-[background-color,color,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                       activeSection === item.id
                         ? "bg-slate-950 text-white shadow-[0_12px_24px_-16px_rgba(15,23,42,0.5)]"
-                        : "text-slate-600 hover:bg-white hover:text-slate-950"
+                        : "text-muted-foreground hover:bg-card hover:text-foreground"
                     }`}
                     aria-current={activeSection === item.id ? "page" : undefined}
                   >
@@ -259,7 +259,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
               </div>
             </nav>
 
-            <div className="hidden md:flex items-center justify-end gap-2">
+            <div className="hidden lg:flex items-center justify-end gap-2">
               <LanguageSwitcher />
 
               <Button
@@ -273,13 +273,13 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
               </Button>
             </div>
 
-            <div className="flex items-center justify-end gap-2 md:hidden">
+            <div className="flex items-center justify-end gap-2 lg:hidden">
               <LanguageSwitcher />
 
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((open) => !open)}
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300/75 bg-white/82 text-slate-700 shadow-[0_16px_28px_-24px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color,box-shadow] duration-200 hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card/80 text-foreground/80 shadow-[0_16px_28px_-24px_rgba(15,23,42,0.32)] transition-[background-color,color,border-color,box-shadow] duration-200 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 aria-label={t`Navigation menu`}
                 aria-expanded={mobileMenuOpen}
                 aria-controls="mobile-menu"
@@ -294,7 +294,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-40 lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -318,12 +318,12 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
               exit={{ opacity: 0, y: -18, scale: 0.96 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
             >
-              <div className="border-b border-slate-200/80 px-5 py-4">
-                <p className="font-mono text-[0.68rem] uppercase tracking-[0.26em] text-slate-500">
+              <div className="border-b border-border/70 px-5 py-4">
+                <p className="font-mono text-[0.68rem] uppercase tracking-[0.26em] text-muted-foreground">
                   <Trans>Navigation</Trans>
                 </p>
-                <p className="mt-2 text-sm text-slate-600">
-                  <Trans>Front-End Developer</Trans>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  <Trans>Software Engineer</Trans>
                 </p>
               </div>
 
@@ -336,7 +336,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                     className={`mb-1.5 flex w-full items-center gap-3 rounded-[14px] px-4 py-3 text-sm font-medium transition-[background-color,color] duration-200 last:mb-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 ${
                       activeSection === item.id
                         ? "bg-slate-950 text-white"
-                        : "text-slate-700 hover:bg-slate-50 hover:text-slate-950"
+                        : "text-foreground/80 hover:bg-muted hover:text-foreground"
                     }`}
                     onClick={(event) => {
                       event.preventDefault()
@@ -344,7 +344,11 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                     }}
                     aria-current={activeSection === item.id ? "page" : undefined}
                   >
-                    <span className={activeSection === item.id ? "text-white" : "text-slate-400"}>
+                    <span
+                      className={
+                        activeSection === item.id ? "text-white" : "text-muted-foreground/70"
+                      }
+                    >
                       {item.icon}
                     </span>
                     {item.name}
@@ -352,9 +356,9 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                 ))}
               </div>
 
-              <div className="border-t border-slate-200/80 bg-slate-50/80 px-5 py-4">
+              <div className="border-t border-border/70 bg-muted px-5 py-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+                  <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                     <Trans>Links</Trans>
                   </span>
                   <div className="flex items-center gap-3">
@@ -365,7 +369,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                         target={link.url.startsWith("http") ? "_blank" : undefined}
                         rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
                         aria-label={link.label}
-                        className={`text-slate-500 transition-colors ${link.hoverClassName}`}
+                        className={`flex h-11 w-11 items-center justify-center rounded-xl text-muted-foreground transition-colors ${link.hoverClassName}`}
                       >
                         {link.icon}
                       </a>

@@ -1,68 +1,47 @@
 "use client"
 
-import { Skeleton } from "@/components/ui/skeleton"
-import { fetchStatsData } from "@/lib/github"
-import type { StatsData } from "@/lib/github"
+import { githubData } from "@/lib/github"
 import { Trans, useLingui } from "@lingui/react/macro"
-import { useEffect, useState } from "react"
+import { Fragment } from "react"
 
-interface GitHubStatsProps {
-  username: string
-}
-
-export function GitHubStats({ username }: GitHubStatsProps) {
+export function GitHubStats() {
   const { t } = useLingui()
-  const [stats, setStats] = useState<StatsData | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    fetchStatsData(username)
-      .then(setStats)
-      .catch((err) => console.error("Failed to fetch GitHub stats:", err))
-      .finally(() => setIsLoading(false))
-  }, [username])
-
-  if (isLoading) {
-    return (
-      <div className="mt-6 space-y-3">
-        {Array.from({ length: 4 }, (_, i) => (
-          <Skeleton key={i} className="h-8 w-full" />
-        ))}
-      </div>
-    )
-  }
-
-  if (!stats) return null
-
-  const { totalRepos, totalContributions, longestStreak, languages } = stats
+  const { totalContributions, longestStreak, languages } = githubData
   const topLanguages = languages.slice(0, 5)
-  const topTotal = topLanguages.reduce((sum, l) => sum + l.percentage, 0)
+  const topTotal = topLanguages.reduce((sum, lang) => sum + lang.percentage, 0) || 1
+
+  const items = [
+    { value: totalContributions.toLocaleString(), label: t`contributions` },
+    { value: longestStreak.toLocaleString(), label: t`day streak` },
+  ]
 
   return (
-    <div className="mt-6 space-y-2">
-      <StatBar label={t`Repositories`} value={`${totalRepos}+`} fill={(totalRepos / 40) * 100} />
-      <StatBar
-        label={t`Total contributions`}
-        value={`${totalContributions.toLocaleString()}+`}
-        fill={(totalContributions / 8000) * 100}
-      />
-      <StatBar
-        label={t`Longest streak`}
-        value={<Trans>{longestStreak} days</Trans>}
-        fill={(longestStreak / 365) * 100}
-        barColor="bg-orange-500"
-      />
+    <div className="mt-5 space-y-6">
+      <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-center text-sm text-muted-foreground">
+        {items.map((item, index) => (
+          <Fragment key={item.label}>
+            {index > 0 && (
+              <span aria-hidden="true" className="text-muted-foreground/40">
+                ·
+              </span>
+            )}
+            <span>
+              <span className="font-semibold tabular-nums text-foreground">{item.value}</span>{" "}
+              {item.label}
+            </span>
+          </Fragment>
+        ))}
+      </div>
 
-      <div className="group/langs">
-        <p className="text-gray-600 mb-1 text-sm">
-          <Trans>Most used languages</Trans> ({topLanguages.length})
+      <div>
+        <p className="mb-2 text-sm text-muted-foreground">
+          <Trans>Most used languages</Trans>
         </p>
-        <div className="h-2 bg-gray-100 rounded-full overflow-hidden flex cursor-pointer">
+        <div className="flex h-2 overflow-hidden rounded-full bg-muted">
           {topLanguages.map((lang) => (
             <div
               key={lang.name}
               className="h-full"
-              title={`${lang.name} — ${lang.percentage}%`}
               style={{
                 width: `${(lang.percentage / topTotal) * 100}%`,
                 backgroundColor: lang.color,
@@ -70,44 +49,15 @@ export function GitHubStats({ username }: GitHubStatsProps) {
             />
           ))}
         </div>
-        <div className="flex flex-wrap gap-x-4 gap-y-2 mt-2 text-xs text-gray-600 max-h-0 overflow-hidden opacity-0 transition-all duration-200 group-hover/langs:max-h-20 group-hover/langs:opacity-100">
+        <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
           {topLanguages.map((lang) => (
-            <span key={lang.name} className="flex items-center gap-1">
-              <span
-                className="inline-block w-2 h-2 rounded-full"
-                style={{ backgroundColor: lang.color }}
-              />
+            <span key={lang.name} className="inline-flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full" style={{ backgroundColor: lang.color }} />
               {lang.name}
+              <span className="text-muted-foreground/70">{lang.percentage}%</span>
             </span>
           ))}
         </div>
-      </div>
-    </div>
-  )
-}
-
-function StatBar({
-  label,
-  value,
-  fill,
-  barColor = "bg-primary",
-}: {
-  label: string
-  value: React.ReactNode
-  fill: number
-  barColor?: string
-}) {
-  return (
-    <div>
-      <div className="flex justify-between mb-1 text-sm">
-        <span className="text-gray-600">{label}</span>
-        <span className="font-semibold">{value}</span>
-      </div>
-      <div className="h-2 bg-gray-100 rounded-full">
-        <div
-          className={`h-full ${barColor} rounded-full`}
-          style={{ width: `${Math.min(100, fill)}%` }}
-        />
       </div>
     </div>
   )

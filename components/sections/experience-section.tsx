@@ -63,9 +63,9 @@ export default function ExperienceSection() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <SectionHeading title={t`Experience`} className="mb-10" />
+        <SectionHeading eyebrow={t`Career`} title={t`Experience`} className="mb-10" />
 
         <div className="space-y-6">
           {experiences.map((experience, index) => {
@@ -92,7 +92,7 @@ export default function ExperienceSection() {
                         url={experience.url}
                         width={48}
                         height={48}
-                        className="w-12 h-12 border-gray-200 shadow-sm"
+                        className="w-12 h-12 border-border/70 shadow-sm"
                         buttonTitle={t`Visit website`}
                         buttonAriaLabel={t`Visit website`}
                       />
@@ -105,15 +105,15 @@ export default function ExperienceSection() {
                         url={experience.url}
                         width={64}
                         height={64}
-                        className="w-16 h-16 border-gray-200"
+                        className="w-16 h-16 border-border/70"
                         buttonTitle={t`Visit website`}
                         buttonAriaLabel={t`Visit website`}
                       />
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">{t(experience.name)}</h3>
-                      <p className="text-sm text-gray-600">
+                      <h3 className="text-xl font-bold text-foreground">{t(experience.name)}</h3>
+                      <p className="text-sm text-muted-foreground">
                         {(() => {
                           const sortedPositions = [...experience.positions].sort(
                             (a, b) =>
@@ -143,15 +143,15 @@ export default function ExperienceSection() {
                     <div className="space-y-8">
                       {experience.positions.map((position, posIndex) => (
                         <div key={posIndex} className="relative pl-6 pb-6 last:pb-0">
-                          <div className="absolute left-0 top-0 w-[1px] h-full bg-gray-200" />
+                          <div className="absolute left-0 top-0 w-[1px] h-full bg-border/70" />
 
                           <div>
-                            <h4 className="text-lg font-semibold text-gray-900">
+                            <h4 className="text-lg font-semibold text-foreground">
                               {t(position.title)}
                             </h4>
-                            <p className="text-gray-600 text-sm">{t(position.type)}</p>
+                            <p className="text-muted-foreground text-sm">{t(position.type)}</p>
 
-                            <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-sm text-gray-500 mt-2">
+                            <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-sm text-muted-foreground mt-2">
                               <div className="flex items-center">
                                 <Calendar className="h-4 w-4 mr-2 text-primary/70" />
                                 <span>
@@ -166,11 +166,11 @@ export default function ExperienceSection() {
                             </div>
 
                             {position.description.length > 0 && (
-                              <ul className="mt-3 space-y-1 text-gray-700 text-sm">
+                              <ul className="mt-3 space-y-1 text-foreground/80 text-sm">
                                 {position.description.map((item, itemIndex) => (
                                   <li
                                     key={itemIndex}
-                                    className="relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-gray-400"
+                                    className="relative pl-4 before:content-['•'] before:absolute before:left-0 before:text-muted-foreground/70"
                                   >
                                     {t(item)}
                                   </li>
@@ -183,9 +183,9 @@ export default function ExperienceSection() {
                     </div>
 
                     {allSkills.length > 0 && (
-                      <div className="md:w-64 lg:w-72 md:border-l md:border-gray-100 md:pl-6">
+                      <div className="md:w-64 lg:w-72 md:border-l md:border-border/70 md:pl-6">
                         <div className="mb-3">
-                          <h4 className="text-sm font-medium text-gray-700 flex items-center">
+                          <h4 className="text-sm font-medium text-foreground/80 flex items-center">
                             <span className="w-1 h-4 bg-primary/60 rounded-full mr-2" />
                             <Trans>Skills acquired</Trans>
                           </h4>

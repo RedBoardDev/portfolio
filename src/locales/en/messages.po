@@ -11,10 +11,6 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: components/github/github-stats.tsx
-msgid "{longestStreak} days"
-msgstr "{longestStreak} days"
-
 #: components/sections/experience-section.tsx
 msgid "{months, plural, one {# month} other {# months}}"
 msgstr "{months, plural, one {# month} other {# months}}"
@@ -28,17 +24,29 @@ msgid "{years, plural, one {# year} other {# years}} {remainingMonths, plural, o
 msgstr "{years, plural, one {# year} other {# years}} {remainingMonths, plural, one {# month} other {# months}}"
 
 #: data/projects.ts
-msgid "2D side-scrolling shoot'em up game based on the original R-Type arcade classic. Built in C++ with robust client-server architecture, featuring multiplayer gameplay, cross-platform support, and modern game development practices. Includes Entity Component System architecture and network synchronization."
-msgstr "2D side-scrolling shoot'em up game based on the original R-Type arcade classic. Built in C++ with robust client-server architecture, featuring multiplayer gameplay, cross-platform support, and modern game development practices. Includes Entity Component System architecture and network synchronization."
+msgid "2D side-scrolling shoot'em up inspired by the R-Type arcade classic, built in C++ around a custom Entity Component System. Client-server architecture with network synchronization between players and cross-platform installers released for Linux and Windows."
+msgstr "2D side-scrolling shoot'em up inspired by the R-Type arcade classic, built in C++ around a custom Entity Component System. Client-server architecture with network synchronization between players and cross-platform installers released for Linux and Windows."
 
 #: app/not-found.tsx
 msgid "404"
 msgstr "404"
 
+#: data/projects.ts
+msgid "A one-page dashboard framework that centralizes everything you track — crypto prices, DeFi PnL, analytics, weather, news — into flexible, code-defined cards rendered live on a single screen. Define a card once and it stays in sync, so you replace ten browser tabs with one personal dashboard."
+msgstr "A one-page dashboard framework that centralizes everything you track — crypto prices, DeFi PnL, analytics, weather, news — into flexible, code-defined cards rendered live on a single screen. Define a card once and it stays in sync, so you replace ten browser tabs with one personal dashboard."
+
+#: components/sections/projects-section.tsx
+msgid "A selection of the tools, bots and apps I build - from Go CLIs and serverless platforms to Solana DeFi automation."
+msgstr "A selection of the tools, bots and apps I build - from Go CLIs and serverless platforms to Solana DeFi automation."
+
 #: components/navigation-bar.tsx
 #: components/sections/about-section.tsx
 msgid "About"
 msgstr "About"
+
+#: components/sections/about-section.tsx
+msgid "About me"
+msgstr "About me"
 
 #: data/experiences.ts
 msgid "Adaptability"
@@ -52,10 +60,6 @@ msgstr "Advanced RDBMS with extended features"
 msgid "Agile/Scrum"
 msgstr "Agile/Scrum"
 
-#: data/projects.ts
-msgid "AI-powered project with advanced generative capabilities and intelligent automation features. Built with TypeScript and Python, featuring Docker containerization for scalable deployment and development. The project leverages modern AI technologies to provide sophisticated solutions for various use cases."
-msgstr "AI-powered project with advanced generative capabilities and intelligent automation features. Built with TypeScript and Python, featuring Docker containerization for scalable deployment and development. The project leverages modern AI technologies to provide sophisticated solutions for various use cases."
-
 #: data/experiences.ts
 msgid "AkorD"
 msgstr "AkorD"
@@ -68,17 +72,25 @@ msgstr "Algorithms"
 msgid "All rights reserved."
 msgstr "All rights reserved."
 
+#: data/projects.ts
+msgid "All-in-one fitness app built with Kotlin Multiplatform and Compose Multiplatform — shared business logic with native UI on iOS and Android. Includes workout logging, AI-powered meal photo scanning and food recognition, macro and water tracking, and weekly body check-ins with AI-generated nutrition goals."
+msgstr "All-in-one fitness app built with Kotlin Multiplatform and Compose Multiplatform — shared business logic with native UI on iOS and Android. Includes workout logging, AI-powered meal photo scanning and food recognition, macro and water tracking, and weekly body check-ins with AI-generated nutrition goals."
+
 #: data/skills.ts
 msgid "Application containerization for deployment"
 msgstr "Application containerization for deployment"
 
-#: data/projects.ts
-msgid "Atlas-GenAI"
-msgstr "Atlas-GenAI"
+#: data/skills.ts
+msgid "Architecture & Practices"
+msgstr "Architecture & Practices"
 
-#: data/projects.ts
-msgid "Automation platform connecting different services and applications through custom workflows and integrations. Built with JavaScript and React, enabling users to create sophisticated automation rules between various APIs and services. Similar to IFTTT but tailored for developer and student needs."
-msgstr "Automation platform connecting different services and applications through custom workflows and integrations. Built with JavaScript and React, enabling users to create sophisticated automation rules between various APIs and services. Similar to IFTTT but tailored for developer and student needs."
+#: components/sections/contact-section.tsx
+msgid "Architecture & structure"
+msgstr "Architecture & structure"
+
+#: data/skills.ts
+msgid "Automated build, test and deployment pipelines with GitHub Actions"
+msgstr "Automated build, test and deployment pipelines with GitHub Actions"
 
 #: data/skills.ts
 msgid "Automation server for continuous integration and deployment"
@@ -89,8 +101,8 @@ msgid "Available"
 msgstr "Available"
 
 #: components/sections/contact-section.tsx
-msgid "Available for your web and mobile projects"
-msgstr "Available for your web and mobile projects"
+msgid "Available for freelance projects and full-time software engineering roles."
+msgstr "Available for freelance projects and full-time software engineering roles."
 
 #: data/skills.ts
 msgid "AWS"
@@ -113,6 +125,10 @@ msgstr "Back home"
 #: components/navigation-bar.tsx
 msgid "Back to top"
 msgstr "Back to top"
+
+#: components/sections/education-section.tsx
+msgid "Background"
+msgstr "Background"
 
 #: app/page.tsx
 msgid "Based in France, relocating to Helsinki, Finland"
@@ -146,21 +162,34 @@ msgstr "C"
 msgid "C++"
 msgstr "C++"
 
+#: components/sections/experience-section.tsx
+msgid "Career"
+msgstr "Career"
+
 #: components/language-switcher.tsx
 msgid "Change language"
 msgstr "Change language"
 
 #: data/projects.ts
-msgid "ChromeFlex"
-msgstr "ChromeFlex"
+msgid "Chrome extension that supercharges the Epitech intranet with advanced statistics and data visualization, giving students a customizable dashboard to track their academic progress. My most-starred open-source project, with 15 stars on GitHub."
+msgstr "Chrome extension that supercharges the Epitech intranet with advanced statistics and data visualization, giving students a customizable dashboard to track their academic progress. My most-starred open-source project, with 15 stars on GitHub."
 
+#: data/skills.ts
 #: data/skills.ts
 msgid "CI/CD"
 msgstr "CI/CD"
 
 #: data/skills.ts
-msgid "Clear communication with technical and non-technical stakeholders"
-msgstr "Clear communication with technical and non-technical stakeholders"
+msgid "Clean Architecture"
+msgstr "Clean Architecture"
+
+#: components/sections/contact-section.tsx
+msgid "Clean Architecture, clear boundaries, conventions and lightweight docs that keep a codebase healthy as it scales."
+msgstr "Clean Architecture, clear boundaries, conventions and lightweight docs that keep a codebase healthy as it scales."
+
+#: data/projects.ts
+msgid "CLI client for Mintlify-hosted MCP documentation servers, designed for LLM coding agents like Claude Code and Cursor. Exposes semantic search returning structured JSON, single-call page retrieval, and a sandboxed docs filesystem — a fast, lightweight alternative to the official MCP integration."
+msgstr "CLI client for Mintlify-hosted MCP documentation servers, designed for LLM coding agents like Claude Code and Cursor. Exposes semantic search returning structured JSON, single-call page retrieval, and a sandboxed docs filesystem — a fast, lightweight alternative to the official MCP integration."
 
 #: components/navigation-bar.tsx
 msgid "Close menu"
@@ -171,7 +200,6 @@ msgid "Cloud services for hosting and deploying applications"
 msgstr "Cloud services for hosting and deploying applications"
 
 #: components/sections/projects-section.tsx
-#: components/sections/projects-section.tsx
 msgid "Code"
 msgstr "Code"
 
@@ -179,19 +207,16 @@ msgstr "Code"
 msgid "Collaboration with the development team"
 msgstr "Collaboration with the development team"
 
-#: data/skills.ts
-msgid "Communication"
-msgstr "Communication"
+#: data/projects.ts
+msgid "Collaborative r/place-style pixel canvas powered by a fully serverless AWS architecture. Features real-time WebSocket updates, Discord OAuth2 authentication and bot commands, chunk-based viewport rendering, admin session management and per-user rate limiting. Infrastructure defined as code with Terraform."
+msgstr "Collaborative r/place-style pixel canvas powered by a fully serverless AWS architecture. Features real-time WebSocket updates, Discord OAuth2 authentication and bot commands, chunk-based viewport rendering, admin session management and per-user rate limiting. Infrastructure defined as code with Terraform."
 
 #: data/education.ts
 msgid "Computer Engineering"
 msgstr "Computer Engineering"
 
-#: components/sections/contact-section.tsx
-msgid "Consulting & Training"
-msgstr "Consulting & Training"
-
 #: components/navigation-bar.tsx
+#: components/sections/contact-section.tsx
 msgid "Contact"
 msgstr "Contact"
 
@@ -213,6 +238,7 @@ msgid "contribution"
 msgstr "contribution"
 
 #: components/github/github-heatmap.tsx
+#: components/github/github-stats.tsx
 msgid "contributions"
 msgstr "contributions"
 
@@ -228,26 +254,17 @@ msgstr "Copied!"
 msgid "Copy email address"
 msgstr "Copy email address"
 
-#: components/sections/about-section.tsx
-msgid "Curious by nature, I also explored blockchain and Web3, which gave me a broader vision of current technological challenges and the ability to quickly adapt to new paradigms."
-msgstr "Curious by nature, I also explored blockchain and Web3, which gave me a broader vision of current technological challenges and the ability to quickly adapt to new paradigms."
-
-#: components/sections/contact-section.tsx
-msgid "Currently available"
-msgstr "Currently available"
-
-#: data/projects.ts
-msgid "Custom RPG game engine developed in C with classic farming simulation mechanics. Features comprehensive resource management, character progression system, and retro-style gaming environment. Players can cultivate crops, manage livestock, and build their virtual farming empire with strategic decision-making elements."
-msgstr "Custom RPG game engine developed in C with classic farming simulation mechanics. Features comprehensive resource management, character progression system, and retro-style gaming environment. Players can cultivate crops, manage livestock, and build their virtual farming empire with strategic decision-making elements."
-
 #: data/skills.ts
 msgid "Databases & ORM"
 msgstr "Databases & ORM"
 
-#: components/sections/projects-section.tsx
-#: components/sections/projects-section.tsx
-msgid "Demo"
-msgstr "Demo"
+#: components/github/github-stats.tsx
+msgid "day streak"
+msgstr "day streak"
+
+#: data/skills.ts
+msgid "Decoupling the domain from infrastructure via ports and adapters"
+msgstr "Decoupling the domain from infrastructure via ports and adapters"
 
 #: data/experiences.ts
 msgid "Design and implementation of new features"
@@ -275,14 +292,14 @@ msgstr "DevOps"
 msgid "DevOps & Tools"
 msgstr "DevOps & Tools"
 
-#: data/projects.ts
-msgid "Discord bot that updates its status based on time tracking received via clockify. Features Clean Architecture with Domain-Driven Design, automated deployment with PM2, and real-time status updates for work sessions. The bot listens for webhook payloads and displays different statuses based on work activity."
-msgstr "Discord bot that updates its status based on time tracking received via clockify. Features Clean Architecture with Domain-Driven Design, automated deployment with PM2, and real-time status updates for work sessions. The bot listens for webhook payloads and displays different statuses based on work activity."
-
 #: data/experiences.ts
 #: data/skills.ts
 msgid "Docker"
 msgstr "Docker"
+
+#: data/skills.ts
+msgid "Domain-Driven Design"
+msgstr "Domain-Driven Design"
 
 #: app/page.tsx
 msgid "Download CV"
@@ -296,10 +313,6 @@ msgstr "Download CV - Thomas OTT"
 #: components/sections/education-section.tsx
 msgid "Education"
 msgstr "Education"
-
-#: data/skills.ts
-msgid "Effective collaboration within multidisciplinary teams"
-msgstr "Effective collaboration within multidisciplinary teams"
 
 #: app/page.tsx
 #: components/navigation-bar.tsx
@@ -319,21 +332,9 @@ msgstr "EPITECH - European Institute of Technology"
 msgid "Epitech - The IT Excellence School"
 msgstr "Epitech - The IT Excellence School"
 
-#: data/projects.ts
-msgid "Epitech AREA"
-msgstr "Epitech AREA"
-
-#: data/projects.ts
-msgid "Epitech Intranet Statistics"
-msgstr "Epitech Intranet Statistics"
-
 #: data/experiences.ts
 msgid "Epitech Regional Assistant (AER)"
 msgstr "Epitech Regional Assistant (AER)"
-
-#: components/sections/contact-section.tsx
-msgid "Evolutionary, corrective maintenance and technical support for your existing applications."
-msgstr "Evolutionary, corrective maintenance and technical support for your existing applications."
 
 #: data/education.ts
 msgid "Exchange year in Finland, providing international experience."
@@ -357,6 +358,10 @@ msgid "Fast and low overhead web framework for Node.js"
 msgstr "Fast and low overhead web framework for Node.js"
 
 #: data/skills.ts
+msgid "Fast, concurrent language used for CLIs and backend tooling"
+msgstr "Fast, concurrent language used for CLIs and backend tooling"
+
+#: data/skills.ts
 msgid "Fastify"
 msgstr "Fastify"
 
@@ -373,23 +378,16 @@ msgid "Freelance"
 msgstr "Freelance"
 
 #: components/sections/contact-section.tsx
-msgid "Freelance Developer"
-msgstr "Freelance Developer"
-
-#: components/sections/contact-section.tsx
 msgid "French"
 msgstr "French"
-
-#: app/page.tsx
-#: app/page.tsx
-#: components/navigation-bar.tsx
-#: components/navigation-bar.tsx
-msgid "Front-End Developer"
-msgstr "Front-End Developer"
 
 #: data/experiences.ts
 msgid "Full Stack Developer"
 msgstr "Full Stack Developer"
+
+#: components/sections/contact-section.tsx
+msgid "Full-stack engineer at AkorD (Kare) and co-founder of Moboo. I build SaaS end-to-end, with a focus on clean, maintainable architecture."
+msgstr "Full-stack engineer at AkorD (Kare) and co-founder of Moboo. I build SaaS end-to-end, with a focus on clean, maintainable architecture."
 
 #: data/skills.ts
 msgid "Functional programming language for academic and research projects"
@@ -413,9 +411,18 @@ msgstr "GitHub Contributions"
 msgid "GitHub profile"
 msgstr "GitHub profile"
 
+#: data/skills.ts
+msgid "Go"
+msgstr "Go"
+
+#: components/sections/contact-section.tsx
+msgid "Go CLIs, AWS serverless apps and automation bots across TypeScript, Node.js, Postgres and Terraform."
+msgstr "Go CLIs, AWS serverless apps and automation bots across TypeScript, Node.js, Postgres and Terraform."
+
+#. placeholder {0}: pageIndex + 1
 #: components/sections/projects-section.tsx
-msgid "Go to project {index}"
-msgstr "Go to project {index}"
+msgid "Go to page {0}"
+msgstr "Go to page {0}"
 
 #: data/skills.ts
 msgid "Haskell"
@@ -425,13 +432,29 @@ msgstr "Haskell"
 msgid "Helsinki, Finland"
 msgstr "Helsinki, Finland"
 
+#: data/skills.ts
+msgid "Hexagonal Architecture"
+msgstr "Hexagonal Architecture"
+
 #: data/education.ts
 msgid "High School Diploma"
 msgstr "High School Diploma"
 
+#: components/sections/about-section.tsx
+msgid "I build maintainable SaaS and business web apps end-to-end — from user needs and domain modeling all the way to production. My approach is Clean Architecture: clear boundaries, a deliberate project structure, and code that stays sane as the product grows. I move fast, but I build for the long run, with refactoring, reliability and security, and clean delivery (CI/CD, QA, cloud) baked in rather than bolted on."
+msgstr "I build maintainable SaaS and business web apps end-to-end — from user needs and domain modeling all the way to production. My approach is Clean Architecture: clear boundaries, a deliberate project structure, and code that stays sane as the product grows. I move fast, but I build for the long run, with refactoring, reliability and security, and clean delivery (CI/CD, QA, cloud) baked in rather than bolted on."
+
 #: app/page.tsx
-msgid "I design fast, accessible and polished web interfaces with a strong focus on user experience, implementation quality and production-grade engineering around <0>React</0>, <1>TypeScript</1> and <2>Node.js</2>."
-msgstr "I design fast, accessible and polished web interfaces with a strong focus on user experience, implementation quality and production-grade engineering around <0>React</0>, <1>TypeScript</1> and <2>Node.js</2>."
+msgid "I build reliable end-to-end software - web apps, backends, CLIs and serverless platforms - with a strong focus on clean architecture, performance and production-grade engineering around <0>TypeScript</0>, <1>Node.js</1> and <2>Go</2>."
+msgstr "I build reliable end-to-end software - web apps, backends, CLIs and serverless platforms - with a strong focus on clean architecture, performance and production-grade engineering around <0>TypeScript</0>, <1>Node.js</1> and <2>Go</2>."
+
+#: components/sections/about-section.tsx
+msgid "I'm an Epitech student graduating in 2026, with an academic year in Helsinki working on product-oriented teams in English. I'm open to opportunities in Finland and remote, with teams building serious products to a high engineering standard."
+msgstr "I'm an Epitech student graduating in 2026, with an academic year in Helsinki working on product-oriented teams in English. I'm open to opportunities in Finland and remote, with teams building serious products to a high engineering standard."
+
+#: data/skills.ts
+msgid "In-memory store for caching and BullMQ job queues"
+msgstr "In-memory store for caching and BullMQ job queues"
 
 #: data/education.ts
 msgid "Information Systems"
@@ -440,6 +463,10 @@ msgstr "Information Systems"
 #: data/education.ts
 msgid "Information Technology"
 msgstr "Information Technology"
+
+#: data/skills.ts
+msgid "Infrastructure as code for provisioning cloud resources"
+msgstr "Infrastructure as code for provisioning cloud resources"
 
 #: data/education.ts
 msgid "Initial training in computer engineering with a practical approach to information technologies."
@@ -450,13 +477,9 @@ msgstr "Initial training in computer engineering with a practical approach to in
 msgid "Internship"
 msgstr "Internship"
 
-#: data/projects.ts
-msgid "Invoicing System"
-msgstr "Invoicing System"
-
 #: data/skills.ts
-msgid "Iterative and collaborative project management methodology"
-msgstr "Iterative and collaborative project management methodology"
+msgid "Iterative, collaborative delivery in multidisciplinary teams"
+msgstr "Iterative, collaborative delivery in multidisciplinary teams"
 
 #: data/skills.ts
 msgid "Java"
@@ -476,8 +499,8 @@ msgid "Jenkins"
 msgstr "Jenkins"
 
 #: data/skills.ts
-msgid "Knowledge transfer and student mentoring"
-msgstr "Knowledge transfer and student mentoring"
+msgid "Kotlin"
+msgstr "Kotlin"
 
 #: components/sections/contact-section.tsx
 msgid "Languages"
@@ -487,9 +510,17 @@ msgstr "Languages"
 msgid "Laurea University of Applied Sciences"
 msgstr "Laurea University of Applied Sciences"
 
+#: data/skills.ts
+msgid "Layered, dependency-inverted design for testable, maintainable code"
+msgstr "Layered, dependency-inverted design for testable, maintainable code"
+
 #: components/github/github-heatmap.tsx
 msgid "Less"
 msgstr "Less"
+
+#: components/sections/contact-section.tsx
+msgid "Let's work together"
+msgstr "Let's work together"
 
 #: app/page.tsx
 #: components/navigation-bar.tsx
@@ -509,10 +540,6 @@ msgstr "Links"
 msgid "Linux"
 msgstr "Linux"
 
-#: components/github/github-stats.tsx
-msgid "Longest streak"
-msgstr "Longest streak"
-
 #: data/skills.ts
 msgid "Low-level programming language for system programming and embedded systems"
 msgstr "Low-level programming language for system programming and embedded systems"
@@ -530,8 +557,8 @@ msgid "Main library for user interface development"
 msgstr "Main library for user interface development"
 
 #: components/sections/contact-section.tsx
-msgid "Maintenance & Support"
-msgstr "Maintenance & Support"
+msgid "Maintainable business web apps, from user needs and domain modeling through to clean, production-ready delivery."
+msgstr "Maintainable business web apps, from user needs and domain modeling through to clean, production-ready delivery."
 
 #: data/skills.ts
 msgid "Makefile"
@@ -552,24 +579,20 @@ msgid "Master's degree"
 msgstr "Master's degree"
 
 #: data/skills.ts
-msgid "Methodologies & Soft Skills"
-msgstr "Methodologies & Soft Skills"
-
-#: data/skills.ts
 msgid "Minimalist framework for creating REST APIs with Node.js"
 msgstr "Minimalist framework for creating REST APIs with Node.js"
 
-#: data/projects.ts
-msgid "Modern invoicing and billing system built with TypeScript for small businesses and freelancers. Features automated invoice generation, comprehensive client management, payment tracking, and financial reporting with a clean and intuitive React interface. Streamlines the entire billing process from creation to payment."
-msgstr "Modern invoicing and billing system built with TypeScript for small businesses and freelancers. Features automated invoice generation, comprehensive client management, payment tracking, and financial reporting with a clean and intuitive React interface. Streamlines the entire billing process from creation to payment."
+#: data/skills.ts
+msgid "Modeling complex domains around business logic and clear boundaries"
+msgstr "Modeling complex domains around business logic and clear boundaries"
+
+#: data/skills.ts
+msgid "Modern JVM language used for Kotlin Multiplatform mobile apps"
+msgstr "Modern JVM language used for Kotlin Multiplatform mobile apps"
 
 #: data/skills.ts
 msgid "Modern ORM for Node.js and TypeScript"
 msgstr "Modern ORM for Node.js and TypeScript"
-
-#: data/projects.ts
-msgid "Modular Chrome extension framework for easily adding custom, site-specific features on the fly with a plug-and-play architecture. Built with TypeScript and modern development tools, it provides developers with a flexible platform to enhance web browsing experiences across different websites."
-msgstr "Modular Chrome extension framework for easily adding custom, site-specific features on the fly with a plug-and-play architecture. Built with TypeScript and modern development tools, it provides developers with a flexible platform to enhance web browsing experiences across different websites."
 
 #: components/github/github-heatmap.tsx
 msgid "More"
@@ -593,14 +616,6 @@ msgstr "Mulhouse, Grand Est, France · On-site"
 msgid "My contact details"
 msgstr "My contact details"
 
-#: components/sections/contact-section.tsx
-msgid "My services"
-msgstr "My services"
-
-#: data/projects.ts
-msgid "MyFarm RPG"
-msgstr "MyFarm RPG"
-
 #: data/skills.ts
 msgid "MySQL"
 msgstr "MySQL"
@@ -622,8 +637,8 @@ msgid "Networks"
 msgstr "Networks"
 
 #: components/sections/projects-section.tsx
-msgid "Next project"
-msgstr "Next project"
+msgid "Next projects"
+msgstr "Next projects"
 
 #: data/skills.ts
 msgid "Next.js"
@@ -641,6 +656,11 @@ msgstr "Node.js"
 #: data/skills.ts
 msgid "Object-oriented language for enterprise applications and Android development"
 msgstr "Object-oriented language for enterprise applications and Android development"
+
+#. placeholder {0}: project.title
+#: components/sections/projects-section.tsx
+msgid "Open {0}"
+msgstr "Open {0}"
 
 #: components/sections/contact-section.tsx
 msgid "Open GitHub profile in a new tab"
@@ -666,17 +686,17 @@ msgstr "Page not found | Thomas OTT"
 msgid "Participation in organizing events and promoting the school"
 msgstr "Participation in organizing events and promoting the school"
 
-#: components/sections/about-section.tsx
-msgid "Passionate front-end developer, I create modern and performant web interfaces. My approach combines technical rigor and attention to detail to deliver exceptional user experiences."
-msgstr "Passionate front-end developer, I create modern and performant web interfaces. My approach combines technical rigor and attention to detail to deliver exceptional user experiences."
-
 #: data/experiences.ts
 msgid "Performance optimization and user experience enhancement"
 msgstr "Performance optimization and user experience enhancement"
 
-#: data/skills.ts
-msgid "Planning, execution and monitoring of IT projects"
-msgstr "Planning, execution and monitoring of IT projects"
+#: components/sections/contact-section.tsx
+msgid "Performance, reliability and security by design, with CI/CD, QA automation and cloud deployments."
+msgstr "Performance, reliability and security by design, with CI/CD, QA automation and cloud deployments."
+
+#: data/projects.ts
+msgid "Personal recipe hub that ingests recipes from any source — web pages, Instagram, plain text, screenshots — and normalizes them into a single DSL. Cook step-by-step with timers, plan weekly meals and auto-generate smart shopping lists, all in one private app shaped for daily use."
+msgstr "Personal recipe hub that ingests recipes from any source — web pages, Instagram, plain text, screenshots — and normalizes them into a single DSL. Cook step-by-step with timers, plan weekly meals and auto-generate smart shopping lists, all in one private app shaped for daily use."
 
 #: data/skills.ts
 msgid "PostgreSQL"
@@ -687,16 +707,24 @@ msgid "present"
 msgstr "present"
 
 #: components/sections/projects-section.tsx
-msgid "Previous project"
-msgstr "Previous project"
+msgid "Previous projects"
+msgstr "Previous projects"
 
 #: data/skills.ts
 msgid "Prisma"
 msgstr "Prisma"
 
+#: data/projects.ts
+msgid "Production-grade ORE Protocol farming bot for Solana, built with Domain-Driven Design and a hexagonal architecture. Monitors on-chain rounds in real time and executes EV-optimized placements with a deterministic, risk-managed strategy and clean separation between domain and infrastructure."
+msgstr "Production-grade ORE Protocol farming bot for Solana, built with Domain-Driven Design and a hexagonal architecture. Monitors on-chain rounds in real time and executes EV-optimized placements with a deterministic, risk-managed strategy and clean separation between domain and infrastructure."
+
 #: components/sections/contact-section.tsx
 msgid "Professional"
 msgstr "Professional"
+
+#: data/projects.ts
+msgid "Professional Discord bot for real-time monitoring of Solana DeFi trading positions. A decorator-based feature system delivers position-size calculations, live PnL tracking and pool statistics directly inside your server, giving traders portfolio-grade tooling without leaving Discord."
+msgstr "Professional Discord bot for real-time monitoring of Solana DeFi trading positions. A decorator-based feature system delivers position-size calculations, live PnL tracking and pool statistics directly inside your server, giving traders portfolio-grade tooling without leaving Discord."
 
 #: data/education.ts
 msgid "Programming"
@@ -708,7 +736,6 @@ msgstr "Programming Languages"
 
 #: data/education.ts
 #: data/experiences.ts
-#: data/skills.ts
 msgid "Project Management"
 msgstr "Project Management"
 
@@ -721,10 +748,6 @@ msgstr "Projects"
 msgid "Python"
 msgstr "Python"
 
-#: data/projects.ts
-msgid "R-Type Game"
-msgstr "R-Type Game"
-
 #: data/experiences.ts
 #: data/experiences.ts
 #: data/skills.ts
@@ -736,33 +759,45 @@ msgid "React framework for web applications with server-side rendering"
 msgstr "React framework for web applications with server-side rendering"
 
 #: data/skills.ts
+msgid "Redis"
+msgstr "Redis"
+
+#: data/skills.ts
 msgid "Relational database management system"
 msgstr "Relational database management system"
+
+#: components/sections/contact-section.tsx
+msgid "Reliable delivery"
+msgstr "Reliable delivery"
 
 #: data/experiences.ts
 msgid "Remote"
 msgstr "Remote"
 
-#: components/github/github-stats.tsx
-msgid "Repositories"
-msgstr "Repositories"
+#: components/sections/about-section.tsx
+msgid "Right now I'm a full-stack developer at AkorD on Kare, a SaaS that digitalizes safety-register workflows for public-access facilities in France, where regulatory compliance meets daily field operations. In parallel, I co-founded Moboo, a no-code platform for building mobile apps through a visual editor, where I lead the frontend architecture."
+msgstr "Right now I'm a full-stack developer at AkorD on Kare, a SaaS that digitalizes safety-register workflows for public-access facilities in France, where regulatory compliance meets daily field operations. In parallel, I co-founded Moboo, a no-code platform for building mobile apps through a visual editor, where I lead the frontend architecture."
 
+#: components/sections/contact-section.tsx
+msgid "SaaS, end-to-end"
+msgstr "SaaS, end-to-end"
+
+#. placeholder {0}: project.title
 #: components/sections/projects-section.tsx
-#: components/sections/projects-section.tsx
-msgid "Screenshot of project {projectTitle}"
-msgstr "Screenshot of project {projectTitle}"
+msgid "Screenshot of {0}"
+msgstr "Screenshot of {0}"
 
 #: data/skills.ts
 msgid "Scripting for automation and system configuration"
 msgstr "Scripting for automation and system configuration"
 
-#: components/sections/contact-section.tsx
-msgid "Security & Performance"
-msgstr "Security & Performance"
+#: components/sections/projects-section.tsx
+msgid "Selected work"
+msgstr "Selected work"
 
-#: components/sections/contact-section.tsx
-msgid "Security audits, performance optimization and GDPR compliance."
-msgstr "Security audits, performance optimization and GDPR compliance."
+#: data/projects.ts
+msgid "Self-hosted GitHub Actions runner controller for macOS, built on GitHub's official scale-set Go SDK. Provisions ephemeral JIT runners with min/max autoscaling, handles binary downloads, registration and process lifecycle, and integrates natively with launchd plus Discord/webhook and Uptime Kuma notifications."
+msgstr "Self-hosted GitHub Actions runner controller for macOS, built on GitHub's official scale-set Go SDK. Provisions ephemeral JIT runners with min/max autoscaling, handles binary downloads, registration and process lifecycle, and integrates natively with launchd plus Discord/webhook and Uptime Kuma notifications."
 
 #: app/page.tsx
 msgid "Send email"
@@ -772,9 +807,13 @@ msgstr "Send email"
 msgid "Send me an email"
 msgstr "Send me an email"
 
+#: data/projects.ts
+msgid "Service that turns any recipe URL or raw text into clean schema.org/Recipe JSON-LD. Runs asynchronous import jobs with BullMQ workers, tracks the full job lifecycle step by step, and streams real-time progress to clients over WebSocket before normalizing results to a consistent schema."
+msgstr "Service that turns any recipe URL or raw text into clean schema.org/Recipe JSON-LD. Runs asynchronous import jobs with BullMQ workers, tracks the full job lifecycle step by step, and streams real-time progress to clients over WebSocket before normalizing results to a consistent schema."
+
 #: components/sections/contact-section.tsx
-msgid "Showcase websites, complex web applications, e-commerce and design integration."
-msgstr "Showcase websites, complex web applications, e-commerce and design integration."
+msgid "Side projects"
+msgstr "Side projects"
 
 #: components/navigation-bar.tsx
 #: components/sections/skills-section.tsx
@@ -791,38 +830,32 @@ msgstr "Skills acquired"
 msgid "Software Architecture"
 msgstr "Software Architecture"
 
-#: components/sections/about-section.tsx
-msgid "Specialized in React, TypeScript and the Next.js ecosystem, I master the complete chain of modern front-end development: from pixel-perfect UI integration to state management, performance optimization and automated testing."
-msgstr "Specialized in React, TypeScript and the Next.js ecosystem, I master the complete chain of modern front-end development: from pixel-perfect UI integration to state management, performance optimization and automated testing."
+#: app/page.tsx
+#: app/page.tsx
+#: components/navigation-bar.tsx
+#: components/navigation-bar.tsx
+msgid "Software Engineer"
+msgstr "Software Engineer"
 
 #: data/experiences.ts
 msgid "Supervision of IT projects and educational assistance for students"
 msgstr "Supervision of IT projects and educational assistance for students"
 
-#: components/sections/projects-section.tsx
-msgid "Swipe to navigate"
-msgstr "Swipe to navigate"
-
 #: data/experiences.ts
-#: data/skills.ts
 msgid "Teaching"
 msgstr "Teaching"
-
-#: data/skills.ts
-msgid "Teamwork"
-msgstr "Teamwork"
-
-#: data/projects.ts
-msgid "TeapotTracker"
-msgstr "TeapotTracker"
 
 #: data/experiences.ts
 msgid "Technical and methodological support for students"
 msgstr "Technical and methodological support for students"
 
-#: components/sections/contact-section.tsx
-msgid "Technical support, technology choice and training for your teams."
-msgstr "Technical support, technology choice and training for your teams."
+#: data/skills.ts
+msgid "Terraform"
+msgstr "Terraform"
+
+#: data/skills.ts
+msgid "Testing"
+msgstr "Testing"
 
 #: app/not-found.tsx
 #: app/not-found.tsx
@@ -831,25 +864,21 @@ msgstr "The page you are looking for does not exist or has been moved."
 
 #: app/page.tsx
 #: app/page.tsx
-msgid "Thomas OTT - Front-End Developer"
-msgstr "Thomas OTT - Front-End Developer"
+msgid "Thomas OTT - Software Engineer"
+msgstr "Thomas OTT - Software Engineer"
 
-#: components/github/github-stats.tsx
-msgid "Total contributions"
-msgstr "Total contributions"
-
-#: components/sections/about-section.tsx
-msgid "Trained at Epitech with project-based pedagogy, I developed strong autonomy and an ability to solve complex problems. I am currently completing an international exchange year at Laurea University in Helsinki, Finland."
-msgstr "Trained at Epitech with project-based pedagogy, I developed strong autonomy and an ability to solve complex problems. I am currently completing an international exchange year at Laurea University in Helsinki, Finland."
+#: components/sections/skills-section.tsx
+msgid "Toolbox"
+msgstr "Toolbox"
 
 #: data/experiences.ts
 #: data/skills.ts
 msgid "TypeScript"
 msgstr "TypeScript"
 
-#: components/github/github-heatmap.tsx
-msgid "Unable to load GitHub data"
-msgstr "Unable to load GitHub data"
+#: data/skills.ts
+msgid "Unit and integration testing to safeguard behavior and intent"
+msgstr "Unit and integration testing to safeguard behavior and intent"
 
 #: data/skills.ts
 msgid "Used for system projects and high-performance applications"
@@ -871,10 +900,18 @@ msgstr "Versatile language for web development, data science, and automation"
 msgid "Version control system for source code management"
 msgstr "Version control system for source code management"
 
+#. placeholder {0}: project.title
 #: components/sections/projects-section.tsx
+msgid "View {0} source code on GitHub"
+msgstr "View {0} source code on GitHub"
+
 #: components/sections/projects-section.tsx
-msgid "View all projects"
-msgstr "View all projects"
+msgid "View all projects on GitHub"
+msgstr "View all projects on GitHub"
+
+#: components/sections/projects-section.tsx
+msgid "Visit"
+msgstr "Visit"
 
 #: components/sections/education-section.tsx
 #: components/sections/education-section.tsx
@@ -885,11 +922,6 @@ msgstr "View all projects"
 msgid "Visit website"
 msgstr "Visit website"
 
-#: data/projects.ts
-msgid "Web application providing advanced statistics and information for the Epitech Intranet platform. Chrome extension with comprehensive data visualization, customizable dashboard for tracking academic progress, and enhanced user experience features. Helps students monitor their academic journey more effectively."
-msgstr "Web application providing advanced statistics and information for the Epitech Intranet platform. Chrome extension with comprehensive data visualization, customizable dashboard for tracking academic progress, and enhanced user experience features. Helps students monitor their academic journey more effectively."
-
-#: components/sections/contact-section.tsx
 #: data/education.ts
 msgid "Web Development"
 msgstr "Web Development"
@@ -897,3 +929,7 @@ msgstr "Web Development"
 #: data/skills.ts
 msgid "Web server and reverse proxy for applications"
 msgstr "Web server and reverse proxy for applications"
+
+#: components/sections/contact-section.tsx
+msgid "What I build"
+msgstr "What I build"

@@ -4,7 +4,7 @@ import { msg } from "@lingui/core/macro"
 export interface Skill {
   name: MessageDescriptor
   description: MessageDescriptor
-  logo: string
+  logo?: string
 }
 
 export interface SkillCategory {
@@ -27,6 +27,11 @@ export const skillsData: SkillCategory[] = [
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
       },
       {
+        name: msg`Go`,
+        description: msg`Fast, concurrent language used for CLIs and backend tooling`,
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg",
+      },
+      {
         name: msg`Python`,
         description: msg`Versatile language for web development, data science, and automation`,
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
@@ -35,6 +40,11 @@ export const skillsData: SkillCategory[] = [
         name: msg`Java`,
         description: msg`Object-oriented language for enterprise applications and Android development`,
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+      },
+      {
+        name: msg`Kotlin`,
+        description: msg`Modern JVM language used for Kotlin Multiplatform mobile apps`,
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
       },
       {
         name: msg`C`,
@@ -106,6 +116,11 @@ export const skillsData: SkillCategory[] = [
         description: msg`Modern ORM for Node.js and TypeScript`,
         logo: "https://www.prisma.io/images/favicon-32x32.png",
       },
+      {
+        name: msg`Redis`,
+        description: msg`In-memory store for caching and BullMQ job queues`,
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+      },
     ],
   },
   {
@@ -115,6 +130,11 @@ export const skillsData: SkillCategory[] = [
         name: msg`Docker`,
         description: msg`Application containerization for deployment`,
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      },
+      {
+        name: msg`Terraform`,
+        description: msg`Infrastructure as code for provisioning cloud resources`,
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
       },
       {
         name: msg`Git`,
@@ -154,32 +174,31 @@ export const skillsData: SkillCategory[] = [
     ],
   },
   {
-    name: msg`Methodologies & Soft Skills`,
+    name: msg`Architecture & Practices`,
     skills: [
       {
+        name: msg`Domain-Driven Design`,
+        description: msg`Modeling complex domains around business logic and clear boundaries`,
+      },
+      {
+        name: msg`Hexagonal Architecture`,
+        description: msg`Decoupling the domain from infrastructure via ports and adapters`,
+      },
+      {
+        name: msg`Clean Architecture`,
+        description: msg`Layered, dependency-inverted design for testable, maintainable code`,
+      },
+      {
+        name: msg`CI/CD`,
+        description: msg`Automated build, test and deployment pipelines with GitHub Actions`,
+      },
+      {
+        name: msg`Testing`,
+        description: msg`Unit and integration testing to safeguard behavior and intent`,
+      },
+      {
         name: msg`Agile/Scrum`,
-        description: msg`Iterative and collaborative project management methodology`,
-        logo: "/placeholder.svg?height=40&width=40",
-      },
-      {
-        name: msg`Project Management`,
-        description: msg`Planning, execution and monitoring of IT projects`,
-        logo: "/placeholder.svg?height=40&width=40",
-      },
-      {
-        name: msg`Teamwork`,
-        description: msg`Effective collaboration within multidisciplinary teams`,
-        logo: "/placeholder.svg?height=40&width=40",
-      },
-      {
-        name: msg`Communication`,
-        description: msg`Clear communication with technical and non-technical stakeholders`,
-        logo: "/placeholder.svg?height=40&width=40",
-      },
-      {
-        name: msg`Teaching`,
-        description: msg`Knowledge transfer and student mentoring`,
-        logo: "/placeholder.svg?height=40&width=40",
+        description: msg`Iterative, collaborative delivery in multidisciplinary teams`,
       },
     ],
   },

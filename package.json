@@ -5,7 +5,8 @@
   "packageManager": "yarn@4.13.0",
   "scripts": {
     "dev": "yarn i18n:compile && next dev --turbopack",
-    "build": "yarn i18n:compile && next build",
+    "build": "yarn gh:data && yarn i18n:compile && next build",
+    "gh:data": "node scripts/generate-github-data.mjs",
     "start": "next start",
     "lint": "yarn i18n:compile && biome check .",
     "lint:fix": "biome lint --write .",

@@ -25,31 +25,27 @@ export function ContentBox({
   shadow = "sm",
 }: ContentBoxProps) {
   const baseStyles =
-    "relative overflow-hidden rounded-[20px] border border-white/70 backdrop-blur-md"
+    "relative overflow-hidden rounded-[20px] border border-border/80 backdrop-blur-sm"
 
   const variantStyles = {
-    default:
-      "bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(255,255,255,0.74))] supports-[backdrop-filter]:bg-white/72",
-    subtle:
-      "bg-[linear-gradient(180deg,rgba(255,255,255,0.76),rgba(255,255,255,0.56))] supports-[backdrop-filter]:bg-white/56",
-    outline: "bg-transparent border-slate-300/70",
+    default: "bg-card/85 supports-[backdrop-filter]:bg-card/75",
+    subtle: "bg-card/60 supports-[backdrop-filter]:bg-card/50",
+    outline: "border-border bg-transparent",
   }
 
   const shadowStyles = {
     none: "",
-    sm: "shadow-[0_24px_58px_-40px_rgba(15,23,42,0.28)]",
-    md: "shadow-[0_28px_68px_-42px_rgba(15,23,42,0.32)]",
-    lg: "shadow-[0_34px_78px_-46px_rgba(15,23,42,0.36)]",
+    sm: "shadow-[0_1px_2px_rgba(15,23,42,0.04),0_18px_40px_-32px_rgba(15,23,42,0.2)]",
+    md: "shadow-[0_1px_2px_rgba(15,23,42,0.05),0_24px_54px_-36px_rgba(15,23,42,0.24)]",
+    lg: "shadow-[0_1px_3px_rgba(15,23,42,0.06),0_32px_70px_-40px_rgba(15,23,42,0.28)]",
   }
 
   return (
     <div className={cn(baseStyles, variantStyles[variant], shadowStyles[shadow], className)}>
-      <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-90" />
-
       {(title || headerContent) && (
-        <div className="relative z-[1] flex items-center justify-between border-b border-slate-200/80 px-6 py-4">
+        <div className="relative z-[1] flex items-center justify-between gap-4 border-b border-border/70 px-6 py-4">
           {title && (
-            <h3 className={cn("text-lg font-semibold text-gray-900", titleClassName)}>{title}</h3>
+            <h3 className={cn("text-lg font-semibold text-foreground", titleClassName)}>{title}</h3>
           )}
           {headerContent}
         </div>
@@ -58,7 +54,7 @@ export function ContentBox({
       <div className={cn("relative z-[1]", noPadding ? "" : "p-6")}>{children}</div>
 
       {footerContent && (
-        <div className="relative z-[1] border-t border-slate-200/80 px-6 py-4">{footerContent}</div>
+        <div className="relative z-[1] border-t border-border/70 px-6 py-4">{footerContent}</div>
       )}
     </div>
   )

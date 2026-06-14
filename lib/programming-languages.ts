@@ -1,12 +1,20 @@
 import {
+  Bird,
   Blocks,
+  Boxes,
   Braces,
+  Cloud,
   Code,
+  Cog,
+  Coins,
+  Cpu,
   Database,
   FileCode,
   FileJson,
+  Hammer,
   Layout,
   Server,
+  Smartphone,
   Terminal,
   Workflow,
 } from "lucide-react"
@@ -121,36 +129,80 @@ export const programmingLanguages: Record<string, ProgrammingLanguage> = {
     icon: FileJson,
     color: "#292929",
   },
+  go: {
+    name: "Go",
+    icon: Cpu,
+    color: "#00add8",
+  },
+  rust: {
+    name: "Rust",
+    icon: Cog,
+    color: "#dea584",
+  },
+  kotlin: {
+    name: "Kotlin",
+    icon: Smartphone,
+    color: "#a97bff",
+  },
+  swift: {
+    name: "Swift",
+    icon: Bird,
+    color: "#f05138",
+  },
+  solana: {
+    name: "Solana",
+    icon: Coins,
+    color: "#9945ff",
+  },
+  aws: {
+    name: "AWS",
+    icon: Cloud,
+    color: "#ff9900",
+  },
+  terraform: {
+    name: "Terraform",
+    icon: Boxes,
+    color: "#7b42bc",
+  },
+  shell: {
+    name: "Shell",
+    icon: Terminal,
+    color: "#89e051",
+  },
+  cmake: {
+    name: "CMake",
+    icon: Hammer,
+    color: "#064f8c",
+  },
 }
 
 // Fonction pour obtenir un langage à partir de son nom
 export function getLanguage(name: string): ProgrammingLanguage {
   const normalizedName = name.toLowerCase().trim()
 
-  // Recherche directe
+  // Direct match
   if (programmingLanguages[normalizedName]) {
     return programmingLanguages[normalizedName]
   }
 
-  // Recherche partielle
-  for (const key in programmingLanguages) {
-    if (normalizedName.includes(key) || key.includes(normalizedName)) {
-      return programmingLanguages[key]
-    }
+  // Explicit aliases for names the partial match below would resolve incorrectly
+  if (normalizedName === "c++" || normalizedName.includes("cpp")) {
+    return programmingLanguages.cpp
   }
-
-  // Cas spéciaux et alias
-  if (normalizedName.includes("next") || normalizedName.includes("nextjs")) {
+  if (normalizedName.includes("node")) {
+    return programmingLanguages.nodejs
+  }
+  if (normalizedName.includes("next")) {
     return programmingLanguages.react
   }
   if (normalizedName.includes("express")) {
     return programmingLanguages.nodejs
   }
-  if (normalizedName.includes("symfony") || normalizedName.includes("laravel")) {
-    return programmingLanguages.php
-  }
   if (normalizedName.includes("postgres")) {
     return programmingLanguages.postgresql
+  }
+  if (normalizedName.includes("symfony") || normalizedName.includes("laravel")) {
+    return programmingLanguages.php
   }
   if (normalizedName.includes("c#") || normalizedName.includes("csharp")) {
     return {
@@ -160,7 +212,14 @@ export function getLanguage(name: string): ProgrammingLanguage {
     }
   }
 
-  // Valeur par défaut
+  // Partial match
+  for (const key in programmingLanguages) {
+    if (normalizedName.includes(key) || key.includes(normalizedName)) {
+      return programmingLanguages[key]
+    }
+  }
+
+  // Default
   return {
     name: name,
     icon: Code,

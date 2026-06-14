@@ -28,9 +28,9 @@ export default function EducationSection() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <SectionHeading title={t`Education`} className="mb-10" />
+        <SectionHeading eyebrow={t`Background`} title={t`Education`} className="mb-10" />
 
         <div className="relative space-y-6">
           {educations.map((education, index) => {
@@ -60,17 +60,18 @@ export default function EducationSection() {
                           buttonAriaLabel={t`Visit website`}
                         />
                         <div>
-                          <h3 className="text-xl font-bold text-gray-900">
+                          <h3 className="text-xl font-bold text-foreground">
                             {t(education.institution)}
                           </h3>
-                          <p className="text-base text-gray-800 font-medium">
-                            {t(education.degree)} <span className="text-gray-400">&middot;</span>{" "}
+                          <p className="text-base text-foreground font-medium">
+                            {t(education.degree)}{" "}
+                            <span className="text-muted-foreground/70">&middot;</span>{" "}
                             {t(education.field)}
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap gap-x-5 gap-y-2 mt-2 text-sm text-gray-600">
+                      <div className="flex flex-wrap gap-x-5 gap-y-2 mt-2 text-sm text-muted-foreground">
                         <div className="flex items-center">
                           <Calendar className="h-4 w-4 mr-2 text-primary/70" />
                           <span>
@@ -83,12 +84,12 @@ export default function EducationSection() {
                         </div>
                       </div>
 
-                      <div className="mt-4 text-gray-600 text-sm leading-relaxed">
+                      <div className="mt-4 text-muted-foreground text-sm leading-relaxed">
                         {t(education.description)}
                       </div>
 
                       <div className="mt-4 md:hidden">
-                        <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center">
+                        <h4 className="text-sm font-medium text-foreground/80 mb-3 flex items-center">
                           <span className="w-1 h-4 bg-primary/60 rounded-full mr-2" />
                           <Trans>Skills acquired</Trans>
                         </h4>
@@ -100,8 +101,8 @@ export default function EducationSection() {
                       </div>
                     </div>
 
-                    <div className="hidden md:block md:border-l md:border-gray-100 md:pl-6 md:ml-2 md:w-64 lg:w-72">
-                      <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center">
+                    <div className="hidden md:block md:border-l md:border-border/70 md:pl-6 md:ml-2 md:w-64 lg:w-72">
+                      <h4 className="text-sm font-medium text-foreground/80 mb-3 flex items-center">
                         <span className="w-1 h-4 bg-primary/60 rounded-full mr-2" />
                         <Trans>Skills acquired</Trans>
                       </h4>
